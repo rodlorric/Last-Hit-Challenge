@@ -5,7 +5,7 @@
 .LastHitPanel{
     width: 400px;
     height: 80px;
-    background-color: #000000;
+    /*background-color: #000000;*/
     background-size: 100% 100%;
     vertical-align: bottom;
     horizontal-align: center;
@@ -13,36 +13,22 @@
     margin-bottom: 25px;
 }
 
-/*
-.CreepScoreHolder{
-    width: 400px;
-    height: 100px;
-    flow-children: right;
-    horizontal-align: center;
-    vertical-align: center;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-*/
 
 #lh{
     font-size: 50px;
     font-weight: bold;
     color: #5c5c5c;
-    /*text-shadow: 0 0 2px #ff0000;*/
     horizontal-align: left;
     vertical-align: center;
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
 }
 
 .LHHolder{
     width: 90px;
     height: 100px;
-    /*flow-children: right;*/
     horizontal-align: right;
     vertical-align: center;
-    background-color: #fcde14;
-    opacity: 0.5;
+    /*background-color: #fcde14;*/
     margin-right: 120px;
 }
 
@@ -51,10 +37,9 @@
     font-weight: bold;
     color: #a0a0a0;
     text-align: left;
-    /* text-shadow: 0 0 2px #ff0000;*/
-    background-color: #ff0000;
+    /*background-color: #ff0000;*/
     horizontal-align: right;
-    vertical-align: center;
+    vertical-align: center;\
 
     animation-duration: TotalLength;
     animation-timing-function: TimingFunc;
@@ -69,7 +54,7 @@
     horizontal-align: right;
     vertical-align: center;
     margin-right: 85px;
-    background-color: #aaaaaa;
+    /*background-color: #aaaaaa;*/
 }
 
 .DNHolder{
@@ -77,8 +62,7 @@
     height: 100px;
     horizontal-align: right;
     vertical-align: center;
-    background-color: #b71d8f;
-    opacity: 0.5;
+    /*background-color: #b71d8f;*/
     margin-right: 0px;
 }
 
@@ -86,11 +70,9 @@
     font-size: 50px;
     font-weight: bold;
     color: #a0a0a0;
-    /*text-shadow: 0 0 2px #ff0000;*/
     horizontal-align: left;
     vertical-align: center;
-    opacity: 0.5;
-    background-color: #ff0000;
+    /*background-color: #ff0000;*/
     animation-duration: TotalLength;
     animation-timing-function: TimingFunc;
     animation-iteration-count: IterationCount;
