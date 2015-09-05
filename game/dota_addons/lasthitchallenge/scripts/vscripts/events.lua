@@ -23,13 +23,10 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
-	print('Thinking!!!')
 	-- Stop thinking if game is paused
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
-	print('countdownEnabled: ' .. tostring(self.countdownEnabled))
-	print('GameState: ' .. tostring(GameRules:State_Get()))
 	if self.countdownEnabled == true then
 	    CountdownTimer()
 	    if nCOUNTDOWNTIMER == 30 then
