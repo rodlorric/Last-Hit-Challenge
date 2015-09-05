@@ -1,0 +1,13 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/restart.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/restart.js" />
+	</scripts>
+	<Panel class="ButtonHolder">
+		<Button id="RestartButton" onactivate="OnRestartButton()" >
+			<Label text="RESTART" />
+		</Button>
+	</Panel>	
+</root>

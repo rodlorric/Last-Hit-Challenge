@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	maps 			"lasthit"
+	"IsPlayable"	"1"
+	"template_map"
+	{
+		"MaxPlayers"		"1"
+	}
+}

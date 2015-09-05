@@ -1,0 +1,18 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/creep_score.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/creep_score.js" />
+	</scripts>
+	<Panel class="LastHitPanel">
+		<Label id="lh" text="LH / D "/>		
+		<Panel class="LHHolder">
+			<Label id="CreepScoreLH" text="0"/>
+		</Panel>
+		<Label id="dn" text=" / "/>
+		<Panel class="DNHolder">
+			<Label id="CreepScoreDN" text="0"/>
+		</Panel>
+	</Panel>	
+</root>

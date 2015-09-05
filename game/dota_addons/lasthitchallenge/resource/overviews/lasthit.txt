@@ -1,0 +1,8 @@
+lasthit
+{
+	material materials/overviews/lasthit.vmat
+	pos_x -2944
+	pos_y 2304
+	scale 5.250
+}
+

@@ -1,0 +1,143 @@
+@define TotalLength: 0.3s;
+@define TimingFunc: linear;
+@define IterationCount: 3;
+
+.LastHitPanel{
+    width: 400px;
+    height: 80px;
+    background-color: #000000;
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    horizontal-align: center;
+    margin-left: 310px;
+    margin-bottom: 25px;
+}
+
+/*
+.CreepScoreHolder{
+    width: 400px;
+    height: 100px;
+    flow-children: right;
+    horizontal-align: center;
+    vertical-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+*/
+
+#lh{
+    font-size: 50px;
+    font-weight: bold;
+    color: #5c5c5c;
+    /*text-shadow: 0 0 2px #ff0000;*/
+    horizontal-align: left;
+    vertical-align: center;
+    background-color: #eeeeee;
+}
+
+.LHHolder{
+    width: 90px;
+    height: 100px;
+    /*flow-children: right;*/
+    horizontal-align: right;
+    vertical-align: center;
+    background-color: #fcde14;
+    opacity: 0.5;
+    margin-right: 120px;
+}
+
+#CreepScoreLH{
+    font-size: 50px;
+    font-weight: bold;
+    color: #a0a0a0;
+    text-align: left;
+    /* text-shadow: 0 0 2px #ff0000;*/
+    background-color: #ff0000;
+    horizontal-align: right;
+    vertical-align: center;
+
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+}
+
+#dn{
+    font-size: 50px;
+    font-weight: bold;
+    color: #a0a0a0;
+    /*text-shadow: 0 0 2px #ff0000;*/
+    horizontal-align: right;
+    vertical-align: center;
+    margin-right: 85px;
+    background-color: #aaaaaa;
+}
+
+.DNHolder{
+    width: 90px;
+    height: 100px;
+    horizontal-align: right;
+    vertical-align: center;
+    background-color: #b71d8f;
+    opacity: 0.5;
+    margin-right: 0px;
+}
+
+#CreepScoreDN{
+    font-size: 50px;
+    font-weight: bold;
+    color: #a0a0a0;
+    /*text-shadow: 0 0 2px #ff0000;*/
+    horizontal-align: left;
+    vertical-align: center;
+    opacity: 0.5;
+    background-color: #ff0000;
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+}
+
+.ButtonHolder{
+    width: 250px;
+    height: 50px;
+    flow-children: right;
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+#Label
+{
+	font-size: 25;
+	horizontal-align: center;
+}
+
+.last_hit_anim #CreepScoreLH
+{
+    visibility: visible;
+    animation-name: LastHitAnim;
+}
+
+.deny_anim #CreepScoreDN
+{
+    visibility: visible;
+    animation-name: LastHitAnim;
+}
+
+@keyframes 'LastHitAnim'
+{
+    0%
+    {
+        transform: translateX( -2px ) rotateZ( -3deg ) ;
+    }
+
+    50%
+    {
+        transform: translateX( 2px ) rotateZ( 3deg ) scaleX(1.25) scaleY(1.25);
+    }
+    
+    100%
+    {
+        transform: translateX( -2px ) rotateZ( -3deg );
+    }
+}

@@ -1,0 +1,20 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Shadow Fiend
+	//=================================================================================================================
+	"npc_dota_hero_nevermore_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_nevermore"					// Hero to override
+		"Ability1"					"nevermore_no_abilities"					// Ability 1
+		"Ability2"					"nevermore_no_abilities"					// Ability 2
+		"Ability3"					"nevermore_no_abilities"					// Ability 3
+		"Ability4"					"nevermore_no_abilities"					// Ability 4
+		"Ability5"					"nevermore_no_abilities"					// Ability 5
+		"Ability6"					"nevermore_no_abilities"					// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+}

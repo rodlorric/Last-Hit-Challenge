@@ -1,0 +1,11 @@
+<root>
+	<script>
+		$.Msg("Compiled Panorama")
+	</script>
+ 
+	<Panel>
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/creep_score.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/creep_score_records.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/restart.xml" />
+	</Panel>
+</root>
