@@ -1,6 +1,6 @@
-@define TotalLength: 0.3s;
+@define TotalLength: 0.7s;
 @define TimingFunc: linear;
-@define IterationCount: 3;
+@define IterationCount: 1;
 
 .LastHitPanel{
     width: 400px;
@@ -40,10 +40,13 @@
     /*background-color: #ff0000;*/
     horizontal-align: right;
     vertical-align: center;
+    
+
 
     animation-duration: TotalLength;
     animation-timing-function: TimingFunc;
     animation-iteration-count: IterationCount;
+    
 }
 
 #dn{
@@ -73,6 +76,7 @@
     horizontal-align: left;
     vertical-align: center;
     /*background-color: #ff0000;*/
+
     animation-duration: TotalLength;
     animation-timing-function: TimingFunc;
     animation-iteration-count: IterationCount;
@@ -97,13 +101,29 @@
 .last_hit_anim #CreepScoreLH
 {
     visibility: visible;
-    animation-name: LastHitAnim;
+    animation-name: bounce;
 }
 
 .deny_anim #CreepScoreDN
 {
     visibility: visible;
-    animation-name: LastHitAnim;
+    animation-name: bounce;
+}
+
+@keyframes 'bounce' {
+  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+
+
+  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+
+  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
+
+  90% {transform: translateY(-2px) rotateZ( 2deg );}
+  100% {transform: rotateZ( -2deg );}
 }
 
 @keyframes 'LastHitAnim'
@@ -115,7 +135,7 @@
 
     50%
     {
-        transform: translateX( 2px ) rotateZ( 3deg ) scaleX(1.25) scaleY(1.25);
+        transform: translateX( 2px ) rotateZ( 3deg );
     }
     
     100%
