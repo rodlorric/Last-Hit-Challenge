@@ -1,0 +1,116 @@
+@define TotalLength: 0.7s;
+@define TimingFunc: linear;
+@define IterationCount: 1;
+
+.ClockPanel{
+    width: 200px;
+    height: 40px;
+    background-color: #000000;
+    background-size: 100% 100%;
+    vertical-align: top;
+    horizontal-align: center;
+}
+
+.minHolder{
+    width: 90px;
+    height: 100px;
+    horizontal-align: left;
+    vertical-align: center;
+    background-color: #fcde14;
+}
+
+#min{
+    font-size: 40px;
+    font-weight: bold;
+    color: #a0a0a0;
+    text-align: left;    
+    horizontal-align: right;
+    vertical-align: center;
+    margin-right: 5px;
+    /*background-color: #ff0000;
+
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+    */
+}
+
+#colon{
+    font-size: 40px;
+    font-weight: bold;
+    color: #a0a0a0;
+    /*text-shadow: 0 0 2px #ff0000;*/
+    horizontal-align: center;
+    vertical-align: top;
+    /*background-color: #aaaaaa;*/
+}
+
+.secHolder{
+    width: 90px;
+    height: 100px;
+    horizontal-align: right;
+    vertical-align: center;
+    background-color: #b71d8f;
+}
+
+#sec{
+    font-size: 40px;
+    font-weight: bold;
+    color: #a0a0a0;
+    horizontal-align: left;
+    vertical-align: center;
+    margin-left: 5px;
+    /*background-color: #ff0000;
+
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+    */
+}
+
+
+.last_hit_anim #CreepScoreLH
+{
+    visibility: visible;
+    animation-name: bounce;
+}
+
+.deny_anim #CreepScoreDN
+{
+    visibility: visible;
+    animation-name: bounce;
+}
+
+@keyframes 'bounce' {
+  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+
+
+  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+
+  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
+
+  90% {transform: translateY(-2px) rotateZ( 2deg );}
+  100% {transform: rotateZ( -2deg );}
+}
+
+@keyframes 'LastHitAnim'
+{
+    0%
+    {
+        transform: translateX( -2px ) rotateZ( -3deg ) ;
+    }
+
+    50%
+    {
+        transform: translateX( 2px ) rotateZ( 3deg );
+    }
+    
+    100%
+    {
+        transform: translateX( -2px ) rotateZ( -3deg );
+    }
+}

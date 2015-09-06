@@ -1,4 +1,4 @@
-_G.nCOUNTDOWNTIMER = 600 --600 = 10 minutes
+_G.SECONDS = 0 --600 = 10 minutes
 _G.current_cs = { lh = 0, dn = 0 }
 
 
@@ -30,7 +30,7 @@ end
 function CLastHitChallenge:InitGameMode()
 	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 0 )
-	GameRules:SetPreGameTime( 10 )
+	GameRules:SetPreGameTime( 0 )
 	GameRules:SetUseUniversalShopMode( false )
 
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )

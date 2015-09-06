@@ -2,15 +2,16 @@ require ( "util")
 require ( "timers" )
 
 function CLastHitChallenge:OnHeroPicked (event)
-  tprint(event, 0)
-  local hero = EntIndexToHScript(event.heroindex)
-  self.countdownEnabled = true
-  CLastHitChallenge:GiveZeroGold(hero)
-  CLastHitChallenge:GiveBlinkDagger(hero)
+	CLastHitChallenge:Clock()
+  	tprint(event, 0)
+  	local hero = EntIndexToHScript(event.heroindex)
+  	--self.countdownEnabled = true
+  	CLastHitChallenge:GiveZeroGold(hero)
+  	CLastHitChallenge:GiveBlinkDagger(hero)
 end
 
 function CLastHitChallenge:GiveZeroGold (hero)
-  hero:SetGold(0, false)
+  	hero:SetGold(0, false)
 end
 
 function CLastHitChallenge:GiveBlinkDagger (hero)
@@ -28,7 +29,7 @@ function CLastHitChallenge:OnThink()
   		return 1
 	end
 	if self.countdownEnabled == true then
-	    CountdownTimer()
+	    --CountdownTimer()
 	    if nCOUNTDOWNTIMER == 30 then
 	      BroadcastMessage("30 seconds left!", 1)
 	      CustomGameEventManager:Send_ServerToAllClients( "timer_alert", {} )
@@ -189,6 +190,10 @@ function CLastHitChallenge:OnRestart()
 
 	hero:ForceKill(true)
 
+	-- clearing time!
+	SECONDS = 0
+
+	-- clearing units
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
 											Vector( 0, 0, 0 ), 
 											nil, 
@@ -215,6 +220,8 @@ function CLastHitChallenge:OnRestart()
 		end
 	end	
 
+
+	-- clearing creep score
 	current_cs = { lh = 0, dn = 0 }
 	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = current_cs})
 	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = current_cs})
@@ -224,12 +231,24 @@ function CLastHitChallenge:OnRestart()
 		callback = function()
 			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = true})
 			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = false})
-			hero:RespawnHero(true, false, false)
-			CLastHitChallenge:GiveZeroGold(hero)
 	 	end
 	})
+
+	hero:RespawnHero(true, false, false)
+	CLastHitChallenge:GiveZeroGold(hero)
 	
 	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
 	print('current_cs on restart')
 	tprint(current_cs)
+end
+
+function CLastHitChallenge:Clock()
+	Timers:CreateTimer(function()
+      SECONDS = SECONDS + 1
+      local min = string.format("%.2d", SECONDS/60%60)
+      local sec = string.format("%.2d", SECONDS%60)
+      CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
+      return 1.0
+    end
+  )
 end
