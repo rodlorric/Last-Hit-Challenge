@@ -5,10 +5,10 @@ function CLastHitChallenge:OnHeroPicked (event)
 	CLastHitChallenge:Clock()
   	tprint(event, 0)
   	local hero = EntIndexToHScript(event.heroindex)
-  	--self.countdownEnabled = true
   	CLastHitChallenge:GiveZeroGold(hero)
   	CLastHitChallenge:GiveBlinkDagger(hero)
 end
+
 
 function CLastHitChallenge:GiveZeroGold (hero)
   	hero:SetGold(0, false)
@@ -24,10 +24,29 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
+	
+	-- This is to get towers coordinates
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and radiant_tower == nil and dire_tower == nil then
+		radiant_tower = Entities:FindByName(nil, 'dota_goodguys_tower1_mid')
+		radiant_tower = radiant_tower:GetOrigin()
+		
+		dire_tower = Entities:FindByName(nil, 'dota_badguys_tower1_mid')
+		dire_tower = dire_tower:GetOrigin()
+	end
+
+--[[ Make Towers invulnerable
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and not tower_invulnerable then
+		print('if')
+		CLastHitChallenge:SetTowerInvunerability('dota_goodguys_tower1_mid')
+		CLastHitChallenge:SetTowerInvunerability('dota_badguys_tower1_mid')
+		tower_invulnerable = true
+	end
+]]
 	-- Stop thinking if game is paused
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
+
 	if self.countdownEnabled == true then
 	    --CountdownTimer()
 	    if nCOUNTDOWNTIMER == 30 then
@@ -48,16 +67,43 @@ function CLastHitChallenge:OnThink()
 		return 1
 end
 
+--[[ Make Towers invulnerable
+
+function CLastHitChallenge:SetTowerInvunerability( tower_name )
+	local tower = Entities:FindByName(nil, tower_name)
+	local invulnerable = false
+	for i=0,tower:GetModifierCount() do 
+		if tower:GetModifierNameByIndex(i) == 'modifier_invulnerable' then
+			invulnerable = true
+			break
+		end
+	end
+	if not invulnerable then
+		tower:AddNewModifier( tower, nil, "modifier_invulnerable", {} )
+	end
+end
+
+]]
+
+--[[ Regenerates tower's  health rendering it inmortal.
+function CLastHitChallenge:OnTowerHurt( event )
+	local hurtUnit = EntIndexToHScript( event.entindex_killed )
+	if hurtUnit:IsTower() then
+		hurtUnit:SetHealth(1300)
+	end
+end
+]]
+
 function CLastHitChallenge:OnLastHit (event)
 	print("OnLastHit current_cs: ")
-	tprint(current_cs)
+	tprint(current_cs, 0)
   	local creep_score = {
 		lh = (PlayerResource:GetLastHits(0) - current_cs["lh"]) + 1,
 		dn = PlayerResource:GetDenies(0) - current_cs["dn"]
 	}
 	creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
 	print("creep_score: ")
-	tprint(creep_score)
+	tprint(creep_score, 0)
 	local custom_table_creep_score = CustomNetTables:GetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)))
 	print(custom_table_creep_score)
 	if custom_table_creep_score == nil then
@@ -73,7 +119,7 @@ function CLastHitChallenge:OnLastHit (event)
 		})
 	else
 		print("Must check for records!")
-		tprint(custom_table_creep_score)
+		tprint(custom_table_creep_score, 0)
 		local rec_lh = custom_table_creep_score["lh"]
 		local rec_dn = custom_table_creep_score["dn"]
 		local rec_cs = custom_table_creep_score["cs"]
@@ -141,7 +187,7 @@ function CLastHitChallenge:OnDeny (event)
 			})
 		else
 			print("Must check for records!")
-			tprint(custom_table_creep_score)
+			tprint(custom_table_creep_score,0 )
 			local rec_lh = custom_table_creep_score["lh"]
 			local rec_dn = custom_table_creep_score["dn"]
 			local rec_cs = custom_table_creep_score["cs"]
@@ -202,9 +248,16 @@ function CLastHitChallenge:OnRestart()
 											DOTA_UNIT_TARGET_ALL, 
 											DOTA_UNIT_TARGET_FLAG_NONE, 
 											FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
+		--if not unit:IsTower() then
+		if unit:IsTower() then
+				print(unit:GetClassname())
+				print(unit:GetName())
+				print(unit:GetEntityIndex())
+				local tower = EntIndexToHScript(unit:GetEntityIndex())
+				print(tower:GetName())
+			end
 			UTIL_Remove( unit )
-		end
+		--end
 	end
 
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
@@ -215,9 +268,9 @@ function CLastHitChallenge:OnRestart()
 										DOTA_UNIT_TARGET_ALL, 
 										DOTA_UNIT_TARGET_FLAG_NONE, 
 										FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
+		--if not unit:IsTower() then
 			UTIL_Remove( unit )
-		end
+		--end
 	end	
 
 
@@ -239,7 +292,17 @@ function CLastHitChallenge:OnRestart()
 	
 	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
 	print('current_cs on restart')
-	tprint(current_cs)
+	tprint(current_cs, 1)
+	
+
+	local radiant_t = CreateUnitByName("npc_dota_radiant_tower1_mid", radiant_tower, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	radiant_t:RemoveModifierByName("modifier_invulnerable")
+	radiant_t:SetRenderColor(206, 204, 192)
+
+	local dire_t = CreateUnitByName("npc_dota_dire_tower1_mid", dire_tower, false, nil, nil, DOTA_TEAM_BADGUYS)
+	dire_t:RemoveModifierByName("modifier_invulnerable")
+	dire_t:SetRenderColor(63, 71, 62)
+	
 end
 
 function CLastHitChallenge:Clock()
