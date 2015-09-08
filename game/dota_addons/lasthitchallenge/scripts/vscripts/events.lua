@@ -158,55 +158,61 @@ function CLastHitChallenge:OnLastHit (event)
   	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = creep_score})
 end
 
-function CLastHitChallenge:OnDeny (event)
+function CLastHitChallenge:OnEntityKilled (event)
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
-	local hero = EntIndexToHScript( event.entindex_attacker )
-	local heroTeam = hero:GetTeam()
-	if hero:IsRealHero() and heroTeam == killedTeam then
-		print("Deny?")
-		local creep_score = {
-			lh = PlayerResource:GetLastHits(0) - current_cs["lh"],
-			dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-		}
-		creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-		local custom_table_creep_score = CustomNetTables:GetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)))
-		if custom_table_creep_score == nil then
-			print("EmptyTable!")
-			creep_score["anim"] = {lh = true, dn = false, cs = true}
-			creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-			CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
-		else
-			print("Must check for records!")
-			tprint(custom_table_creep_score,0 )
-			local rec_lh = custom_table_creep_score["lh"]
-			local rec_dn = custom_table_creep_score["dn"]
-			local rec_cs = custom_table_creep_score["cs"]
-			local rec_creep_score = {
-				lh = rec_lh,
-				dn = rec_dn,
-				cs = rec_cs
+	local attacker = EntIndexToHScript( event.entindex_attacker )
+	if attacker:IsRealHero() then
+		local heroTeam = attacker:GetTeam()
+		if heroTeam == killedTeam then
+			print("Deny?")
+			local creep_score = {
+				lh = PlayerResource:GetLastHits(0) - current_cs["lh"],
+				dn = PlayerResource:GetDenies(0) - current_cs["dn"]
 			}
-			if creep_score["dn"] > rec_dn or (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-				if creep_score["dn"] > rec_dn then
-					creep_score["anim"] = {lh = false, dn = true, cs = false}
-					rec_creep_score["dn"] = creep_score["dn"]
-					rec_creep_score["anim"] = creep_score["anim"]
+			creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
+			local custom_table_creep_score = CustomNetTables:GetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)))
+			if custom_table_creep_score == nil then
+				print("EmptyTable!")
+				creep_score["anim"] = {lh = true, dn = false, cs = true}
+				creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
+				CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
+			else
+				print("Must check for records!")
+				tprint(custom_table_creep_score,0 )
+				local rec_lh = custom_table_creep_score["lh"]
+				local rec_dn = custom_table_creep_score["dn"]
+				local rec_cs = custom_table_creep_score["cs"]
+				local rec_creep_score = {
+					lh = rec_lh,
+					dn = rec_dn,
+					cs = rec_cs
+				}
+				if creep_score["dn"] > rec_dn or (creep_score["lh"] + creep_score["dn"]) > rec_cs then
+					if creep_score["dn"] > rec_dn then
+						creep_score["anim"] = {lh = false, dn = true, cs = false}
+						rec_creep_score["dn"] = creep_score["dn"]
+						rec_creep_score["anim"] = creep_score["anim"]
+					end
+					if (creep_score["lh"] + creep_score["dn"]) > rec_cs then
+						creep_score["anim"] = {lh = false, dn = false, cs = true}
+						rec_creep_score = creep_score									
+					end
+					if creep_score["dn"] > rec_dn and (creep_score["lh"] + creep_score["dn"]) > rec_cs then
+						creep_score["anim"] = {lh = false, dn = true, cs = true}
+						rec_creep_score = creep_score
+					end
+					print("New Record! " .. tostring(creep_score["lh"] + creep_score["dn"]))
+					CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
 				end
-				if (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-					creep_score["anim"] = {lh = false, dn = false, cs = true}
-					rec_creep_score = creep_score									
-				end
-				if creep_score["dn"] > rec_dn and (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-					creep_score["anim"] = {lh = false, dn = true, cs = true}
-					rec_creep_score = creep_score
-				end
-				print("New Record! " .. tostring(creep_score["lh"] + creep_score["dn"]))
-				CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
 			end
-		end
-  		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = creep_score})
-	end	 	
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = creep_score})
+		end  		
+	else
+		local origin = killedUnit:GetOrigin()			
+		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x, y = origin.y, z = origin.z, pct = 0})
+		print('unit dies!!!')
+	end
 end
 
 function CLastHitChallenge:OnRestart()
