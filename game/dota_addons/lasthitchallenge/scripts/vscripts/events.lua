@@ -230,14 +230,7 @@ function CLastHitChallenge:OnRestart()
 											DOTA_UNIT_TARGET_FLAG_NONE, 
 											FIND_ANY_ORDER, false )) do
 		--if not unit:IsTower() then
-		if unit:IsTower() then
-				print(unit:GetClassname())
-				print(unit:GetName())
-				print(unit:GetEntityIndex())
-				local tower = EntIndexToHScript(unit:GetEntityIndex())
-				print(tower:GetName())
-			end
-			UTIL_Remove( unit )
+		UTIL_Remove( unit )
 		--end
 	end
 
@@ -250,7 +243,7 @@ function CLastHitChallenge:OnRestart()
 										DOTA_UNIT_TARGET_FLAG_NONE, 
 										FIND_ANY_ORDER, false )) do
 		--if not unit:IsTower() then
-			UTIL_Remove( unit )
+		UTIL_Remove( unit )
 		--end
 	end	
 
