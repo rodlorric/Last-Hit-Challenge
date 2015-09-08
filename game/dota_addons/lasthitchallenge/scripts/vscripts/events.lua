@@ -88,17 +88,19 @@ end
 function CLastHitChallenge:OnHurt( event )
 	
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
-	local attacker = EntIndexToHScript( event.entindex_attacker )
-	if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
-		local health = hurtUnit:GetHealth()
-		local max_health = hurtUnit:GetMaxHealth()
-		--local min_dmg = attacker:GetBaseDamageMin()
-		--print('max_dmg = ' .. tostring(max_dmg) + ' min_dmg = ' + tostring(min_dmg) )
-		local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
-		if pct ~= 0 then
-			--DebugDrawText(hurtUnit:GetAbsOrigin(), "Close!", true, 1.0)
-			local origin = hurtUnit:GetOrigin()			
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x, y = origin.y, z = origin.z, pct = pct})
+	if event.entindex_attacker ~= nil then
+		local attacker = EntIndexToHScript( event.entindex_attacker )
+		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
+			local health = hurtUnit:GetHealth()
+			local max_health = hurtUnit:GetMaxHealth()
+			--local min_dmg = attacker:GetBaseDamageMin()
+			--print('max_dmg = ' .. tostring(max_dmg) + ' min_dmg = ' + tostring(min_dmg) )
+			local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
+			if pct ~= 0 then
+				--DebugDrawText(hurtUnit:GetAbsOrigin(), "Close!", true, 1.0)
+				local origin = hurtUnit:GetOrigin()			
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x, y = origin.y, z = origin.z, pct = pct})
+			end
 		end
 	end
 	--if hurtUnit:IsTower() then
@@ -209,9 +211,12 @@ end
 
 function CLastHitChallenge:OnRestart()
 	print("Restart!!!")
-	local hero = PlayerResource:GetSelectedHeroEntity(0)
+
+	local hero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_nevermore", 0, 0)
+	hero = PlayerResource:GetSelectedHeroEntity(0)
 
 	hero:ForceKill(true)
+
 	-- clearing time!
 	SECONDS = 0
 
