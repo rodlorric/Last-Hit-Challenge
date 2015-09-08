@@ -21,11 +21,11 @@ function OnCreepScoreRecordChanged( table_name, key, data )
 	if (data["anim"]["cs"] == true) {
 		new_record_panel.SetHasClass( "cs_new_record", true );
 	}
+	$.Schedule( 1, OnResetAnimation );
 } 
 
-function OnResetAnimation(data) {
+function OnResetAnimation() {
 	var new_record_panel = $.GetContextPanel();
-	$.Msg("OnResetAnimation!" + data["anim"])
 	new_record_panel.SetHasClass( "lh_new_record", false );
 	new_record_panel.SetHasClass( "dn_new_record", false );
 	new_record_panel.SetHasClass( "cs_new_record", false );
@@ -34,5 +34,4 @@ function OnResetAnimation(data) {
 
 (function () {
 	CustomNetTables.SubscribeNetTableListener( "custom_creep_score_records", OnCreepScoreRecordChanged );
-	GameEvents.Subscribe("reset_records_animation", OnResetAnimation);
 })();
