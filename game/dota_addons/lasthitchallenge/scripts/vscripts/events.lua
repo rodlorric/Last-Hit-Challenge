@@ -89,7 +89,7 @@ function CLastHitChallenge:OnHurt( event )
 	
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
 	if event.entindex_attacker ~= nil then
-		local attacker = EntIndexToHScript( event.entindex_attacker )
+	local attacker = EntIndexToHScript( event.entindex_attacker )
 		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
 			local health = hurtUnit:GetHealth()
 			local max_health = hurtUnit:GetMaxHealth()
@@ -280,12 +280,13 @@ function CLastHitChallenge:OnRestart()
 end
 
 function CLastHitChallenge:Clock()
-	Timers:CreateTimer(function()
-      SECONDS = SECONDS + 1
-      local min = string.format("%.2d", SECONDS/60%60)
-      local sec = string.format("%.2d", SECONDS%60)
-      CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
-      return 1.0
-    end
-  )
+	if timer == nil then
+		timer = Timers:CreateTimer(function()
+			      SECONDS = SECONDS + 1
+			      local min = string.format("%.2d", SECONDS/60%60)
+			      local sec = string.format("%.2d", SECONDS%60)
+			      CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
+			      return 1.0
+			    end)
+	end
 end

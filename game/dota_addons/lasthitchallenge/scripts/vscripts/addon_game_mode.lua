@@ -3,6 +3,7 @@ _G.current_cs = { lh = 0, dn = 0 }
 --_G.tower_invulnerable = true
 _G.radiant_tower = nil
 _G.dire_tower = nil
+_G.timer = nil
 
 if CLastHitChallenge == nil then
   _G.CLastHitChallenge = class({}) -- put CLastHitChallenge in the global scope
