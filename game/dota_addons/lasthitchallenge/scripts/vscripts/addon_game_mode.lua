@@ -48,6 +48,6 @@ function CLastHitChallenge:InitGameMode()
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
 	ListenToGameEvent("last_hit", Dynamic_Wrap(CLastHitChallenge, 'OnLastHit'), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(CLastHitChallenge, 'OnDeny'), self)
-	--ListenToGameEvent("entity_hurt", Dynamic_Wrap(CLastHitChallenge, 'OnTowerHurt'), self) -- Listener for detecting tower damage.
+	ListenToGameEvent("entity_hurt", Dynamic_Wrap(CLastHitChallenge, 'OnHurt'), self) -- Listener for detecting tower damage.
 	CustomGameEventManager:RegisterListener("restart", Dynamic_Wrap(CLastHitChallenge, 'OnRestart'))
 end

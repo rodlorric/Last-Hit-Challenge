@@ -8,5 +8,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/creep_score_records.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/restart.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/clock.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/overlay.xml" />
 	</Panel>
 </root>

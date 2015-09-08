@@ -1,0 +1,99 @@
+@define TotalLength: 1.0s;
+@define TimingFunc: linear;
+@define IterationCount: 1;
+
+.OverlayPanel{
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    vertical-align: top;
+    horizontal-align: left;
+    /*position: 0px 0px 0px;*/
+    /*background-color: #ffffff;*/
+}
+
+#txtHolder{
+    width: 256px;
+    height: 32px;
+    opacity: 0.5;
+    /*background-color: #ff0000;*/
+    /*transform: translateX(0px) translateY(0px);*/
+}
+
+#txt{
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;    
+    horizontal-align: center;
+    vertical-align: center;
+    /*background-color: #ff0000;*/
+
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+    
+}
+
+.close_anim #txt
+{
+    visibility: visible;
+    animation-name: Close;
+}
+
+.heavy_breathing #txt
+{
+    visibility: visible;
+    animation-name: wobble;
+}
+
+/*
+.heavy_breathing_intensifies #txt
+{
+    visibility: visible;
+    animation-name: wobble;
+    animation-duration: 0.5s;
+}
+*/
+
+@keyframes 'Close'
+{
+    0% 
+    { 
+        opacity: 1; 
+    }
+    100%
+    {
+        opacity: 0;
+        transform:  scaleX(1.50) scaleY(1.50);
+        
+    }
+}
+
+@keyframes 'bounce' {
+  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+
+
+  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+
+  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
+
+  90% {transform: translateY(-2px) rotateZ( 2deg );}
+  100% {transform: rotateZ( -2deg );}
+}
+
+@keyframes 'wobble' {
+    0%    { transform: translate3d(2px, -1px, 0px) rotateZ(1deg); }
+    10%    { transform: translate3d(-5px, 1px, 0px) rotateZ(2deg); }
+    20%    { transform: translate3d(1px, 2px, 0px) rotateZ(0deg); }
+    30%    { transform: translate3d(0px, -1px, 0px) rotateZ(-1deg); }
+    40%    { transform: translate3d(3px, 2px, 0px) rotateZ(2deg); }
+    50%    { transform: translate3d(3px, 0px, 0px) rotateZ(1deg); }
+    60%    { transform: translate3d(-5px, 2px, 0px) rotateZ(-1deg); }
+    70%    { transform: translate3d(-2px, 2px, 0px) rotateZ(-2deg); }
+    80%    { transform: translate3d(2px, -2px, 0px) rotateZ(2deg); }
+}

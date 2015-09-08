@@ -1,0 +1,15 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/overlay.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/overlay.js" />
+	</scripts>
+	<Panel class="OverlayPanel" hittest="false">		
+		<!--
+		<Panel class="txtHolder" id="txtH">
+			<Label id="txt" text="0000"/>
+		</Panel>
+		-->
+	</Panel>	
+</root>

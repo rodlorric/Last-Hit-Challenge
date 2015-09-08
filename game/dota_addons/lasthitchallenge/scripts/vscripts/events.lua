@@ -85,14 +85,27 @@ end
 
 ]]
 
---[[ Regenerates tower's  health rendering it inmortal.
-function CLastHitChallenge:OnTowerHurt( event )
+function CLastHitChallenge:OnHurt( event )
+	
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
-	if hurtUnit:IsTower() then
-		hurtUnit:SetHealth(1300)
+	local attacker = EntIndexToHScript( event.entindex_attacker )
+	if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
+		local health = hurtUnit:GetHealth()
+		local max_health = hurtUnit:GetMaxHealth()
+		--local min_dmg = attacker:GetBaseDamageMin()
+		--print('max_dmg = ' .. tostring(max_dmg) + ' min_dmg = ' + tostring(min_dmg) )
+		local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
+		if pct ~= 0 then
+			--DebugDrawText(hurtUnit:GetAbsOrigin(), "Close!", true, 1.0)
+			local origin = hurtUnit:GetOrigin()			
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x, y = origin.y, z = origin.z, pct = pct})
+		end
 	end
+	--if hurtUnit:IsTower() then
+	--	hurtUnit:SetHealth(1300)
+	--end
 end
-]]
+
 
 function CLastHitChallenge:OnLastHit (event)
 	print("OnLastHit current_cs: ")
@@ -111,12 +124,6 @@ function CLastHitChallenge:OnLastHit (event)
 		creep_score["anim"] = {lh = true, dn = false, cs = true}
 		creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
 		CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
-		Timers:CreateTimer({
-			endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-			callback = function()
-			 CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_records_animation", {})
-			end
-		})
 	else
 		print("Must check for records!")
 		tprint(custom_table_creep_score, 0)
@@ -144,21 +151,9 @@ function CLastHitChallenge:OnLastHit (event)
 				rec_creep_score = creep_score
 			end
 			CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
-			Timers:CreateTimer({
-			    endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-			    callback = function()
-			    	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_records_animation", {})
-			    end
-		  	})
 		end
 	end
   	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = creep_score})
-  	Timers:CreateTimer({
-	    endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-	    callback = function()
-	    	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = true})
-	    end
-  	})
 end
 
 function CLastHitChallenge:OnDeny (event)
@@ -179,12 +174,6 @@ function CLastHitChallenge:OnDeny (event)
 			creep_score["anim"] = {lh = true, dn = false, cs = true}
 			creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
 			CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
-			Timers:CreateTimer({
-				endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-				callback = function()
-			 		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_records_animation", creep_score)
-				end
-			})
 		else
 			print("Must check for records!")
 			tprint(custom_table_creep_score,0 )
@@ -212,21 +201,9 @@ function CLastHitChallenge:OnDeny (event)
 				end
 				print("New Record! " .. tostring(creep_score["lh"] + creep_score["dn"]))
 				CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
-				Timers:CreateTimer({
-					endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-					callback = function()
-						CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_records_animation", {})
-					end
-				})
 			end
 		end
   		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = creep_score})
-  		Timers:CreateTimer({
-		    endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-		    callback = function()
-		    	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = false})
-	    	end
-  		})
 	end	 	
 end
 
@@ -235,7 +212,6 @@ function CLastHitChallenge:OnRestart()
 	local hero = PlayerResource:GetSelectedHeroEntity(0)
 
 	hero:ForceKill(true)
-
 	-- clearing time!
 	SECONDS = 0
 
@@ -279,13 +255,6 @@ function CLastHitChallenge:OnRestart()
 	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = current_cs})
 	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = current_cs})
 	
-	Timers:CreateTimer({
-		endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-		callback = function()
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = true})
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "reset_animation", {lh = false})
-	 	end
-	})
 
 	hero:RespawnHero(true, false, false)
 	CLastHitChallenge:GiveZeroGold(hero)
