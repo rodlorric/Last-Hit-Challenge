@@ -3,7 +3,7 @@
 @define IterationCount: 1;
 
 .ClockPanel{
-    width: 200px;
+    width: 180px;
     height: 40px;
     background-color: #000000;
     background-size: 100% 100%;
@@ -16,7 +16,7 @@
     height: 100px;
     horizontal-align: left;
     vertical-align: center;
-    background-color: #fcde14;
+    /*background-color: #fcde14;*/
 }
 
 #min{
@@ -50,7 +50,7 @@
     height: 100px;
     horizontal-align: right;
     vertical-align: center;
-    background-color: #b71d8f;
+    /*background-color: #b71d8f;*/
 }
 
 #sec{
