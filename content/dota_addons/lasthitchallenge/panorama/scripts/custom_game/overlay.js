@@ -10,25 +10,9 @@ function Overlay(data) {
     var parentPanel = $.GetContextPanel(); // the root panel of the current XML context
     var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder");
     txtHolderPanel.hittest = false;
-    
-    var txtid = "txt_" + x + "_" + y;
 
     var txtLabel = $.CreatePanel( "Label", txtHolderPanel, "txt");
     txtLabel.class = ".txt"
-    /*
-    $.Msg(txtLabel);
-    txtLabel.style.fontSize = "15px";
-    txtLabel.style.fontWeight = "bold";
-    txtLabel.style.color =  "#ffffff";
-    txtLabel.style.horizontalAlign = "center";
-    txtLabel.style.verticalAlign = "center";
-    /*background-color = #ff0000;
-
-    txtLabel.style.animationDuration = "1.0s";
-    txtLabel.style.animationTimingFunction = "linear";
-    txtLabel.style.animationIterationCount = "infinite";
-    txtLabel.style.animationName = "Close";
-    */
 
     var text;
     parentPanel.SetHasClass( "close_anim", true );

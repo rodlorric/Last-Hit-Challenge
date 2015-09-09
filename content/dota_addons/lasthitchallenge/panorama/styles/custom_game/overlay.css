@@ -16,16 +16,17 @@
     width: 150px;
     height: 32px;
     opacity: 0.5;
-    background-color: #ff0000;
+    /*background-color: #ff0000;*/
     /*transform: translateX(0px) translateY(0px);*/
 }
 
 #txt{
     font-size: 15px;
     font-weight: bold;
-    color: #ffffff;
+    color: #a0a0a0;
     horizontal-align: center;
     vertical-align: center;
+    text-shadow: 0 0 2px black;
     /*background-color: #ff0000;*/
 
     animation-duration: TotalLength;
