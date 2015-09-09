@@ -8,42 +8,52 @@ function Overlay(data) {
     $.Msg('Percentage = ' + msg)
     $.Msg("(x,y) = ("+x+","+y+")");
     var parentPanel = $.GetContextPanel(); // the root panel of the current XML context
-    var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder" );
+    var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder");
     txtHolderPanel.hittest = false;
-    var txtLabel = $.CreatePanel( "Label", txtHolderPanel, "txt" );
+    
+    var txtid = "txt_" + x + "_" + y;
+
+    var txtLabel = $.CreatePanel( "Label", txtHolderPanel, "txt");
+    txtLabel.class = ".txt"
+    /*
+    $.Msg(txtLabel);
+    txtLabel.style.fontSize = "15px";
+    txtLabel.style.fontWeight = "bold";
+    txtLabel.style.color =  "#ffffff";
+    txtLabel.style.horizontalAlign = "center";
+    txtLabel.style.verticalAlign = "center";
+    /*background-color = #ff0000;
+
+    txtLabel.style.animationDuration = "1.0s";
+    txtLabel.style.animationTimingFunction = "linear";
+    txtLabel.style.animationIterationCount = "infinite";
+    txtLabel.style.animationName = "Close";
+    */
+
     var text;
-    if (msg != "missed"){
+    parentPanel.SetHasClass( "close_anim", true );
+    if (msg != "missed"){        
         if (msg > 0.75){
-            text = "Too early!";
-            parentPanel.SetHasClass( "close_anim", true );
+            text = "Too early!";            
         } else if (msg > 0.50 && msg <= 0.75 ){
             text = "Not yet!";
-            parentPanel.SetHasClass( "close_anim", true );
-        }
-        else if (msg > 0.25 && msg <= 0.50){
+        } else if (msg > 0.25 && msg <= 0.50){
             text = "Halfway there!";
-            parentPanel.SetHasClass( "close_anim", true );
-        }
-        else if (msg > 0.15 && msg <= 0.25){
+        } else if (msg > 0.15 && msg <= 0.25){
             text = "Almost!";
-            parentPanel.SetHasClass( "close_anim", true );
-        }
-        else if (msg > 0.10 && msg <= 0.15){
+        } else if (msg > 0.10 && msg <= 0.15){
             text = "*Heavy breating*";
-            parentPanel.SetHasClass( "close_anim", true );
-        }
-        else if (msg > 0.05 && msg <= 0.10){
+        } else if (msg > 0.05 && msg <= 0.10){
             text = "*Heavy breating*";
-            parentPanel.SetHasClass( "heavy_breathing", true );
-        }
-        else{
+        } else {
+            txtLabel.style.animationName = "wobble";
             text = "*Heavy breating*";
             txtLabel.style.animationDuration = "0.5s";
             parentPanel.SetHasClass( "heavy_breathing", true );
+            $.Schedule( 1.0, OnResetAnimation );
         }
     } else {
         text = "Missed!";
-        parentPanel.SetHasClass( "close_anim", true );
     }
 
     txtLabel.text = text;
@@ -57,7 +67,6 @@ function Overlay(data) {
 
     txtLabel.DeleteAsync(0.7);
     txtHolderPanel.DeleteAsync(0.7);
-    $.Schedule( 1.0, OnResetAnimation );
 }
 
 function OnResetAnimation(data) {

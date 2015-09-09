@@ -99,7 +99,7 @@ function CLastHitChallenge:OnHurt( event )
 			if pct ~= 0 then
 				--DebugDrawText(hurtUnit:GetAbsOrigin(), "Close!", true, 1.0)
 				local origin = hurtUnit:GetOrigin()			
-				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+70, msg = pct})
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = pct})
 			end
 		end
 	end
@@ -212,7 +212,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 		local origin = killedUnit:GetOrigin()
 		local bounds = killedUnit:GetUpVector()
 		print("bounds: :" .. tostring(bounds))
-		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+70, msg = "missed"})
+		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
 		print('unit dies!!!')
 	end
 end
