@@ -1,6 +1,6 @@
 @define TotalLength: 1.0s;
 @define TimingFunc: linear;
-@define IterationCount: 1;
+@define IterationCount: infinite;
 
 .OverlayPanel{
     width: 100%;
@@ -13,10 +13,10 @@
 }
 
 #txtHolder{
-    width: 256px;
+    width: 150px;
     height: 32px;
     opacity: 0.5;
-    /*background-color: #ff0000;*/
+    background-color: #ff0000;
     /*transform: translateX(0px) translateY(0px);*/
 }
 
@@ -24,7 +24,6 @@
     font-size: 15px;
     font-weight: bold;
     color: #ffffff;
-    text-align: center;    
     horizontal-align: center;
     vertical-align: center;
     /*background-color: #ff0000;*/
@@ -60,13 +59,12 @@
 {
     0% 
     { 
-        opacity: 1; 
+        opacity: 1;
+        transform:  scaleX(1.25) scaleY(1.25);        
     }
     100%
     {
-        opacity: 0;
-        transform:  scaleX(1.50) scaleY(1.50);
-        
+        opacity: 0;         
     }
 }
 
@@ -87,7 +85,7 @@
 }
 
 @keyframes 'wobble' {
-    0%    { transform: translate3d(2px, -1px, 0px) rotateZ(1deg); }
+    0%    { transform: translate3d(2px, -1px, 0px) rotateZ(1deg) scaleX(1.25) scaleY(1.25); }
     10%    { transform: translate3d(-5px, 1px, 0px) rotateZ(2deg); }
     20%    { transform: translate3d(1px, 2px, 0px) rotateZ(0deg); }
     30%    { transform: translate3d(0px, -1px, 0px) rotateZ(-1deg); }
