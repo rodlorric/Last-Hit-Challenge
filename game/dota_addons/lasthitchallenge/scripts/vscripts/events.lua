@@ -212,7 +212,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 		local origin = killedUnit:GetOrigin()
 		local bounds = killedUnit:GetUpVector()
 		print("bounds: :" .. tostring(bounds))
-		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-256, y = origin.y, z = origin.z+256, msg = "missed"})
+		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+70, msg = "missed"})
 		print('unit dies!!!')
 	end
 end
