@@ -282,7 +282,7 @@ function CLastHitChallenge:Clock()
 	if timer == nil then
 		timer = Timers:CreateTimer(function()
 			      SECONDS = SECONDS + 1
-			      local min = string.format("%.2d", SECONDS/60%60)
+			      local min = string.format("%.2d", math.floor(SECONDS/60)%60)
 			      local sec = string.format("%.2d", SECONDS%60)
 			      CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
 			      return 1.0
