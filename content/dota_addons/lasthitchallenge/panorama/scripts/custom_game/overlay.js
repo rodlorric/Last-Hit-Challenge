@@ -3,9 +3,7 @@ function Overlay(data) {
 
     var x = Math.floor(Game.WorldToScreenX( data["x"], data["y"], data["z"]));
     var y = Math.floor(Game.WorldToScreenY( data["x"], data["y"], data["z"]));
-    var msg 
     var msg = data["msg"];
-    $.Msg('Percentage = ' + msg)
     $.Msg("(x,y) = ("+x+","+y+")");
     var parentPanel = $.GetContextPanel(); // the root panel of the current XML context
     var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder");

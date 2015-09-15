@@ -8,16 +8,13 @@
     background-size: 100% 100%;
     vertical-align: top;
     horizontal-align: left;
-    /*position: 0px 0px 0px;*/
-    /*background-color: #ffffff;*/
+    visibility: visible;
 }
 
 #txtHolder{
     width: 150px;
     height: 32px;
     opacity: 0.5;
-    /*background-color: #ff0000;*/
-    /*transform: translateX(0px) translateY(0px);*/
 }
 
 #txt{
@@ -27,7 +24,6 @@
     horizontal-align: center;
     vertical-align: center;
     text-shadow: 0 0 2px black;
-    /*background-color: #ff0000;*/
 
     animation-duration: TotalLength;
     animation-timing-function: TimingFunc;
@@ -38,7 +34,7 @@
 .close_anim #txt
 {
     visibility: visible;
-    animation-name: Close;
+    animation-name: close;
 }
 
 .heavy_breathing #txt
@@ -47,43 +43,12 @@
     animation-name: wobble;
 }
 
-/*
-.heavy_breathing_intensifies #txt
-{
-    visibility: visible;
-    animation-name: wobble;
-    animation-duration: 0.5s;
-}
-*/
 
-@keyframes 'Close'
-{
-    0% 
-    { 
-        opacity: 1;
-        transform:  scaleX(1.25) scaleY(1.25);        
-    }
-    100%
-    {
-        opacity: 0;         
-    }
+@keyframes 'close'{
+    0% { opacity: 1; transform:  scaleX(1.25) scaleY(1.25);}
+    100% { opacity: 0; }
 }
 
-@keyframes 'bounce' {
-  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-
-
-  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
-  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
-
-  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
-
-  90% {transform: translateY(-2px) rotateZ( 2deg );}
-  100% {transform: rotateZ( -2deg );}
-}
 
 @keyframes 'wobble' {
     0%    { transform: translate3d(2px, -1px, 0px) rotateZ(1deg) scaleX(1.25) scaleY(1.25); }

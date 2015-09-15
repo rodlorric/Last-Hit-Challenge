@@ -1,0 +1,42 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/options.css"/>
+    <include src="file://{resources}/styles/dotastyles.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/options.js" />
+  </scripts>
+  <Panel class="CustomHudRoot" hittest="false">
+  	<Panel id="control_panel" class="ControlPanel" hittest="false">
+  		<Button id="ControlPanelSlideThumb" onactivate="OnClick()">
+			<Panel class="RightArrowButtonIcon"/>
+		</Button>
+	 	<Panel class="ControlPanelContainer">
+		  	<Panel id="Maximized">
+		  		<Panel id="MinimizeButton">
+			  		<Label text="Records"/>
+			  	</Panel>
+			  	<Panel class="Category">
+					 	<Label text="Creep Score:"/>
+					 	<Label id="cs" text="0"/>
+					 	<Label text="Last Hits:"/>
+					 	<Label id="lh" text="0"/>
+					 	<Label text="Denies:"/>
+					 	<Label id="dn" text="0"/>
+				</Panel>
+				<Panel class="Category">
+				 	<Label text="Options"/>
+				 	<Panel class="Row">			  			
+				  		<ToggleButton id="hide_overlay" class="OptionButton" text="Hide Help" onactivate="OnToggle()"/>				  			
+				 	</Panel>
+				 	<Panel class="Row">			  			
+				  		<Button class="OptionButton" onactivate="OnRestartButton()">
+				  			<Label text="Restart"/>
+				  		</Button>
+				 	</Panel>
+				</Panel>
+			</Panel>
+		</Panel>		
+	</Panel>
+  </Panel>
+</root>
