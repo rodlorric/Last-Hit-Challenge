@@ -1,0 +1,28 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/hud.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/hud.js" />
+	</scripts>
+	<Panel class="HudPanel" hittest="false">
+		<Panel class="ClockPanel">.
+			<Panel class="ClockPanelContainer">
+				<Label id="clock" text="00:00"/>
+			</Panel>
+		</Panel>
+		<Panel class="ScorePanel">
+			<Panel class="ScorePanelContainer">
+				<Label text="LH / D"/>
+				<Panel class="ScoreHolder"/>
+				<Panel class="ScoreHolder">
+					<Label id="Lasthits" text="0"/>
+				</Panel>
+				<Label text=" / " style="color: #a0a0a0;" />
+				<Panel class="ScoreHolder">
+					<Label id="Denies" text="0"/>
+				</Panel>
+			</Panel>
+		</Panel>		
+	</Panel>
+</root>

@@ -1,0 +1,123 @@
+.HudPanel
+{
+    width: 100%;
+    height: 100%;
+}
+
+.ScorePanel
+{
+	transform: translateX( 160px ) translateY( 0% );
+    vertical-align: bottom;
+    horizontal-align: center;
+    flow-children: right;
+}
+
+
+.ScorePanelContainer
+{
+	flow-children: right;
+    height: 128px;
+    width: 460px;
+    font-size: 50;
+    font-weight: bold;
+}
+
+.ScorePanelContainer Label
+{	
+	vertical-align: middle;
+	horizontal-align : right;
+	margin-left: 5px;
+	color: #444444;
+}
+
+.ScoreHolder
+{
+	horizontal-align : left;
+	height: 128px;
+    width: 90px;
+}
+
+.ScoreHolder Label, #Lasthits, #Denies
+{
+	vertical-align: middle;
+	horizontal-align : center;
+	color: #a0a0a0;
+}
+
+#Lasthits, #Denies
+{
+	animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#Lasthits
+{
+	horizontal-align : right;
+}
+
+#Denies
+{
+	horizontal-align : left;
+}
+
+
+.lh_anim #Lasthits
+{
+    visibility: visible;
+    animation-name: bounce;
+}
+
+.dn_anim #Denies
+{
+    visibility: visible;
+    animation-name: bounce;
+}
+
+
+@keyframes 'bounce' {
+  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
+
+  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
+
+  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
+
+  90% {transform: translateY(-2px) rotateZ( 2deg );}
+  100% {transform: rotateZ( -2deg );}
+}
+
+
+.ClockPanel
+{
+	transform: translateX( 0% ) translateY( 0% );
+    vertical-align: top;
+    horizontal-align: center;
+    flow-children: right;
+}
+
+.ClockPanelContainer
+{
+	flow-children: right;
+    height: 60px;
+    width: 200px;
+    font-size: 50;
+    font-weight: bold;
+    background-color: #181818ee;
+    
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border: 2px solid #222222;
+   	box-shadow: #000000aa -4px -4px 8px 8px;
+}
+
+.ClockPanelContainer Label
+{	
+	vertical-align: middle;
+	horizontal-align : center;
+	color: #a0a0a0;
+}
+
