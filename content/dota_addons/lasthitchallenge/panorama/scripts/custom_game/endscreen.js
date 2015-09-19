@@ -75,7 +75,7 @@ function OnMagnifyDenies(){
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 	
 	var label = stats.FindChildInLayoutFile("stats_title");
-	label.text = "LAST HITS"
+	label.text = "DENIES"
 
 	var stats_panel = stats.FindChildInLayoutFile("stats_panel");
 	LoadData(stats_panel, "dn");
