@@ -7,8 +7,6 @@
     <include src="file://{resources}/scripts/custom_game/endscreen.js" />
   </scripts>
   <Panel class="EndScreenRoot" hittest="false">
-  	<Panel id="DimBackground" class="Hiden" hittest="false"/>
-	<Button id="BlurBackground" class="Activated"/>
   	<Panel id="end_screen_panel" class="EndScreenPanel" hittest="false">
 	 	<Panel class="EndScreenPanelContainer">
 		  		<Panel class="Header">

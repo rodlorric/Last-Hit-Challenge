@@ -1,10 +1,6 @@
 "use strict";
 
 function OnEndScreen(data) {
-	var stats_totals = CustomNetTables.GetAllTableValues("stats_totals");
-	$.Msg("stats_tolas: " + stats_totals);
-	var stats_totals_details_ranged_lh = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh" );
-	$.Msg("stats_totals_details_ranged_lh: " + stats_totals_details_ranged_lh.value);
 	//Totals
 	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", "stats_total_cs" );
 	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", "stats_total_lh" );
