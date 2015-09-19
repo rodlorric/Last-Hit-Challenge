@@ -118,16 +118,21 @@ function LoadData(stats_panel, type){
 		$.CreatePanel( "Panel", stats_panel, "RadiantTowerImg");
 	}
 	*/
-	if (type != "miss"){
+	if (type == "lh"){
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireMeleeImg" : "RadiantMeleeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireRangedImg" : "RadiantRangedImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireSiegeImg" : "RadiantSiegeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireTowerImg" : "RadiantTowerImg");
-	} else {
+	} else if (type == "dn") {
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantMeleeImg" : "DireMeleeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantRangedImg" : "DireRangedImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantSiegeImg" : "DireSiegeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantTowerImg" : "DireTowerImg");
+	} else {
+		$.CreatePanel( "Panel", stats_panel, "DireRadiantMeleeImg");
+		$.CreatePanel( "Panel", stats_panel, "DireRadiantRangedImg");
+		$.CreatePanel( "Panel", stats_panel, "DireRadiantSiegeImg");
+		$.CreatePanel( "Panel", stats_panel, "DireRadiantTowerImg");
 	}
 }
 

@@ -251,6 +251,58 @@
 	horizontal-align: left;
 }
 
+#DireRadiantMeleeImg
+{	
+	transform: translateX( 20px ) translateY( 40px );
+	width: 130px;
+	height: 130px;
+	margin-bottom: 3px;
+	background-image: url("file://{images}/dire_radiant_melee_256.png");
+	background-position: 0% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	horizontal-align: left;
+}
+
+#DireRadiantRangedImg
+{	
+	transform: translateX( 5px ) translateY( 150px );
+	width: 150px;
+	height: 150px;
+	margin-bottom: 3px;
+	background-image: url("file://{images}/dire_radiant_ranged_256.png");
+	background-position: 0% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	horizontal-align: left;
+}
+
+#DireRadiantSiegeImg
+{	
+	transform: translateX( 20px ) translateY( 290px );
+	width: 160px;
+	height: 160px;
+	margin-bottom: 3px;
+	background-image: url("file://{images}/dire_radiant_siege_256.png");
+	background-position: 0% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	horizontal-align: left;
+}
+
+#DireRadiantTowerImg
+{	
+	transform: translateX( 30px ) translateY( 415px );
+	width: 140px;
+	height: 140px;
+	margin-bottom: 3px;
+	background-image: url("file://{images}/dire_radiant_tower_256.png");
+	background-position: 0% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	horizontal-align: left;
+}
+
 #DimBackgound.Hidden
 {
 	opacity: 0.0;
