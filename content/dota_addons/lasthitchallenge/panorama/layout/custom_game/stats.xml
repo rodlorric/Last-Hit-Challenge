@@ -1,0 +1,37 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/stats.css"/>
+		<include src="file://{resources}/styles/dotastyles.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/stats.js" />
+	</scripts>
+	<Panel class="StatsRoot" hittest="false">
+		<Panel id="DimBackground" class="Hiden" hittest="false"/>
+		<Button id="BlurBackground" class="Activated"/>
+		<Panel id="stats_panel" class="StatsPanel" hittest="false">
+			<Panel class="StatsPanelContainer">
+				<Panel class="Header">
+		  			<Label id="stats_title" text=""/>
+			  	</Panel>
+			  	<Panel class="Category">
+			  		<Label id="stats_melee" text="0"/>
+				</Panel>
+				<Panel class="Category">
+					<Label id="stats_ranged" text="0"/>					 	
+				</Panel>
+				<Panel class="Category">
+					<Label id="stats_siege" text="0"/>				
+				</Panel>
+				<Panel class="Category">
+					<Label id="stats_tower" text="0"/>
+				</Panel>
+				<Panel class="ButtonPanel">		  			
+			  		<Button class="OptionButton" onactivate="OnQuit()">
+			  			<Label text="Close"/>
+			  		</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+  	</Panel>
+</root>

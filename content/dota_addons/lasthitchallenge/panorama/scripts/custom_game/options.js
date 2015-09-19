@@ -1,16 +1,15 @@
 "use strict";
 
 function OnClick(){
-	$.Msg("Click! :)");
 	$("#control_panel").ToggleClass("Minimized");
 }
 
 function OnRestartButton(){
 	var iPlayerID = Players.GetLocalPlayer();
-	$.Msg('Player '+iPlayerID+' restart');
 	GameEvents.SendCustomGameEventToServer( "restart", {})
 }
 
+/*
 function OnCreepScoreRecordChanged( table_name, key, data ){
 	var panel = $.GetContextPanel();
 	$("#cs").text = data["cs"]
@@ -27,6 +26,23 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 	}
 	$.Schedule( 1, OnResetAnimation );
 } 
+*/
+
+function OnCreepScoreRecordChanged( table_name, key, data ){
+	var panel = $.GetContextPanel();
+	if (key == "stats_record_cs"){
+		$("#cs").text = data.value;
+		panel.SetHasClass( "cs_anim", true );
+	} else if (key == "stats_record_lh"){
+		$("#lh").text = data.value;
+		panel.SetHasClass( "lh_anim", true );
+	} else if (key == "stats_record_dn"){
+		$("#dn").text = data.value;
+		panel.SetHasClass( "dn_anim", true );
+	}
+
+	$.Schedule( 1, OnResetAnimation );
+} 
 
 function OnResetAnimation() {
 	var panel = $.GetContextPanel();
@@ -36,7 +52,6 @@ function OnResetAnimation() {
 }
 
 function OnToggle(){
-	$.Msg("OnToggle!");
 	var toggleButton = $("#hide_overlay");
 	$.Msg(toggleButton);
 	var overlay = $("#OverlayPanel");
@@ -50,8 +65,7 @@ function OnToggle(){
 (function () {
 	//Setup for popup panel.
 	var overlay = $.CreatePanel( "Panel", $.GetContextPanel(), "OverlayPanel" );
-	$.Msg(overlay);
 	overlay.BLoadLayout( "file://{resources}/layout/custom_game/overlay.xml", false, false );
 
-	CustomNetTables.SubscribeNetTableListener( "custom_creep_score_records", OnCreepScoreRecordChanged );
+	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
 })();

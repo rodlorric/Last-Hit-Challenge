@@ -1,0 +1,137 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/endscreen.css"/>
+    <include src="file://{resources}/styles/dotastyles.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/endscreen.js" />
+  </scripts>
+  <Panel class="EndScreenRoot" hittest="false">
+  	<Panel id="DimBackground" class="Hiden" hittest="false"/>
+	<Button id="BlurBackground" class="Activated"/>
+  	<Panel id="end_screen_panel" class="EndScreenPanel" hittest="false">
+	 	<Panel class="EndScreenPanelContainer">
+		  		<Panel class="Header">
+			  		<Label text="recap"/>
+			  	</Panel>
+			  	<Panel class="Category">
+			  			<Label text="totals"/>
+					 	<Panel class="RowHeader">
+					 		<Label text="Creep Score"/>
+					 		<Panel class="VertBar"/>
+					 		<Button id="stats_lasthits" class="RowButton" onactivate="OnMagnifyLastHits()">					 			
+					 			<Label text="Last Hits">
+					 				<Panel class="MagnifierIcon"/>
+					 			</Label>
+					 		</Button>
+					 		<Panel class="VertBar"/>
+					 		<Button id="stats_denies" class="RowButton" onactivate="OnMagnifyDenies()">					 			
+					 			<Label text="Denies">
+					 				<Panel class="MagnifierIcon"/>
+					 			</Label>
+					 		</Button>
+					 		<Panel class="VertBar"/>
+					 		<Button id="stats_misses" class="RowButton" onactivate="OnMagnifyMisses()">					 			
+					 			<Label text="Misses">
+					 				<Panel class="MagnifierIcon"/>
+					 			</Label>
+					 		</Button>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Accuracy"/>
+					 	</Panel>
+					 	<Panel class="Row">
+					 		<Label id="stats_total_cs" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_total_lh" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_total_dn" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_total_miss" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_total_accuracy" text="0%"/>
+					 	</Panel>
+				</Panel>
+				<Panel class="HorBar"/>
+				<Panel class="Category">
+					 	<Label text="streaks"/>
+					 	<Panel class="RowHeader">
+					 		<Label text="Creep Score"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Last Hits"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Denies"/>
+					 	</Panel>
+					 	<Panel class="Row">
+					 		<Label id="stats_streak_cs" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_streak_lh" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_streak_dn" text="0"/>
+					 	</Panel>
+				</Panel>
+				<Panel class="HorBar"/>
+				<Panel class="Category">
+					 	<Label text="session records"/>
+					 	<Panel class="RowHeader">
+					 		<Label text="Creep Score"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Last Hits"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Denies"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Accuracy (at 10:00)"/>
+					 	</Panel>
+					 	<Panel class="Row">
+					 		<Label id="stats_record_cs" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_record_lh" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_record_dn" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_record_accuracy" text="0%"/>
+					 	</Panel>
+				</Panel>
+				<Panel class="HorBar"/>
+				<Panel class="Category">
+					 	<Label text="Time"/>
+					 	<Panel class="RowHeader">
+					 		<Label text="Total Time Spent"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Shortest Try"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Longest Try"/>
+					 	</Panel>
+					 	<Panel class="Row">
+					 		<Label id="stats_time_spent" text="00:00"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_time_shortest" text="00:00"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_time_longest" text="00:00"/>
+					 	</Panel>
+				</Panel>
+				<Panel class="HorBar"/>
+				<Panel class="Category">
+					 	<Label text="Misc"/>
+					 	<Panel class="RowHeader">
+					 		<Label text="Restarts"/>
+					 		<Panel class="VertBar"/>
+					 		<Label text="Session Accuracy"/>
+					 	</Panel>
+					 	<Panel class="Row">
+					 		<Label id="stats_misc_restart" text="0"/>
+					 		<Panel class="VertBar"/>
+					 		<Label id="stats_misc_session_accuracy" text="0%"/>
+					 	</Panel>
+				</Panel>
+		 		<Panel class="ButtonPanel">		  			
+			  		<Button class="OptionButton" onactivate="OnRestart()">
+			  			<Label text="Restart"/>
+			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnQuit()">
+			  			<Label text="Quit"/>
+			  		</Button>
+		  		</Panel>	
+			</Panel>
+		</Panel>		
+  </Panel>
+</root>

@@ -1,17 +1,15 @@
 "use strict";
-function OnLastHitOrDeny(data) {
+
+function OnLastHitOrDeny( table_name, key, data ){
 	var scorepanel = $.GetContextPanel();
-	$.Msg(data)
-	if (data["lh"] == true) {
-		$("#Lasthits").text = data["cs"]["lh"];	
+	if (key == "stats_total_lh") {
+		$("#Lasthits").text = data["value"];	
 		scorepanel.SetHasClass( "lh_anim", true );
-	} else {
-		$("#Denies").text = data["cs"]["dn"];
+	} else if (key == "stats_total_dn") {
+		$("#Denies").text = data["value"];
 		scorepanel.SetHasClass( "dn_anim", true );	
 	}
-	
-
-	$.Schedule( 1, OnResetAnimation);
+	$.Schedule( 1, OnResetAnimation );
 }
 
 function OnClockTime(data) {
@@ -27,6 +25,7 @@ function OnResetAnimation(data) {
 
 
 (function () {
-	GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
+	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
 	GameEvents.Subscribe("clock", OnClockTime);
+	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();

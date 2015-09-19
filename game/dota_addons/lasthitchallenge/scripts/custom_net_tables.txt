@@ -3,5 +3,11 @@
 	custom_net_tables =
 	[
 		"custom_creep_score_records",
+		"stats_totals",
+		"stats_streaks",
+		"stats_records",
+		"stats_time",
+		"stats_misc",
+		"stats_totals_details",
 	]
 }

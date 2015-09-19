@@ -1,12 +1,40 @@
 require ( "util")
 require ( "timers" )
 
+--detailed stats totals
+melee_lh = 0
+melee_dn = 0
+melee_miss = 0
+ranged_lh = 0
+ranged_dn = 0
+ranged_miss = 0
+siege_lh = 0
+siege_dn = 0
+siege_miss = 0
+tower_lh = 0
+tower_dn = 0
+tower_miss = 0
+----------------------
+
 function CLastHitChallenge:OnHeroPicked (event)
 	CLastHitChallenge:Clock()
-  	tprint(event, 0)
   	local hero = EntIndexToHScript(event.heroindex)
   	CLastHitChallenge:GiveZeroGold(hero)
   	CLastHitChallenge:GiveBlinkDagger(hero)
+
+  	-- Populating tables
+	--Totals
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_cs", { value = 0} )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0} )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0} )
+
+	--Records
+	CustomNetTables:SetTableValue("stats_records", "stats_record_cs", { value = 0} )
+	CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
+	CustomNetTables:SetTableValue("stats_records", "stats_record_lh", { value = 0} )
+	CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
+
+  	
 end
 
 
@@ -25,7 +53,7 @@ end
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
 	
-	-- This is to get towers coordinates
+	-- This is to get towers' coordinates
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and radiant_tower == nil and dire_tower == nil then
 		radiant_tower = Entities:FindByName(nil, 'dota_goodguys_tower1_mid')
 		radiant_tower = radiant_tower:GetOrigin()
@@ -47,6 +75,23 @@ function CLastHitChallenge:OnThink()
   		return 1
 	end
 
+	if (MAXTIME - seconds) == 10 then
+		BroadcastMessage("30 seconds left!", 1)
+	end
+	if seconds == MAXTIME then
+		CLastHitChallenge:EndGame()
+		--[[
+		GameRules:SetCustomVictoryMessage( "Final" )
+		GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+		]]
+	end
+
+	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+		print("ENDING GAME!")
+		return 1
+	end
+
+--[[
 	if self.countdownEnabled == true then
 	    --CountdownTimer()
 	    if nCOUNTDOWNTIMER == 30 then
@@ -64,7 +109,95 @@ function CLastHitChallenge:OnThink()
 		BroadcastMessage( "Final Creep Score: " .. tostring(creep_score), 5 )
 		return 10
 	end
+	]]
 		return 1
+end
+
+function CLastHitChallenge:EndGame()
+	PauseGame(true)
+
+	--Totals
+	local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", "stats_total_cs")
+	local stats_total_lh = CustomNetTables:GetTableValue( "stats_totals", "stats_total_lh")
+	local stats_total_dn = CustomNetTables:GetTableValue( "stats_totals", "stats_total_dn")
+
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_miss", { value = misses })
+	
+	local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", "stats_total_cs")
+	local accuracy = 0
+	if stats_total_cs.value == 0 and misses == 0 then
+		accuracy = 0
+	else
+		accuracy = ( stats_total_cs.value * 100) / (stats_total_cs.value + misses)
+	end
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_accuracy", { value = accuracy })
+
+	--Totals Details
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_melee_lh", { value = melee_lh } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_melee_dn", { value = melee_dn } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_melee_miss", { value = melee_miss } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_ranged_lh", { value = ranged_lh } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_ranged_dn", { value = ranged_dn } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_ranged_miss", { value = ranged_miss } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_lh", { value = siege_lh } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_dn", { value = siege_dn } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_miss", { value = siege_miss } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_lh", { value = tower_lh } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_dn", { value = tower_dn } )
+	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss", { value = tower_miss } )
+
+
+	misses = 0
+
+
+	--Streaks
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_cs", { value = max_cs_streak })
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_lh", { value = max_last_hit_streak })
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_dn", { value = max_deny_streak })
+	cs_streak = 0
+	last_hit_streak = 0
+	deny_streak = 0
+	max_deny_streak = 0
+	max_cs_streak = 0
+	max_last_hit_streak = 0
+
+	--Records
+	local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
+	if accuracy > stats_record_accuracy.value then
+		stats_record_accuracy.value = accuracy
+	end
+	CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", stats_record_accuracy)
+
+	--Misc
+	CustomNetTables:SetTableValue("stats_misc", "stats_misc_restart", { value = restarts })
+
+	
+	local session_accuracy = 0
+	if session_cs == 0 and total_misses == 0 then
+		session_accuracy = 0
+	else
+		session_accuracy = ( session_cs * 100) / (session_cs + total_misses)
+	end
+
+	CustomNetTables:SetTableValue("stats_misc", "stats_misc_session_accuracy", { value = session_accuracy })
+
+
+	--Time
+	total_time = total_time + seconds
+	local min = string.format("%.2d", math.floor(total_time/60)%60)
+	local sec = string.format("%.2d", total_time%60)
+	CustomNetTables:SetTableValue( "stats_time", "stats_time_spent", { value = tostring(min) .. ":" .. tostring(sec) } );
+
+	min = string.format("%.2d", math.floor(longest_time/60)%60)
+	sec = string.format("%.2d", longest_time%60)
+	CustomNetTables:SetTableValue( "stats_time", "stats_time_longest", { value = tostring(min) .. ":" .. tostring(sec) } );
+
+	min = string.format("%.2d", math.floor(shortest_time/60)%60)
+	sec = string.format("%.2d", shortest_time%60)
+	CustomNetTables:SetTableValue( "stats_time", "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
+
+	seconds = 0
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {})
 end
 
 --[[ Make Towers invulnerable
@@ -109,124 +242,160 @@ function CLastHitChallenge:OnHurt( event )
 end
 
 
-function CLastHitChallenge:OnLastHit (event)
-	print("OnLastHit current_cs: ")
-	tprint(current_cs, 0)
-  	local creep_score = {
-		lh = (PlayerResource:GetLastHits(0) - current_cs["lh"]) + 1,
-		dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-	}
-	creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-	print("creep_score: ")
-	tprint(creep_score, 0)
-	local custom_table_creep_score = CustomNetTables:GetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)))
-	print(custom_table_creep_score)
-	if custom_table_creep_score == nil then
-		print("EmptyTable!")
-		creep_score["anim"] = {lh = true, dn = false, cs = true}
-		creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-		CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
-	else
-		print("Must check for records!")
-		tprint(custom_table_creep_score, 0)
-		local rec_lh = custom_table_creep_score["lh"]
-		local rec_dn = custom_table_creep_score["dn"]
-		local rec_cs = custom_table_creep_score["cs"]
-		local rec_creep_score = {
-			lh = rec_lh,
-			dn = rec_dn,
-			cs = rec_cs
-		}
-		if creep_score["lh"] > rec_lh or (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-			print("New Record! " .. tostring(creep_score["lh"] + creep_score["dn"]))
-			if creep_score["lh"] > rec_lh then
-				creep_score["anim"] = {lh = true, dn = false, cs = false}
-				rec_creep_score["lh"] = creep_score["lh"]
-				rec_creep_score["anim"] = creep_score["anim"]
-			end
-			if (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-				creep_score["anim"] = {lh = false, dn = false, cs = true}
-				rec_creep_score = creep_score
-			end
-			if creep_score["lh"] > rec_lh and (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-				creep_score["anim"] = {lh = true, dn = false, cs = true}
-				rec_creep_score = creep_score
-			end
-			CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
-		end
-	end
-  	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = creep_score})
-end
+last_hit_streak = 0
+deny_streak = 0
+cs_streak = 0
+max_cs_streak = 0
+max_deny_streak = 0
+max_last_hit_streak = 0
 
 function CLastHitChallenge:OnEntityKilled (event)
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
 	local attacker = EntIndexToHScript( event.entindex_attacker )
-	if attacker:IsRealHero() then
+
+	if attacker:IsRealHero() and not killedUnit:IsRealHero() then		
+
 		local heroTeam = attacker:GetTeam()
+
+		local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
+		local dn = PlayerResource:GetDenies(0) - current_cs["dn"]
+		local cs = lh + dn
+		
+		--Streaks
+		cs_streak = cs_streak + 1 
+		if cs_streak > max_cs_streak then
+			max_cs_streak = cs_streak
+		end
+
+		
+		local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
+		
+		--Deny
 		if heroTeam == killedTeam then
-			print("Deny?")
-			local creep_score = {
-				lh = PlayerResource:GetLastHits(0) - current_cs["lh"],
-				dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-			}
-			creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-			local custom_table_creep_score = CustomNetTables:GetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)))
-			if custom_table_creep_score == nil then
-				print("EmptyTable!")
-				creep_score["anim"] = {lh = true, dn = false, cs = true}
-				creep_score["cs"] = creep_score["lh"] + creep_score["dn"]
-				CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), creep_score );
-			else
-				print("Must check for records!")
-				tprint(custom_table_creep_score,0 )
-				local rec_lh = custom_table_creep_score["lh"]
-				local rec_dn = custom_table_creep_score["dn"]
-				local rec_cs = custom_table_creep_score["cs"]
-				local rec_creep_score = {
-					lh = rec_lh,
-					dn = rec_dn,
-					cs = rec_cs
-				}
-				if creep_score["dn"] > rec_dn or (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-					if creep_score["dn"] > rec_dn then
-						creep_score["anim"] = {lh = false, dn = true, cs = false}
-						rec_creep_score["dn"] = creep_score["dn"]
-						rec_creep_score["anim"] = creep_score["anim"]
-					end
-					if (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-						creep_score["anim"] = {lh = false, dn = false, cs = true}
-						rec_creep_score = creep_score									
-					end
-					if creep_score["dn"] > rec_dn and (creep_score["lh"] + creep_score["dn"]) > rec_cs then
-						creep_score["anim"] = {lh = false, dn = true, cs = true}
-						rec_creep_score = creep_score
-					end
-					print("New Record! " .. tostring(creep_score["lh"] + creep_score["dn"]))
-					CustomNetTables:SetTableValue( "custom_creep_score_records", tostring(PlayerResource:GetSteamAccountID(0)), rec_creep_score );
+			local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
+			--streaks
+			deny_streak = deny_streak + 1
+			if deny_streak > max_deny_streak then
+				max_deny_streak = deny_streak
+			end
+
+			CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = PlayerResource:GetDenies(0) - current_cs["dn"] } )
+
+			if dn > stats_record_dn.value or  cs > stats_record_cs.value then
+				if dn > stats_record_dn.value then
+					stats_record_dn.value = dn
+					CustomNetTables:SetTableValue("stats_records", "stats_record_dn", stats_record_dn)
 				end
 			end
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = creep_score})
-		end  		
-	else
-		local origin = killedUnit:GetOrigin()
-		local bounds = killedUnit:GetUpVector()
-		print("bounds: :" .. tostring(bounds))
-		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
-		print('unit dies!!!')
+
+
+			--Totals Details
+			if killedUnit:IsCreep() then
+				if killedUnit:IsRangedAttacker() then
+					ranged_dn = ranged_dn + 1
+				else
+					melee_dn = melee_dn + 1
+				end
+			elseif killedUnit:IsTower() then
+				tower_dn = tower_dn + 1
+			elseif killedUnit:IsMechanical() then
+				siege_dn = siege_dn + 1
+			end
+
+		else --LastHit
+			local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
+			--streak
+			last_hit_streak = last_hit_streak + 1
+			if last_hit_streak > max_last_hit_streak then
+				max_last_hit_streak = last_hit_streak
+			end
+
+			CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = PlayerResource:GetLastHits(0) - current_cs["lh"]} );
+			if lh > stats_record_lh.value or cs > stats_record_cs.value then
+				if lh > stats_record_lh.value then
+					stats_record_lh.value = lh
+					CustomNetTables:SetTableValue("stats_records", "stats_record_lh", stats_record_lh)
+				end
+			end
+
+			--Totals Details
+			if killedUnit:IsCreep() then
+				if killedUnit:IsRangedAttacker() then
+					ranged_lh = ranged_lh + 1
+				else
+					melee_lh = melee_lh + 1
+				end
+			elseif killedUnit:IsTower() then
+				tower_lh = tower_lh + 1
+			elseif killedUnit:IsMechanical() then
+				siege_lh = siege_lh + 1
+			end
+		end
+		CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = (PlayerResource:GetLastHits(0) - current_cs["lh"]) + (PlayerResource:GetDenies(0) - current_cs["dn"]) } );
+		
+		--To track all time cs
+		session_cs = session_cs + 1
+
+		--Records
+		if cs > stats_record_cs.value then
+			stats_record_cs.value = cs
+			CustomNetTables:SetTableValue("stats_records", "stats_record_cs", stats_record_cs)
+		end
+	else -- misses
+		if not killedUnit:IsHero() then
+			--streaks
+			cs_streak = 0
+			if hero_team == killedTeam then
+				deny_streak = 0
+			else
+				last_hit_streak = 0
+			end
+
+			total_misses = total_misses + 1
+			misses = misses + 1
+
+
+			--Totals Details
+			if killedUnit:IsCreep() then
+				if killedUnit:IsRangedAttacker() then
+					ranged_miss = ranged_miss + 1
+				else
+					melee_miss = melee_miss + 1
+				end
+			elseif killedUnit:IsTower() then
+				tower_miss = tower_miss + 1
+			elseif killedUnit:IsMechanical() then
+				siege_miss = siege_miss + 1
+			end
+
+			local origin = killedUnit:GetOrigin()
+			local bounds = killedUnit:GetUpVector()
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
+		end
 	end
 end
 
 function CLastHitChallenge:OnRestart()
-	print("Restart!!!")
+	restarts = restarts + 1
+
+	if seconds < shortest_time then
+		shortest_time = seconds
+	end
+
+	--Unpause the game if is paused on restart
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
 
 	local hero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_nevermore", 0, 0)
 	hero = PlayerResource:GetSelectedHeroEntity(0)
 
 	hero:ForceKill(true)
 
+	total_time = total_time + seconds
 	-- clearing time!
-	SECONDS = 0
+	seconds = 0
 
 	-- clearing units
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
@@ -258,17 +427,49 @@ function CLastHitChallenge:OnRestart()
 
 	-- clearing creep score
 	current_cs = { lh = 0, dn = 0 }
-	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = false, cs = current_cs})
-	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "last_hit", {lh = true, cs = current_cs})
+
+	-- Totals
+	CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = 0 } )
+
+	--Totals Details
+
+	--detailed stats totals
+	melee_lh = 0
+	melee_dn = 0
+	melee_miss = 0
+	ranged_lh = 0
+	ranged_dn = 0
+	ranged_miss = 0
+	siege_lh = 0
+	siege_dn = 0
+	siege_miss = 0
+	tower_lh = 0
+	tower_dn = 0
+	tower_miss = 0
+	----------------------
+
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss", { value = 0 } )
 	
+	--clearing misses
+	misses = 0
 
 	hero:RespawnHero(true, false, false)
 	CLastHitChallenge:GiveZeroGold(hero)
 	
-	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
-	print('current_cs on restart')
-	tprint(current_cs, 1)
-	
+	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }	
 
 	local radiant_t = CreateUnitByName("npc_dota_radiant_tower1_mid", radiant_tower, false, nil, nil, DOTA_TEAM_GOODGUYS)
 	radiant_t:RemoveModifierByName("modifier_invulnerable")
@@ -280,14 +481,29 @@ function CLastHitChallenge:OnRestart()
 	
 end
 
+function CLastHitChallenge:OnQuit()
+	--Unpause the game if is paused on restart
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
+	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+end
+
 function CLastHitChallenge:Clock()
 	if timer == nil then
 		timer = Timers:CreateTimer(function()
-			      SECONDS = SECONDS + 1
-			      local min = string.format("%.2d", math.floor(SECONDS/60)%60)
-			      local sec = string.format("%.2d", SECONDS%60)
-			      CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
-			      return 1.0
-			    end)
+
+		      	seconds = seconds + 1
+
+				if seconds > longest_time then
+					longest_time = seconds
+				end
+
+		      	local min = string.format("%.2d", math.floor(seconds/60)%60)
+		      	local sec = string.format("%.2d", seconds%60)
+		 	      	
+		      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
+		      	return 1.0
+		end)
 	end
 end
