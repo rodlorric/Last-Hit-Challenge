@@ -1,0 +1,7 @@
+"publish_data"
+{
+	"title"		"Last Hit Challenge"
+	"source_folder"		"lasthitchallenge"
+	"publish_time"		"1442719716"
+	"publish_time_readable"		"09/19/2015 10:58:36 PM"
+}

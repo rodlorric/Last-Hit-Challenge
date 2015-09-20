@@ -99,10 +99,50 @@ function LoadData(stats_panel, type){
 	var stats_siege = stats_panel.FindChildInLayoutFile("stats_siege");
 	var stats_tower = stats_panel.FindChildInLayoutFile("stats_tower");
 
-	stats_melee.text = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type ).value;
-	stats_ranged.text = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type ).value;
-	stats_siege.text = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type ).value;
-	stats_tower.text = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type ).value;
+	if (type != "miss"){
+
+		var melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type ).value;
+		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		stats_melee.text = melee + " / " + (melee + missed_melee);
+
+		var ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type ).value;
+		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		stats_ranged.text = ranged + " / " + (ranged + missed_ranged);
+
+		var siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type ).value;
+		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		stats_siege.text = siege + " / " + (siege + missed_siege);
+
+		var tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type ).value;
+		var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		stats_tower.text = tower + " / " + (tower + missed_tower);
+
+	} else { //misses
+		var cs_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_dn").value;
+		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_foe").value;
+		stats_melee.text = missed_melee + " / " + (missed_melee + cs_melee);
+
+		var cs_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn").value;
+		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_foe").value;
+		stats_ranged.text = missed_ranged + " / " + (missed_ranged + cs_ranged);
+
+		var cs_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_dn").value;
+		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_foe").value;
+		stats_siege.text = missed_siege + " / " + (missed_siege + cs_siege);
+
+		var cs_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_dn").value;
+		var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_foe").value;
+		stats_tower.text = missed_tower + " / " + (missed_tower + cs_tower);
+
+	}
 
 	var team = Entities.GetTeamNumber(Players.GetPlayerHeroEntityIndex(0));
 	/*
