@@ -33,6 +33,7 @@ function Precache( context )
 	PrecacheUnitByNameSync( "npc_dota_hero_nevermore", context )
 	PrecacheUnitByNameSync( "npc_dota_radiant_tower1_mid", context )
 	PrecacheUnitByNameSync( "npc_dota_dire_tower1_mid", context )
+	PrecacheResource( "particle", "particles/radiant_fx/tower_good3_lamp.vpcf", context )
 end
 
 -- Create the game mode when we activate

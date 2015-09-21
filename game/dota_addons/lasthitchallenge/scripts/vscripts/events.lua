@@ -57,7 +57,7 @@ end
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
 	
-	-- This is to get towers' coordinates
+	--[[ This is to get towers' coordinates
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and radiant_tower == nil and dire_tower == nil then
 		radiant_tower = Entities:FindByName(nil, 'dota_goodguys_tower1_mid')
 		radiant_tower = radiant_tower:GetOrigin()
@@ -65,6 +65,7 @@ function CLastHitChallenge:OnThink()
 		dire_tower = Entities:FindByName(nil, 'dota_badguys_tower1_mid')
 		dire_tower = dire_tower:GetOrigin()
 	end
+	]]
 
 --[[ Make Towers invulnerable
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and not tower_invulnerable then
@@ -360,7 +361,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 		if not killedUnit:IsHero() then
 			--streaks
 			cs_streak = 0
-			
+
 			if friendly then
 				deny_streak = 0
 			else
@@ -427,6 +428,7 @@ function CLastHitChallenge:OnRestart()
 	-- clearing time!
 	seconds = 0
 
+	local dire_tower
 	-- clearing units
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
 											Vector( 0, 0, 0 ), 
@@ -436,9 +438,11 @@ function CLastHitChallenge:OnRestart()
 											DOTA_UNIT_TARGET_ALL, 
 											DOTA_UNIT_TARGET_FLAG_NONE, 
 											FIND_ANY_ORDER, false )) do
-		--if not unit:IsTower() then
-		UTIL_Remove( unit )
-		--end
+		if not unit:IsTower() then
+			UTIL_Remove( unit )
+		else
+			unit:SetHealth(unit:GetMaxHealth())		
+		end
 	end
 
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
@@ -449,9 +453,11 @@ function CLastHitChallenge:OnRestart()
 										DOTA_UNIT_TARGET_ALL, 
 										DOTA_UNIT_TARGET_FLAG_NONE, 
 										FIND_ANY_ORDER, false )) do
-		--if not unit:IsTower() then
-		UTIL_Remove( unit )
-		--end
+		if not unit:IsTower() then
+			UTIL_Remove( unit )
+		else
+			unit:SetHealth(unit:GetMaxHealth())
+		end
 	end	
 
 
@@ -509,6 +515,7 @@ function CLastHitChallenge:OnRestart()
 	
 	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }	
 
+	--[[
 	local radiant_t = CreateUnitByName("npc_dota_radiant_tower1_mid", radiant_tower, false, nil, nil, DOTA_TEAM_GOODGUYS)
 	radiant_t:RemoveModifierByName("modifier_invulnerable")
 	radiant_t:SetRenderColor(206, 204, 192)
@@ -516,6 +523,7 @@ function CLastHitChallenge:OnRestart()
 	local dire_t = CreateUnitByName("npc_dota_dire_tower1_mid", dire_tower, false, nil, nil, DOTA_TEAM_BADGUYS)
 	dire_t:RemoveModifierByName("modifier_invulnerable")
 	dire_t:SetRenderColor(63, 71, 62)
+	]]
 	
 end
 
