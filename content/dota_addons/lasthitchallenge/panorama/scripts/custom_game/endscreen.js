@@ -45,8 +45,10 @@ function OnEndScreen(data) {
 	$("#stats_time_longest").text = stats_time_longest.value;
 	$("#stats_time_shortest").text = stats_time_shortest.value;
 
-
 	$("#end_screen_panel").ToggleClass("Maximized");
+	$.Msg("before: " + $("#end_screen_panel"));
+	$("#end_screen_panel").hittest = true;
+	$.Msg("after: " + $("#end_screen_panel"));
 }
 
 function OnRestart(){

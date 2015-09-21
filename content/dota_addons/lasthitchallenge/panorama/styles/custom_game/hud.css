@@ -94,30 +94,29 @@
 .ClockPanel
 {
 	transform: translateX( 0% ) translateY( 0% );
-    vertical-align: top;
-    horizontal-align: center;
-    flow-children: right;
+  horizontal-align: center;
+  flow-children: right;
 }
 
 .ClockPanelContainer
 {
 	flow-children: right;
-    height: 60px;
-    width: 200px;
-    font-size: 50;
-    font-weight: bold;
-    background-color: #181818ee;
-    
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border: 2px solid #222222;
-   	box-shadow: #000000aa -4px -4px 8px 8px;
+  height: 55px;
+  width: 200px;
+  font-size: 50;
+  font-weight: bold;
+  background-color: #181818ee;
+  
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 2px solid #222222;
+ 	box-shadow: #000000aa -4px -4px 8px 8px;
 }
 
 .ClockPanelContainer Label
-{	
-	vertical-align: middle;
+{
 	horizontal-align : center;
 	color: #a0a0a0;
+  margin-top: -5px;
 }
 

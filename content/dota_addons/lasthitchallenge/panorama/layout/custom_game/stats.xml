@@ -2,13 +2,14 @@
 	<styles>
 		<include src="file://{resources}/styles/custom_game/stats.css"/>
 		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/dashboard.css" />
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/stats.js" />
 	</scripts>
 	<Panel class="StatsRoot" hittest="false">
-		<Panel id="DimBackground" class="Hiden" hittest="false"/>
-		<Button id="BlurBackground" class="Activated"/>
+		<Panel id="DimBackground" hittest="false"/>
+		<Button id="BlurBackground"/>
 		<Panel id="stats_panel" class="StatsPanel" hittest="false">
 			<Panel class="StatsPanelContainer">
 				<Panel class="Header">
