@@ -99,7 +99,7 @@ function LoadData(stats_panel, type){
 	var stats_melee = stats_panel.FindChildInLayoutFile("stats_melee");
 	var stats_ranged = stats_panel.FindChildInLayoutFile("stats_ranged");
 	var stats_siege = stats_panel.FindChildInLayoutFile("stats_siege");
-	var stats_tower = stats_panel.FindChildInLayoutFile("stats_tower");
+	//var stats_tower = stats_panel.FindChildInLayoutFile("stats_tower");
 
 	if (type != "miss"){
 
@@ -115,9 +115,9 @@ function LoadData(stats_panel, type){
 		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
 		stats_siege.text = siege + " / " + (siege + missed_siege);
 
-		var tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type ).value;
-		var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
-		stats_tower.text = tower + " / " + (tower + missed_tower);
+		//var tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type ).value;
+		//var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		//stats_tower.text = tower + " / " + (tower + missed_tower);
 
 	} else { //misses
 		var cs_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_lh").value + 
@@ -138,11 +138,11 @@ function LoadData(stats_panel, type){
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_foe").value;
 		stats_siege.text = missed_siege + " / " + (missed_siege + cs_siege);
 
-		var cs_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_lh").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_dn").value;
-		var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_friendly").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_foe").value;
-		stats_tower.text = missed_tower + " / " + (missed_tower + cs_tower);
+		//var cs_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_lh").value + 
+		//			CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_dn").value;
+		//var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_friendly").value + 
+		//			CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type + "_foe").value;
+		//stats_tower.text = missed_tower + " / " + (missed_tower + cs_tower);
 
 	}
 
@@ -164,17 +164,17 @@ function LoadData(stats_panel, type){
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireMeleeImg" : "RadiantMeleeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireRangedImg" : "RadiantRangedImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireSiegeImg" : "RadiantSiegeImg");
-		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireTowerImg" : "RadiantTowerImg");
+		//$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "DireTowerImg" : "RadiantTowerImg");
 	} else if (type == "dn") {
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantMeleeImg" : "DireMeleeImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantRangedImg" : "DireRangedImg");
 		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantSiegeImg" : "DireSiegeImg");
-		$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantTowerImg" : "DireTowerImg");
+		//$.CreatePanel( "Panel", stats_panel, (team == DOTATeam_t.DOTA_TEAM_GOODGUYS) ? "RadiantTowerImg" : "DireTowerImg");
 	} else {
 		$.CreatePanel( "Panel", stats_panel, "DireRadiantMeleeImg");
 		$.CreatePanel( "Panel", stats_panel, "DireRadiantRangedImg");
 		$.CreatePanel( "Panel", stats_panel, "DireRadiantSiegeImg");
-		$.CreatePanel( "Panel", stats_panel, "DireRadiantTowerImg");
+		//$.CreatePanel( "Panel", stats_panel, "DireRadiantTowerImg");
 	}
 }
 

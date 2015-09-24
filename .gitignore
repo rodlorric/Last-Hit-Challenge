@@ -43,6 +43,8 @@ game/dota_addons/hero_demo/*
 game/dota_addons/tutorial_assist_game/*
 game/dota_addons/tutorial_basics/*
 game/dota_addons/dota2cfg.cfg
+game/dota_addons/vpks/*
+game/dota_addons/lasthitchallenge/*.bin
 
 bin/*
 _CommonRedist/*

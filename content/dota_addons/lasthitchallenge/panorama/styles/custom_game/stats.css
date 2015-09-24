@@ -149,9 +149,9 @@
 
 #DireMeleeImg
 {	
-	transform: translateX( 10px ) translateY( 25px );
-	width: 150px;
-	height: 150px;
+	transform: translateX( 0px ) translateY( 20px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_melee_256.png");
 	background-position: 0% 50%;
@@ -162,9 +162,9 @@
 
 #DireRangedImg
 {	
-	transform: translateX( 10px ) translateY( 150px );
-	width: 160px;
-	height: 160px;
+	transform: translateX( 10px ) translateY( 190px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_ranged_256.png");
 	background-position: 0% 50%;
@@ -175,9 +175,9 @@
 
 #DireSiegeImg
 {	
-	transform: translateX( 20px ) translateY( 300px );
-	width: 140px;
-	height: 140px;
+	transform: translateX( 00px ) translateY( 370px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_siege_256.png");
 	background-position: 0% 50%;
@@ -186,6 +186,7 @@
 	horizontal-align: left;
 }
 
+/*
 #DireTowerImg
 {	
 	transform: translateX( 30px ) translateY( 420px );
@@ -198,12 +199,13 @@
 	background-repeat: no-repeat;
 	horizontal-align: left;
 }
+*/
 
 #RadiantMeleeImg
 {	
-	transform: translateX( 20px ) translateY( 50px );
-	width: 130px;
-	height: 130px;
+	transform: translateX( 20px ) translateY( 40px );
+	width: 180px;
+	height: 180px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/radiant_melee_256.png");
 	background-position: 0% 50%;
@@ -214,9 +216,9 @@
 
 #RadiantRangedImg
 {	
-	transform: translateX( 5px ) translateY( 150px );
-	width: 160px;
-	height: 160px;
+	transform: translateX( 5px ) translateY( 200px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/radiant_ranged_256.png");
 	background-position: 0% 50%;
@@ -227,9 +229,9 @@
 
 #RadiantSiegeImg
 {	
-	transform: translateX( 30px ) translateY( 300px );
-	width: 140px;
-	height: 140px;
+	transform: translateX( 30px ) translateY( 360px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/radiant_siege_256.png");
 	background-position: 0% 50%;
@@ -238,6 +240,7 @@
 	horizontal-align: left;
 }
 
+/*
 #RadiantTowerImg
 {	
 	transform: translateX( 30px ) translateY( 415px );
@@ -250,12 +253,13 @@
 	background-repeat: no-repeat;
 	horizontal-align: left;
 }
+*/
 
 #DireRadiantMeleeImg
 {	
-	transform: translateX( 20px ) translateY( 40px );
-	width: 130px;
-	height: 130px;
+	transform: translateX( 10px ) translateY( 15px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_radiant_melee_256.png");
 	background-position: 0% 50%;
@@ -266,9 +270,9 @@
 
 #DireRadiantRangedImg
 {	
-	transform: translateX( 5px ) translateY( 150px );
-	width: 150px;
-	height: 150px;
+	transform: translateX( 5px ) translateY( 180px );
+	width: 200px;
+	height: 200px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_radiant_ranged_256.png");
 	background-position: 0% 50%;
@@ -279,9 +283,9 @@
 
 #DireRadiantSiegeImg
 {	
-	transform: translateX( 20px ) translateY( 290px );
-	width: 160px;
-	height: 160px;
+	transform: translateX( 10px ) translateY( 350px );
+	width: 250px;
+	height: 250px;
 	margin-bottom: 3px;
 	background-image: url("file://{images}/dire_radiant_siege_256.png");
 	background-position: 0% 50%;
@@ -290,6 +294,7 @@
 	horizontal-align: left;
 }
 
+/*
 #DireRadiantTowerImg
 {	
 	transform: translateX( 30px ) translateY( 415px );
@@ -302,6 +307,7 @@
 	background-repeat: no-repeat;
 	horizontal-align: left;
 }
+*/
 
 #DimBackgound.Hidden
 {

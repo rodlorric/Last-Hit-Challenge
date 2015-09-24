@@ -24,9 +24,11 @@
 				<Panel class="Category">
 					<Label id="stats_siege" text="0"/>				
 				</Panel>
+				<!--
 				<Panel class="Category">
 					<Label id="stats_tower" text="0"/>
 				</Panel>
+				-->
 				<Panel class="ButtonPanel">		  			
 			  		<Button class="OptionButton" onactivate="OnQuit()">
 			  			<Label text="Close"/>

@@ -14,17 +14,26 @@ siege_lh = 0
 siege_dn = 0
 siege_miss_friendly = 0
 siege_miss_foe = 0
-tower_lh = 0
-tower_dn = 0
-tower_miss_friendly = 0
-tower_miss_foe = 0
+--tower_lh = 0
+--tower_dn = 0
+--tower_miss_friendly = 0
+--tower_miss_foe = 0
+----------------------
+hidehelp = 0
+----------------------
+iter = 1
 ----------------------
 
 function CLastHitChallenge:OnHeroPicked (event)
+	print("OnHeroPicked!")
 	CLastHitChallenge:Clock()
+
+	iter = 1
+	CLastHitChallenge:SpawnCreeps()
+
   	local hero = EntIndexToHScript(event.heroindex)
   	CLastHitChallenge:GiveZeroGold(hero)
-  	CLastHitChallenge:GiveBlinkDagger(hero)
+  	--CLastHitChallenge:GiveBlinkDagger(hero)
 
   	-- Populating tables
 	--Totals
@@ -32,12 +41,28 @@ function CLastHitChallenge:OnHeroPicked (event)
 	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0} )
 	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0} )
 
-	--Records
-	CustomNetTables:SetTableValue("stats_records", "stats_record_cs", { value = 0} )
-	CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
-	CustomNetTables:SetTableValue("stats_records", "stats_record_lh", { value = 0} )
-	CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
+	--Streaks
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_cs", { value = 0} )
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_lh", { value = 0} )
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_dn", { value = 0} )
 
+	--Records
+	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
+	if (records_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_cs", { value = 0} )
+	end
+	local records_acc = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
+	if (records_acc == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
+	end
+	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
+	if (records_lh == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_lh", { value = 0} )
+	end
+	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
+	if (records_dn == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
+	end
   	
 end
 
@@ -56,71 +81,46 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
-	
-	--[[ This is to get towers' coordinates
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and radiant_tower == nil and dire_tower == nil then
-		radiant_tower = Entities:FindByName(nil, 'dota_goodguys_tower1_mid')
-		radiant_tower = radiant_tower:GetOrigin()
-		
-		dire_tower = Entities:FindByName(nil, 'dota_badguys_tower1_mid')
-		dire_tower = dire_tower:GetOrigin()
-	end
-	]]
-
---[[ Make Towers invulnerable
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and not tower_invulnerable then
-		print('if')
-		CLastHitChallenge:SetTowerInvunerability('dota_goodguys_tower1_mid')
-		CLastHitChallenge:SetTowerInvunerability('dota_badguys_tower1_mid')
-		tower_invulnerable = true
-	end
-]]
 	-- Stop thinking if game is paused
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
 
-	if (MAXTIME - seconds) == 10 then
+	if (MAXTIME - seconds) == 30 then
 		BroadcastMessage("30 seconds left!", 1)
 	end
 	if seconds == MAXTIME then
 		CLastHitChallenge:EndGame()
-		--[[
-		GameRules:SetCustomVictoryMessage( "Final" )
-		GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
-		]]
 	end
 
 	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
 		print("ENDING GAME!")
 		return 1
 	end
-
---[[
-	if self.countdownEnabled == true then
-	    --CountdownTimer()
-	    if nCOUNTDOWNTIMER == 30 then
-	      BroadcastMessage("30 seconds left!", 1)
-	      CustomGameEventManager:Send_ServerToAllClients( "timer_alert", {} )
-	      
-	    end
-	    if nCOUNTDOWNTIMER <= 0 then
-			local creep_score = PlayerResource:GetLastHits(0) + PlayerResource:GetDenies(0)			
-			GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
-			self.countdownEnabled = false
-	 	end
-	end
-	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-		BroadcastMessage( "Final Creep Score: " .. tostring(creep_score), 5 )
-		return 10
-	end
-	]]
 		return 1
 end
 
-function CLastHitChallenge:EndGame()
-	PauseGame(true)
+function CLastHitChallenge:SetGameFrozen( bFreeze )
+	Tutorial:SetTimeFrozen( bFreeze )
+	local entity = Entities:First()
+	while( entity ~= nil ) do
+		if ( entity:IsBaseNPC() ) then
+			if ( entity:IsAlive() and ( entity:IsCreep() or entity:IsHero() ) ) then
+				if ( bFreeze == true ) then
+--					print("Making unit idle " .. entity:GetClassname() )
+					entity:StartGesture( ACT_DOTA_IDLE )
+				else
+					entity:RemoveGesture( ACT_DOTA_IDLE )
+				end
+			end
+		end
+		entity = Entities:Next( entity )
+	end
+end
 
+function CLastHitChallenge:EndGame()
+	--PauseGame(true)
+	CLastHitChallenge:SetGameFrozen(true)
 	--Totals
 	local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", "stats_total_cs")
 	local stats_total_lh = CustomNetTables:GetTableValue( "stats_totals", "stats_total_lh")
@@ -150,10 +150,10 @@ function CLastHitChallenge:EndGame()
 	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_dn", { value = siege_dn } )
 	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = siege_miss_friendly } )
 	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_siege_miss_foe", { value = siege_miss_foe } )
-	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_lh", { value = tower_lh } )
-	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_dn", { value = tower_dn } )
-	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = tower_miss_friendly } )
-	CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_foe", { value = tower_miss_foe } )
+	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_lh", { value = tower_lh } )
+	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_dn", { value = tower_dn } )
+	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = tower_miss_friendly } )
+	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_foe", { value = tower_miss_foe } )
 
 
 	misses = 0
@@ -227,27 +227,102 @@ end
 
 ]]
 
+hurtunits = {}
 function CLastHitChallenge:OnHurt( event )
-	
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
 	if event.entindex_attacker ~= nil then
-	local attacker = EntIndexToHScript( event.entindex_attacker )
+		local attacker = EntIndexToHScript( event.entindex_attacker )
 		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
 			local health = hurtUnit:GetHealth()
 			local max_health = hurtUnit:GetMaxHealth()
-			--local min_dmg = attacker:GetBaseDamageMin()
-			--print('max_dmg = ' .. tostring(max_dmg) + ' min_dmg = ' + tostring(min_dmg) )
 			local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
 			if pct ~= 0 then
-				--DebugDrawText(hurtUnit:GetAbsOrigin(), "Close!", true, 1.0)
 				local origin = hurtUnit:GetOrigin()			
 				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = pct})
 			end
 		end
+
+		--if (hurtUnit:IsCreep() or hurtUnit:IsMechanical() or hurtUnit:IsTower()) and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
+		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
+			local index = hurtUnit:entindex()
+			if hurtunits[index] == nil then
+				hurtunits[index] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, hurtUnit)
+			end
+
+			if hurtUnit:GetHealth() == 0 then
+				ParticleManager:DestroyParticle(hurtunits[index], true)
+			end
+		end
 	end
-	--if hurtUnit:IsTower() then
-	--	hurtUnit:SetHealth(1300)
-	--end
+	if hurtUnit:IsTower() then
+		hurtUnit:SetHealth(hurtUnit:GetMaxHealth())
+	end
+
+end
+
+
+function CLastHitChallenge:OnHideHelp( event )
+	print("hidehelp " .. tostring(event.hidehelp))
+	if event.hidehelp == 1 then		
+		hidehelp = 1
+		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
+											Vector( 0, 0, 0 ), 
+											nil, 
+											FIND_UNITS_EVERYWHERE, 
+											DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+											DOTA_UNIT_TARGET_ALL, 
+											DOTA_UNIT_TARGET_FLAG_NONE, 
+											FIND_ANY_ORDER, false )) do
+			if hurtunits[unit:entindex()] ~= nil then
+				ParticleManager:DestroyParticle(hurtunits[unit:entindex()], true)
+				hurtunits[unit:entindex()] = nil
+			end
+		end
+
+		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
+											Vector( 0, 0, 0 ), 
+											nil, 
+											FIND_UNITS_EVERYWHERE, 
+											DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+											DOTA_UNIT_TARGET_ALL, 
+											DOTA_UNIT_TARGET_FLAG_NONE, 
+											FIND_ANY_ORDER, false )) do
+			if hurtunits[unit:entindex()] ~= nil then
+				ParticleManager:DestroyParticle(hurtunits[unit:entindex()], true)
+				hurtunits[unit:entindex()] = nil
+			end
+		end
+	else
+		hidehelp = 0
+		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
+											Vector( 0, 0, 0 ), 
+											nil, 
+											FIND_UNITS_EVERYWHERE, 
+											DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+											DOTA_UNIT_TARGET_ALL, 
+											DOTA_UNIT_TARGET_FLAG_NONE, 
+											FIND_ANY_ORDER, false )) do
+			--if (unit:IsCreep() or unit:IsMechanical() or unit:IsTower()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+			if (unit:IsCreep() or unit:IsMechanical()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+				hurtunits[unit:entindex()] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, unit)
+			end
+		end
+
+		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
+											Vector( 0, 0, 0 ), 
+											nil, 
+											FIND_UNITS_EVERYWHERE, 
+											DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+											DOTA_UNIT_TARGET_ALL, 
+											DOTA_UNIT_TARGET_FLAG_NONE, 
+											FIND_ANY_ORDER, false )) do
+			--if (unit:IsCreep() or unit:IsMechanical() or unit:IsTower()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+			if (unit:IsCreep() or unit:IsMechanical()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+				hurtunits[unit:entindex()] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, unit)
+			end
+		end
+
+	end
 end
 
 
@@ -264,12 +339,6 @@ function CLastHitChallenge:OnEntityKilled (event)
 	local attacker = EntIndexToHScript( event.entindex_attacker )
 
 	local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
-	print(friendly)
-	if friendly then
-		print("Friendly creep")
-	else
-		print("Foe creep")
-	end
 
 	if attacker:IsRealHero() and not killedUnit:IsRealHero() then		
 
@@ -312,8 +381,8 @@ function CLastHitChallenge:OnEntityKilled (event)
 				else
 					melee_dn = melee_dn + 1
 				end
-			elseif killedUnit:IsTower() then
-				tower_dn = tower_dn + 1
+			--elseif killedUnit:IsTower() then
+			--	tower_dn = tower_dn + 1
 			elseif killedUnit:IsMechanical() then
 				siege_dn = siege_dn + 1
 			end
@@ -341,8 +410,8 @@ function CLastHitChallenge:OnEntityKilled (event)
 				else
 					melee_lh = melee_lh + 1
 				end
-			elseif killedUnit:IsTower() then
-				tower_lh = tower_lh + 1
+			--elseif killedUnit:IsTower() then
+			--	tower_lh = tower_lh + 1
 			elseif killedUnit:IsMechanical() then
 				siege_lh = siege_lh + 1
 			end
@@ -386,17 +455,17 @@ function CLastHitChallenge:OnEntityKilled (event)
 						melee_miss_foe = melee_miss_foe + 1
 					end
 				end
-			elseif killedUnit:IsTower() then
-				if friendly then
-						melee_miss_friendly = melee_miss_friendly + 1
-					else
-						melee_miss_foe = melee_miss_foe + 1
-					end
+			--elseif killedUnit:IsTower() then
+			--	if friendly then
+			--			melee_miss_friendly = melee_miss_friendly + 1
+			--		else
+			--			melee_miss_foe = melee_miss_foe + 1
+			--		end
 			elseif killedUnit:IsMechanical() then
 				if friendly then
-					melee_miss_friendly = melee_miss_friendly + 1
+					siege_miss_friendly = siege_miss_friendly + 1
 				else
-					melee_miss_foe = melee_miss_foe + 1
+					siege_miss_foe = siege_miss_foe + 1
 				end
 			end
 
@@ -407,6 +476,43 @@ function CLastHitChallenge:OnEntityKilled (event)
 	end
 end
 
+function CLastHitChallenge:SpawnCreeps()
+	local point = nil
+	local waypoint = nil
+	if spawner_timer == nil then
+		spawner_timer = Timers:CreateTimer(function()	
+			for i=1,2 do
+			    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
+			    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
+				if waypoint then
+					for j=1,4 do		
+						unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+						if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
+							if unit:IsCreep() and unit:IsRangedAttacker() then
+								unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
+								unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 2)
+							else
+								unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 1)
+								unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 1)
+							end
+							unit:SetMaxHealth(unit:GetMaxHealth() + 10)
+							unit:SetHealth(unit:GetMaxHealth())
+						end
+						unit:SetInitialGoalEntity(waypoint)
+					end
+					-- spawn siege creep every 7th wave
+					if iter % 7 == 0 then
+						unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+						unit:SetInitialGoalEntity(waypoint)
+					end
+				end
+			end
+			iter = iter + 1
+			return 30.0
+		end)
+	end
+end
+
 function CLastHitChallenge:OnRestart()
 	restarts = restarts + 1
 
@@ -414,9 +520,8 @@ function CLastHitChallenge:OnRestart()
 		shortest_time = seconds
 	end
 
-	--Unpause the game if is paused on restart
-	if GameRules:IsGamePaused() == true then
-  		PauseGame(false)
+	if Tutorial:GetTimeFrozen() then
+		CLastHitChallenge:SetGameFrozen(false)
 	end
 
 	local hero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_nevermore", 0, 0)
@@ -428,7 +533,6 @@ function CLastHitChallenge:OnRestart()
 	-- clearing time!
 	seconds = 0
 
-	local dire_tower
 	-- clearing units
 	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
 											Vector( 0, 0, 0 ), 
@@ -458,8 +562,7 @@ function CLastHitChallenge:OnRestart()
 		else
 			unit:SetHealth(unit:GetMaxHealth())
 		end
-	end	
-
+	end
 
 	-- clearing creep score
 	current_cs = { lh = 0, dn = 0 }
@@ -484,8 +587,8 @@ function CLastHitChallenge:OnRestart()
 	siege_dn = 0
 	siege_miss_friendly = 0
 	siege_miss_foe = 0
-	tower_lh = 0
-	tower_dn = 0
+	--tower_lh = 0
+	--tower_dn = 0
 	tower_miss_friendly = 0
 	tower_miss_foe = 0
 	----------------------
@@ -502,10 +605,10 @@ function CLastHitChallenge:OnRestart()
 	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
 	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = 0 } )
 	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_foe", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
 	
 	--clearing misses
 	misses = 0
@@ -514,17 +617,6 @@ function CLastHitChallenge:OnRestart()
 	CLastHitChallenge:GiveZeroGold(hero)
 	
 	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }	
-
-	--[[
-	local radiant_t = CreateUnitByName("npc_dota_radiant_tower1_mid", radiant_tower, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	radiant_t:RemoveModifierByName("modifier_invulnerable")
-	radiant_t:SetRenderColor(206, 204, 192)
-
-	local dire_t = CreateUnitByName("npc_dota_dire_tower1_mid", dire_tower, false, nil, nil, DOTA_TEAM_BADGUYS)
-	dire_t:RemoveModifierByName("modifier_invulnerable")
-	dire_t:SetRenderColor(63, 71, 62)
-	]]
-	
 end
 
 function CLastHitChallenge:OnQuit()

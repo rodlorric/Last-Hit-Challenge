@@ -60,6 +60,7 @@ function OnToggle(){
 	} else {
 		overlay.style.visibility = "visible";
 	}
+	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
 }
 
 (function () {
