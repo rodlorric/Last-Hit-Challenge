@@ -29,11 +29,11 @@ function CLastHitChallenge:OnHeroPicked (event)
 	CLastHitChallenge:Clock()
 
 	iter = 1
-	CLastHitChallenge:SpawnCreeps()
+	--CLastHitChallenge:SpawnCreeps()
 
   	local hero = EntIndexToHScript(event.heroindex)
   	CLastHitChallenge:GiveZeroGold(hero)
-  	--CLastHitChallenge:GiveBlinkDagger(hero)
+  	CLastHitChallenge:GiveBlinkDagger(hero)
 
   	-- Populating tables
 	--Totals
@@ -62,6 +62,18 @@ function CLastHitChallenge:OnHeroPicked (event)
 	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
 	if (records_dn == nil) then
 		CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
+	end
+	local accuracy_lh = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_lh")
+	if (accuracy_lh == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = 0} )
+	end
+	local accuracy_dn = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_dn")
+	if (accuracy_dn == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = 0} )
+	end
+	local accuracy_cs = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_cs")
+	if (accuracy_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = 0} )
 	end
   	
 end
@@ -340,11 +352,11 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 	local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
 
-	if attacker:IsRealHero() and not killedUnit:IsRealHero() then		
+	local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
+	local dn = PlayerResource:GetDenies(0) - current_cs["dn"]
+	local cs = lh + dn
 
-		local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
-		local dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-		local cs = lh + dn
+	if attacker:IsRealHero() and not killedUnit:IsRealHero() then
 		
 		--Streaks
 		cs_streak = cs_streak + 1 
@@ -364,7 +376,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				max_deny_streak = deny_streak
 			end
 
-			CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = PlayerResource:GetDenies(0) - current_cs["dn"] } )
+			CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = dn } )
 
 			if dn > stats_record_dn.value or  cs > stats_record_cs.value then
 				if dn > stats_record_dn.value then
@@ -395,7 +407,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				max_last_hit_streak = last_hit_streak
 			end
 
-			CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = PlayerResource:GetLastHits(0) - current_cs["lh"]} );
+			CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = lh } );
 			if lh > stats_record_lh.value or cs > stats_record_cs.value then
 				if lh > stats_record_lh.value then
 					stats_record_lh.value = lh
@@ -416,7 +428,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				siege_lh = siege_lh + 1
 			end
 		end
-		CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = (PlayerResource:GetLastHits(0) - current_cs["lh"]) + (PlayerResource:GetDenies(0) - current_cs["dn"]) } );
+		CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = lh + dn } );
 		
 		--To track all time cs
 		session_cs = session_cs + 1
@@ -474,6 +486,16 @@ function CLastHitChallenge:OnEntityKilled (event)
 			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
 		end
 	end
+	--Accuracy
+	local lh_accuracy = ((lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe) == 0) and 0 or (lh * 100) / ( lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe)
+	local dn_accuracy = ((dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly) == 0) and 0 or (dn * 100) / (dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly)
+	local cs_accuracy = ((lh + dn + misses) == 0) and 0 or ((lh + dn) * 100) / (lh + dn + misses)
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = lh_accuracy })
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = dn_accuracy })
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = cs_accuracy })
+	print("Last Hit accuracy: " .. tostring(lh_accuracy))
+	print("Deny accuracy: " .. tostring(dn_accuracy))
+	print("Creep Score accuracy: " .. tostring(cs_accuracy))
 end
 
 function CLastHitChallenge:SpawnCreeps()
