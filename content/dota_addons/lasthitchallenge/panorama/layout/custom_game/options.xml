@@ -13,19 +13,33 @@
 		</Button>
 	 	<Panel class="ControlPanelContainer">
 		  	<Panel id="Maximized">
-		  		<Panel id="MinimizeButton">
+		  		<Panel class="MinimizeButton">
 			  		<Label text="Records"/>
 			  	</Panel>
 			  	<Panel class="Category">
-					 	<Label text="Creep Score:"/>
-					 	<Label id="cs" text="0"/>
-					 	<Label text="Last Hits:"/>
-					 	<Label id="lh" text="0"/>
-					 	<Label text="Denies:"/>
-					 	<Label id="dn" text="0"/>
+				 	<Label text="Creep Score:"/>
+				 	<Label id="cs" text="0"/>
+				 	<Label text="Last Hits:"/>
+				 	<Label id="lh" text="0"/>
+				 	<Label text="Denies:"/>
+				 	<Label id="dn" text="0"/>
+				</Panel>
+				<Panel class="MinimizeButton">
+					<Label text="Accuracy"/>
 				</Panel>
 				<Panel class="Category">
-				 	<Label text="Options"/>
+				 	<Label text="Last Hit:"/>
+				 	<Label id="lh_accuracy" text="100%"/>
+				 	<Label text="Deny:"/>
+				 	<Label id="dn_accuracy" text="100%"/>
+				 	<Label text="Total:"/>
+				 	<Label id="cs_accuracy" text="100%"/>
+				</Panel>
+				<Panel class="MinimizeButton">
+					<Label text="Options"/>
+				</Panel>
+				<Panel class="Category">
+				 	<Label text=""/>
 				 	<Panel class="Row">			  			
 				  		<ToggleButton id="hide_overlay" class="OptionButton" text="Hide Help" onactivate="OnToggle()"/>				  			
 				 	</Panel>
@@ -35,6 +49,7 @@
 				  		</Button>
 				 	</Panel>
 				</Panel>
+
 			</Panel>
 		</Panel>		
 	</Panel>

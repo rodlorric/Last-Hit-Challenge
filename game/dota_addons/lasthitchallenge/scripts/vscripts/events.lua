@@ -29,11 +29,11 @@ function CLastHitChallenge:OnHeroPicked (event)
 	CLastHitChallenge:Clock()
 
 	iter = 1
-	--CLastHitChallenge:SpawnCreeps()
+	CLastHitChallenge:SpawnCreeps()
 
   	local hero = EntIndexToHScript(event.heroindex)
   	CLastHitChallenge:GiveZeroGold(hero)
-  	CLastHitChallenge:GiveBlinkDagger(hero)
+  	--CLastHitChallenge:GiveBlinkDagger(hero)
 
   	-- Populating tables
 	--Totals
@@ -63,18 +63,27 @@ function CLastHitChallenge:OnHeroPicked (event)
 	if (records_dn == nil) then
 		CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
 	end
-	local accuracy_lh = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_lh")
-	if (accuracy_lh == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = 0} )
-	end
-	local accuracy_dn = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_dn")
-	if (accuracy_dn == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = 0} )
-	end
-	local accuracy_cs = CustomNetTables:GetTableValue( "stats_records", "stats_accuracy_cs")
-	if (accuracy_cs == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = 0} )
-	end
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_cs", { value = 100 } )
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_lh", { value = 100 } )
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_dn", { value = 100 } )	
+
+	-- Total Details
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_foe", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_foe", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_foe", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
   	
 end
 
@@ -344,158 +353,157 @@ cs_streak = 0
 max_cs_streak = 0
 max_deny_streak = 0
 max_last_hit_streak = 0
-
 function CLastHitChallenge:OnEntityKilled (event)
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
 	local attacker = EntIndexToHScript( event.entindex_attacker )
+	print("attacker: " .. tostring(attacker:IsBaseNPC()))
+	tprint(event)
+	if attacker:entindex() ~= killedUnit:entindex() then --UTIL_removed units count as killed by self
+		local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
 
-	local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
+		local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
+		local dn = PlayerResource:GetDenies(0) - current_cs["dn"]
+		local cs = lh + dn
 
-	local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
-	local dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-	local cs = lh + dn
-
-	if attacker:IsRealHero() and not killedUnit:IsRealHero() then
-		
-		--Streaks
-		cs_streak = cs_streak + 1 
-		if cs_streak > max_cs_streak then
-			max_cs_streak = cs_streak
-		end
-
-		
-		local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
-		
-		--Deny
-		if friendly then
-			local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
-			--streaks
-			deny_streak = deny_streak + 1
-			if deny_streak > max_deny_streak then
-				max_deny_streak = deny_streak
+		if attacker:IsRealHero() and not killedUnit:IsRealHero() then
+			
+			--Streaks
+			cs_streak = cs_streak + 1 
+			if cs_streak > max_cs_streak then
+				max_cs_streak = cs_streak
 			end
 
-			CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = dn } )
-
-			if dn > stats_record_dn.value or  cs > stats_record_cs.value then
-				if dn > stats_record_dn.value then
-					stats_record_dn.value = dn
-					CustomNetTables:SetTableValue("stats_records", "stats_record_dn", stats_record_dn)
-				end
-			end
-
-
-			--Totals Details
-			if killedUnit:IsCreep() then
-				if killedUnit:IsRangedAttacker() then
-					ranged_dn = ranged_dn + 1
-				else
-					melee_dn = melee_dn + 1
-				end
-			--elseif killedUnit:IsTower() then
-			--	tower_dn = tower_dn + 1
-			elseif killedUnit:IsMechanical() then
-				siege_dn = siege_dn + 1
-			end
-
-		else --LastHit
-			local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
-			--streak
-			last_hit_streak = last_hit_streak + 1
-			if last_hit_streak > max_last_hit_streak then
-				max_last_hit_streak = last_hit_streak
-			end
-
-			CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = lh } );
-			if lh > stats_record_lh.value or cs > stats_record_cs.value then
-				if lh > stats_record_lh.value then
-					stats_record_lh.value = lh
-					CustomNetTables:SetTableValue("stats_records", "stats_record_lh", stats_record_lh)
-				end
-			end
-
-			--Totals Details
-			if killedUnit:IsCreep() then
-				if killedUnit:IsRangedAttacker() then
-					ranged_lh = ranged_lh + 1
-				else
-					melee_lh = melee_lh + 1
-				end
-			--elseif killedUnit:IsTower() then
-			--	tower_lh = tower_lh + 1
-			elseif killedUnit:IsMechanical() then
-				siege_lh = siege_lh + 1
-			end
-		end
-		CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = lh + dn } );
-		
-		--To track all time cs
-		session_cs = session_cs + 1
-
-		--Records
-		if cs > stats_record_cs.value then
-			stats_record_cs.value = cs
-			CustomNetTables:SetTableValue("stats_records", "stats_record_cs", stats_record_cs)
-		end
-	else -- misses
-		if not killedUnit:IsHero() then
-			--streaks
-			cs_streak = 0
-
+			
+			local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
+			
+			--Deny
 			if friendly then
-				deny_streak = 0
-			else
-				last_hit_streak = 0
-			end
-			total_misses = total_misses + 1
-			misses = misses + 1
+				local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
+				--streaks
+				deny_streak = deny_streak + 1
+				if deny_streak > max_deny_streak then
+					max_deny_streak = deny_streak
+				end
 
+				CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = dn } )
 
-			--Totals Details
-			if killedUnit:IsCreep() then
-				if killedUnit:IsRangedAttacker() then
-					if friendly then
-						ranged_miss_friendly = ranged_miss_friendly + 1
-					else
-						ranged_miss_foe = ranged_miss_foe + 1
-					end
-				else
-					if friendly then
-						melee_miss_friendly = melee_miss_friendly + 1
-					else
-						melee_miss_foe = melee_miss_foe + 1
+				if dn > stats_record_dn.value or  cs > stats_record_cs.value then
+					if dn > stats_record_dn.value then
+						stats_record_dn.value = dn
+						CustomNetTables:SetTableValue("stats_records", "stats_record_dn", stats_record_dn)
 					end
 				end
-			--elseif killedUnit:IsTower() then
-			--	if friendly then
-			--			melee_miss_friendly = melee_miss_friendly + 1
-			--		else
-			--			melee_miss_foe = melee_miss_foe + 1
-			--		end
-			elseif killedUnit:IsMechanical() then
+
+
+				--Totals Details
+				if killedUnit:IsCreep() then
+					if killedUnit:IsRangedAttacker() then
+						ranged_dn = ranged_dn + 1
+					else
+						melee_dn = melee_dn + 1
+					end
+				--elseif killedUnit:IsTower() then
+				--	tower_dn = tower_dn + 1
+				elseif killedUnit:IsMechanical() then
+					siege_dn = siege_dn + 1
+				end
+
+			else --LastHit
+				local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
+				--streak
+				last_hit_streak = last_hit_streak + 1
+				if last_hit_streak > max_last_hit_streak then
+					max_last_hit_streak = last_hit_streak
+				end
+
+				CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = lh } );
+				if lh > stats_record_lh.value or cs > stats_record_cs.value then
+					if lh > stats_record_lh.value then
+						stats_record_lh.value = lh
+						CustomNetTables:SetTableValue("stats_records", "stats_record_lh", stats_record_lh)
+					end
+				end
+
+				--Totals Details
+				if killedUnit:IsCreep() then
+					if killedUnit:IsRangedAttacker() then
+						ranged_lh = ranged_lh + 1
+					else
+						melee_lh = melee_lh + 1
+					end
+				--elseif killedUnit:IsTower() then
+				--	tower_lh = tower_lh + 1
+				elseif killedUnit:IsMechanical() then
+					siege_lh = siege_lh + 1
+				end
+			end
+			CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = lh + dn } );
+			
+			--To track all time cs
+			session_cs = session_cs + 1
+
+			--Records
+			if cs > stats_record_cs.value then
+				stats_record_cs.value = cs
+				CustomNetTables:SetTableValue("stats_records", "stats_record_cs", stats_record_cs)
+			end
+		else -- misses
+			if not killedUnit:IsHero() then
+				--streaks
+				cs_streak = 0
+
 				if friendly then
-					siege_miss_friendly = siege_miss_friendly + 1
+					deny_streak = 0
 				else
-					siege_miss_foe = siege_miss_foe + 1
+					last_hit_streak = 0
 				end
-			end
+				total_misses = total_misses + 1
+				misses = misses + 1
 
-			local origin = killedUnit:GetOrigin()
-			local bounds = killedUnit:GetUpVector()
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
+
+				--Totals Details
+				if killedUnit:IsCreep() then
+					if killedUnit:IsRangedAttacker() then
+						if friendly then
+							ranged_miss_friendly = ranged_miss_friendly + 1
+						else
+							ranged_miss_foe = ranged_miss_foe + 1
+						end
+					else
+						if friendly then
+							melee_miss_friendly = melee_miss_friendly + 1
+						else
+							melee_miss_foe = melee_miss_foe + 1
+						end
+					end
+				--elseif killedUnit:IsTower() then
+				--	if friendly then
+				--			melee_miss_friendly = melee_miss_friendly + 1
+				--		else
+				--			melee_miss_foe = melee_miss_foe + 1
+				--		end
+				elseif killedUnit:IsMechanical() then
+					if friendly then
+						siege_miss_friendly = siege_miss_friendly + 1
+					else
+						siege_miss_foe = siege_miss_foe + 1
+					end
+				end
+
+				local origin = killedUnit:GetOrigin()
+				local bounds = killedUnit:GetUpVector()
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
+			end
 		end
+
+		local lh_accuracy = ((lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe) == 0) and 100 or (lh * 100) / ( lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe)
+		local dn_accuracy = ((dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly) == 0) and 100 or (dn * 100) / (dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly)
+		local cs_accuracy = ((lh + dn + misses) == 0) and 100 or ((lh + dn) * 100) / (lh + dn + misses)
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = lh_accuracy })
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = dn_accuracy })
+		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = cs_accuracy })
 	end
-	--Accuracy
-	local lh_accuracy = ((lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe) == 0) and 0 or (lh * 100) / ( lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe)
-	local dn_accuracy = ((dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly) == 0) and 0 or (dn * 100) / (dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly)
-	local cs_accuracy = ((lh + dn + misses) == 0) and 0 or ((lh + dn) * 100) / (lh + dn + misses)
-	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = lh_accuracy })
-	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = dn_accuracy })
-	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = cs_accuracy })
-	print("Last Hit accuracy: " .. tostring(lh_accuracy))
-	print("Deny accuracy: " .. tostring(dn_accuracy))
-	print("Creep Score accuracy: " .. tostring(cs_accuracy))
 end
 
 function CLastHitChallenge:SpawnCreeps()
@@ -536,6 +544,7 @@ function CLastHitChallenge:SpawnCreeps()
 end
 
 function CLastHitChallenge:OnRestart()
+	print("OnRestart!")
 	restarts = restarts + 1
 
 	if seconds < shortest_time then
@@ -589,10 +598,6 @@ function CLastHitChallenge:OnRestart()
 	-- clearing creep score
 	current_cs = { lh = 0, dn = 0 }
 
-	-- Totals
-	CustomNetTables:SetTableValue( "stats_totals", "stats_total_cs", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = 0 } )
 
 	--Totals Details
 
@@ -614,23 +619,6 @@ function CLastHitChallenge:OnRestart()
 	tower_miss_friendly = 0
 	tower_miss_foe = 0
 	----------------------
-
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_foe", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_foe", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_foe", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
 	
 	--clearing misses
 	misses = 0

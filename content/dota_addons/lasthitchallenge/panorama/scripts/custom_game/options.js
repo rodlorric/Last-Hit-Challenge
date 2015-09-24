@@ -39,8 +39,16 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 	} else if (key == "stats_record_dn"){
 		$("#dn").text = data.value;
 		panel.SetHasClass( "dn_anim", true );
+	} else if (key == "stats_accuracy_cs"){
+		$("#cs_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		panel.SetHasClass( "cs_accuracy_anim", true );
+	} else if (key == "stats_accuracy_lh"){
+		$("#lh_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		panel.SetHasClass( "lh_accuracy_anim", true );
+	} else if (key == "stats_accuracy_dn"){
+		$("#dn_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		panel.SetHasClass( "dn_accuracy_anim", true );
 	}
-
 	$.Schedule( 1, OnResetAnimation );
 } 
 
@@ -49,6 +57,9 @@ function OnResetAnimation() {
 	panel.SetHasClass( "cs_anim", false );
 	panel.SetHasClass( "lh_anim", false );
 	panel.SetHasClass( "dn_anim", false );
+	panel.SetHasClass( "cs_accuracy_anim", false );
+	panel.SetHasClass( "lh_accuracy_anim", false );
+	panel.SetHasClass( "dn_accuracy_anim", false );
 }
 
 function OnToggle(){

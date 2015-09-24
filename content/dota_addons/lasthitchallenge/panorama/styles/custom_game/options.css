@@ -23,7 +23,7 @@
     flow-children: right;
     vertical-align: middle;
     horizontal-align: left;
-    height: 390px;
+    height: 650px;
     width: 160px;
     font-size: 16;
     background-color: #181818dd;
@@ -124,12 +124,8 @@
 
 
 
-.ControlPanelContainer #Maximized #MinimizeButton
+.ControlPanelContainer #Maximized .MinimizeButton
 {
-	flow-children: down;
-    transform: translateX( 0% ) translateY( 0% );
-    vertical-align: middle;
-    horizontal-align: left;
     width: 100%;
     background-color: #181818;
     border: 2px solid #111111;
@@ -137,24 +133,24 @@
 }
 
 
-.ControlPanelContainer #Maximized #MinimizeButton Label
+.ControlPanelContainer #Maximized .MinimizeButton Label
 {
 	font-size: 18;
 	color: #666666;
 }
 
-#MinimizeButton
+.MinimizeButton
 {
 	horizontal-align: right;
 }
 
-#MinimizeButton Label
+.MinimizeButton Label
 {
 	font-size: 16;
 	color: #666666;
 }
 
-#MinimizeButton:hover Label
+.MinimizeButton:hover Label
 {
 	font-size: 16;
 	color: #aaaaaa;
@@ -188,7 +184,7 @@
 	color: #888888;
 }
 
-.Category #cs, #lh, #dn
+.Category #cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy
 {
 	text-align: center;
 	margin-left: 5px;
@@ -271,7 +267,7 @@
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #777777 ), to( #999999 ) );
 }
 
-#cs, #lh, #dn
+#cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy
 {
 	animation-duration: 0.3s;
   	animation-timing-function: linear;
@@ -291,6 +287,24 @@
 }
 
 .dn_anim #dn
+{
+    visibility: visible;
+    animation-name: record;
+}
+
+.cs_accuracy_anim #cs_accuracy
+{
+    visibility: visible;
+    animation-name: record;
+}
+
+.lh_accuracy_anim #lh_accuracy
+{
+    visibility: visible;
+    animation-name: record;
+}
+
+.dn_accuracy_anim #dn_accuracy
 {
     visibility: visible;
     animation-name: record;
