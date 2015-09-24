@@ -544,7 +544,6 @@ function CLastHitChallenge:SpawnCreeps()
 end
 
 function CLastHitChallenge:OnRestart()
-	print("OnRestart!")
 	restarts = restarts + 1
 
 	if seconds < shortest_time then
@@ -630,9 +629,8 @@ function CLastHitChallenge:OnRestart()
 end
 
 function CLastHitChallenge:OnQuit()
-	--Unpause the game if is paused on restart
-	if GameRules:IsGamePaused() == true then
-  		PauseGame(false)
+	if Tutorial:GetTimeFrozen() then
+		CLastHitChallenge:SetGameFrozen(false)
 	end
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
 end
