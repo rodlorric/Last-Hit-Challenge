@@ -46,7 +46,9 @@ game/dota_addons/dota2cfg.cfg
 game/dota_addons/vpks/*
 game/dota_addons/lasthitchallenge/*.bin
 game/dota_addons/lasthitchallenge/panorama/*
-game/dota_addond/panorama_debugger.cfg
+game/dota_addons/lasthitchallenge/panorama_debugger.cfg
+game/dota_addons/lasthitchallenge/particles/*
+game/dota_addons/lasthitchallenge/materials/*
 
 bin/*
 _CommonRedist/*
