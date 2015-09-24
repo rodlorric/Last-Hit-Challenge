@@ -45,6 +45,8 @@ game/dota_addons/tutorial_basics/*
 game/dota_addons/dota2cfg.cfg
 game/dota_addons/vpks/*
 game/dota_addons/lasthitchallenge/*.bin
+game/dota_addons/lasthitchallenge/panorama/*
+game/dota_addond/panorama_debugger.cfg
 
 bin/*
 _CommonRedist/*
