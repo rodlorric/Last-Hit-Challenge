@@ -46,9 +46,7 @@ function OnEndScreen(data) {
 	$("#stats_time_shortest").text = stats_time_shortest.value;
 
 	$("#end_screen_panel").ToggleClass("Maximized");
-	$.Msg("before: " + $("#end_screen_panel"));
 	$("#end_screen_panel").hittest = true;
-	$.Msg("after: " + $("#end_screen_panel"));
 }
 
 function OnRestart(){
@@ -61,7 +59,6 @@ function OnQuit(){
 }
 
 function OnMagnifyLastHits(){
-	$.Msg("Magnify LastHits!");
 	var stats = $.CreatePanel( "Panel", $.GetContextPanel(), "LastHitStats" );
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 	
@@ -84,7 +81,6 @@ function OnMagnifyDenies(){
 }
 
 function OnMagnifyMisses(){
-	$.Msg("Magnify Misses!");
 	var stats = $.CreatePanel( "Panel", $.GetContextPanel(), "MissesStats" );
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 

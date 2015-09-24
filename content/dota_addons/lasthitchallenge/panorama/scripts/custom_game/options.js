@@ -64,7 +64,6 @@ function OnResetAnimation() {
 
 function OnToggle(){
 	var toggleButton = $("#hide_overlay");
-	$.Msg(toggleButton);
 	var overlay = $("#OverlayPanel");
 	if (toggleButton.checked){
 		overlay.style.visibility = "collapse";
