@@ -5,8 +5,11 @@ function OnClick(){
 }
 
 function OnRestartButton(){
-	var iPlayerID = Players.GetLocalPlayer();
 	GameEvents.SendCustomGameEventToServer( "restart", {})
+}
+
+function OnQuitButton(){
+	GameEvents.SendCustomGameEventToServer( "quit", {});
 }
 
 /*

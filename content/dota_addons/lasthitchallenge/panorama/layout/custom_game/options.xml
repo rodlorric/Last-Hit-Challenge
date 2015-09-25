@@ -43,6 +43,9 @@
 			  		<Button class="OptionButton" onactivate="OnRestartButton()">
 			  			<Label text="Restart"/>
 			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnQuitButton()">
+			  			<Label text="Quit"/>
+			  		</Button>
 				</Panel>
 			</Panel>
 		</Panel>		
