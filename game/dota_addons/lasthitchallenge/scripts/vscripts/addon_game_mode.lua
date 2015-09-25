@@ -1,5 +1,5 @@
 _G.seconds = 0 --600 = 10 minutes
-_G.MAXTIME = 30 -- seconds
+_G.MAXTIME = 600 -- seconds
 _G.total_time = 0
 _G.shortest_time = MAXTIME
 _G.longest_time = 0
@@ -52,6 +52,10 @@ function Precache( context )
 	PrecacheResource( "particle", particle_aura, context )
 end
 
+function end_game_func()
+	CLastHitChallenge:EndGame()
+end
+
 -- Create the game mode when we activate
 function Activate()
 	GameRules.AddonTemplate = CLastHitChallenge()
@@ -83,6 +87,9 @@ function CLastHitChallenge:InitGameMode()
 	GameRules:GetGameModeEntity():SetHUDVisible( DOTA_HUD_VISIBILITY_INVENTORY_QUICKBUY, false )
 	GameRules:GetGameModeEntity():SetHUDVisible( DOTA_HUD_VISIBILITY_SHOP_SUGGESTEDITEMS, false )
 	]]
+
+	Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
+
 
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
 	--ListenToGameEvent("last_hit", Dynamic_Wrap(CLastHitChallenge, 'OnLastHit'), self)
