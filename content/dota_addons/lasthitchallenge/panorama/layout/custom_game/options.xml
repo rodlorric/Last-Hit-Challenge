@@ -39,17 +39,11 @@
 					<Label text="Options"/>
 				</Panel>
 				<Panel class="Category">
-				 	<Label text=""/>
-				 	<Panel class="Row">			  			
-				  		<ToggleButton id="hide_overlay" class="OptionButton" text="Hide Help" onactivate="OnToggle()"/>				  			
-				 	</Panel>
-				 	<Panel class="Row">			  			
-				  		<Button class="OptionButton" onactivate="OnRestartButton()">
-				  			<Label text="Restart"/>
-				  		</Button>
-				 	</Panel>
+				  	<ToggleButton id="hide_overlay" class="OptionButton" text="Hide Help" onactivate="OnToggle()"/>				  			
+			  		<Button class="OptionButton" onactivate="OnRestartButton()">
+			  			<Label text="Restart"/>
+			  		</Button>
 				</Panel>
-
 			</Panel>
 		</Panel>		
 	</Panel>
