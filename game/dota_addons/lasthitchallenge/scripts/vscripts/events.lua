@@ -109,6 +109,7 @@ function CLastHitChallenge:OnThink()
 	if (MAXTIME - seconds) == 30 then
 		BroadcastMessage("30 seconds left!", 1)
 	end
+
 	if seconds == MAXTIME then
 		CLastHitChallenge:EndGame()
 	end
@@ -625,11 +626,9 @@ function CLastHitChallenge:OnQuit()
 		CLastHitChallenge:SetGameFrozen(false)
 	end
 	-- Show the ending scoreboard immediately
-	GameRules:SetCustomVictoryMessage("See you next time!")
-	GameRules:SetPostGameTime( 1.0 )
-	GameRules:SetCustomVictoryMessageDuration( 1.0 )
+	GameRules:SetCustomVictoryMessage("See you soon!")
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
-	SendToServerConsole("disconnect")
+	--SendToServerConsole("disconnect")
 end
 
 function CLastHitChallenge:Clock()

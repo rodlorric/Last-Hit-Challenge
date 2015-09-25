@@ -68,6 +68,10 @@ end
 function CLastHitChallenge:InitGameMode()
 	GameRules:SetPreGameTime( 0 )
 
+	GameRules:SetCustomGameEndDelay( 0 )
+	GameRules:SetPostGameTime( 1.0 )
+	GameRules:SetCustomVictoryMessageDuration( 1.0 )
+
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 0 )
 	
 	GameRules:SetUseUniversalShopMode( false )
