@@ -629,6 +629,7 @@ function CLastHitChallenge:OnQuit()
 	GameRules:SetPostGameTime( 1.0 )
 	GameRules:SetCustomVictoryMessageDuration( 1.0 )
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+	SendToServerConsole("disconnect")
 end
 
 function CLastHitChallenge:Clock()

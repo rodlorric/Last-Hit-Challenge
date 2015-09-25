@@ -56,6 +56,9 @@ function end_game_func()
 	CLastHitChallenge:EndGame()
 end
 
+function quit_game_func()
+	SendToServerConsole("disconnect")
+end
 -- Create the game mode when we activate
 function Activate()
 	GameRules.AddonTemplate = CLastHitChallenge()
@@ -89,6 +92,7 @@ function CLastHitChallenge:InitGameMode()
 	]]
 
 	Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
+	Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 
 
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
