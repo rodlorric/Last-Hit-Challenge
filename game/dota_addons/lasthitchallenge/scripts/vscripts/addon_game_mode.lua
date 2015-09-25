@@ -1,5 +1,5 @@
 _G.seconds = 0 --600 = 10 minutes
-_G.MAXTIME = 30 -- seconds
+_G.MAXTIME = 600 -- seconds
 _G.total_time = 0
 _G.shortest_time = MAXTIME
 _G.longest_time = 0

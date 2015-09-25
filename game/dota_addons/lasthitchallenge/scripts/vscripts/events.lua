@@ -25,7 +25,6 @@ iter = 1
 ----------------------
 
 function CLastHitChallenge:OnHeroPicked (event)
-	print("OnHeroPicked!")
 	CLastHitChallenge:Clock()
 
 	iter = 1
@@ -127,7 +126,6 @@ function CLastHitChallenge:SetGameFrozen( bFreeze )
 		if ( entity:IsBaseNPC() ) then
 			if ( entity:IsAlive() and ( entity:IsCreep() or entity:IsHero() ) ) then
 				if ( bFreeze == true ) then
---					print("Making unit idle " .. entity:GetClassname() )
 					entity:StartGesture( ACT_DOTA_IDLE )
 				else
 					entity:RemoveGesture( ACT_DOTA_IDLE )
@@ -252,7 +250,7 @@ function CLastHitChallenge:OnHurt( event )
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
 	if event.entindex_attacker ~= nil then
 		local attacker = EntIndexToHScript( event.entindex_attacker )
-		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and attacker:IsHero() then
+		if hurtUnit:IsCreep() and attacker:IsHero() then
 			local health = hurtUnit:GetHealth()
 			local max_health = hurtUnit:GetMaxHealth()
 			local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
@@ -263,7 +261,7 @@ function CLastHitChallenge:OnHurt( event )
 		end
 
 		--if (hurtUnit:IsCreep() or hurtUnit:IsMechanical() or hurtUnit:IsTower()) and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
-		if (hurtUnit:IsCreep() or hurtUnit:IsMechanical()) and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
+		if hurtUnit:IsCreep() and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
 			local index = hurtUnit:entindex()
 			if hurtunits[index] == nil then
 				hurtunits[index] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, hurtUnit)
@@ -282,7 +280,6 @@ end
 
 
 function CLastHitChallenge:OnHideHelp( event )
-	print("hidehelp " .. tostring(event.hidehelp))
 	if event.hidehelp == 1 then		
 		hidehelp = 1
 		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
@@ -323,7 +320,7 @@ function CLastHitChallenge:OnHideHelp( event )
 											DOTA_UNIT_TARGET_FLAG_NONE, 
 											FIND_ANY_ORDER, false )) do
 			--if (unit:IsCreep() or unit:IsMechanical() or unit:IsTower()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
-			if (unit:IsCreep() or unit:IsMechanical()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+			if unit:IsCreep() and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
 				hurtunits[unit:entindex()] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, unit)
 			end
 		end
@@ -337,7 +334,7 @@ function CLastHitChallenge:OnHideHelp( event )
 											DOTA_UNIT_TARGET_FLAG_NONE, 
 											FIND_ANY_ORDER, false )) do
 			--if (unit:IsCreep() or unit:IsMechanical() or unit:IsTower()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
-			if (unit:IsCreep() or unit:IsMechanical()) and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
+			if unit:IsCreep() and (unit:GetHealth() < unit:GetMaxHealth() * 0.25) then
 				hurtunits[unit:entindex()] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, unit)
 			end
 		end
@@ -354,10 +351,9 @@ max_deny_streak = 0
 max_last_hit_streak = 0
 function CLastHitChallenge:OnEntityKilled (event)
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
+	local killedUnitName = killedUnit:GetUnitName()
 	local killedTeam = killedUnit:GetTeam()
 	local attacker = EntIndexToHScript( event.entindex_attacker )
-	print("attacker: " .. tostring(attacker:IsBaseNPC()))
-	tprint(event)
 	if attacker:entindex() ~= killedUnit:entindex() then --UTIL_removed units count as killed by self
 		local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
 
@@ -396,7 +392,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 
 				--Totals Details
-				if killedUnit:IsCreep() then
+				if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
 					if killedUnit:IsRangedAttacker() then
 						ranged_dn = ranged_dn + 1
 					else
@@ -404,7 +400,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 					end
 				--elseif killedUnit:IsTower() then
 				--	tower_dn = tower_dn + 1
-				elseif killedUnit:IsMechanical() then
+				else
 					siege_dn = siege_dn + 1
 				end
 
@@ -425,7 +421,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				end
 
 				--Totals Details
-				if killedUnit:IsCreep() then
+				if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
 					if killedUnit:IsRangedAttacker() then
 						ranged_lh = ranged_lh + 1
 					else
@@ -433,7 +429,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 					end
 				--elseif killedUnit:IsTower() then
 				--	tower_lh = tower_lh + 1
-				elseif killedUnit:IsMechanical() then
+				else
 					siege_lh = siege_lh + 1
 				end
 			end
@@ -462,7 +458,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 
 				--Totals Details
-				if killedUnit:IsCreep() then
+				if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
 					if killedUnit:IsRangedAttacker() then
 						if friendly then
 							ranged_miss_friendly = ranged_miss_friendly + 1
@@ -482,7 +478,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				--		else
 				--			melee_miss_foe = melee_miss_foe + 1
 				--		end
-				elseif killedUnit:IsMechanical() then
+				else
 					if friendly then
 						siege_miss_friendly = siege_miss_friendly + 1
 					else
