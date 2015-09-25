@@ -1,5 +1,5 @@
 _G.seconds = 0 --600 = 10 minutes
-_G.MAXTIME = 600 -- seconds
+_G.MAXTIME = 30 -- seconds
 _G.total_time = 0
 _G.shortest_time = MAXTIME
 _G.longest_time = 0
@@ -59,15 +59,7 @@ function Activate()
 end
 
 function CLastHitChallenge:InitGameMode()
-	print( "Template addon is loaded." )
-	
-
 	GameRules:SetPreGameTime( 0 )
-
-	-- Show the ending scoreboard immediately
-	GameRules:SetPostGameTime( 0.0 )
-	GameRules:SetCustomVictoryMessageDuration( 0 )
-
 
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 0 )
 	

@@ -115,8 +115,7 @@ function CLastHitChallenge:OnThink()
 	end
 
 	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-		print("ENDING GAME!")
-		return 1
+		return nil
 	end
 		return 1
 end
@@ -632,6 +631,10 @@ function CLastHitChallenge:OnQuit()
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
 	end
+	-- Show the ending scoreboard immediately
+	GameRules:SetCustomVictoryMessage("See you next time!")
+	GameRules:SetPostGameTime( 1.0 )
+	GameRules:SetCustomVictoryMessageDuration( 1.0 )
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
 end
 
