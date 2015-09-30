@@ -1,0 +1,157 @@
+@define TotalLength: 3.0s;
+@define TimingFunc: linear;
+@define IterationCount: infinite;
+
+.PickScreenPanel{
+    width: 100%;
+    height: 96%;
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    horizontal-align: left;
+    visibility: visible;
+    background-color: #000000;
+    flow-children: down;
+}
+
+.PickScreenPanel.Minimized
+{
+    visibility: collapse;
+}
+
+.PickScreenPanel Label{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    horizontal-align: center;
+    text-transform: uppercase;
+    font-size: 50;
+    font-weight: bold;
+    color: #444444;
+}
+
+.HeroPanelContainer{
+    flow-children: right;
+    height: 100%;
+}
+
+.HeroPanel{
+    width: fill-parent-flow(1.0);
+    height: 100%;
+}
+
+.HeroPanel Label{
+    vertical-align: bottom;
+    color: #a0a0a0;
+    font-weight: thin;
+    font-size: 40;
+}
+
+.HeroPanel .PickButton{
+    vertical-align: bottom;
+    horizontal-align: center;
+}
+
+.HeroPanel .VertBar{
+    horizontal-align: center;
+    width: 20%;
+    height: 100%;
+    background-color: gradient( linear, 0% 100%, 0% 0%, from( #ffffff), to( #44444400) );
+}
+
+.VertBar
+{
+  width: 1px;
+  height: 100%;
+  background-color: white;
+  opacity: 0.04;
+  margin-bottom: 50px;
+}
+
+#satyr_img
+{   
+    width: 600px;
+    height: 600px;
+    margin-bottom: 3px;
+    background-image: url("file://{images}/n_creep_satyr_b.png");
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    horizontal-align: center;
+    vertical-align: middle;
+
+    animation-name: close;
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+}
+
+#nevermore_img
+{   
+    width: 700px;
+    height: 700px;
+    margin-bottom: 3px;
+    background-image: url("file://{images}/shadow_fiend.png");
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    horizontal-align: center;
+    vertical-align: middle;
+
+    animation-name: close;
+    animation-duration: TotalLength;
+    animation-timing-function: TimingFunc;
+    animation-iteration-count: IterationCount;
+}
+
+.PickButton
+{
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333), to( #444444 ) );
+
+  width: 400px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+
+  border-style: solid;
+  border-width: 1px;
+
+  border-top-color: #444444;
+  border-left-color: #494949;
+  border-bottom-color: #111111;
+  border-right-color: #404040;
+
+  transition-property: background-color;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+}
+
+.PickButton:hover
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #444444 ), to( #555555 ) );
+}
+
+.PickButton:active
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #888888 ), to( #aaaaaa ) );
+    pre-transform-scale2d: 1.02;
+}
+
+
+.close_anim #txt
+{
+    visibility: visible;
+    animation-name: close;
+}
+
+.heavy_breathing #txt
+{
+    visibility: visible;
+    animation-name: wobble;
+}
+
+
+@keyframes 'close'{
+    0% { transform:  scaleX(1.0) scaleY(1.0);}
+    50% { transform:  scaleX(1.05) scaleY(1.05);}
+    100% { transform:  scaleX(1.0) scaleY(1.0);}
+}

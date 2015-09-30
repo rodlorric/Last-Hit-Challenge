@@ -1,0 +1,28 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/pickscreen.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
+	</scripts>
+	<Panel class="PickScreenPanel" hittest="false">
+		<Label text="choose your hero"/>
+		<Panel class="HeroPanelContainer">
+			<Panel class="HeroPanel">
+				<Panel class="VertBar"/>
+				<Panel id="satyr_img"/>
+				<Button id="satyr" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
+					<Label text="#npc_dota_hero_jakiro"/>
+			  	</Button>
+			</Panel>
+			<Panel class="VertBar"/>
+			<Panel class="HeroPanel">
+				<Panel class="VertBar"/>
+				<Panel id="nevermore_img"/>
+				<Button id="nevermore" class="PickButton" onactivate="OnPickNevermore(); OnPick()">
+					<Label text="#npc_dota_hero_nevermore"/>
+			  	</Button>				
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

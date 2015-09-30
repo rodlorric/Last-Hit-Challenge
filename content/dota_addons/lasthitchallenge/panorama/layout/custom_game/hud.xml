@@ -6,12 +6,12 @@
 		<include src="file://{resources}/scripts/custom_game/hud.js" />
 	</scripts>
 	<Panel class="HudPanel" hittest="false">
-		<Panel class="ClockPanel">.
+		<Panel id="clock_panel" class="ClockPanel">.
 			<Panel class="ClockPanelContainer">
 				<Label id="clock" text="00:00"/>
 			</Panel>
 		</Panel>
-		<Panel class="ScorePanel">
+		<Panel id="score_panel" class="ScorePanel">
 			<Panel class="ScorePanelContainer">
 				<Label text="LH / D"/>
 				<Panel class="ScoreHolder"/>

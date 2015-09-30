@@ -4,6 +4,7 @@
 	</script>
  
 	<Panel>
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/pickscreen.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/options.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/endscreen.xml" />

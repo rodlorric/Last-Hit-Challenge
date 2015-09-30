@@ -13,7 +13,7 @@ function OnLastHitOrDeny( table_name, key, data ){
 }
 
 function OnClockTime(data) {
-	var clickPanel = $.GetContextPanel();
+	var clockPanel = $.GetContextPanel();
 	$("#clock").text = data["min"] + ":" + data["sec"];
 }
 
@@ -23,9 +23,16 @@ function OnResetAnimation(data) {
 	scorepanel.SetHasClass( "dn_anim", false );
 }
 
+function OnHeroPicked(){
+	$.Msg("hud OnHeroPicked");
+	$("#score_panel").style.visibility = "visible";
+	$("#clock_panel").style.visibility = "visible";
+}
+
 
 (function () {
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
+	GameEvents.Subscribe("hero_picked", OnHeroPicked);
 	GameEvents.Subscribe("clock", OnClockTime);
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();

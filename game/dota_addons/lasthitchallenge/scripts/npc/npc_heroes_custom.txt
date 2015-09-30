@@ -17,4 +17,138 @@
 		"Ability6"					"nevermore_no_abilities"					// Ability 6
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
 	}
+
+	//-------------------------------------------------------------------------------------------------------------
+	// HERO: Satyr Trickster
+	//-------------------------------------------------------------------------------------------------------------
+	"npc_dota_hero_satyr"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"				"npc_dota_hero_jakiro"					// Hero to override
+		"BaseClass"		"npc_dota_hero"
+		"Model"			"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
+		"ModelScale" 					".7"
+		"SoundSet"					"n_creep_Ranged"
+		"Enabled"		"1"
+		"Level"		"1"
+		"BotImplemented"		"0"
+		"NewHero"		"1"
+		"HeroPool1"		"0"
+		"HeroUnlockOrder"		"1"
+		"CMEnabled"		"0"
+		"CMTournamentIgnore"		"0"
+		"new_player_enable"		"0"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"nevermore_no_abilities"					// Ability 1
+		"Ability2"					"nevermore_no_abilities"					// Ability 2
+		"Ability3"					"nevermore_no_abilities"					// Ability 3
+		"Ability4"					"nevermore_no_abilities"					// Ability 4
+		"Ability5"					"nevermore_no_abilities"					// Ability 5
+		"Ability6"					"nevermore_no_abilities"					// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"		"0"
+		"MagicalResistance"		"25"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"7"
+		"AttackDamageMax"			"10"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.3"
+		"AttackAcquisitionRange"	"300"
+		"AttackRange"				"300"
+		"ProjectileModel"			"particles/neutral_fx/satyr_trickster_projectile.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"1500"		// Speed of projectile.	
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLIGENCE"
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+
+		// Bounty
+		//-------------------------------------------------------------------------------------------------------------
+		"BountyXP"					"41"		// Experience earn.
+		"BountyGoldMin"				"15"		// Gold earned min.
+		"BountyGoldMax"				"17"		// Gold earned max.
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"			"50"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"330"		// Speed.			
+		"MovementTurnRate"		"0.500000"
+		"HasAggressiveStance"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"		"150"
+		"StatusHealthRegen"		"0.250000"
+		"StatusMana"		"0"
+		"StatusManaRegen"		"0.010000"
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
+		"TeamName"		"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+
+		//Inventory
+		"HasInventory"		"1"
+
+		//Voice
+		"VoiceBackgroundSound"		""
+				
+		"HealthBarOffset"			"170"
+		"IdleExpression"		"scenes/default_idle.vcd"
+		"IdleSoundLoop"				""
+		"AbilityDraftDisabled"		"0"
+		"ARDMDisabled"		"0"
+		"HUD"
+		{
+			"StatusHUD"
+			{
+				"StatusStrength"
+				{
+					"LocalizeToken"		"#DOTA_StrengthStatus"
+					"Parameters"		"Traits:Strength"
+					"HUDName"		"unitstrength"
+				}
+				"StatusAgility"
+				{
+					"LocalizeToken"		"#DOTA_AgilityStatus"
+					"Parameters"		"Traits:Agility"
+					"HUDName"		"unitagility"
+				}
+				"StatusIntellect"
+				{
+					"LocalizeToken"		"#DOTA_IntellectStatus"
+					"Parameters"		"Traits:Intellect"
+					"HUDName"		"unitintellect"
+				}
+			}
+		}
+	}
 }

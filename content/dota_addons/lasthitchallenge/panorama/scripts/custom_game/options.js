@@ -76,10 +76,16 @@ function OnToggle(){
 	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
 }
 
+function OnHeroPicked(){
+	$.Msg("options OnHeroPicked");
+	$("#control_panel").style.visibility = "visible";
+}
+
 (function () {
 	//Setup for popup panel.
 	var overlay = $.CreatePanel( "Panel", $.GetContextPanel(), "OverlayPanel" );
 	overlay.BLoadLayout( "file://{resources}/layout/custom_game/overlay.xml", false, false );
 
 	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
+	GameEvents.Subscribe("hero_picked", OnHeroPicked);
 })();

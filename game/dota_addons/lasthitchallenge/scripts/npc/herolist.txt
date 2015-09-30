@@ -6,4 +6,6 @@
 "CustomHeroList"
 {
 	"npc_dota_hero_nevermore"			"1"
+	"npc_dota_hero_jakiro" 				"1"
+	"npc_dota_hero_base" 				"1"
 }

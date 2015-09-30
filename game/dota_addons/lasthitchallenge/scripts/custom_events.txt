@@ -1,0 +1,7 @@
+"CustomEvents"
+{
+	"hero_picked"
+	{
+		"hero"		"string"
+	}
+}

@@ -23,14 +23,25 @@ hidehelp = 0
 ----------------------
 iter = 1
 ----------------------
-
-function CLastHitChallenge:OnHeroPicked (event)
-	CLastHitChallenge:Clock()
+hero_picked = nil
+----------------------
+function CLastHitChallenge:OnHeroPicked(hero_param)
+	hero_picked = hero_param.hero
 
 	iter = 1
-	CLastHitChallenge:SpawnCreeps()
+	local dotatime = GameRules:GetDOTATime(true, false)
+	Timers:CreateTimer({
+    endTime = 60 - dotatime, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+    callback = function()
+      CLastHitChallenge:SpawnCreeps()
+      CLastHitChallenge:Clock()
+    end
+  })
+	
 
-  	local hero = EntIndexToHScript(event.heroindex)
+  	--local hero = EntIndexToHScript(event.heroindex)
+  	PlayerResource:ReplaceHeroWith( 0, hero_param.hero, 0, 0)
+  	local hero = PlayerResource:GetSelectedHeroEntity(0)
   	CLastHitChallenge:GiveZeroGold(hero)
   	--CLastHitChallenge:GiveBlinkDagger(hero)
 
@@ -101,6 +112,12 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
+	-- if pre-game ends and no hero has been picked, nevermore is forced
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and hero_picked == nil then
+		print("Game in progress")
+		hero_picked = "npc_dota_hero_nevermore"
+		CLastHitChallenge:OnHeroPicked({hero = hero_picked})
+	end
 	-- Stop thinking if game is paused
 	if GameRules:IsGamePaused() == true then
   		return 1
@@ -547,7 +564,7 @@ function CLastHitChallenge:OnRestart()
 		CLastHitChallenge:SetGameFrozen(false)
 	end
 
-	local hero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_nevermore", 0, 0)
+	local hero = PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
 	hero = PlayerResource:GetSelectedHeroEntity(0)
 
 	hero:ForceKill(true)

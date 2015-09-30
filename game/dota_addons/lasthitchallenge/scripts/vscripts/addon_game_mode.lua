@@ -66,7 +66,8 @@ function Activate()
 end
 
 function CLastHitChallenge:InitGameMode()
-	GameRules:SetPreGameTime( 0 )
+	GameRules:SetPreGameTime( 60.0 )
+	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_nevermore" )
 
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetPostGameTime( 1.0 )
@@ -99,11 +100,12 @@ function CLastHitChallenge:InitGameMode()
 	Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 
 
-	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
+	--ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
 	--ListenToGameEvent("last_hit", Dynamic_Wrap(CLastHitChallenge, 'OnLastHit'), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(CLastHitChallenge, 'OnEntityKilled'), self)
 	ListenToGameEvent("entity_hurt", Dynamic_Wrap(CLastHitChallenge, 'OnHurt'), self) -- Listener for detecting tower damage.
 	CustomGameEventManager:RegisterListener("restart", Dynamic_Wrap(CLastHitChallenge, 'OnRestart'))
 	CustomGameEventManager:RegisterListener("hidehelp", Dynamic_Wrap(CLastHitChallenge, 'OnHideHelp'))
+	CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked'))
 	CustomGameEventManager:RegisterListener("quit", Dynamic_Wrap(CLastHitChallenge, 'OnQuit'))
 end

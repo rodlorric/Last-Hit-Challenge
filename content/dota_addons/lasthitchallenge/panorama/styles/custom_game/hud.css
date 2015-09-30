@@ -7,9 +7,10 @@
 .ScorePanel
 {
 	transform: translateX( 160px ) translateY( 0% );
-    vertical-align: bottom;
-    horizontal-align: center;
-    flow-children: right;
+  vertical-align: bottom;
+  horizontal-align: center;
+  flow-children: right;
+  visibility: collapse;
 }
 
 
@@ -96,6 +97,7 @@
 	transform: translateX( 0% ) translateY( 0% );
   horizontal-align: center;
   flow-children: right;
+  visibility: collapse;
 }
 
 .ClockPanelContainer
