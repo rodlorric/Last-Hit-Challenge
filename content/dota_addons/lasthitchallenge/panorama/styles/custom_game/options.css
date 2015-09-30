@@ -25,7 +25,7 @@
     vertical-align: middle;
     horizontal-align: left;
     height: 700px;
-    width: 160px;
+    width: 190px;
     font-size: 16;
     background-color: #181818dd;
     border: 2px solid #222222;
@@ -205,7 +205,7 @@
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333), to( #444444 ) );
 
 	height: 36px;
-	width: 140px;
+	width: 180px;
 
 	margin-top: 3px;
 	margin-bottom: 3px;

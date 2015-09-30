@@ -16,26 +16,26 @@ function Overlay(data) {
     parentPanel.SetHasClass( "close_anim", true );
     if (msg != "missed"){        
         if (msg > 0.75){
-            text = "Too early!";            
+            text = $.Localize( "#overlay_very_low" );
         } else if (msg > 0.50 && msg <= 0.75 ){
-            text = "Not yet!";
+            text = $.Localize( "#overlay_low" );
         } else if (msg > 0.25 && msg <= 0.50){
-            text = "Halfway there!";
+            text = $.Localize( "#overlay_medium" );
         } else if (msg > 0.15 && msg <= 0.25){
-            text = "Almost!";
+            text = $.Localize( "#overlay_high" );
         } else if (msg > 0.10 && msg <= 0.15){
-            text = "*Heavy breating*";
+            text = $.Localize( "#overlay_very_high" );
         } else if (msg > 0.05 && msg <= 0.10){
-            text = "*Heavy breating*";
+            text = $.Localize( "#overlay_heavy_breathing" );
         } else {
             txtLabel.style.animationName = "wobble";
-            text = "*Heavy breating*";
+            text = $.Localize( "#overlay_heavy_breathing" );
             txtLabel.style.animationDuration = "0.5s";
             parentPanel.SetHasClass( "heavy_breathing", true );
             $.Schedule( 1.0, OnResetAnimation );
         }
     } else {
-        text = "Missed!";
+        text = "#overlay_missed";
     }
 
     txtLabel.text = text;

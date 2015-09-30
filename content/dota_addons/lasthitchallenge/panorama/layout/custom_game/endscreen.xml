@@ -10,32 +10,32 @@
   	<Panel id="end_screen_panel" class="EndScreenPanel" hittest="false">
 	 	<Panel class="EndScreenPanelContainer">
 		  		<Panel class="Header">
-			  		<Label text="recap"/>
+			  		<Label text="#endcreen_title"/>
 			  	</Panel>
 			  	<Panel class="Category">
-			  			<Label text="totals"/>
+			  			<Label text="#endscreen_totals"/>
 					 	<Panel class="RowHeader">
-					 		<Label text="Creep Score"/>
+					 		<Label text="#endscreen_creep_score"/>
 					 		<Panel class="VertBar"/>
 					 		<Button id="stats_lasthits" class="RowButton" onactivate="OnMagnifyLastHits()">					 			
-					 			<Label text="Last Hits">
+					 			<Label text="#endscreen_last_hits">
 					 				<Panel class="MagnifierIcon"/>
 					 			</Label>
 					 		</Button>
 					 		<Panel class="VertBar"/>
 					 		<Button id="stats_denies" class="RowButton" onactivate="OnMagnifyDenies()">					 			
-					 			<Label text="Denies">
+					 			<Label text="#endscreen_denies">
 					 				<Panel class="MagnifierIcon"/>
 					 			</Label>
 					 		</Button>
 					 		<Panel class="VertBar"/>
 					 		<Button id="stats_misses" class="RowButton" onactivate="OnMagnifyMisses()">					 			
-					 			<Label text="Misses">
+					 			<Label text="#endscreen_misses">
 					 				<Panel class="MagnifierIcon"/>
 					 			</Label>
 					 		</Button>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Accuracy"/>
+					 		<Label text="#endscreen_accuracy"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_total_cs" text="0"/>
@@ -51,13 +51,13 @@
 				</Panel>
 				<Panel class="HorBar"/>
 				<Panel class="Category">
-					 	<Label text="streaks"/>
+					 	<Label text="#endscreen_streaks"/>
 					 	<Panel class="RowHeader">
-					 		<Label text="Creep Score"/>
+					 		<Label text="#endscreen_creep_score"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Last Hits"/>
+					 		<Label text="#endscreen_last_hits"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Denies"/>
+					 		<Label text="#endscreen_denies"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_streak_cs" text="0"/>
@@ -69,15 +69,15 @@
 				</Panel>
 				<Panel class="HorBar"/>
 				<Panel class="Category">
-					 	<Label text="session records"/>
+					 	<Label text="#endscreen_session_records"/>
 					 	<Panel class="RowHeader">
-					 		<Label text="Creep Score"/>
+					 		<Label text="#endscreen_creep_score"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Last Hits"/>
+					 		<Label text="#endscreen_last_hits"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Denies"/>
+					 		<Label text="#endscreen_denies"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Accuracy (at 10:00)"/>
+					 		<Label text="#endscreen_accuracy_at_10"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_record_cs" text="0"/>
@@ -91,13 +91,13 @@
 				</Panel>
 				<Panel class="HorBar"/>
 				<Panel class="Category">
-					 	<Label text="Time"/>
+					 	<Label text="#endscreen_time"/>
 					 	<Panel class="RowHeader">
-					 		<Label text="Total Time Spent"/>
+					 		<Label text="#endscreen_total_time_spent"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Shortest Try"/>
+					 		<Label text="#endscreen_shortest_try"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Longest Try"/>
+					 		<Label text="#endscreen_longest_try"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_time_spent" text="00:00"/>
@@ -109,11 +109,11 @@
 				</Panel>
 				<Panel class="HorBar"/>
 				<Panel class="Category">
-					 	<Label text="Misc"/>
+					 	<Label text="#endscreen_misc"/>
 					 	<Panel class="RowHeader">
-					 		<Label text="Restarts"/>
+					 		<Label text="#endscreen_restarts"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="Session Accuracy"/>
+					 		<Label text="#endscreen_session_accuracy"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_misc_restart" text="0"/>
@@ -123,10 +123,10 @@
 				</Panel>
 		 		<Panel class="ButtonPanel">		  			
 			  		<Button class="OptionButton" onactivate="OnRestart()">
-			  			<Label text="Restart"/>
+			  			<Label text="#restart"/>
 			  		</Button>
 			  		<Button class="OptionButton" onactivate="OnQuit()">
-			  			<Label text="Quit"/>
+			  			<Label text="#quit"/>
 			  		</Button>
 		  		</Panel>	
 			</Panel>

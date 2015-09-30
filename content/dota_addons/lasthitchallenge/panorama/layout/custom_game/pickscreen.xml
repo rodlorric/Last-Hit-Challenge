@@ -6,7 +6,7 @@
 		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
 	</scripts>
 	<Panel class="PickScreenPanel" hittest="false">
-		<Label text="choose your hero"/>
+		<Label text="#pickscreen_choose_hero"/>
 		<Panel class="HeroPanelContainer">
 			<Panel class="HeroPanel">
 				<Panel class="VertBar"/>

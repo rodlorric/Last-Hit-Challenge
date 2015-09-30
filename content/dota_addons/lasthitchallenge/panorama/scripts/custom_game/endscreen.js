@@ -63,7 +63,7 @@ function OnMagnifyLastHits(){
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 	
 	var label = stats.FindChildInLayoutFile("stats_title");
-	label.text = "LAST HITS"
+	label.text = "stats_last_hits"
 
 	var stats_panel = stats.FindChildInLayoutFile("stats_panel");
 	LoadData(stats_panel, "lh");
@@ -74,7 +74,7 @@ function OnMagnifyDenies(){
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 	
 	var label = stats.FindChildInLayoutFile("stats_title");
-	label.text = "DENIES"
+	label.text = "stats_denies"
 
 	var stats_panel = stats.FindChildInLayoutFile("stats_panel");
 	LoadData(stats_panel, "dn");
@@ -85,7 +85,7 @@ function OnMagnifyMisses(){
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
 
 	var label = stats.FindChildInLayoutFile("stats_title");
-	label.text = "MISSES"
+	label.text = "stats_misses"
 
 	var stats_panel = stats.FindChildInLayoutFile("stats_panel");
 	LoadData(stats_panel, "miss");
