@@ -35,7 +35,7 @@ function Overlay(data) {
             $.Schedule( 1.0, OnResetAnimation );
         }
     } else {
-        text = "#overlay_missed";
+        text = $.Localize("#overlay_missed");
     }
 
     txtLabel.text = text;

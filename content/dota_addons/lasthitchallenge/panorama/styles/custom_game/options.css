@@ -88,7 +88,7 @@
 
 .ControlPanel.Minimized
 {
-    transform: translateX( 165px ) translateY( -100px );
+    transform: translateX( 195px ) translateY( -100px );
 }
 
 .ControlPanelContainer Label
