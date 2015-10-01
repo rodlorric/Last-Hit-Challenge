@@ -652,7 +652,6 @@ function CLastHitChallenge:OnQuit()
 		CLastHitChallenge:SetGameFrozen(false)
 	end
 	-- Show the ending scoreboard immediately
-	GameRules:SetCustomVictoryMessage("See you soon!")
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
 	--SendToServerConsole("disconnect")
 end
