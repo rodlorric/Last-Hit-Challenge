@@ -1,5 +1,6 @@
 _G.seconds = 0 --600 = 10 minutes
 _G.MAXTIME = 600 -- seconds
+_G.PRE_GAME_TIME = 15
 _G.total_time = 0
 _G.shortest_time = MAXTIME
 _G.longest_time = 0
@@ -47,8 +48,7 @@ function Precache( context )
 			PrecacheResource( "particle_folder", "particles/folder", context )
 	]]
 	PrecacheUnitByNameSync( "npc_dota_hero_nevermore", context )
-	PrecacheUnitByNameSync( "npc_dota_radiant_tower1_mid", context )
-	PrecacheUnitByNameSync( "npc_dota_dire_tower1_mid", context )
+	PrecacheUnitByNameSync( "npc_dota_neutral_satyr_soulstealer", context)
 	PrecacheResource( "particle", particle_aura, context )
 end
 
@@ -66,7 +66,7 @@ function Activate()
 end
 
 function CLastHitChallenge:InitGameMode()
-	GameRules:SetPreGameTime( 15.0 )
+	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_nevermore" )
 
 	GameRules:SetCustomGameEndDelay( 0 )

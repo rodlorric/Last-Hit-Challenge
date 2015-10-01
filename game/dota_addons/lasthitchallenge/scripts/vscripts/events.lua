@@ -26,18 +26,13 @@ iter = 1
 hero_picked = nil
 ----------------------
 function CLastHitChallenge:OnHeroPicked(hero_param)
-	hero_picked = hero_param.hero
+	Tutorial:ForceGameStart()
 
 	iter = 1
-	local dotatime = GameRules:GetDOTATime(true, false)
-	Timers:CreateTimer({
-    endTime = 60 - dotatime, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-    callback = function()
-      CLastHitChallenge:SpawnCreeps()
-      CLastHitChallenge:Clock()
-    end
-  })
-	
+	CLastHitChallenge:SpawnCreeps()
+	CLastHitChallenge:Clock()
+
+	hero_picked = hero_param.hero
 
   	--local hero = EntIndexToHScript(event.heroindex)
   	PlayerResource:ReplaceHeroWith( 0, hero_param.hero, 0, 0)
@@ -94,7 +89,8 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
 	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
 	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
 	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
-  	
+
+	--spawning the creeps  	
 end
 
 
@@ -112,10 +108,9 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
-	-- if pre-game ends and no hero has been picked, nevermore is forced
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and hero_picked == nil then
-		print("Game in progress")
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and hero_picked == nil then -- if pre-game ends and no hero has been picked, nevermore is forced
 		hero_picked = "npc_dota_hero_nevermore"
+		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "hero_picked", {})
 		CLastHitChallenge:OnHeroPicked({hero = hero_picked})
 	end
 	-- Stop thinking if game is paused
@@ -519,38 +514,46 @@ end
 function CLastHitChallenge:SpawnCreeps()
 	local point = nil
 	local waypoint = nil
-	if spawner_timer == nil then
-		spawner_timer = Timers:CreateTimer(function()	
-			for i=1,2 do
-			    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
-			    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
-				if waypoint then
-					for j=1,4 do		
-						unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
-						if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
-							if unit:IsCreep() and unit:IsRangedAttacker() then
-								unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
-								unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 2)
-							else
-								unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 1)
-								unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 1)
-							end
-							unit:SetMaxHealth(unit:GetMaxHealth() + 10)
-							unit:SetHealth(unit:GetMaxHealth())
-						end
-						unit:SetInitialGoalEntity(waypoint)
-					end
-					-- spawn siege creep every 7th wave
-					if iter % 7 == 0 then
-						unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
-						unit:SetInitialGoalEntity(waypoint)
-					end
-				end
+	Timers:CreateTimer("spawner", {
+			useGameTime = true,
+    		endTime = 0,
+			callback = function()
+				CLastHitChallenge:Spawner()
+				return 30.0
 			end
-			iter = iter + 1
-			return 30.0
-		end)
+		})
+end
+
+function CLastHitChallenge:Spawner()
+	local point = nil
+	local waypoint = nil
+	for i=1,2 do
+	    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
+	    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
+		if waypoint then
+			for j=1,4 do		
+				unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+				if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
+					if unit:IsCreep() and unit:IsRangedAttacker() then
+						unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
+						unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 2)
+					else
+						unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 1)
+						unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 1)
+					end
+					unit:SetMaxHealth(unit:GetMaxHealth() + 10)
+					unit:SetHealth(unit:GetMaxHealth())
+				end
+				unit:SetInitialGoalEntity(waypoint)
+			end
+			-- spawn siege creep every 7th wave
+			if iter % 7 == 0 then
+				unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+				unit:SetInitialGoalEntity(waypoint)
+			end
+		end
 	end
+	iter = iter + 1
 end
 
 function CLastHitChallenge:OnRestart()
@@ -564,10 +567,10 @@ function CLastHitChallenge:OnRestart()
 		CLastHitChallenge:SetGameFrozen(false)
 	end
 
-	local hero = PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
-	hero = PlayerResource:GetSelectedHeroEntity(0)
+	--local hero = PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
+	--hero = PlayerResource:GetSelectedHeroEntity(0)
 
-	hero:ForceKill(true)
+	--hero:ForceKill(true)
 
 	total_time = total_time + seconds
 	-- clearing time!
@@ -632,10 +635,16 @@ function CLastHitChallenge:OnRestart()
 	--clearing misses
 	misses = 0
 
-	hero:RespawnHero(true, false, false)
-	CLastHitChallenge:GiveZeroGold(hero)
 	
-	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }	
+	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
+
+	local player_hero = PlayerResource:GetSelectedHeroEntity(0)
+	local ent_class = player_hero:GetTeam() == DOTA_TEAM_BADGUYS and "info_player_start_badguys" or "info_player_start_goodguys" 
+	local ent = Entities:FindByClassname( nil, ent_class):GetAbsOrigin()
+	FindClearSpaceForUnit(player_hero, ent, true)
+	--CLastHitChallenge:GiveZeroGold(hero)
+	Timers:RemoveTimer("spawner")
+	CLastHitChallenge:OnHeroPicked({ hero = hero_picked})
 end
 
 function CLastHitChallenge:OnQuit()
