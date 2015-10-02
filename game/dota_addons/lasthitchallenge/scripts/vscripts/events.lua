@@ -563,6 +563,10 @@ function CLastHitChallenge:OnRestart()
 		shortest_time = seconds
 	end
 
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
+
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
 	end
@@ -650,6 +654,9 @@ end
 function CLastHitChallenge:OnQuit()
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
+	end
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
 	end
 	-- Show the ending scoreboard immediately
 	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
