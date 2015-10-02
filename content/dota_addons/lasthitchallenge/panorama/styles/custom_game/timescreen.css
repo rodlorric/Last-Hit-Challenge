@@ -13,9 +13,11 @@
     height: 96%;
     background-size: 100% 100%;
     vertical-align: bottom;
-    horizontal-align: left;
+    horizontal-align: center;
     visibility: visible;
-    background-color: #000000;
+    background-image: url("file://{images}/bg.jpg");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
     flow-children: down;
 }
 
@@ -43,13 +45,23 @@
     height: 100%;
 }
 
+Label{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    horizontal-align: center;
+    text-transform: uppercase;
+    font-size: 50;
+    font-weight: bold;
+    color: #a0a0a0;
+}
+
 .TimePanel{
     width: fill-parent-flow(1.0);
     height: 100%;
 }
 
 .TimePanel .Column{
-  background-color: gradient( linear, 0% 100%, 0% 0%, from( #333333), to( #44444400) );
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333), to( #44444400) );
   height: fill-parent-flow(1.0);
 }
 
@@ -70,13 +82,6 @@
     horizontal-align: center;
 }
 
-.TimePanel .VertBar{
-    horizontal-align: center;
-    width: 20%;
-    height: 100%;
-    background-color: gradient( linear, 0% 100%, 0% 0%, from( #ffffff), to( #44444400) );
-}
-
 .VertBar
 {
   width: 1px;
@@ -94,7 +99,7 @@
 
 .PickButton:hover
 {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #555555 ), to( #444444 ) );
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #555555 ), to( #44444400 ) );
 }
 
 .PickButton:hover Label

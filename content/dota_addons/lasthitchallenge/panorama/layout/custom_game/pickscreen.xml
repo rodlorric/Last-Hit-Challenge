@@ -7,7 +7,6 @@
 	</scripts>
 	<Panel class="PickScreenRoot" hittest="false">
 		<Panel class="PickScreenPanel">
-			<Label text="#pickscreen_choose_hero"/>
 			<Panel class="HeroPanelContainer">
 				<Panel class="HeroPanel">
 					<Button id="satyr" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
@@ -17,6 +16,7 @@
 						</Panel>
 				  	</Button>
 				</Panel>
+				<Panel class="VertBar"/>
 				<Panel class="HeroPanel">
 					<Button id="nevermore" class="PickButton" onactivate="OnPickNevermore(); OnPick();">
 						<Panel class="Column">
@@ -27,5 +27,6 @@
 				</Panel>
 			</Panel>
 		</Panel>
+		<Label text="#pickscreen_choose_hero"/>
 	</Panel>
 </root>

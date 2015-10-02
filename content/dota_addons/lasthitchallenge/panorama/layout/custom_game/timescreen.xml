@@ -7,7 +7,6 @@
 	</scripts>
 	<Panel class="TimeScreenRoot" hittest="false">
 		<Panel class="TimeScreenPanel" hittest="false">
-			<Label text="#timescreen_choose_time"/>
 			<Panel class="TimePanelContainer">
 				<Panel class="TimePanel">
 					<!--<Panel class="VertBar"/>-->
@@ -43,5 +42,6 @@
 				</Panel>
 			</Panel>
 		</Panel>
+		<Label text="#timescreen_choose_time"/>
 	</Panel>
 </root>
