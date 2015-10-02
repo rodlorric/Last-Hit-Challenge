@@ -148,6 +148,7 @@ end
 
 function CLastHitChallenge:EndGame()
 	--PauseGame(true)
+	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:SetGameFrozen(true)
 	--Totals
 	local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", "stats_total_cs")
@@ -581,35 +582,7 @@ function CLastHitChallenge:OnRestart()
 	seconds = 0
 
 	-- clearing units
-	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
-											Vector( 0, 0, 0 ), 
-											nil, 
-											FIND_UNITS_EVERYWHERE, 
-											DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
-											DOTA_UNIT_TARGET_ALL, 
-											DOTA_UNIT_TARGET_FLAG_NONE, 
-											FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
-			UTIL_Remove( unit )
-		else
-			unit:SetHealth(unit:GetMaxHealth())		
-		end
-	end
-
-	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
-										Vector( 0, 0, 0 ), 
-										nil, 
-										FIND_UNITS_EVERYWHERE, 
-										DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
-										DOTA_UNIT_TARGET_ALL, 
-										DOTA_UNIT_TARGET_FLAG_NONE, 
-										FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
-			UTIL_Remove( unit )
-		else
-			unit:SetHealth(unit:GetMaxHealth())
-		end
-	end
+	CLastHitChallenge:ClearUnits()
 
 	-- clearing creep score
 	current_cs = { lh = 0, dn = 0 }
@@ -679,5 +652,37 @@ function CLastHitChallenge:Clock()
 		      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
 		      	return 1.0
 		end)
+	end
+end
+
+function CLastHitChallenge:ClearUnits()
+	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, 
+										Vector( 0, 0, 0 ), 
+										nil, 
+										FIND_UNITS_EVERYWHERE, 
+										DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+										DOTA_UNIT_TARGET_ALL, 
+										DOTA_UNIT_TARGET_FLAG_NONE, 
+										FIND_ANY_ORDER, false )) do
+		if not unit:IsTower() then
+			UTIL_Remove( unit )
+		else
+			unit:SetHealth(unit:GetMaxHealth())		
+		end
+	end
+
+	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_GOODGUYS, 
+									Vector( 0, 0, 0 ), 
+									nil, 
+									FIND_UNITS_EVERYWHERE, 
+									DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+									DOTA_UNIT_TARGET_ALL, 
+									DOTA_UNIT_TARGET_FLAG_NONE, 
+									FIND_ANY_ORDER, false )) do
+		if not unit:IsTower() then
+			UTIL_Remove( unit )
+		else
+			unit:SetHealth(unit:GetMaxHealth())
+		end
 	end
 end
