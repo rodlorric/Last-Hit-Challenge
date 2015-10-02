@@ -5,23 +5,26 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
 	</scripts>
-	<Panel class="PickScreenPanel" hittest="false">
-		<Label text="#pickscreen_choose_hero"/>
-		<Panel class="HeroPanelContainer">
-			<Panel class="HeroPanel">
-				<Panel class="VertBar"/>
-				<Panel id="satyr_img"/>
-				<Button id="satyr" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
-					<Label text="#npc_dota_hero_jakiro"/>
-			  	</Button>
-			</Panel>
-			<Panel class="VertBar"/>
-			<Panel class="HeroPanel">
-				<Panel class="VertBar"/>
-				<Panel id="nevermore_img"/>
-				<Button id="nevermore" class="PickButton" onactivate="OnPickNevermore(); OnPick()">
-					<Label text="#npc_dota_hero_nevermore"/>
-			  	</Button>				
+	<Panel class="PickScreenRoot" hittest="false">
+		<Panel class="PickScreenPanel">
+			<Label text="#pickscreen_choose_hero"/>
+			<Panel class="HeroPanelContainer">
+				<Panel class="HeroPanel">
+					<Button id="satyr" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
+						<Panel class="Column">
+							<Label text="#npc_dota_hero_jakiro"/>
+							<Panel id="satyr_img"/>
+						</Panel>
+				  	</Button>
+				</Panel>
+				<Panel class="HeroPanel">
+					<Button id="nevermore" class="PickButton" onactivate="OnPickNevermore(); OnPick();">
+						<Panel class="Column">
+							<Label text="#npc_dota_hero_nevermore"/>
+							<Panel id="nevermore_img"/>
+						</Panel>
+				  	</Button>				
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

@@ -1,0 +1,47 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/timescreen.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/timescreen.js" />
+	</scripts>
+	<Panel class="TimeScreenRoot" hittest="false">
+		<Panel class="TimeScreenPanel" hittest="false">
+			<Label text="#timescreen_choose_time"/>
+			<Panel class="TimePanelContainer">
+				<Panel class="TimePanel">
+					<!--<Panel class="VertBar"/>-->
+					<Button id="two_n_half_min" class="PickButton" onactivate="OnPickTwo(); OnPick();">
+						<Panel class="Column">
+							<Label text="#timescreen_two_n_half_min"/>
+						</Panel>
+				  	</Button>
+				</Panel>
+				<Panel class="VertBar"/>
+				<Panel class="TimePanel">					
+					<Button id="five_min" class="PickButton" onactivate="OnPickFive(); OnPick();">
+						<Panel class="Column">
+							<Label text="#timescreen_five_minutes"/>
+						</Panel>
+				  	</Button>
+				</Panel>
+				<Panel class="VertBar"/>
+				<Panel class="TimePanel">
+					<Button id="seven_n_half_min" class="PickButton" onactivate="OnPickSeven(); OnPick();">
+						<Panel class="Column">
+							<Label text="#timescreen_seven_n_half_minutes"/>
+						</Panel>
+				  	</Button>
+				</Panel>
+				<Panel class="VertBar"/>
+				<Panel class="TimePanel">
+					<Button id="ten_min" class="PickButton" onactivate="OnPickTen(); OnPick();">
+						<Panel class="Column">
+							<Label text="#timescreen_ten_minutes"/>
+						</Panel>
+				  	</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

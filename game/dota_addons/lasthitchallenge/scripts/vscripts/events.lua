@@ -66,6 +66,10 @@ function CLastHitChallenge:OnThink()
 	return 1
 end
 
+function CLastHitChallenge:OnTimePicked(time_data)
+	MAXTIME = time_data.time
+end
+
 function CLastHitChallenge:SetGameFrozen( bFreeze )
 	Tutorial:SetTimeFrozen( bFreeze )
 	local entity = Entities:First()

@@ -1,20 +1,25 @@
 "use strict";
+var hero = { "hero" : "npc_dota_hero_nevermore" }
+
 function OnPickSatyr(){
     $.Msg("Satyr!");
-    GameEvents.SendCustomGameEventToServer( "hero_picked", { "hero" : "npc_dota_hero_jakiro" });
+    hero = { "hero" : "npc_dota_hero_jakiro" }
 }
 
 function OnPickNevermore(){
-    $.Msg("Nevermore!");
-    GameEvents.SendCustomGameEventToServer( "hero_picked", { "hero" : "npc_dota_hero_nevermore" });
+    hero = { "hero" : "npc_dota_hero_nevermore" }
 }
 
 function OnPick() {
-    GameEvents.SendEventClientSide("hero_picked", {})
-    $.GetContextPanel().DeleteAsync(0);
+	var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+	timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+    
+    //GameEvents.SendEventClientSide("hero_picked", {})
+    //$.GetContextPanel().DeleteAsync(0);
 }
 
 function OnHeroPicked(){
+	GameEvents.SendCustomGameEventToServer( "hero_picked", hero);
     $.GetContextPanel().DeleteAsync(0);
 }
 
