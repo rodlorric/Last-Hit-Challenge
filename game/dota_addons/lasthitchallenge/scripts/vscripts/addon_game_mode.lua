@@ -1,6 +1,5 @@
 _G.seconds = 0 --600 = 10 minutes
 _G.MAXTIME = 600 -- seconds
-_G.PRE_GAME_TIME = 15
 _G.total_time = 0
 _G.shortest_time = MAXTIME
 _G.longest_time = 0
@@ -66,9 +65,8 @@ function Activate()
 end
 
 function CLastHitChallenge:InitGameMode()
-	GameRules:SetPreGameTime( PRE_GAME_TIME )
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_nevermore" )
-
+	
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetPostGameTime( 1.0 )
 	GameRules:SetCustomVictoryMessageDuration( 1.0 )

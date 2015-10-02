@@ -26,8 +26,6 @@ iter = 1
 hero_picked = nil
 ----------------------
 function CLastHitChallenge:OnHeroPicked(hero_param)
-	Tutorial:ForceGameStart()
-
 	iter = 1
 	CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()
@@ -108,11 +106,6 @@ end
 
 -- Evaluate the state of the game
 function CLastHitChallenge:OnThink()
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and hero_picked == nil then -- if pre-game ends and no hero has been picked, nevermore is forced
-		hero_picked = "npc_dota_hero_nevermore"
-		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "hero_picked", {})
-		CLastHitChallenge:OnHeroPicked({hero = hero_picked})
-	end
 	-- Stop thinking if game is paused
 	if GameRules:IsGamePaused() == true then
   		return 1
