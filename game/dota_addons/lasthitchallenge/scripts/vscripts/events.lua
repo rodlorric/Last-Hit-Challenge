@@ -110,11 +110,7 @@ function CLastHitChallenge:OnThink()
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
-
-	if (MAXTIME - seconds) == 30 then
-		BroadcastMessage("30 seconds left!", 1)
-	end
-
+	
 	if seconds == MAXTIME then
 		CLastHitChallenge:EndGame()
 	end
