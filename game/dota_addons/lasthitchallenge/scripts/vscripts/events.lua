@@ -37,58 +37,6 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
   	local hero = PlayerResource:GetSelectedHeroEntity(0)
   	CLastHitChallenge:GiveZeroGold(hero)
   	--CLastHitChallenge:GiveBlinkDagger(hero)
-
-  	-- Populating tables
-	--Totals
-	CustomNetTables:SetTableValue("stats_totals", "stats_total_cs", { value = 0} )
-	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0} )
-	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0} )
-
-	--Streaks
-	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_cs", { value = 0} )
-	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_lh", { value = 0} )
-	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_dn", { value = 0} )
-
-	--Records
-	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
-	if (records_cs == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_cs", { value = 0} )
-	end
-	local records_acc = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
-	if (records_acc == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
-	end
-	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
-	if (records_lh == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_lh", { value = 0} )
-	end
-	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
-	if (records_dn == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
-	end
-	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_cs", { value = 100 } )
-	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_lh", { value = 100 } )
-	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_dn", { value = 100 } )	
-
-	-- Total Details
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_foe", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_foe", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_lh", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = 0 } )
-	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_foe", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
-	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
-
-	--spawning the creeps  	
 end
 
 
@@ -110,7 +58,7 @@ function CLastHitChallenge:OnThink()
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
-	
+
 	if seconds == MAXTIME then
 		CLastHitChallenge:EndGame()
 	end
