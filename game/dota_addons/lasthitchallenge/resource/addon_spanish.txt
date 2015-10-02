@@ -38,6 +38,7 @@
 		"overlay_low"					"¡Aún no!"
 		"overlay_medium"				"¡Falta la midad!"
 		"overlay_high"					"¡Casi!"
+		"overlay_very_high"				"Ufffff"
 		"overlay_heavy_breathing"		"*Heavy breating*"
 		"overlay_missed"				"¡Fallaste!"
 		"stats_last_hits"				"ÚLTIMOS GOLPES"
