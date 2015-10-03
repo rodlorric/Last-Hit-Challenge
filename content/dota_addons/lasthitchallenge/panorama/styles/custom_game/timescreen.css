@@ -61,7 +61,7 @@ Label{
 }
 
 .TimePanel .Column{
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333), to( #44444400) );
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111), to( #11111166 ) );
   height: fill-parent-flow(1.0);
 }
 
@@ -70,7 +70,7 @@ Label{
     vertical-align: bottom;
     color: #a0a0a0;
     font-weight: thin;
-    font-size: 90;
+    font-size: 80;
     
     width: fill-parent-flow(1.0);
     margin-top: 0px;
@@ -90,6 +90,21 @@ Label{
   opacity: 0.04;
 }
 
+.ClockIcon
+{
+  width: 24px;
+  height: 24px;
+  margin-bottom: 3px;
+  margin-left: 100px;
+  vertical-align: middle;
+  horizontal-align: left;
+  background-image: url("file://{images}/control_icons/clock_psd.vtex");
+  background-position: 0% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  wash-color: #a0a0a0;
+}
+
 .PickButton
 {
   transition-property: background-color;
@@ -99,7 +114,13 @@ Label{
 
 .PickButton:hover
 {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #555555 ), to( #44444400 ) );
+  background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d1d1d ), to( #1d1d1d00 ) );
+}
+
+.PickButton:active
+{
+  background-color: #4A4A4A;
+  pre-transform-scale2d: 1.02;
 }
 
 .PickButton:hover Label

@@ -9,10 +9,11 @@
 		<Panel class="TimeScreenPanel" hittest="false">
 			<Panel class="TimePanelContainer">
 				<Panel class="TimePanel">
-					<!--<Panel class="VertBar"/>-->
 					<Button id="two_n_half_min" class="PickButton" onactivate="OnPickTwo(); OnPick();">
 						<Panel class="Column">
-							<Label text="#timescreen_two_n_half_min"/>
+							<Label text="#timescreen_two_n_half_min">
+								<Panel class="ClockIcon"/>
+							</Label>
 						</Panel>
 				  	</Button>
 				</Panel>
@@ -20,7 +21,9 @@
 				<Panel class="TimePanel">					
 					<Button id="five_min" class="PickButton" onactivate="OnPickFive(); OnPick();">
 						<Panel class="Column">
-							<Label text="#timescreen_five_minutes"/>
+							<Label text="#timescreen_five_minutes">
+								<Panel class="ClockIcon"/>
+							</Label>
 						</Panel>
 				  	</Button>
 				</Panel>
@@ -28,7 +31,9 @@
 				<Panel class="TimePanel">
 					<Button id="seven_n_half_min" class="PickButton" onactivate="OnPickSeven(); OnPick();">
 						<Panel class="Column">
-							<Label text="#timescreen_seven_n_half_minutes"/>
+							<Label text="#timescreen_seven_n_half_minutes">
+								<Panel class="ClockIcon"/>
+							</Label>
 						</Panel>
 				  	</Button>
 				</Panel>
@@ -36,7 +41,9 @@
 				<Panel class="TimePanel">
 					<Button id="ten_min" class="PickButton" onactivate="OnPickTen(); OnPick();">
 						<Panel class="Column">
-							<Label text="#timescreen_ten_minutes"/>
+							<Label text="#timescreen_ten_minutes">
+								<Panel class="ClockIcon"/>
+							</Label>
 						</Panel>
 				  	</Button>
 				</Panel>
