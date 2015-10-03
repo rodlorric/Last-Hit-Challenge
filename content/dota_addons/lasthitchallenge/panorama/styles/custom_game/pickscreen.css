@@ -45,6 +45,8 @@ Label{
 }
 
 .HeroPanelContainer{
+    width: 50%;
+    horizontal-align: center;
     flow-children: right;
     height: 100%;
 }
@@ -72,42 +74,28 @@ Label{
 
 #satyr_img
 {   
-    width: 600px;
-    height: 600px;
-    margin-bottom: 3px;
-    background-image: url("file://{images}/n_creep_satyr_b.png");
-    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    //background-image: url("file://{images}/n_creep_satyr_b.png");
+    background-image: url("file://{images}/satyr_bg.jpg");
+    background-position: 0% 0%;
     background-size: contain;
     background-repeat: no-repeat;
-    horizontal-align: center;
-    vertical-align: middle;
-
-    animation-name: close;
-    animation-duration: TotalLength;
-    animation-timing-function: TimingFunc;
-    animation-iteration-count: IterationCount;
 }
 
 #nevermore_img
 {   
-    width: 700px;
-    height: 700px;
-    margin-bottom: 3px;
-    background-image: url("file://{images}/shadow_fiend.png");
-    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    //background-image: url("file://{images}/shadow_fiend.png");
+    background-image: url("file://{images}/shadowfiend_bg.jpg");
+    background-position: 0% 0%;
     background-size: contain;
     background-repeat: no-repeat;
-    horizontal-align: center;
-    vertical-align: middle;
-
-    animation-name: close;
-    animation-duration: TotalLength;
-    animation-timing-function: TimingFunc;
-    animation-iteration-count: IterationCount;
 }
 
 .HeroPanel .Column{
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #333333), to( #44444400) );
+  background-color: gradient( linear, 0% 100%, 0% 0%, from( #111111), to( #11111166 ) );
   height: fill-parent-flow(1.0);
   width: fill-parent-flow(1.0);
 }
@@ -121,7 +109,13 @@ Label{
 
 .PickButton:hover
 {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #555555 ), to( #44444400 ) );
+  background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d1d1d ), to( #1d1d1d00 ) );
+}
+
+.PickButton:active
+{
+  background-color: #4A4A4A;
+  pre-transform-scale2d: 1.02;
 }
 
 .HeroPanel .PickButton:hover .Column Label

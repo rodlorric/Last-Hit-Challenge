@@ -9,19 +9,19 @@
 		<Panel class="PickScreenPanel">
 			<Panel class="HeroPanelContainer">
 				<Panel class="HeroPanel">
+					<Panel id="satyr_img"/>
 					<Button id="satyr" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
 						<Panel class="Column">
 							<Label text="#npc_dota_hero_jakiro"/>
-							<Panel id="satyr_img"/>
 						</Panel>
 				  	</Button>
 				</Panel>
 				<Panel class="VertBar"/>
 				<Panel class="HeroPanel">
+					<Panel id="nevermore_img"/>
 					<Button id="nevermore" class="PickButton" onactivate="OnPickNevermore(); OnPick();">
 						<Panel class="Column">
 							<Label text="#npc_dota_hero_nevermore"/>
-							<Panel id="nevermore_img"/>
 						</Panel>
 				  	</Button>				
 				</Panel>
