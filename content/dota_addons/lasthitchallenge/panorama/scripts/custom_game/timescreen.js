@@ -24,12 +24,16 @@ function OnPickTen(){
 function OnPick() {
     $.Msg(time);
     GameEvents.SendCustomGameEventToServer( "time_picked", { "time" : time });
-	GameEvents.SendEventClientSide("hero_picked", {})
+	GameEvents.SendEventClientSide("hero_picked", {value : false})
     $.GetContextPanel().DeleteAsync(0);
 }
 
-function OnHeroPicked(){
-    $.GetContextPanel().DeleteAsync(0);
+function OnHeroPicked(bRepick){
+    $.Msg("timeScreen bRepick = " + bRepick.value)
+    if (!bRepick.value) {
+        $.GetContextPanel().DeleteAsync(0);
+    }
+    
 }
 
 (function () {

@@ -4,7 +4,6 @@ function Overlay(data) {
     var x = Math.floor(Game.WorldToScreenX( data["x"], data["y"], data["z"]));
     var y = Math.floor(Game.WorldToScreenY( data["x"], data["y"], data["z"]));
     var msg = data["msg"];
-    $.Msg("(x,y) = ("+x+","+y+")");
     var parentPanel = $.GetContextPanel(); // the root panel of the current XML context
     var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder");
     txtHolderPanel.hittest = false;
@@ -42,10 +41,7 @@ function Overlay(data) {
 
     txtHolderPanel.style.x = x + "px";
     txtHolderPanel.style.y = y + "px";
-    txtHolderPanel.style.z = "0px";
-
-    $.Msg("txtHolderPanel.style.position = " + txtHolderPanel.style.position );
-    
+    txtHolderPanel.style.z = "0px";    
 
     txtLabel.DeleteAsync(0.7);
     txtHolderPanel.DeleteAsync(0.7);

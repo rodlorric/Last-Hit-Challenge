@@ -25,6 +25,7 @@
 		"endscreen_session_records"			"Récords de la Sesión"
 		"restart"							"Reiniciar"
 		"quit"								"Abandonar"
+		"pick"								"Elegir Héroe"
 		"hud_score_panel"					"UG / D"
 		"controlpanel_records"				"Récords"
 		"controlpanel_creep_score"			"Puntaje de Creeps:"

@@ -68,7 +68,7 @@ function CLastHitChallenge:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_nevermore" )
 
 	CLastHitChallenge:InitilizeData()
-	
+
 	GameRules:SetCustomGameEndDelay( 0 )
 	GameRules:SetPostGameTime( 1.0 )
 	GameRules:SetCustomVictoryMessageDuration( 1.0 )
@@ -109,6 +109,7 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked'))
 	CustomGameEventManager:RegisterListener("time_picked", Dynamic_Wrap(CLastHitChallenge, 'OnTimePicked'))
 	CustomGameEventManager:RegisterListener("quit", Dynamic_Wrap(CLastHitChallenge, 'OnQuit'))
+	CustomGameEventManager:RegisterListener("repick", Dynamic_Wrap(CLastHitChallenge, 'OnRepick'))
 end
 
 function CLastHitChallenge:InitilizeData()

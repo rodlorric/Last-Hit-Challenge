@@ -18,9 +18,12 @@ function OnPick() {
     //$.GetContextPanel().DeleteAsync(0);
 }
 
-function OnHeroPicked(){
-	GameEvents.SendCustomGameEventToServer( "hero_picked", hero);
-    $.GetContextPanel().DeleteAsync(0);
+function OnHeroPicked(bRepick){
+	$.Msg("pickScreen bRepick " + bRepick )
+	if (!bRepick.value){
+		GameEvents.SendCustomGameEventToServer( "hero_picked", hero);
+	    $.GetContextPanel().DeleteAsync(0);
+    }
 }
 
 (function () {

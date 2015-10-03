@@ -40,6 +40,9 @@
 				</Panel>
 				<Panel class="Category">
 				  	<ToggleButton id="hide_overlay" class="OptionButton" text="#cotrolpanel_hide_help" onactivate="OnToggle()"/>				  			
+			  		<Button class="OptionButton" onactivate="OnPickButton()">
+			  			<Label text="#pick"/>
+			  		</Button>
 			  		<Button class="OptionButton" onactivate="OnRestartButton()">
 			  			<Label text="#restart"/>
 			  		</Button>

@@ -32,11 +32,18 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
 
 	hero_picked = hero_param.hero
 
-  	--local hero = EntIndexToHScript(event.heroindex)
-  	PlayerResource:ReplaceHeroWith( 0, hero_param.hero, 0, 0)
-  	local hero = PlayerResource:GetSelectedHeroEntity(0)
-  	CLastHitChallenge:GiveZeroGold(hero)
+ 	--Spawn the hero in an empty spot
+ 	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(0))
+
+  	PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
+	CLastHitChallenge:GiveZeroGold(PlayerResource:GetSelectedHeroEntity(0))
   	--CLastHitChallenge:GiveBlinkDagger(hero)
+end
+
+function CLastHitChallenge:SafeSpawn(hero)
+	local ent_class = hero:GetTeam() == DOTA_TEAM_BADGUYS and "info_player_start_badguys" or "info_player_start_goodguys" 
+	local ent = Entities:FindByClassname( nil, ent_class):GetAbsOrigin()
+	FindClearSpaceForUnit(hero, ent, true)
 end
 
 
@@ -68,6 +75,54 @@ end
 
 function CLastHitChallenge:OnTimePicked(time_data)
 	MAXTIME = time_data.time
+end
+
+function CLastHitChallenge:ClearData()
+	restarts = restarts + 1
+
+	if seconds < shortest_time then
+		shortest_time = seconds
+	end
+
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
+
+	total_time = total_time + seconds
+	-- clearing time!
+	seconds = 0
+	
+	-- clearing creep score
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0 } )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0 } )
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = 100 })
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = 100 })
+	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = 100 })
+
+	--Totals Details
+	--detailed stats totals
+	melee_lh = 0
+	melee_dn = 0
+	melee_miss_friendly = 0
+	melee_miss_foe = 0
+	ranged_lh = 0
+	ranged_dn = 0
+	ranged_miss_friendly = 0
+	ranged_miss_foe = 0
+	siege_lh = 0
+	siege_dn = 0
+	siege_miss_friendly = 0
+	siege_miss_foe = 0
+	--tower_lh = 0
+	--tower_dn = 0
+	tower_miss_friendly = 0
+	tower_miss_foe = 0
+	----------------------
+	
+	--clearing misses
+	misses = 0
+	
+	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
 end
 
 function CLastHitChallenge:SetGameFrozen( bFreeze )
@@ -498,71 +553,31 @@ function CLastHitChallenge:Spawner()
 	iter = iter + 1
 end
 
-function CLastHitChallenge:OnRestart()
-	restarts = restarts + 1
+function CLastHitChallenge:OnRepick()
+	print("OnRepick")
+	Timers:RemoveTimer("spawner")
+	Timers:RemoveTimer("clock")
+	CLastHitChallenge:ClearUnits()
+	CLastHitChallenge:ClearData()
+end
 
-	if seconds < shortest_time then
-		shortest_time = seconds
-	end
-
-	if GameRules:IsGamePaused() == true then
-  		PauseGame(false)
-	end
-
-	if Tutorial:GetTimeFrozen() then
-		CLastHitChallenge:SetGameFrozen(false)
-	end
-
-	--local hero = PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
-	--hero = PlayerResource:GetSelectedHeroEntity(0)
-
-	--hero:ForceKill(true)
-
-	total_time = total_time + seconds
-	-- clearing time!
-	seconds = 0
-
+function CLastHitChallenge:OnRestart()	
 	-- clearing units
 	CLastHitChallenge:ClearUnits()
+	CLastHitChallenge:ClearData()
 
-	-- clearing creep score
-	current_cs = { lh = 0, dn = 0 }
-
-
-	--Totals Details
-
-	--detailed stats totals
-	melee_lh = 0
-	melee_dn = 0
-	melee_miss_friendly = 0
-	melee_miss_foe = 0
-	ranged_lh = 0
-	ranged_dn = 0
-	ranged_miss_friendly = 0
-	ranged_miss_foe = 0
-	siege_lh = 0
-	siege_dn = 0
-	siege_miss_friendly = 0
-	siege_miss_foe = 0
-	--tower_lh = 0
-	--tower_dn = 0
-	tower_miss_friendly = 0
-	tower_miss_foe = 0
-	----------------------
-	
-	--clearing misses
-	misses = 0
-
-	
-	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
-
-	local player_hero = PlayerResource:GetSelectedHeroEntity(0)
-	local ent_class = player_hero:GetTeam() == DOTA_TEAM_BADGUYS and "info_player_start_badguys" or "info_player_start_goodguys" 
-	local ent = Entities:FindByClassname( nil, ent_class):GetAbsOrigin()
-	FindClearSpaceForUnit(player_hero, ent, true)
-	--CLastHitChallenge:GiveZeroGold(hero)
 	Timers:RemoveTimer("spawner")
-	CLastHitChallenge:OnHeroPicked({ hero = hero_picked})
+	Timers:RemoveTimer("clock")
+
+	--respawn the unit in an empty spot
+	local player_hero = PlayerResource:GetSelectedHeroEntity(0)
+	CLastHitChallenge:SafeSpawn(player_hero)
+
+	PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
+	CLastHitChallenge:GiveZeroGold(player_hero)
+	iter = 1
+	CLastHitChallenge:SpawnCreeps()
+	CLastHitChallenge:Clock()
 end
 
 function CLastHitChallenge:OnQuit()
@@ -578,22 +593,23 @@ function CLastHitChallenge:OnQuit()
 end
 
 function CLastHitChallenge:Clock()
-	if timer == nil then
-		timer = Timers:CreateTimer(function()
+	Timers:CreateTimer("clock", {
+		useGameTime = true,
+   		endTime = 0,
+		callback = function()
+	      	seconds = seconds + 1
 
-		      	seconds = seconds + 1
+			if seconds > longest_time then
+				longest_time = seconds
+			end
 
-				if seconds > longest_time then
-					longest_time = seconds
-				end
-
-		      	local min = string.format("%.2d", math.floor(seconds/60)%60)
-		      	local sec = string.format("%.2d", seconds%60)
-		 	      	
-		      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
-		      	return 1.0
-		end)
-	end
+	      	local min = string.format("%.2d", math.floor(seconds/60)%60)
+	      	local sec = string.format("%.2d", seconds%60)
+	 	      	
+	      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
+	      	return 1.0
+		end
+		})
 end
 
 function CLastHitChallenge:ClearUnits()
@@ -605,10 +621,8 @@ function CLastHitChallenge:ClearUnits()
 										DOTA_UNIT_TARGET_ALL, 
 										DOTA_UNIT_TARGET_FLAG_NONE, 
 										FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
+		if not unit:IsTower() and not unit:IsHero() then
 			UTIL_Remove( unit )
-		else
-			unit:SetHealth(unit:GetMaxHealth())		
 		end
 	end
 
@@ -620,10 +634,8 @@ function CLastHitChallenge:ClearUnits()
 									DOTA_UNIT_TARGET_ALL, 
 									DOTA_UNIT_TARGET_FLAG_NONE, 
 									FIND_ANY_ORDER, false )) do
-		if not unit:IsTower() then
+		if not unit:IsTower() and not unit:IsHero() then
 			UTIL_Remove( unit )
-		else
-			unit:SetHealth(unit:GetMaxHealth())
 		end
 	end
 end

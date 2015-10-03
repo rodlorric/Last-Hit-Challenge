@@ -76,9 +76,19 @@ function OnToggle(){
 	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
 }
 
-function OnHeroPicked(){
-	$.Msg("options OnHeroPicked");
-	$("#control_panel").style.visibility = "visible";
+function OnHeroPicked(bRepick){
+	if (!bRepick.value){
+		$("#control_panel").style.visibility = "visible";
+	} else {
+		$("#control_panel").style.visibility = "collaps";
+	}
+}
+
+function OnPickButton(){
+	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
+	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
+	GameEvents.SendCustomGameEventToServer( "repick", {})
+	GameEvents.SendEventClientSide("hero_picked", {value : true})
 }
 
 (function () {

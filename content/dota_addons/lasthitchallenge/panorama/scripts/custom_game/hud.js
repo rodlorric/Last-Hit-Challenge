@@ -23,10 +23,15 @@ function OnResetAnimation(data) {
 	scorepanel.SetHasClass( "dn_anim", false );
 }
 
-function OnHeroPicked(){
+function OnHeroPicked(bRepick){
 	$.Msg("hud OnHeroPicked");
-	$("#score_panel").style.visibility = "visible";
-	$("#clock_panel").style.visibility = "visible";
+	if (!bRepick.value){
+		$("#score_panel").style.visibility = "visible";
+		$("#clock_panel").style.visibility = "visible";
+	} else {
+		$("#clock_panel").style.visibility = "collapse";
+		$("#score_panel").style.visibility = "collapse";
+	}
 }
 
 
