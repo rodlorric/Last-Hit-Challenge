@@ -14,7 +14,10 @@ function OnLastHitOrDeny( table_name, key, data ){
 
 function OnClockTime(data) {
 	var clockPanel = $.GetContextPanel();
-	$("#clock").style.color = (data["bTimeLeft"] == 0 ? "#a0a0a0" : "#8b0000");
+	var color = (data["bTimeLeft"] == 0 ? "#A0A0A0FF" : "#8B0000FF");
+	if ($("#clock").style.color != color){
+		$("#clock").style.color = color;
+	}
 	$("#clock").text = data["min"] + ":" + data["sec"];
 }
 
@@ -25,7 +28,6 @@ function OnResetAnimation(data) {
 }
 
 function OnHeroPicked(bRepick){
-	$.Msg("hud OnHeroPicked");
 	if (!bRepick.value){
 		$("#score_panel").style.visibility = "visible";
 		$("#clock_panel").style.visibility = "visible";
