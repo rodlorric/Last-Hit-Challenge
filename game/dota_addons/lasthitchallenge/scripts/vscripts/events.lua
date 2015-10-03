@@ -26,6 +26,12 @@ iter = 1
 hero_picked = nil
 ----------------------
 function CLastHitChallenge:OnHeroPicked(hero_param)
+	if Tutorial:GetTimeFrozen() then
+		CLastHitChallenge:SetGameFrozen(false)
+	end
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
 	iter = 1
 	CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()
@@ -559,6 +565,7 @@ function CLastHitChallenge:OnRepick()
 	Timers:RemoveTimer("clock")
 	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:ClearData()
+	CLastHitChallenge:SetGameFrozen(true)
 end
 
 function CLastHitChallenge:OnRestart()	
