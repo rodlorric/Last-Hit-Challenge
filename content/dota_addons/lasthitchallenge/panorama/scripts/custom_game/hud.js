@@ -14,6 +14,7 @@ function OnLastHitOrDeny( table_name, key, data ){
 
 function OnClockTime(data) {
 	var clockPanel = $.GetContextPanel();
+	$("#clock").style.color = (data["bTimeLeft"] == 0 ? "#a0a0a0" : "#8b0000");
 	$("#clock").text = data["min"] + ":" + data["sec"];
 }
 

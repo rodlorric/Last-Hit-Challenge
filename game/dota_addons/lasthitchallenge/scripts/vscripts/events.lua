@@ -605,8 +605,13 @@ function CLastHitChallenge:Clock()
 
 	      	local min = string.format("%.2d", math.floor(seconds/60)%60)
 	      	local sec = string.format("%.2d", seconds%60)
+	      	
+	      	local bTimeLeft = false
+	      	if MAXTIME-seconds <= 30 then
+	      		bTimeLeft = true
+	      	end
 	 	      	
-	      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec})
+	      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec, bTimeLeft = bTimeLeft})
 	      	return 1.0
 		end
 		})
