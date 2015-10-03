@@ -566,6 +566,13 @@ function CLastHitChallenge:OnRestart()
 	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:ClearData()
 
+	if Tutorial:GetTimeFrozen() then
+		CLastHitChallenge:SetGameFrozen(false)
+	end
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
+
 	Timers:RemoveTimer("spawner")
 	Timers:RemoveTimer("clock")
 
