@@ -237,7 +237,7 @@ function CLastHitChallenge:EndGame()
 	CustomNetTables:SetTableValue( "stats_time", "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
 
 	seconds = 0
-	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {})
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {time = MAXTIME})
 end
 
 --[[ Make Towers invulnerable

@@ -22,9 +22,9 @@ function OnEndScreen(data) {
 	$("#stats_streak_dn").text = stats_streak_dn.value;
 
 	//Session Records
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs" );
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh" );
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn" );
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.time );
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.time );
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.time );
 	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy" );
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
