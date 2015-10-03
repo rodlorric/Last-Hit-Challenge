@@ -4,4 +4,9 @@
 	{
 		"hero"		"string"
 	}
+
+	"time_picked"
+	{
+		"time"		"int"
+	}
 }

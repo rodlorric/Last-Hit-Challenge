@@ -2,7 +2,6 @@
 var hero = { "hero" : "npc_dota_hero_nevermore" }
 
 function OnPickSatyr(){
-    $.Msg("Satyr!");
     hero = { "hero" : "npc_dota_hero_jakiro" }
 }
 
@@ -19,7 +18,6 @@ function OnPick() {
 }
 
 function OnHeroPicked(bRepick){
-	$.Msg("pickScreen bRepick " + bRepick )
 	if (!bRepick.value){
 		GameEvents.SendCustomGameEventToServer( "hero_picked", hero);
 	    $.GetContextPanel().DeleteAsync(0);

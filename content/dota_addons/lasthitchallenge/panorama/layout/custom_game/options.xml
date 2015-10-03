@@ -14,7 +14,7 @@
 	 	<Panel class="ControlPanelContainer">
 		  	<Panel id="Maximized">
 		  		<Panel class="MinimizeButton">
-			  		<Label text="#controlpanel_records"/>
+			  		<Label id="records_header" text="#controlpanel_records"/>
 			  	</Panel>
 			  	<Panel class="Category">
 				 	<Label text="#controlpanel_creep_score"/>
