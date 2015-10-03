@@ -125,22 +125,64 @@ function CLastHitChallenge:InitilizeData()
 	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_dn", { value = 0} )
 
 	--Records
-	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
-	if (records_cs == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_cs", { value = 0} )
-	end
 	local records_acc = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
 	if (records_acc == nil) then
 		CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
 	end
-	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
+	--230
+	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_150")
+	if (records_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_cs_150", { value = 0} )
+	end
+	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_150")
 	if (records_lh == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_lh", { value = 0} )
+		CustomNetTables:SetTableValue("stats_records", "stats_record_lh_150", { value = 0} )
 	end
-	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
+	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_150")
 	if (records_dn == nil) then
-		CustomNetTables:SetTableValue("stats_records", "stats_record_dn", { value = 0} )
+		CustomNetTables:SetTableValue("stats_records", "stats_record_dn_150", { value = 0} )
 	end
+	--500
+	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_300")
+	if (records_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_cs_300", { value = 0} )
+	end
+	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_300")
+	if (records_lh == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_lh_300", { value = 0} )
+	end
+	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_300")
+	if (records_dn == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_dn_300", { value = 0} )
+	end
+	--730
+	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_450")
+	if (records_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_cs_450", { value = 0} )
+	end
+	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_450")
+	if (records_lh == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_lh_450", { value = 0} )
+	end
+	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_450")
+	if (records_dn == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_dn_450", { value = 0} )
+	end
+	--1000
+	local records_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_600")
+	if (records_cs == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_cs_600", { value = 0} )
+	end
+	local records_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_600")
+	if (records_lh == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_lh_600", { value = 0} )
+	end
+	local records_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_600")
+	if (records_dn == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_dn_600", { value = 0} )
+	end
+
+
 	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_cs", { value = 100 } )
 	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_lh", { value = 100 } )
 	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_dn", { value = 100 } )	

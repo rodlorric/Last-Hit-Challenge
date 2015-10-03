@@ -33,13 +33,13 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 
 function OnCreepScoreRecordChanged( table_name, key, data ){
 	var panel = $.GetContextPanel();
-	if (key == "stats_record_cs"){
+	if (key == "stats_record_cs_150" || key == "stats_record_cs_300" || key == "stats_record_cs_450" || key == "stats_record_cs_600"){
 		$("#cs").text = data.value;
 		panel.SetHasClass( "cs_anim", true );
-	} else if (key == "stats_record_lh"){
+	} else if (key == "stats_record_lh_150" || key == "stats_record_lh_300" || key == "stats_record_lh_450" || key == "stats_record_lh_600"){
 		$("#lh").text = data.value;
 		panel.SetHasClass( "lh_anim", true );
-	} else if (key == "stats_record_dn"){
+	} else if (key == "stats_record_dn_150" || key == "stats_record_dn_300" || key == "stats_record_dn_450" || key == "stats_record_dn_600"){
 		$("#dn").text = data.value;
 		panel.SetHasClass( "dn_anim", true );
 	} else if (key == "stats_accuracy_cs"){
@@ -80,8 +80,25 @@ function OnHeroPicked(bRepick){
 	if (!bRepick.value){
 		$("#control_panel").style.visibility = "visible";
 	} else {
-		$("#control_panel").style.visibility = "collaps";
+		$("#control_panel").style.visibility = "collapse";
 	}
+}
+
+function OnTimePicked(time){
+	var panel = $.GetContextPanel();
+	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + time.value ).value;
+	panel.SetHasClass( "cs_anim", true );	
+	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + time.value ).value;
+	panel.SetHasClass( "lh_anim", true );	
+	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + time.value ).value;
+	panel.SetHasClass( "dn_anim", true );
+
+	var date = new Date(null);
+    date.setSeconds(time.value); // specify value for SECONDS here
+    var minutes = date.toISOString().substr(14, 5);
+
+	$("#records_header").text = $.Localize( "#controlpanel_records" ) + minutes;
+	$.Schedule( 1, OnResetAnimation );
 }
 
 function OnPickButton(){
@@ -98,4 +115,5 @@ function OnPickButton(){
 
 	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
 	GameEvents.Subscribe("hero_picked", OnHeroPicked);
+	GameEvents.Subscribe("time_picked", OnTimePicked);
 })();

@@ -377,11 +377,11 @@ function CLastHitChallenge:OnEntityKilled (event)
 			end
 
 			
-			local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs")
+			local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_" .. tostring(MAXTIME))
 			
 			--Deny
 			if friendly then
-				local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn")
+				local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_" .. tostring(MAXTIME))
 				--streaks
 				deny_streak = deny_streak + 1
 				if deny_streak > max_deny_streak then
@@ -393,7 +393,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				if dn > stats_record_dn.value or  cs > stats_record_cs.value then
 					if dn > stats_record_dn.value then
 						stats_record_dn.value = dn
-						CustomNetTables:SetTableValue("stats_records", "stats_record_dn", stats_record_dn)
+						CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. tostring(MAXTIME), stats_record_dn)
 					end
 				end
 
@@ -412,7 +412,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				end
 
 			else --LastHit
-				local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh")
+				local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_" .. tostring(MAXTIME))
 				--streak
 				last_hit_streak = last_hit_streak + 1
 				if last_hit_streak > max_last_hit_streak then
@@ -423,7 +423,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				if lh > stats_record_lh.value or cs > stats_record_cs.value then
 					if lh > stats_record_lh.value then
 						stats_record_lh.value = lh
-						CustomNetTables:SetTableValue("stats_records", "stats_record_lh", stats_record_lh)
+						CustomNetTables:SetTableValue("stats_records", "stats_record_lh_" .. tostring(MAXTIME), stats_record_lh)
 					end
 				end
 
@@ -448,7 +448,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 			--Records
 			if cs > stats_record_cs.value then
 				stats_record_cs.value = cs
-				CustomNetTables:SetTableValue("stats_records", "stats_record_cs", stats_record_cs)
+				CustomNetTables:SetTableValue("stats_records", "stats_record_cs_" .. tostring(MAXTIME) , stats_record_cs)
 			end
 		else -- misses
 			if not killedUnit:IsHero() then
