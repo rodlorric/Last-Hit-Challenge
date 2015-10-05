@@ -105,6 +105,9 @@ function CLastHitChallenge:ClearData()
 	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = 100 })
 	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = 100 })
 
+	history = {}
+	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
+
 	--Totals Details
 	--detailed stats totals
 	melee_lh = 0
@@ -210,6 +213,17 @@ function CLastHitChallenge:EndGame()
 
 	--Misc
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_restart", { value = restarts })
+	
+	local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
+	local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
+	print("current_lh = " .. tostring(c_lh) .. " current_dn = " .. tostring(c_dn))
+	print("1 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
+	table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
+	lh_history = c_lh
+	dn_history = c_dn
+	print("2 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
+	tprint(history)
+	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
 
 	
 	local session_accuracy = 0
@@ -514,7 +528,12 @@ function CLastHitChallenge:OnEntityKilled (event)
 	end
 end
 
+history = {}
+lh_history = 0
+dn_history = 0
 function CLastHitChallenge:SpawnCreeps()
+	lh_history = PlayerResource:GetLastHits(0) - current_cs["lh"]
+	dn_history = PlayerResource:GetDenies(0) - current_cs["dn"]
 	local point = nil
 	local waypoint = nil
 	Timers:CreateTimer("spawner", {
@@ -522,6 +541,15 @@ function CLastHitChallenge:SpawnCreeps()
     		endTime = 0,
 			callback = function()
 				CLastHitChallenge:Spawner()
+				local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
+				local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
+				print("current_lh = " .. tostring(c_lh) .. " current_dn = " .. tostring(c_dn))
+				print("1 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
+				table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
+				lh_history = c_lh
+				dn_history = c_dn
+				print("2 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
+				tprint(history)
 				return 30.0
 			end
 		})

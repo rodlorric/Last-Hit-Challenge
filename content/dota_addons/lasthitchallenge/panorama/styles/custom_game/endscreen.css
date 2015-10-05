@@ -27,7 +27,7 @@
     horizontal-align: middle;
     flow-children: down;
     width: 1440px;
-    height: 800px;
+    height: 900px;
     font-size: 16;
     background-color: #181818;
     border: 2px solid #222222;
@@ -82,6 +82,17 @@
   padding: 5px;
 }
 
+.GraphContainer{
+  flow-children: right;
+  margin-right: 10px;
+  height: 180px;
+}
+
+#BarHolder{
+  width: fill-parent-flow(1.0);
+  vertical-align: bottom;
+}
+
 .VertBar
 {
   width: 1px;
@@ -90,14 +101,101 @@
   opacity: 0.04;
 }
 
+.YLeyendPanel{
+  flow-children: down;
+  vertical-align: bottom;
+  margin-left: 100px;
+  margin-right: 20px;
+  margin-bottom: 15px; 
+}
+
+#data_container{
+  width : fill-parent-flow(1.0);
+  flow-children : down;
+  vertical-align : bottom;
+}
+
+#cs_container{
+  flow-children : right;
+}
+
+.XLeyendPanel{
+  flow-children: right;
+  //width: 100%;
+  margin-left: 145px;
+  margin-right: 10px;
+}
+
+#XLeyendLabel{
+  width: fill-parent-flow(1.0);
+  height: 15px;
+  text-align: center;
+  margin: 0px;
+  font-size: 16;
+}
+
+.LHLeyend{
+  width: 24px;
+  height: 24px;
+  background-color: #009933;
+  vertical-align: top;
+  horizontal-align: right;
+  margin: 0px;
+}
+
+#LeyendLabel{
+  font-size: 15;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+}
+
+.DNLeyend{
+  width: 24px;
+  height: 24px;
+  background-color: #800000;
+  vertical-align: bottom;
+  margin: 0px;
+}
+
+
+#BarLH
+{
+  width: fill-parent-flow(1.0);
+  height: 0px;
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #003300 ), to( #009933 ) );
+  //margin-left: 1px;
+  //margin-right: 0px;
+  vertical-align: bottom;
+  horizontal-align: left;
+}
+
+#BarDN
+{
+  width: fill-parent-flow(1.0);
+  height: 0px;
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #CC3300 ), to( #800000 ) );
+  //margin-left: 0px;
+  //margin-right: 1px;
+  vertical-align: bottom;
+  horizontal-align: left;
+}
+
+
 .HorBar
 {
   width: 100%;
   height: 1px;
   background-color: white;
   opacity: 0.04;
-  margin-left: 5px;
-  margin-right: 5px;
+}
+
+#HorBar
+{
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  opacity: 0.04;
 }
 
 .ButtonPanel
@@ -172,7 +270,7 @@
   margin-bottom: 3px;
   vertical-align: middle;
   horizontal-align: right;
-  background-image: url("file://{images}/control_icons/icon_search.png");
+  background-image: url("s2r://panorama/images/control_icons/icon_search_png.vtex");
   background-position: 0% 50%;
   background-size: contain;
   background-repeat: no-repeat;

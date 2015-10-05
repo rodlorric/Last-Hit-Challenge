@@ -45,13 +45,99 @@ function OnEndScreen(data) {
 	$("#stats_time_longest").text = stats_time_longest.value;
 	$("#stats_time_shortest").text = stats_time_shortest.value;
 
+
+	//Graph
+	var stats_misc_history = CustomNetTables.GetTableValue("stats_misc", "stats_misc_history");
+
+	var bar_container = $("#graph_container");
+	var x_leyend = $("#x_leyend");
+	var max = 1;
+	var timeacum = 30;
+
+	//10 mins
+	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
+	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 2}, {lh : 1, dn : 2}, {lh : 2, dn : 2}, {lh : 0, dn : 2}, {lh : 2, dn : 2},
+	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
+
+	//7:30 mins
+	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 9, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
+	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 2}, {lh : 1, dn : 2}, {lh : 1, dn : 2}];
+
+	//5 mins
+	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
+	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
+
+	//2 mins
+	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
+
+	for (var i in stats_misc_history) {
+		if (i > 1){
+			var lh = stats_misc_history[i].lh;
+			var dn = stats_misc_history[i].dn;
+			if (lh > max){
+				max = lh;
+			}
+			if (dn > max){
+				max = dn;
+			}
+		}
+	};
+
+	for (var j in stats_misc_history) {
+		if (j > 1){
+			var lh = stats_misc_history[j].lh;
+			var dn = stats_misc_history[j].dn
+			var date = new Date(null);
+	    	date.setSeconds(timeacum); // specify value for SECONDS here
+	    	var minutes = date.toISOString().substr(14, 5);
+			timeacum += 30;
+	  		
+			var data_container = $.CreatePanel("Panel", bar_container, "data_container");		
+			var couple_container = $.CreatePanel("Panel", data_container, "cs_container");
+
+			var bar_holder = $.CreatePanel("Panel", couple_container, "BarHolder");
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
+	  		var ypct = Math.round((lh * 100)/max);
+			var y = Math.round((ypct * 160) / 100);
+	  		bar.style.height = y + "px;";
+	  		var label = $.CreatePanel("Label", bar_holder, "");
+	  		label.text = lh;
+	  		label.style.verticalAlign = "top;";
+	  		label.style.textAlign = "center;";
+
+	  		var bar_holder = $.CreatePanel("Panel", couple_container, "BarHolder");
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+	  		var ypct = Math.round((dn * 100)/max);
+			var y = Math.round((ypct * 160) / 100);
+	  		bar.style.height = y + "px;";
+	  		var label = $.CreatePanel("Label", bar_holder, "");
+	  		label.text = dn;
+	  		label.style.textAlign = "center;";
+
+	  		var x_hor_bar = $.CreatePanel("Panel", data_container, "HorBar");
+	  		var x_label = $.CreatePanel("Label", data_container, "XLeyendLabel");
+	  		x_label.text = minutes;
+  		}
+	};
+
 	$("#end_screen_panel").ToggleClass("Maximized");
 	$("#end_screen_panel").hittest = true;
 }
 
 function OnRestart(){
 	GameEvents.SendCustomGameEventToServer( "restart", {});
+
+	//clearing the graph...
 	$("#end_screen_panel").ToggleClass("Maximized");
+	var graph_children = $("#graph_container").Children();
+	for (var i in graph_children){
+		graph_children[i].DeleteAsync(0.0);
+	}
+
+	var x_leyend = $("#x_leyend").Children();
+	for (var i in x_leyend){
+		x_leyend[i].DeleteAsync(0.0);
+	}
 }
 
 function OnQuit(){
