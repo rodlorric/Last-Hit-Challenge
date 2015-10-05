@@ -7,6 +7,7 @@
 	</scripts>
 	<Panel class="TimeScreenRoot" hittest="false">
 		<Panel class="TimeScreenPanel" hittest="false">
+			<Label text="#timescreen_choose_time"/>
 			<Panel class="TimePanelContainer">
 				<Panel class="TimePanel">
 					<Button id="two_n_half_min" class="PickButton" onactivate="OnPickTwo(); OnPick();">
@@ -49,6 +50,5 @@
 				</Panel>
 			</Panel>
 		</Panel>
-		<Label text="#timescreen_choose_time"/>
 	</Panel>
 </root>

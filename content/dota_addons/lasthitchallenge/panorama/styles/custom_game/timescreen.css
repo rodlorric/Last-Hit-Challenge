@@ -27,12 +27,13 @@
 }
 
 .TimeScreenPanel Label{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 100%;
     horizontal-align: center;
+    background-color: black;
+    text-align: center;
     text-transform: uppercase;
-    font-size: 50;
-    font-weight: bold;
+    font-size: 80;
+    opacity: 0.9;
     color: #444444;
 
     animation-duration: TotalLength;
@@ -43,16 +44,6 @@
 .TimePanelContainer{
     flow-children: right;
     height: 100%;
-}
-
-Label{
-    margin-top: 40px;
-    margin-bottom: 20px;
-    horizontal-align: center;
-    text-transform: uppercase;
-    font-size: 50;
-    font-weight: bold;
-    color: #a0a0a0;
 }
 
 .TimePanel{
@@ -66,15 +57,17 @@ Label{
 }
 
 .TimePanel Label{
-    text-align: center;
-    vertical-align: bottom;
-    color: #a0a0a0;
-    font-weight: thin;
-    font-size: 80;
-    
-    width: fill-parent-flow(1.0);
-    margin-top: 0px;
-    margin-bottom: 60px;
+  text-align: center;
+  vertical-align: bottom;
+  color: #a0a0a0;
+  font-weight: thin;
+  font-size: 80;
+  background-color: black;
+  opacity: 0.5;
+  
+  width: fill-parent-flow(1.0);
+  margin-top: 0px;
+  margin-bottom: 60px;
 }
 
 .TimePanel .PickButton{
