@@ -216,13 +216,9 @@ function CLastHitChallenge:EndGame()
 	
 	local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
 	local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-	print("current_lh = " .. tostring(c_lh) .. " current_dn = " .. tostring(c_dn))
-	print("1 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
 	table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
 	lh_history = c_lh
 	dn_history = c_dn
-	print("2 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
-	tprint(history)
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
 
 	
@@ -543,13 +539,9 @@ function CLastHitChallenge:SpawnCreeps()
 				CLastHitChallenge:Spawner()
 				local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
 				local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-				print("current_lh = " .. tostring(c_lh) .. " current_dn = " .. tostring(c_dn))
-				print("1 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
 				table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
 				lh_history = c_lh
 				dn_history = c_dn
-				print("2 lh -> " .. tostring(lh_history) .. " dn -> " ..tostring(dn_history))
-				tprint(history)
 				return 30.0
 			end
 		})
@@ -588,7 +580,6 @@ function CLastHitChallenge:Spawner()
 end
 
 function CLastHitChallenge:OnRepick()
-	print("OnRepick")
 	Timers:RemoveTimer("spawner")
 	Timers:RemoveTimer("clock")
 	CLastHitChallenge:ClearUnits()
