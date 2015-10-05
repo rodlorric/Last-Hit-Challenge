@@ -65,6 +65,7 @@ function Activate()
 end
 
 function CLastHitChallenge:InitGameMode()
+	GameRules:SetPreGameTime(0.0)
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_nevermore" )
 
 	CLastHitChallenge:InitilizeData()
