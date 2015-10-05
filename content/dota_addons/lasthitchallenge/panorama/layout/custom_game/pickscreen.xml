@@ -1,6 +1,7 @@
 <root>
 	<styles>
 		<include src="file://{resources}/styles/custom_game/pickscreen.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
@@ -9,7 +10,13 @@
 		<Panel class="PickScreenPanel" hittest="false">
 			<Label text="#pickscreen_choose_hero"/>
 			<Panel class="PickPanelContainer">
-				<Panel class="PickPanel"/>
+				<Panel class="PickPanel">
+					<Panel class="PickOptionsPanel">
+						<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
+							onmouseover="LevelingShowTooltip()"
+							onmouseout="LevelingHideTooltip()"/>
+					</Panel>
+				</Panel>
 				<Panel class="VertBar"/>
 				<Panel class="PickPanel">					
 					<Panel class="ShadowFiendBg"/>

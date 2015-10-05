@@ -34,16 +34,50 @@
     text-transform: uppercase;
     font-size: 80;
     opacity: 0.9;
-    color: #a0a0a0;
+    color: #a0a0a0;    
+}
 
-    animation-duration: TotalLength;
-    animation-timing-function: TimingFunc;
-    animation-iteration-count: IterationCount;
+#tooltip{
+  transform: translateX( 0px ) translateY( 0px );
+  background-color: black;
+  opacity: 0.5;
+  margin-bottom: 50px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #444444;
+}
+
+.PickScreenPanel .PickButton Label{
+  animation-duration: TotalLength;
+  animation-timing-function: TimingFunc;
+  animation-iteration-count: IterationCount;
 }
 
 .PickPanelContainer{
     flow-children: right;
     height: 100%;
+}
+
+.PickOptionsPanel{
+  vertical-align: bottom;
+  margin-bottom: 60px;
+  flow-children: down;
+}
+
+.PickOptionsPanel .OptionButton Label{
+  font-size: 30;
+  background-color: none;
+  text-transform: none;
+  margin-bottom: 0px;
+  text-align: left;
+}
+
+.OptionButton{
+  margin-left: 10px;
+}
+
+.PickOptionsPanel .PickButton{
+  margin: 0px;
 }
 
 .PickPanel{

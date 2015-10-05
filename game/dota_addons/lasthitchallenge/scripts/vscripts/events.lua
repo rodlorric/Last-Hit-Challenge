@@ -365,6 +365,19 @@ function CLastHitChallenge:OnHideHelp( event )
 	end
 end
 
+function CLastHitChallenge:OnDisableLeveling( event )
+	if event.disable_leveling == 1 then	
+		print("leveling is disabled")	
+		print("1.1 maxlevel: " .. tostring(GameRules:GetGameModeEntity():GetCustomHeroMaxLevel()))
+		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
+		print("1.2 maxlevel: " .. tostring(GameRules:GetGameModeEntity():GetCustomHeroMaxLevel()))
+	else
+		print("leveling is enabled")
+		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(false)
+	end
+end
+
 
 last_hit_streak = 0
 deny_streak = 0
