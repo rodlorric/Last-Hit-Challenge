@@ -141,7 +141,10 @@
 			 		</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
-		 		<Panel class="ButtonPanel">		  			
+		 		<Panel class="ButtonPanel">
+		 			<Button class="OptionButton" onactivate="OnPickButton()">
+			  			<Label text="#pick"/>
+			  		</Button>	  			
 			  		<Button class="OptionButton" onactivate="OnRestart()">
 			  			<Label text="#restart"/>
 			  		</Button>

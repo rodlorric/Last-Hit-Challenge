@@ -144,6 +144,14 @@ function OnQuit(){
 	GameEvents.SendCustomGameEventToServer( "quit", {});
 }
 
+function OnPickButton(){
+	$("#end_screen_panel").ToggleClass("Maximized");
+	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
+	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
+	GameEvents.SendCustomGameEventToServer( "repick", {})
+	GameEvents.SendEventClientSide("hero_picked", {value : true})
+}
+
 function OnMagnifyLastHits(){
 	var stats = $.CreatePanel( "Panel", $.GetContextPanel(), "LastHitStats" );
 	stats.BLoadLayout( "file://{resources}/layout/custom_game/stats.xml", false, false );
