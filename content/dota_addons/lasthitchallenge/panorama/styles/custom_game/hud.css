@@ -19,8 +19,6 @@
 	flow-children: right;
     height: 128px;
     width: 460px;
-    font-size: 50;
-    font-weight: bold;
 }
 
 .ScorePanelContainer Label
@@ -29,6 +27,8 @@
 	horizontal-align : right;
 	margin-left: 5px;
 	color: #444444;
+  font-size: 50;
+  font-weight: bold;  
 }
 
 .ScoreHolder
@@ -105,20 +105,20 @@
 	flow-children: right;
   height: 55px;
   width: 200px;
-  font-size: 50;
-  font-weight: bold;
   background-color: #181818ee;
   
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   border: 2px solid #222222;
- 	box-shadow: #000000aa -4px -4px 8px 8px;
+  box-shadow: #000000aa -4px -4px 8px 8px;
 }
 
 .ClockPanelContainer Label
 {
-	horizontal-align : center;
-	color: #a0a0a0;
+  horizontal-align : center;
+  color: #a0a0a0;
   margin-top: -5px;
+  font-size: 50;
+  font-weight: bold;
 }
 
