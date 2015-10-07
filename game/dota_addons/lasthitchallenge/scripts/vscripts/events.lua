@@ -595,21 +595,26 @@ end
 function CLastHitChallenge:OnRepick()
 	Timers:RemoveTimer("spawner")
 	Timers:RemoveTimer("clock")
+	CLastHitChallenge:SetGameFrozen(true)
 	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:ClearData()
-	CLastHitChallenge:SetGameFrozen(true)
 end
 
-function CLastHitChallenge:OnRestart()	
+function CLastHitChallenge:OnRestart()
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	end
+
+	if seconds < shortest_time or shortest_time == MAXTIME then
+		shortest_time = seconds
+	end
+
 	-- clearing units
 	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:ClearData()
 
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
-	end
-	if GameRules:IsGamePaused() == true then
-  		PauseGame(false)
 	end
 
 	Timers:RemoveTimer("spawner")
