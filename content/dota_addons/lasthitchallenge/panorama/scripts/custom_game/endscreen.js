@@ -22,9 +22,9 @@ function OnEndScreen(data) {
 	$("#stats_streak_dn").text = stats_streak_dn.value;
 
 	//Session Records
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.time );
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.time );
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.time );
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time );
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time );
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time );
 	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy" );
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
@@ -55,9 +55,9 @@ function OnEndScreen(data) {
 	var timeacum = 30;
 
 	//10 mins
-	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
-	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 2}, {lh : 1, dn : 2}, {lh : 2, dn : 2}, {lh : 0, dn : 2}, {lh : 2, dn : 2},
-	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
+	//stats_misc_history = [{lh : 3, dn : 1}, {lh : 1, dn : 1}, {lh : 4, dn : 1}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 4, dn : 0}, {lh : 1, dn : 2}, {lh : 3, dn : 0}, {lh : 3, dn : 0},
+	//{lh : 2, dn : 2}, {lh : 2, dn : 1}, {lh : 1, dn : 2}, {lh : 3, dn : 2}, {lh : 3, dn : 2}, {lh : 3, dn : 2}, {lh : 1, dn : 2}, {lh : 4, dn : 2}, {lh : 5, dn : 0}, {lh : 2, dn : 1},
+	//{lh : 5, dn : 2}, {lh : 3, dn : 0}, {lh : 2, dn : 2}];
 
 	//7:30 mins
 	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 9, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
@@ -96,6 +96,7 @@ function OnEndScreen(data) {
 			var couple_container = $.CreatePanel("Panel", data_container, "cs_container");
 
 			var bar_holder = $.CreatePanel("Panel", couple_container, "BarHolder");
+			bar_holder.style.opacity = "1.0";
 	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
 	  		var ypct = Math.round((lh * 100)/max);
 			var y = Math.round((ypct * 160) / 100);
@@ -107,6 +108,7 @@ function OnEndScreen(data) {
 
 	  		var bar_holder = $.CreatePanel("Panel", couple_container, "BarHolder");
 	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+	  		bar_holder.style.opacity = "1.0";
 	  		var ypct = Math.round((dn * 100)/max);
 			var y = Math.round((ypct * 160) / 100);
 	  		bar.style.height = y + "px;";
@@ -149,7 +151,7 @@ function OnPickButton(){
 	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
 	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	GameEvents.SendCustomGameEventToServer( "repick", {})
-	GameEvents.SendEventClientSide("hero_picked", {value : true})
+	GameEvents.SendEventClientSide("hero_picked", {repick : true})
 }
 
 function OnMagnifyLastHits(){

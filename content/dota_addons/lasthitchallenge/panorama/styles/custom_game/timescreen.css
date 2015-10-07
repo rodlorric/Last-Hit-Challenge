@@ -51,11 +51,6 @@
     height: 100%;
 }
 
-.TimePanel .Column{
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111), to( #11111166 ) );
-  height: fill-parent-flow(1.0);
-}
-
 .TimePanel Label{
   text-align: center;
   vertical-align: bottom;
@@ -83,6 +78,24 @@
   opacity: 0.04;
 }
 
+.BackPanel{
+  width: 100%;
+  height: 100px;
+  flow-children: right;
+}
+
+.BackPanel .PickButton{
+  width: 50px;
+  vertical-align: middle;
+  background-color: black;
+}
+
+.BackPanel Label{
+  horizontal-align: right;
+  height: 100%;
+}
+
+
 .ClockIcon
 {
   width: 24px;
@@ -91,8 +104,22 @@
   margin-left: 100px;
   vertical-align: middle;
   horizontal-align: left;
-  background-image: url("file://{images}/control_icons/clock_psd.vtex");
+  background-image: url("s2r://panorama/images/control_icons/clock_psd.vtex");
   background-position: 0% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  wash-color: #a0a0a0;
+}
+
+.BackIcon
+{
+  width: 50px;
+  height: 50px;
+  transform: rotateZ(180deg);
+  vertical-align: center;
+  horizontal-align: left;
+  background-image: url("s2r://panorama/images/control_icons/icon_hero_next_arrow_png.vtex");
+  background-position: 0% 0%;
   background-size: contain;
   background-repeat: no-repeat;
   wash-color: #a0a0a0;
@@ -100,14 +127,18 @@
 
 .PickButton
 {
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111), to( #11111166 ) );
+  height: fill-parent-flow(1.0);
+
   transition-property: background-color;
   transition-duration: 0.15s;
   transition-timing-function: linear;
+
 }
 
 .PickButton:hover
 {
-  background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d1d1d ), to( #1d1d1d00 ) );
+  background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d1d1d ), to( #1d1d1d99 ) );
 }
 
 .PickButton:active

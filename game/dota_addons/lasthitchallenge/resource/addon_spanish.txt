@@ -32,7 +32,7 @@
 		"quit"								"Abandonar"
 		"pick"								"Elegir Héroe"
 		"hud_score_panel"					"UG / D"
-		"controlpanel_records"				"Récords en "
+		"controlpanel_records"				"Récords"
 		"controlpanel_creep_score"			"Puntaje de Creeps:"
 		"controlpanel_last_hits"			"Últimos Golpes:"
 		"controlpanel_denies"				"Denegaciones:"

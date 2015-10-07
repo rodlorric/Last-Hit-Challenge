@@ -8,45 +8,43 @@
 	</scripts>
 	<Panel class="TimeScreenRoot" hittest="false">
 		<Panel class="TimeScreenPanel" hittest="false">
-			<Label text="#timescreen_choose_time"/>
+			<Panel class="BackPanel">				
+				<Button class="PickButton" onactivate="OnBack();">						
+					<Panel class="BackIcon"/>
+				</Button>
+				<Label text="#timescreen_choose_time"/>
+			</Panel>			
 			<Panel class="TimePanelContainer">
+				<Panel class="VertBar"/>
 				<Panel class="TimePanel">
-					<Button id="two_n_half_min" class="PickButton" onactivate="OnPickTwo(); OnPick();">
-						<Panel class="Column">
-							<Label text="#timescreen_two_n_half_min">
-								<Panel class="ClockIcon"/>
-							</Label>
-						</Panel>
+					<Button class="PickButton" onactivate="OnPick(150);">						
+						<Label text="#timescreen_two_n_half_min">
+							<Panel class="ClockIcon"/>
+						</Label>
 				  	</Button>
 				</Panel>
 				<Panel class="VertBar"/>
 				<Panel class="TimePanel">					
-					<Button id="five_min" class="PickButton" onactivate="OnPickFive(); OnPick();">
-						<Panel class="Column">
-							<Label text="#timescreen_five_minutes">
-								<Panel class="ClockIcon"/>
-							</Label>
-						</Panel>
+					<Button class="PickButton" onactivate="OnPick(300);">
+						<Label text="#timescreen_five_minutes">
+							<Panel class="ClockIcon"/>
+						</Label>
 				  	</Button>
 				</Panel>
 				<Panel class="VertBar"/>
 				<Panel class="TimePanel">
-					<Button id="seven_n_half_min" class="PickButton" onactivate="OnPickSeven(); OnPick();">
-						<Panel class="Column">
-							<Label text="#timescreen_seven_n_half_minutes">
+					<Button class="PickButton" onactivate="OnPick(450);">						
+						<Label text="#timescreen_seven_n_half_minutes">
 								<Panel class="ClockIcon"/>
-							</Label>
-						</Panel>
+						</Label>					
 				  	</Button>
 				</Panel>
 				<Panel class="VertBar"/>
 				<Panel class="TimePanel">
-					<Button id="ten_min" class="PickButton" onactivate="OnPickTen(); OnPick();">
-						<Panel class="Column">
-							<Label text="#timescreen_ten_minutes">
-								<Panel class="ClockIcon"/>
-							</Label>
-						</Panel>
+					<Button class="PickButton" onactivate="OnPick(600);">						
+						<Label text="#timescreen_ten_minutes">
+							<Panel class="ClockIcon"/>
+						</Label>					
 				  	</Button>
 				</Panel>
 			</Panel>

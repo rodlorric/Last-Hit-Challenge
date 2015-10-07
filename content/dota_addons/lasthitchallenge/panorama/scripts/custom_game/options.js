@@ -30,16 +30,19 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 	$.Schedule( 1, OnResetAnimation );
 } 
 */
-
 function OnCreepScoreRecordChanged( table_name, key, data ){
-	var panel = $.GetContextPanel();
-	if (key == "stats_record_cs_150" || key == "stats_record_cs_300" || key == "stats_record_cs_450" || key == "stats_record_cs_600"){
+	var panel = $.GetContextPanel();	
+	var cs = "stats_record_cs";
+	var lh = "stats_record_lh";
+	var dn = "stats_record_dn";
+	
+	if (key.substring(0, cs.length) === cs){
 		$("#cs").text = data.value;
 		panel.SetHasClass( "cs_anim", true );
-	} else if (key == "stats_record_lh_150" || key == "stats_record_lh_300" || key == "stats_record_lh_450" || key == "stats_record_lh_600"){
+	} else if (key.substring(0, lh.length) === lh){
 		$("#lh").text = data.value;
 		panel.SetHasClass( "lh_anim", true );
-	} else if (key == "stats_record_dn_150" || key == "stats_record_dn_300" || key == "stats_record_dn_450" || key == "stats_record_dn_600"){
+	} else if (key.substring(0, dn.length) === dn){
 		$("#dn").text = data.value;
 		panel.SetHasClass( "dn_anim", true );
 	} else if (key == "stats_accuracy_cs"){
@@ -76,28 +79,40 @@ function OnToggle(){
 	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
 }
 
-function OnHeroPicked(bRepick){
-	if (!bRepick.value){
-		$("#control_panel").style.visibility = "visible";
+
+var hero_picked = "npc_dota_hero_nevermore";
+var leveling = "lvl";
+function OnHeroPicked(data){
+	if (data.hero == null){
+		if (!data.repick){
+			$("#control_panel").style.visibility = "visible";
+		} else {
+			$("#control_panel").style.visibility = "collapse";
+		}
 	} else {
-		$("#control_panel").style.visibility = "collapse";
+		hero_picked = data.hero;
+		leveling = data.leveling;
 	}
 }
 
 function OnTimePicked(time){
 	var panel = $.GetContextPanel();
-	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + time.value ).value;
+	var suffix = hero_picked + "_" + time.value + "_" + leveling;
+	$.Msg("Suffix = " + suffix);
+
+	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + suffix ).value;
 	panel.SetHasClass( "cs_anim", true );	
-	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + time.value ).value;
+	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + suffix ).value;
 	panel.SetHasClass( "lh_anim", true );	
-	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + time.value ).value;
+	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + suffix ).value;
 	panel.SetHasClass( "dn_anim", true );
 
 	var date = new Date(null);
     date.setSeconds(time.value); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 
-	$("#records_header").text = $.Localize( "#controlpanel_records" ) + minutes;
+    $("#hero_header").text = $.Localize(hero_picked);
+	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes;
 	$.Schedule( 1, OnResetAnimation );
 }
 
@@ -105,7 +120,7 @@ function OnPickButton(){
 	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
 	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	GameEvents.SendCustomGameEventToServer( "repick", {})
-	GameEvents.SendEventClientSide("hero_picked", {value : true})
+	GameEvents.SendEventClientSide("hero_picked", {repick : true})
 }
 
 (function () {

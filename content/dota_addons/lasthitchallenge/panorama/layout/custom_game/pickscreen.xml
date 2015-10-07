@@ -9,34 +9,160 @@
 	<Panel class="PickScreenRoot" hittest="false">
 		<Panel class="PickScreenPanel" hittest="false">
 			<Label text="#pickscreen_choose_hero"/>
-			<Panel class="PickPanelContainer">
-				<Panel class="PickPanel">
-					<Panel class="PickOptionsPanel">
-						<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
-							onmouseover="LevelingShowTooltip()"
-							onmouseout="LevelingHideTooltip()"/>
+			<Panel class="PickPanelSuperContainer">
+				<Panel class="PickPanelContainer">
+					<Panel class="PickPanel">
+						<Button id="npc_dota_hero_nevermore" class="PickButton" onactivate="OnPick('npc_dota_hero_nevermore');">
+							<Panel class="HeroPanel" id="npc_dota_hero_nevermore_bg"/>
+							<Label text="#npc_dota_hero_nevermore" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_storm_spirit');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_storm_spirit_bg"/>
+							<Label text="#npc_dota_hero_storm_spirit" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_templar_assassin');">			
+							<Panel class="HeroPanel" id="npc_dota_hero_templar_assassin_bg"/>
+							<Label text="#npc_dota_hero_templar_assassin" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_tinker');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_tinker_bg"/>
+							<Label text="#npc_dota_hero_tinker" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_invoker');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_invoker_bg"/>
+							<Label text="#npc_dota_hero_invoker" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_obsidian_destroyer');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_obsidian_destroyer_bg"/>
+							<Label text="#npc_dota_hero_obsidian_destroyer" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_queenofpain');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_queenofpain_bg"/>
+							<Label text="#npc_dota_hero_queenofpain" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_puck');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_puck_bg"/>
+							<Label text="#npc_dota_hero_puck" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_death_prophet');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_death_prophet_bg"/>
+							<Label text="#npc_dota_hero_death_prophet" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_leshrac');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_leshrac_bg"/>
+							<Label text="#npc_dota_hero_leshrac" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_ember_spirit');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_ember_spirit_bg"/>
+							<Label text="#npc_dota_hero_ember_spirit" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_lina');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_lina_bg"/>
+							<Label text="#npc_dota_hero_lina" hittest="false"/>
+					  	</Button>
 					</Panel>
 				</Panel>
-				<Panel class="VertBar"/>
-				<Panel class="PickPanel">					
-					<Panel class="ShadowFiendBg"/>
-					<Button id="five_min" class="PickButton" onactivate="OnPickNevermore(); OnPick();">
-						<Panel class="Column">
-							<Label text="#npc_dota_hero_nevermore"/>
-						</Panel>
-				  	</Button>
+				<Panel class="PickPanelContainer">
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_viper');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_viper_bg"/>
+							<Label text="#npc_dota_hero_viper" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_magnataur');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_magnataur_bg"/>
+							<Label text="#npc_dota_hero_magnataur" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_sniper');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_sniper_bg"/>
+							<Label text="#npc_dota_hero_sniper" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_dragon_knight');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_dragon_knight_bg"/>
+							<Label text="#npc_dota_hero_dragon_knight" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_kunkka');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_kunkka_bg"/>
+							<Label text="#npc_dota_hero_kunkka" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_brewmaster');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_brewmaster_bg"/>
+							<Label text="#npc_dota_hero_brewmaster" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_night_stalker');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_night_stalker_bg"/>
+							<Label text="#npc_dota_hero_night_stalker" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_huskar');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_huskar_bg"/>
+							<Label text="#npc_dota_hero_huskar" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_tiny');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_tiny_bg"/>
+							<Label text="#npc_dota_hero_tiny" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_windrunner');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_windrunner_bg"/>
+							<Label text="#npc_dota_hero_windrunner" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_zuus');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_zeus_bg"/>
+							<Label text="#npc_dota_hero_zuus" hittest="false"/>
+					  	</Button>
+					</Panel>
+					<Panel class="PickPanel">
+						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_jakiro');">	
+							<Panel class="HeroPanel" id="npc_dota_hero_satyr_bg"/>
+							<Label text="#npc_dota_hero_jakiro" hittest="false"/>
+					  	</Button>
+					</Panel>
 				</Panel>
-				<Panel class="VertBar"/>
-				<Panel class="PickPanel">
-					<Panel class="SatyrBg"/>
-					<Button id="seven_n_half_min" class="PickButton" onactivate="OnPickSatyr(); OnPick();">
-						<Panel class="Column">
-							<Label text="#npc_dota_hero_jakiro"/>
-						</Panel>
-				  	</Button>
+				<Panel class="PickOptionsPanel">
+					<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
+						onmouseover="LevelingShowTooltip()"
+						onmouseout="LevelingHideTooltip()"/>
 				</Panel>
-				<Panel class="VertBar"/>
-				<Panel class="PickPanel"/>
 			</Panel>
 		</Panel>
 	</Panel>

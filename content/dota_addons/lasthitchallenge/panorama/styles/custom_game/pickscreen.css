@@ -15,7 +15,7 @@
     vertical-align: bottom;
     horizontal-align: center;
     visibility: visible;
-    background-image: url("file://{images}/bg.jpg");
+    background-image: url("file://{images}/pickscreen/bg.jpg");
     background-position: 0% 0%;
     background-repeat: no-repeat;
     flow-children: down;
@@ -55,17 +55,26 @@
 
 .PickPanelContainer{
     flow-children: right;
+    height: fill-parent-flow(1.0);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.PickPanelSuperContainer{
+    flow-children: down;
     height: 100%;
 }
 
 .PickOptionsPanel{
   vertical-align: bottom;
-  margin-bottom: 60px;
-  flow-children: down;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  flow-children: right;
 }
 
 .PickOptionsPanel .OptionButton Label{
-  font-size: 30;
+  font-size: 18;
   background-color: none;
   text-transform: none;
   margin-bottom: 0px;
@@ -74,6 +83,7 @@
 
 .OptionButton{
   margin-left: 10px;
+  width: 250px;
 }
 
 .PickOptionsPanel .PickButton{
@@ -81,13 +91,18 @@
 }
 
 .PickPanel{
-    width: fill-parent-flow(1.0);
-    height: 100%;
+  width: fill-parent-flow(1.0);
+  height: 100%;
+  opacity: 0.6;
+
+  transition-property: opacity;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
 }
 
-.PickPanel .Column{
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111), to( #11111166 ) );
-  height: fill-parent-flow(1.0);
+.PickButton{
+  width: fill-parent-flow(1.0);
+  height: 100%;
 }
 
 .PickPanel Label{
@@ -95,9 +110,8 @@
   vertical-align: bottom;
   color: #a0a0a0;
   font-weight: thin;
-  font-size: 50;
+  font-size: 15;
   background-color: black;
-  opacity: 0.5;
   
   width: fill-parent-flow(1.0);
   margin-top: 0px;
@@ -105,8 +119,13 @@
 }
 
 .PickPanel .PickButton{
-    vertical-align: center;
-    horizontal-align: center;
+  vertical-align: center;
+  horizontal-align: center;
+}
+
+.PickPanel:hover{
+  
+  opacity: 1;
 }
 
 .VertBar
@@ -117,59 +136,293 @@
   opacity: 0.04;
 }
 
-.SatyrBg
+.HeroPanel{
+  transition-property: transform;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.HeroPanel:hover{
+  transform:  scaleX(1.15) scaleY(1.15);
+}
+
+#npc_dota_hero_nevermore_bg
 {   
     width: 100%;
     height: 100%;
-    background-image: url("file://{images}/satyr_bg.jpg");
-    background-position: 0% 0%;
-    background-size: contain;
+    background-image: url("file://{images}/pickscreen/shadowfiend_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
-.ShadowFiendBg
+
+#npc_dota_hero_storm_spirit_bg
+{   
+
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/stormspirit_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_storm_spirit_bg:hover{
+  
+}
+
+#npc_dota_hero_templar_assassin_bg
 {   
     width: 100%;
     height: 100%;
-    background-image: url("file://{images}/shadowfiend_bg.jpg");
-    background-position: 0% 0%;
-    background-size: contain;
+    background-image: url("file://{images}/pickscreen/templarassassin_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
-.PickButton
-{
-  transition-property: background-color;
-  transition-duration: 0.15s;
-  transition-timing-function: linear;
+#npc_dota_hero_tinker_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/tinker_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.PickButton:hover
-{
-  background-color: gradient( linear, 0% 100%, 0% 0%, from( #1d1d1d ), to( #1d1d1d00 ) );
+#npc_dota_hero_invoker_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/invoker_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_obsidian_destroyer_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/outworlddevourer_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_queenofpain_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/queenofpain_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_puck_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/puck_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_death_prophet_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/deathprophet_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_leshrac_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/leshrac_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_zuus_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/zeus_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_ember_spirit_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/emberspirit_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_pudge_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/pudge_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_lina_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/lina_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_viper_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/viper_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_magnataur_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/magnus_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_sniper_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/sniper_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_dragon_knight_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/dragonknight_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_razor_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/razor_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_kunkka_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/kunkka_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_brewmaster_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/brewmaster_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_night_stalker_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/nightstalker_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_huskar_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/huskar_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_tiny_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/tiny_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_windrunner_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/windranger_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_zeus_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/zeus_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#npc_dota_hero_satyr_bg
+{   
+    width: 100%;
+    height: 100%;
+    background-image: url("file://{images}/pickscreen/satyr_bg.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .PickButton:active
 {
-  background-color: #4A4A4A99;
   pre-transform-scale2d: 1.02;
-}
-
-.PickButton:hover Label
-{
-  visibility: visible;
-  animation-name: bounce;
-}
-
-
-@keyframes 'bounce' {
-  0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  20% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  53% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-  80% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
-
-  40% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
-  43% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-10px);}
-
-  70% {animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060); transform: translateY(-5px);}
 }

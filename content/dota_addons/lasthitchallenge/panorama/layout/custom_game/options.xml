@@ -14,6 +14,7 @@
 	 	<Panel class="ControlPanelContainer">
 		  	<Panel id="Maximized">
 		  		<Panel class="MinimizeButton">
+			  		<Label id="hero_header" text=""/>
 			  		<Label id="records_header" text="#controlpanel_records"/>
 			  	</Panel>
 			  	<Panel class="Category">

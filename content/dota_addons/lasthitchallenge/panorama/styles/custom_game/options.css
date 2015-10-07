@@ -24,7 +24,7 @@
     flow-children: right;
     vertical-align: middle;
     horizontal-align: left;
-    height: 740px;
+    height: 780px;
     width: 190px;
     font-size: 16;
     background-color: #181818dd;
@@ -50,7 +50,7 @@
 	height: 16px;
 	vertical-align: middle;
 	horizontal-align: right;
-	background-image: url("file://{images}/control_icons/double_arrow_left.png");
+	background-image: url("s2r://panorama/images/control_icons/double_arrow_left.png");
 	background-position: 0% 50%;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -143,6 +143,7 @@
 .MinimizeButton
 {
 	horizontal-align: right;
+	flow-children: down;
 }
 
 .MinimizeButton Label

@@ -27,13 +27,15 @@ function OnResetAnimation(data) {
 	scorepanel.SetHasClass( "dn_anim", false );
 }
 
-function OnHeroPicked(bRepick){
-	if (!bRepick.value){
-		$("#score_panel").style.visibility = "visible";
-		$("#clock_panel").style.visibility = "visible";
-	} else {
-		$("#clock_panel").style.visibility = "collapse";
-		$("#score_panel").style.visibility = "collapse";
+function OnHeroPicked(data){
+	if (data.hero == null){
+		if (!data.repick){
+			$("#score_panel").style.visibility = "visible";
+			$("#clock_panel").style.visibility = "visible";
+		} else {
+			$("#clock_panel").style.visibility = "collapse";
+			$("#score_panel").style.visibility = "collapse";
+		}
 	}
 }
 

@@ -1,33 +1,24 @@
 "use strict";
 var time = 600;
-
-function OnPickTwo(){
-    time = 150;
-}
-
-function OnPickFive(){
-    time = 300;
-}
-
-function OnPickSeven(){
-    time = 450;
-}
-
-function OnPickTen(){
-    time = 600;
-}
-
-function OnPick() {
+var hero = null;
+function OnPick(time) {
     GameEvents.SendCustomGameEventToServer( "time_picked", { "time" : time });
-	GameEvents.SendEventClientSide("hero_picked", {value : false})
+	GameEvents.SendEventClientSide("hero_picked", {repick : false})
     GameEvents.SendEventClientSide("time_picked", {value : time})
     $.GetContextPanel().DeleteAsync(0);
 }
 
-function OnHeroPicked(bRepick){
-    if (!bRepick.value) {
-        $.GetContextPanel().DeleteAsync(0);
-    }    
+function OnHeroPicked(data){
+    if (data.hero == null){
+        if (!data.repick) {
+            $.GetContextPanel().DeleteAsync(0);
+        }
+    }
+}
+
+function OnBack(){
+    $.Msg("OnBack");
+    $.GetContextPanel().DeleteAsync(0);
 }
 
 (function () {
