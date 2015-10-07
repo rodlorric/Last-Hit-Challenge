@@ -1,6 +1,7 @@
 "use strict";
 
 function OnEndScreen(data) {
+	$.Msg("OnEndScreen...");
 	//Totals
 	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", "stats_total_cs" );
 	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", "stats_total_lh" );
@@ -22,9 +23,9 @@ function OnEndScreen(data) {
 	$("#stats_streak_dn").text = stats_streak_dn.value;
 
 	//Session Records
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time );
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time );
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time );
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
 	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy" );
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
@@ -127,10 +128,17 @@ function OnEndScreen(data) {
 }
 
 function OnRestart(){
-	GameEvents.SendCustomGameEventToServer( "restart", {});
-
-	//clearing the graph...
 	$("#end_screen_panel").ToggleClass("Maximized");
+	GameEvents.SendCustomGameEventToServer( "restart", {});
+	ClearGraph()
+}
+
+function OnQuit(){
+	GameEvents.SendCustomGameEventToServer( "quit", {});
+}
+
+function ClearGraph(){
+	//clearing the graph...
 	var graph_children = $("#graph_container").Children();
 	for (var i in graph_children){
 		graph_children[i].DeleteAsync(0.0);
@@ -142,12 +150,10 @@ function OnRestart(){
 	}
 }
 
-function OnQuit(){
-	GameEvents.SendCustomGameEventToServer( "quit", {});
-}
-
 function OnPickButton(){
 	$("#end_screen_panel").ToggleClass("Maximized");
+	ClearGraph();
+
 	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
 	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	GameEvents.SendCustomGameEventToServer( "repick", {})
