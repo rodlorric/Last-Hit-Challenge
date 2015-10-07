@@ -112,7 +112,7 @@ function OnTimePicked(time){
     var minutes = date.toISOString().substr(14, 5);
 
     $("#hero_header").text = $.Localize(hero_picked);
-	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes;
+	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling == "lvl"?"#lvl":"#nolvl");
 	$.Schedule( 1, OnResetAnimation );
 }
 

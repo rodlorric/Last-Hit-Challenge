@@ -50,11 +50,12 @@
 		"stats_last_hits"					"ÚLTIMOS GOLPES"
 		"stats_denies"						"DENEGACIONES"
 		"stats_misses"						"FALLOS"
-
 		"timescreen_choose_time"			"Selecciona la duración"
 		"timescreen_two_n_half_min"			"02:30"
 		"timescreen_five_minutes"			"05:00"
 		"timescreen_seven_n_half_minutes"	"07:30"
 		"timescreen_ten_minutes"			"10:00"
+		"lvl"								"Niv.On"
+		"nolvl"								"Niv.Off"
 	}
 }

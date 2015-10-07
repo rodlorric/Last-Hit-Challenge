@@ -15,7 +15,7 @@
 		  	<Panel id="Maximized">
 		  		<Panel class="MinimizeButton">
 			  		<Label id="hero_header" text=""/>
-			  		<Label id="records_header" text="#controlpanel_records"/>
+			  		<Label style="font-size: 16;" id="records_header" text="#controlpanel_records"/>
 			  	</Panel>
 			  	<Panel class="Category">
 				 	<Label text="#controlpanel_creep_score"/>

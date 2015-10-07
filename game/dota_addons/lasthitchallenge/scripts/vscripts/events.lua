@@ -221,7 +221,6 @@ function CLastHitChallenge:EndGame()
 	lh_history = c_lh
 	dn_history = c_dn
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
-
 	
 	local session_accuracy = 0
 	if session_cs == 0 and total_misses == 0 then
@@ -248,7 +247,7 @@ function CLastHitChallenge:EndGame()
 	CustomNetTables:SetTableValue( "stats_time", "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
 
 	seconds = 0
-	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {time = MAXTIME, hero = hero_picked})
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {time = MAXTIME, hero = hero_picked, level = leveling})
 end
 
 --[[ Make Towers invulnerable
