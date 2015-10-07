@@ -86,10 +86,6 @@ end
 function CLastHitChallenge:ClearData()
 	restarts = restarts + 1
 
-	if seconds < shortest_time then
-		shortest_time = seconds
-	end
-
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
 	end
@@ -152,6 +148,11 @@ function CLastHitChallenge:SetGameFrozen( bFreeze )
 end
 
 function CLastHitChallenge:EndGame()
+
+	if seconds < shortest_time or shortest_time == MAXTIME then
+		shortest_time = seconds
+	end
+
 	--PauseGame(true)
 	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:SetGameFrozen(true)
