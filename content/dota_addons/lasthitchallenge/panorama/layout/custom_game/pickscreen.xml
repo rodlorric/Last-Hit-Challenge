@@ -12,73 +12,73 @@
 			<Panel class="PickPanelSuperContainer">
 				<Panel class="PickPanelContainer">
 					<Panel class="PickPanel">
-						<Button id="npc_dota_hero_nevermore" class="PickButton" onactivate="OnPick('npc_dota_hero_nevermore');">
+						<Button id="npc_dota_hero_nevermore" class="PickButton" onactivate="OnPick('nevermore');">
 							<Panel class="HeroPanel" id="npc_dota_hero_nevermore_bg"/>
 							<Label text="#npc_dota_hero_nevermore" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_storm_spirit');">	
+						<Button class="PickButton" onactivate="OnPick('storm_spirit');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_storm_spirit_bg"/>
 							<Label text="#npc_dota_hero_storm_spirit" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_templar_assassin');">			
+						<Button class="PickButton" onactivate="OnPick('templar_assassin');">			
 							<Panel class="HeroPanel" id="npc_dota_hero_templar_assassin_bg"/>
 							<Label text="#npc_dota_hero_templar_assassin" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_tinker');">	
+						<Button class="PickButton" onactivate="OnPick('tinker');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_tinker_bg"/>
 							<Label text="#npc_dota_hero_tinker" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_invoker');">	
+						<Button class="PickButton" onactivate="OnPick('invoker');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_invoker_bg"/>
 							<Label text="#npc_dota_hero_invoker" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_obsidian_destroyer');">	
+						<Button class="PickButton" onactivate="OnPick('obsidian_destroyer');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_obsidian_destroyer_bg"/>
 							<Label text="#npc_dota_hero_obsidian_destroyer" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_queenofpain');">	
+						<Button class="PickButton" onactivate="OnPick('queenofpain');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_queenofpain_bg"/>
 							<Label text="#npc_dota_hero_queenofpain" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_puck');">	
+						<Button class="PickButton" onactivate="OnPick('puck');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_puck_bg"/>
 							<Label text="#npc_dota_hero_puck" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_death_prophet');">	
+						<Button class="PickButton" onactivate="OnPick('death_prophet');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_death_prophet_bg"/>
 							<Label text="#npc_dota_hero_death_prophet" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_leshrac');">	
+						<Button class="PickButton" onactivate="OnPick('leshrac');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_leshrac_bg"/>
 							<Label text="#npc_dota_hero_leshrac" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_ember_spirit');">	
+						<Button class="PickButton" onactivate="OnPick('ember_spirit');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_ember_spirit_bg"/>
 							<Label text="#npc_dota_hero_ember_spirit" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_lina');">	
+						<Button class="PickButton" onactivate="OnPick('lina');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_lina_bg"/>
 							<Label text="#npc_dota_hero_lina" hittest="false"/>
 					  	</Button>
@@ -86,73 +86,73 @@
 				</Panel>
 				<Panel class="PickPanelContainer">
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_viper');">	
+						<Button class="PickButton" onactivate="OnPick('viper');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_viper_bg"/>
 							<Label text="#npc_dota_hero_viper" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_magnataur');">	
+						<Button class="PickButton" onactivate="OnPick('magnataur');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_magnataur_bg"/>
 							<Label text="#npc_dota_hero_magnataur" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_sniper');">	
+						<Button class="PickButton" onactivate="OnPick('sniper');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_sniper_bg"/>
 							<Label text="#npc_dota_hero_sniper" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_dragon_knight');">	
+						<Button class="PickButton" onactivate="OnPick('dragon_knight');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_dragon_knight_bg"/>
 							<Label text="#npc_dota_hero_dragon_knight" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_kunkka');">	
+						<Button class="PickButton" onactivate="OnPick('kunkka');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_kunkka_bg"/>
 							<Label text="#npc_dota_hero_kunkka" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_brewmaster');">	
+						<Button class="PickButton" onactivate="OnPick('brewmaster');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_brewmaster_bg"/>
 							<Label text="#npc_dota_hero_brewmaster" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_night_stalker');">	
+						<Button class="PickButton" onactivate="OnPick('night_stalker');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_night_stalker_bg"/>
 							<Label text="#npc_dota_hero_night_stalker" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_huskar');">	
+						<Button class="PickButton" onactivate="OnPick('huskar');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_huskar_bg"/>
 							<Label text="#npc_dota_hero_huskar" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_tiny');">	
+						<Button class="PickButton" onactivate="OnPick('tiny');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_tiny_bg"/>
 							<Label text="#npc_dota_hero_tiny" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_windrunner');">	
+						<Button class="PickButton" onactivate="OnPick('windrunner');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_windrunner_bg"/>
 							<Label text="#npc_dota_hero_windrunner" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_zuus');">	
+						<Button class="PickButton" onactivate="OnPick('zuus');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_zeus_bg"/>
 							<Label text="#npc_dota_hero_zuus" hittest="false"/>
 					  	</Button>
 					</Panel>
 					<Panel class="PickPanel">
-						<Button class="PickButton" onactivate="OnPick('npc_dota_hero_jakiro');">	
+						<Button class="PickButton" onactivate="OnPick('jakiro');">	
 							<Panel class="HeroPanel" id="npc_dota_hero_satyr_bg"/>
 							<Label text="#npc_dota_hero_jakiro" hittest="false"/>
 					  	</Button>

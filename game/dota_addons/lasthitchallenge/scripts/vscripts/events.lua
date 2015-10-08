@@ -24,6 +24,7 @@ hidehelp = 0
 iter = 1
 ----------------------
 hero_picked = nil
+new_record = false
 ----------------------
 function CLastHitChallenge:OnHeroPicked(hero_param)
 	if Tutorial:GetTimeFrozen() then
@@ -69,8 +70,12 @@ function CLastHitChallenge:GiveBlinkDagger (hero)
 end
 
 -- Evaluate the state of the game
+initialize = false
 function CLastHitChallenge:OnThink()
-	-- Stop thinking if game is paused
+	if GameRules:State_Get() == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP  and not initialize then
+		CLastHitChallenge:InitializeData()
+	end
+
 	if GameRules:IsGamePaused() == true then
   		return 1
 	end
@@ -172,6 +177,7 @@ function CLastHitChallenge:EndGame()
 		accuracy = 0
 	else
 		accuracy = ( stats_total_cs.value * 100) / (stats_total_cs.value + misses)
+		accuracy = round(accuracy, 0)
 	end
 	CustomNetTables:SetTableValue("stats_totals", "stats_total_accuracy", { value = accuracy })
 
@@ -209,11 +215,15 @@ function CLastHitChallenge:EndGame()
 	max_last_hit_streak = 0
 
 	--Records
-	local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
+	--local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
+	local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "srac" .. hero_picked .. tostring(MAXTIME) .. leveling)
 	if accuracy > stats_record_accuracy.value then
 		stats_record_accuracy.value = accuracy
+		--CustomNetTables:SetTableValue("stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_accuracy)
+		CustomNetTables:SetTableValue("stats_records", "srac" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_accuracy)
+		new_record = true
 	end
-	CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", stats_record_accuracy)
+
 
 	--Misc
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_restart", { value = restarts })
@@ -369,15 +379,15 @@ function CLastHitChallenge:OnHideHelp( event )
 	end
 end
 
-leveling = "lvl"
+leveling = "l"
 function CLastHitChallenge:OnDisableLeveling( event )
 	if event.disable_leveling == 1 then	
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
-		leveling = "nolvl"
+		leveling = "n"
 	else
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(false)
-		leveling = "lvl"
+		leveling = "l"
 	end
 end
 
@@ -409,11 +419,13 @@ function CLastHitChallenge:OnEntityKilled (event)
 			end
 
 			
-			local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling )
+			--local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "stats_record_cs_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling )
+			local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", "srcs" .. hero_picked .. tostring(MAXTIME) .. leveling )
 			
 			--Deny
 			if friendly then
-				local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
+				--local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
+				local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", "srdn" .. hero_picked .. tostring(MAXTIME) .. leveling)
 				--streaks
 				deny_streak = deny_streak + 1
 				if deny_streak > max_deny_streak then
@@ -425,7 +437,9 @@ function CLastHitChallenge:OnEntityKilled (event)
 				if dn > stats_record_dn.value or  cs > stats_record_cs.value then
 					if dn > stats_record_dn.value then
 						stats_record_dn.value = dn
-						CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
+						--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
+						CustomNetTables:SetTableValue("stats_records", "srdn" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_dn)
+						new_record = true
 					end
 				end
 
@@ -444,7 +458,8 @@ function CLastHitChallenge:OnEntityKilled (event)
 				end
 
 			else --LastHit
-				local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
+				--local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "stats_record_lh_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
+				local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", "srlh" .. hero_picked .. tostring(MAXTIME) .. leveling)
 				--streak
 				last_hit_streak = last_hit_streak + 1
 				if last_hit_streak > max_last_hit_streak then
@@ -455,7 +470,9 @@ function CLastHitChallenge:OnEntityKilled (event)
 				if lh > stats_record_lh.value or cs > stats_record_cs.value then
 					if lh > stats_record_lh.value then
 						stats_record_lh.value = lh
-						CustomNetTables:SetTableValue("stats_records", "stats_record_lh_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_lh)
+						--CustomNetTables:SetTableValue("stats_records", "stats_record_lh_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_lh)
+						CustomNetTables:SetTableValue("stats_records", "srlh" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_lh)
+						new_record = true
 					end
 				end
 
@@ -480,7 +497,9 @@ function CLastHitChallenge:OnEntityKilled (event)
 			--Records
 			if cs > stats_record_cs.value then
 				stats_record_cs.value = cs
-				CustomNetTables:SetTableValue("stats_records", "stats_record_cs_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling , stats_record_cs)
+				--CustomNetTables:SetTableValue("stats_records", "stats_record_cs_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling , stats_record_cs)
+				CustomNetTables:SetTableValue("stats_records", "srcs" .. hero_picked .. tostring(MAXTIME) .. leveling , stats_record_cs)
+				new_record = true
 			end
 		else -- misses
 			if not killedUnit:IsHero() then
@@ -655,6 +674,63 @@ function CLastHitChallenge:OnQuit()
 	--SendToServerConsole("disconnect")
 end
 
+
+function CLastHitChallenge:GetRecords()
+	local hero_list = {"nevermore",
+						"storm_spirit",
+						"templar_assassin",
+						"tinker",
+						"invoker",
+						"obsidian_destroyer",
+						"queenofpain",
+						"puck",
+						"death_prophet",
+						"leshrac",
+						"ember_spirit",
+						"lina",
+						"viper",
+						"magnataur",
+						"sniper",
+						"dragon_knight",
+						"kunkka",
+						"brewmaster",
+						"night_stalker",
+						"huskar",
+						"tiny",
+						"windrunner",
+						"zuus",
+						"jakiro"
+					}
+	local time_list = {"150", "300", "450", "600"}
+	local type_list = {"cs", "lh", "dn", "ac"}
+	local level_list = {"l", "n"}
+
+	local data = {}
+
+	for i, typescore in pairs(type_list) do
+		for j, time in pairs(time_list) do
+			for k, hero in pairs(hero_list) do
+				for l, level in pairs(level_list) do
+					local table_name = "sr" .. typescore ..  hero ..  time .. level
+					local record = CustomNetTables:GetTableValue( "stats_records", table_name )
+					if record.value > 0 then
+						table.insert(data, {k = table_name, v = record.value})
+					end
+				end
+			end
+		end
+	end
+
+	if new_record then
+		local steamid = PlayerResource:GetSteamAccountID(0)
+		Storage:Put( steamid, data, function( resultTable, successBool )
+	    	if successBool then
+	        	print("Successfully put data in storage")
+	    	end
+		end)
+	end
+end
+
 function CLastHitChallenge:Clock()
 	Timers:CreateTimer("clock", {
 		useGameTime = true,
@@ -706,4 +782,103 @@ function CLastHitChallenge:ClearUnits()
 			UTIL_Remove( unit )
 		end
 	end
+end
+
+function CLastHitChallenge:InitializeData()
+	  	-- Populating tables
+	--Totals
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_cs", { value = 0} )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0} )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0} )
+
+	--Streaks
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_cs", { value = 0} )
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_lh", { value = 0} )
+	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_dn", { value = 0} )
+
+	--[[Records
+	local records_acc = CustomNetTables:GetTableValue( "stats_records", "stats_record_accuracy")
+	if (records_acc == nil) then
+		CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
+	end
+	]]
+	
+	local hero_list = {"nevermore",
+						"storm_spirit",
+						"templar_assassin",
+						"tinker",
+						"invoker",
+						"obsidian_destroyer",
+						"queenofpain",
+						"puck",
+						"death_prophet",
+						"leshrac",
+						"ember_spirit",
+						"lina",
+						"viper",
+						"magnataur",
+						"sniper",
+						"dragon_knight",
+						"kunkka",
+						"brewmaster",
+						"night_stalker",
+						"huskar",
+						"tiny",
+						"windrunner",
+						"zuus",
+						"jakiro"
+					}
+	local time_list = {"150", "300", "450", "600"}
+	local type_list = {"cs", "lh", "dn","ac"}
+	local level_list = {"l", "n"}
+
+	local steamid = PlayerResource:GetSteamAccountID(0)
+	local result = nil
+	Storage:Get(steamid, function( resultTable, successBool )
+	    if successBool then
+	        --DeepPrintTable(resultTable)
+	        for k,v in pairs(resultTable) do
+	        	CustomNetTables:SetTableValue("stats_records", v.k, { value = v.v} )
+	        end
+	    end
+
+    	for i, typescore in pairs(type_list) do
+			for j, time in pairs(time_list) do
+				for k, hero in pairs(hero_list) do
+					for l, level in pairs(level_list) do
+						--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
+						local val = CustomNetTables:GetTableValue("stats_records", "sr" .. typescore .. hero .. time .. level)
+						if val == nil then
+							--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
+							CustomNetTables:SetTableValue("stats_records", "sr" .. typescore .. hero .. time .. level, { value = 0} )
+						end
+					end
+				end
+			end
+		end
+	end)
+
+
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_cs", { value = 100 } )
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_lh", { value = 100 } )
+	CustomNetTables:SetTableValue( "stats_records", "stats_accuracy_dn", { value = 100 } )	
+
+	-- Total Details
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_foe", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_foe", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_lh", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_dn", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_friendly", { value = 0 } )
+	CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_foe", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_lh", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_dn", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = 0 } )
+	--CustomNetTables:SetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_foe", { value = 0 } )
+	initialize = true
 end

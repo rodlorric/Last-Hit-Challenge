@@ -31,10 +31,11 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 } 
 */
 function OnCreepScoreRecordChanged( table_name, key, data ){
+
 	var panel = $.GetContextPanel();	
-	var cs = "stats_record_cs";
-	var lh = "stats_record_lh";
-	var dn = "stats_record_dn";
+	var cs = "srcs";
+	var lh = "srlh";
+	var dn = "srdn";
 	
 	if (key.substring(0, cs.length) === cs){
 		$("#cs").text = data.value;
@@ -46,13 +47,16 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 		$("#dn").text = data.value;
 		panel.SetHasClass( "dn_anim", true );
 	} else if (key == "stats_accuracy_cs"){
-		$("#cs_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		//$("#cs_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		$("#cs_accuracy").text = data.value + "%";
 		panel.SetHasClass( "cs_accuracy_anim", true );
 	} else if (key == "stats_accuracy_lh"){
-		$("#lh_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		//$("#lh_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		$("#lh_accuracy").text = data.value + "%";
 		panel.SetHasClass( "lh_accuracy_anim", true );
 	} else if (key == "stats_accuracy_dn"){
-		$("#dn_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		//$("#dn_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
+		$("#dn_accuracy").text = data.value + "%";
 		panel.SetHasClass( "dn_accuracy_anim", true );
 	}
 	$.Schedule( 1, OnResetAnimation );
@@ -80,8 +84,8 @@ function OnToggle(){
 }
 
 
-var hero_picked = "npc_dota_hero_nevermore";
-var leveling = "lvl";
+var hero_picked = "nevermore";
+var leveling = true;
 function OnHeroPicked(data){
 	if (data.hero == null){
 		if (!data.repick){
@@ -97,22 +101,25 @@ function OnHeroPicked(data){
 
 function OnTimePicked(time){
 	var panel = $.GetContextPanel();
-	var suffix = hero_picked + "_" + time.value + "_" + leveling;
-	$.Msg("Suffix = " + suffix);
+	//var suffix = hero_picked + "_" + time.value + "_" + leveling;
+	var suffix = hero_picked + time.value + (leveling ? "n":"l");
 
-	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + suffix ).value;
+	//$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + suffix ).value;
+	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "srcs" + suffix ).value;
 	panel.SetHasClass( "cs_anim", true );	
-	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + suffix ).value;
+	//$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + suffix ).value;
+	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "srlh" + suffix ).value;
 	panel.SetHasClass( "lh_anim", true );	
-	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + suffix ).value;
+	//$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + suffix ).value;
+	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "srdn" + suffix ).value;
 	panel.SetHasClass( "dn_anim", true );
 
 	var date = new Date(null);
     date.setSeconds(time.value); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 
-    $("#hero_header").text = $.Localize(hero_picked);
-	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling == "lvl"?"#lvl":"#nolvl");
+    $("#hero_header").text = $.Localize("npc_dota_hero_" + hero_picked);
+	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
 	$.Schedule( 1, OnResetAnimation );
 }
 

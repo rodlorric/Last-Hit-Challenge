@@ -77,7 +77,7 @@
 					 		<Panel class="VertBar"/>
 					 		<Label text="#endscreen_denies"/>
 					 		<Panel class="VertBar"/>
-					 		<Label text="#endscreen_accuracy_at_10"/>
+					 		<Label id="acc_record" text="#endscreen_acc_record"/>
 					 	</Panel>
 					 	<Panel class="Row">
 					 		<Label id="stats_record_cs" text="0"/>
