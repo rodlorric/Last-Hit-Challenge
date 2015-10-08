@@ -17,7 +17,6 @@ function OnHeroPicked(data){
 }
 
 function OnBack(){
-    $.Msg("OnBack");
     $.GetContextPanel().DeleteAsync(0);
 }
 
