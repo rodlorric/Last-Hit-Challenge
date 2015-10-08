@@ -227,6 +227,7 @@ function CLastHitChallenge:EndGame()
 		session_accuracy = 0
 	else
 		session_accuracy = ( session_cs * 100) / (session_cs + total_misses)
+		session_accuracy = round(session_accuracy, 0)
 	end
 
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_session_accuracy", { value = session_accuracy })
@@ -528,8 +529,11 @@ function CLastHitChallenge:OnEntityKilled (event)
 		end
 
 		local lh_accuracy = ((lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe) == 0) and 100 or (lh * 100) / ( lh + melee_miss_foe + ranged_miss_foe + siege_miss_foe)
+		lh_accuracy = round(lh_accuracy)
 		local dn_accuracy = ((dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly) == 0) and 100 or (dn * 100) / (dn + melee_miss_friendly + ranged_miss_friendly + siege_miss_friendly)
+		dn_accuracy = round(dn_accuracy)
 		local cs_accuracy = ((lh + dn + misses) == 0) and 100 or ((lh + dn) * 100) / (lh + dn + misses)
+		cs_accuracy = round(cs_accuracy)
 		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = lh_accuracy })
 		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = dn_accuracy })
 		CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = cs_accuracy })

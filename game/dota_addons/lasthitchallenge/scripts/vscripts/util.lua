@@ -26,6 +26,11 @@ function SetTimer( cmdName, time )
     nCOUNTDOWNTIMER = time
 end
 
+function round(number, decimal)
+    local multiplier = 10^(decimal or 0)
+    return math.floor(number * multiplier + 0.5) / multiplier
+end
+
 -- Print contents of `tbl`, with indentation.
 -- `indent` sets the initial level of indentation.
 function tprint (tbl, indent)
