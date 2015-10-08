@@ -41,8 +41,11 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
  	--Spawn the hero in an empty spot
  	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(0))
 
-  	PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
-	CLastHitChallenge:GiveZeroGold(PlayerResource:GetSelectedHeroEntity(0))
+	local phero = PlayerResource:GetPlayer(0):GetAssignedHero()
+	local nhero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_" .. hero_picked, 0, 0)
+	UTIL_Remove(phero)
+  	
+	--CLastHitChallenge:GiveZeroGold(PlayerResource:GetSelectedHeroEntity(0))
   	--CLastHitChallenge:GiveBlinkDagger(hero)
 end
 
@@ -627,14 +630,20 @@ function CLastHitChallenge:OnRestart()
 	local player_hero = PlayerResource:GetSelectedHeroEntity(0)
 	CLastHitChallenge:SafeSpawn(player_hero)
 
-	PlayerResource:ReplaceHeroWith( 0, hero_picked, 0, 0)
-	CLastHitChallenge:GiveZeroGold(player_hero)
+	local phero = PlayerResource:GetPlayer(0):GetAssignedHero()
+	local nhero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_" .. hero_picked, 0, 0)
+	UTIL_Remove(phero)
+
+	--CLastHitChallenge:GiveZeroGold(player_hero)
 	iter = 1
 	CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()
 end
 
 function CLastHitChallenge:OnQuit()
+	CLastHitChallenge:GetRecords()
+
+
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
 	end
