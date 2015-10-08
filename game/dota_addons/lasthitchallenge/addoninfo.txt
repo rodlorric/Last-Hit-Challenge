@@ -6,4 +6,14 @@
 	{
 		"MaxPlayers"		"1"
 	}
+
+	"Default_Keys"
+	{
+		"01"
+		{
+			"Key"		"F9"
+			"Command"	"CustomGamePause"		// for a normal command
+			"Name"		"Pause"
+		}
+	}
 }
