@@ -24,13 +24,13 @@ function OnEndScreen(data) {
 
 	//Session Records
 	//var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "srcs" + data.hero + data.time + data.level);
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "c" + data.hero + data.time + data.level);
 	//var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "srlh" + data.hero + data.time + data.level);
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "l" + data.hero + data.time + data.level);
 	//var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "srdn" + data.hero + data.time + data.level);
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "d" + data.hero + data.time + data.level);
 	//var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "srac" + data.hero + data.time + data.level);
+	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "a" + data.hero + data.time + data.level);
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
 	$("#stats_record_dn").text = stats_record_dn.value;

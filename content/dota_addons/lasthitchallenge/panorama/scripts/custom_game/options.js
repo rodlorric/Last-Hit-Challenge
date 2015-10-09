@@ -33,9 +33,9 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 function OnCreepScoreRecordChanged( table_name, key, data ){
 
 	var panel = $.GetContextPanel();	
-	var cs = "srcs";
-	var lh = "srlh";
-	var dn = "srdn";
+	var cs = "c";
+	var lh = "l";
+	var dn = "d";
 	
 	if (key.substring(0, cs.length) === cs){
 		$("#cs").text = data.value;
@@ -105,20 +105,23 @@ function OnTimePicked(time){
 	var suffix = hero_picked + time.value + (leveling ? "n":"l");
 
 	//$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + suffix ).value;
-	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "srcs" + suffix ).value;
+	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "c" + suffix ).value;
 	panel.SetHasClass( "cs_anim", true );	
 	//$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + suffix ).value;
-	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "srlh" + suffix ).value;
+	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "l" + suffix ).value;
 	panel.SetHasClass( "lh_anim", true );	
 	//$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + suffix ).value;
-	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "srdn" + suffix ).value;
+	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "d" + suffix ).value;
 	panel.SetHasClass( "dn_anim", true );
 
 	var date = new Date(null);
     date.setSeconds(time.value); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 
-    $("#hero_header").text = $.Localize("npc_dota_hero_" + hero_picked);
+
+    $.Msg("hero_name " + HeroName(hero_picked) );
+
+    $("#hero_header").text = $.Localize(HeroName(hero_picked));
 	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
 	$.Schedule( 1, OnResetAnimation );
 }
@@ -128,6 +131,35 @@ function OnPickButton(){
 	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	GameEvents.SendCustomGameEventToServer( "repick", {})
 	GameEvents.SendEventClientSide("hero_picked", {repick : true})
+}
+
+function HeroName(hero_picked){
+	var hero_name = { 11 : "npc_dota_hero_nevermore",
+						17 : "npc_dota_hero_storm_spirit",
+						46 : "npc_dota_hero_templar_assassin",
+						34 : "npc_dota_hero_tinker",
+						74 : "npc_dota_hero_invoker",
+						76 : "npc_dota_hero_obsidian_destroyer",
+						39 : "npc_dota_hero_queenofpain",
+						13 : "npc_dota_hero_puck",
+						43 : "npc_dota_hero_death_prophet",
+						52 : "npc_dota_hero_leshrac",
+						106 : "npc_dota_hero_ember_spirit",
+						25 : "npc_dota_hero_lina",
+						47 : "npc_dota_hero_viper",
+						97 : "npc_dota_hero_magnataur",
+						35 : "npc_dota_hero_sniper",
+						49 : "npc_dota_hero_dragon_knight",
+						23 : "npc_dota_hero_kunkka",
+						78 : "npc_dota_hero_brewmaster",
+						60 : "npc_dota_hero_night_stalker",
+						59 : "npc_dota_hero_huskar",
+						19 : "npc_dota_hero_tiny",
+						21 : "npc_dota_hero_windrunner",
+						22 : "npc_dota_hero_zuus",
+						64 : "npc_dota_hero_jakiro"
+					}
+	return hero_name[hero_picked]
 }
 
 (function () {
