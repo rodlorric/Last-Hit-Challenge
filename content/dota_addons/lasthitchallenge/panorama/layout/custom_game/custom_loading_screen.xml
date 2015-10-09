@@ -1,0 +1,14 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+	</styles>
+	<Panel class="LastHitChallengeLoadingRoot">
+		<Panel id="seq" >
+			<Image id="seq_bg" class="SeqBg" src="file://{images}/pickscreen/bg.jpg" />
+		</Panel>
+		<Panel id="TitlePanel">
+			<Label id="LastHitChallengeTitle" text="#addon_game_name" style="" />
+		</Panel>
+	</Panel>
+</root>
