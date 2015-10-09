@@ -112,6 +112,9 @@ function CLastHitChallenge:ClearData()
 	history = {}
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
 
+	--clearing particles helper
+	hurtunits = {}
+
 	--Totals Details
 	--detailed stats totals
 	melee_lh = 0
@@ -298,15 +301,10 @@ function CLastHitChallenge:OnHurt( event )
 		end
 
 		--if (hurtUnit:IsCreep() or hurtUnit:IsMechanical() or hurtUnit:IsTower()) and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
-		if hurtUnit:IsCreep() and (hurtUnit:GetHealth() < hurtUnit:GetMaxHealth() * 0.25) and (hidehelp == 0) then
-			local index = hurtUnit:entindex()
-			if hurtunits[index] == nil then
-				hurtunits[index] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, hurtUnit)
-			end
-
-			if hurtUnit:GetHealth() == 0 then
-				ParticleManager:DestroyParticle(hurtunits[index], true)
-			end
+		local index = hurtUnit:entindex()
+		local threshold = hurtUnit:GetHealth() < (hurtUnit:GetMaxHealth() * 0.25)
+		if hurtUnit:IsCreep() and (threshold) and (hidehelp == 0) and (hurtunits[index] == nil) then
+			hurtunits[index] = ParticleManager:CreateParticle(particle_aura, PATTACH_ABSORIGIN_FOLLOW, hurtUnit)
 		end
 	end
 	if hurtUnit:IsTower() then
@@ -404,6 +402,14 @@ function CLastHitChallenge:OnEntityKilled (event)
 	local killedTeam = killedUnit:GetTeam()
 	local attacker = EntIndexToHScript( event.entindex_attacker )
 	if attacker:entindex() ~= killedUnit:entindex() then --UTIL_removed units count as killed by self
+
+		--remove particles only from killed units
+		local index = killedUnit:entindex()
+		if hurtunits[index] ~= nil then
+			ParticleManager:DestroyParticle(hurtunits[index], true)
+			hurtunits[index] = nil
+		end
+
 		local friendly = (PlayerResource:GetTeam(0) == killedUnit:GetTeam())
 
 		local lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
@@ -836,7 +842,6 @@ function CLastHitChallenge:InitializeData()
 	local result = nil
 	Storage:Get(steamid, function( resultTable, successBool )
 	    if successBool then
-	        --DeepPrintTable(resultTable)
 	        for k,v in pairs(resultTable) do
 	        	CustomNetTables:SetTableValue("stats_records", v.k, { value = v.v} )
 	        end
