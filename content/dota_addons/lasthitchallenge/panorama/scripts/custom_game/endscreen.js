@@ -214,15 +214,21 @@ function LoadData(stats_panel, type){
 
 		var melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type ).value;
 		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
-		stats_melee.text = melee + " / " + (melee + missed_melee);
+		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((melee * 100) / (missed_melee + melee)) : 100)).toFixed(0)) + "% ";
+		
+		stats_melee.text = accuracy_melee + "(" + melee + " / " + (melee + missed_melee) + ")";
 
 		var ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type ).value;
 		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
-		stats_ranged.text = ranged + " / " + (ranged + missed_ranged);
+		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((ranged * 100) / (missed_ranged + ranged)) : 100)).toFixed(0)) + "% ";
+		
+		stats_ranged.text = accuracy_ranged + "(" + ranged + " / " + (ranged + missed_ranged) + ")";
 
 		var siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type ).value;
 		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
-		stats_siege.text = siege + " / " + (siege + missed_siege);
+		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((siege * 100) / (missed_siege + siege)) : 100)).toFixed(0)) + "% ";
+		
+		stats_siege.text = accuracy_siege + "(" + siege + " / " + (siege + missed_siege) + ")";
 
 		//var tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_" + type ).value;
 		//var missed_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
@@ -233,19 +239,28 @@ function LoadData(stats_panel, type){
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_dn").value;
 		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_foe").value;
-		stats_melee.text = missed_melee + " / " + (missed_melee + cs_melee);
+		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((cs_melee * 100) / (missed_melee + cs_melee)) : 100)).toFixed(0)) + "% ";
+		
+		stats_melee.text = accuracy_melee + "(" + missed_melee + " / " + (missed_melee + cs_melee) + ")";
+
 
 		var cs_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn").value;
 		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_foe").value;
-		stats_ranged.text = missed_ranged + " / " + (missed_ranged + cs_ranged);
+		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((cs_ranged * 100) / (missed_ranged + cs_ranged)) : 100)).toFixed(0)) + "% ";
+		
+		stats_ranged.text = accuracy_ranged + "(" + missed_ranged + " / " + (missed_ranged + cs_ranged) + ")";
+
 
 		var cs_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_lh").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_dn").value;
 		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_foe").value;
-		stats_siege.text = missed_siege + " / " + (missed_siege + cs_siege);
+		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((cs_siege * 100) / (missed_siege + cs_siege)) : 100)).toFixed(0)) + "% ";
+		
+		stats_siege.text = accuracy_siege + "(" + missed_siege + " / " + (missed_siege + cs_siege) + ")";
+
 
 		//var cs_tower = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_lh").value + 
 		//			CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_tower_dn").value;
