@@ -24,7 +24,7 @@
     flow-children: right;
     vertical-align: middle;
     horizontal-align: left;
-    height: 780px;
+    height: 730px;
     width: 190px;
     font-size: 16;
     background-color: #181818dd;
@@ -88,7 +88,7 @@
 
 .ControlPanel.Minimized
 {
-    transform: translateX( 195px ) translateY( -100px );
+    transform: translateX( 195px ) translateY(-100px);
 }
 
 .ControlPanelContainer Label
@@ -96,12 +96,11 @@
 	flow-children: down;
 
 	horizontal-align: left;
-	font-size: 24;	
 	color: #444444;
-	margin-top: 6px;
-	margin-bottom: 6px;
-	margin-left: 6px;
-	margin-right: 6px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
 }
 
 .ControlPanelContainer .Category Label
