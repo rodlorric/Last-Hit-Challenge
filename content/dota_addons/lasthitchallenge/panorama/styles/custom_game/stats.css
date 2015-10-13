@@ -51,6 +51,11 @@
   color: #666666;
 }
 
+.Header .CloseButton{
+  vertical-align: center;
+  horizontal-align: right;
+}
+
 .Category
 {
   flow-children: down;
