@@ -141,7 +141,11 @@ function OnEndScreen(data) {
 function OnRestart(){
 	$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "restart", {});
-	ClearGraph()
+}
+
+function OnCancel(){
+	$("#end_screen_panel").ToggleClass("Maximized");
+	GameEvents.SendCustomGameEventToServer( "cancel", {});
 }
 
 function OnQuit(){

@@ -11,6 +11,8 @@
 	 	<Panel class="EndScreenPanelContainer">
 		  		<Panel class="Header">
 			  		<Label text="#endcreen_title"/>
+		  			<Button class="CloseButton" onactivate="OnQuit()"/>
+		  			<Button id="cancel_button_top" class="CloseButton" onactivate="OnCancel()"/>			  					  			
 			  	</Panel>
 			  	<Panel class="Category">
 			  			<Label text="#endscreen_totals"/>
@@ -142,6 +144,12 @@
 				</Panel>
 				<Panel class="HorBar"/>
 		 		<Panel class="ButtonPanel">
+			  		<Button id="cancel_button" style="visibility: collapse;" class="OptionButton" onactivate="OnCancel()">
+			  			<Label text="#back"/>
+			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnLeaderBoardButton()">
+			  			<Label text="#leaderboard"/>
+			  		</Button>	  			
 		 			<Button class="OptionButton" onactivate="OnPickButton()">
 			  			<Label text="#pick"/>
 			  		</Button>	  			

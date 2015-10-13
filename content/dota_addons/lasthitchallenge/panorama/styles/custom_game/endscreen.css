@@ -72,6 +72,18 @@
   color: #666666;
 }
 
+.Header .CloseButton{
+  vertical-align: center;
+  horizontal-align: right;
+}
+
+#cancel_button_top{
+  vertical-align: center;
+  horizontal-align: right;
+  margin-right: 40px;
+  background-image: url("s2r://panorama/images/control_icons/return_to_game_png.vtex");
+}
+
 .Category
 {
   flow-children: down;
