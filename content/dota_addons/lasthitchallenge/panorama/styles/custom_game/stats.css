@@ -1,7 +1,8 @@
 .StatsRoot
 {
     width: 100%;
-    height: 100%;
+    height: 96%;
+    vertical-align: bottom;
 }
 
 .StatsPanel
@@ -316,11 +317,10 @@
 
 #DimBackground
 {
-	margin-top: 50px;
 	vertical-align: center;
 	horizontal-align: middle;
 	width: 1440px;
-	height: 800px;
+	height: 900px;
 	background-color: #060606;
 	opacity: 0.94;
 
@@ -332,11 +332,10 @@
 
 #BlurBackground
 {
-	margin-top: 50px;
 	vertical-align: center;
 	horizontal-align: middle;
 	width: 1440px;
-	height: 800px;
+	height: 900px;
 	background-color: #00000055;
 	opacity: 1.0;
 
