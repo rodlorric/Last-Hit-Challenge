@@ -136,6 +136,8 @@ function CLastHitChallenge:ClearData()
 	-- clearing creep score
 	CustomNetTables:SetTableValue("stats_totals", "stats_total_lh", { value = 0 } )
 	CustomNetTables:SetTableValue("stats_totals", "stats_total_dn", { value = 0 } )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_cs", { value = 0 } )
+	CustomNetTables:SetTableValue("stats_totals", "stats_total_accuracy", { value = 100 } )
 	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_lh", { value = 100 })
 	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_dn", { value = 100 })
 	CustomNetTables:SetTableValue("stats_records", "stats_accuracy_cs", { value = 100 })
