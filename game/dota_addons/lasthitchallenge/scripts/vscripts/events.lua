@@ -266,10 +266,11 @@ function CLastHitChallenge:EndGame()
 	
 	local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
 	local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-	table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
-	lh_history = c_lh
-	dn_history = c_dn
+	table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history, time = seconds})
+	--lh_history = c_lh
+	--dn_history = c_dn
 	CustomNetTables:SetTableValue("stats_misc", "stats_misc_history", history)
+	table.remove(history)
 	
 	local session_accuracy = 0
 	if session_cs == 0 and total_misses == 0 then
@@ -296,8 +297,11 @@ function CLastHitChallenge:EndGame()
 	sec = string.format("%.2d", shortest_time%60)
 	CustomNetTables:SetTableValue( "stats_time", "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
 
-	seconds = 0
-	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {time = MAXTIME, hero = hero_picked, level = leveling})
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "end_screen", {time = seconds, hero = hero_picked, level = leveling, maxtime = MAXTIME})
+	
+	if seconds == MAXTIME then
+		seconds = 0	
+	end
 end
 
 --[[ Make Towers invulnerable
@@ -616,9 +620,11 @@ function CLastHitChallenge:SpawnCreeps()
 				CLastHitChallenge:Spawner()
 				local c_lh = PlayerResource:GetLastHits(0) - current_cs["lh"]
 				local c_dn = PlayerResource:GetDenies(0) - current_cs["dn"]
-				table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history})
-				lh_history = c_lh
-				dn_history = c_dn
+				if seconds > 1 then
+					table.insert(history, { lh = c_lh - lh_history, dn = c_dn - dn_history, time = seconds-1})
+					lh_history = c_lh
+					dn_history = c_dn
+				end
 				return 30.0
 			end
 		})
