@@ -48,7 +48,7 @@
 			  			<Label text="#restart"/>
 			  		</Button>
 			  		<Button class="OptionButton" onactivate="OnQuitButton()">
-			  			<Label text="#quit"/>
+			  			<Label text="#show_stats"/>
 			  		</Button>
 				</Panel>
 			</Panel>

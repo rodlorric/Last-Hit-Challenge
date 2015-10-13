@@ -9,7 +9,8 @@ function OnRestartButton(){
 }
 
 function OnQuitButton(){
-	GameEvents.SendCustomGameEventToServer( "quit", {});
+	//GameEvents.SendCustomGameEventToServer( "quit", {});
+	GameEvents.SendCustomGameEventToServer( "quit_control_panel", {});
 }
 
 /*
@@ -117,9 +118,6 @@ function OnTimePicked(time){
 	var date = new Date(null);
     date.setSeconds(time.value); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
-
-
-    $.Msg("hero_name " + HeroName(hero_picked) );
 
     $("#hero_header").text = $.Localize(HeroName(hero_picked));
 	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
