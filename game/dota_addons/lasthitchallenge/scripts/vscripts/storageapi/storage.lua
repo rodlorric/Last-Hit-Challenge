@@ -1,4 +1,7 @@
-STORAGEAPI_API_URL = "http://dota2.tools/api/v1/storage"
+--STORAGEAPI_API_URL = "http://127.0.0.1:5000/records"
+--STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/records"
+STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/records"
+
 
 --[[
 	Storage API interface to store data for Dota 2 Custom Game players.
@@ -151,7 +154,6 @@ function Storage:Get(steam_id, callback)
 
 		function(result)
 			-- Decode response into lua table
-	
 			local resultTable = {}
 			if not pcall(function()
 				resultTable = JSON:decode(result)
@@ -176,6 +178,51 @@ function Storage:Get(steam_id, callback)
 	)
 end
 
+function Storage:GetURL(steam_id, hero, time, leveling, typescore, url, callback)
+
+	-- Check if we have a valid cache and return it if we do
+	if storeCache[steam_id .. hero .. time .. leveling .. typescore] ~= nil then
+		callback(storeCache[steam_id .. hero .. time .. leveling .. typescore], true)
+		return
+	end
+
+	-- Send the request
+	self:SendHTTPRequestURL("GET", url,
+		{
+			api_key = api_key,
+			steam_id = tostring(steam_id),
+			hero = hero,
+			time = time,
+			leveling = leveling,
+			typescore = typescore
+		}, 
+
+		function(result)
+			-- Decode response into lua table
+			local resultTable = {}
+			if not pcall(function()
+				resultTable = JSON:decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				storeCache[steam_id .. hero .. time .. leveling .. typescore] = resultTable["errors"]
+				callback(storeCache[steam_id .. hero .. time .. leveling .. typescore], false)
+				return
+			end
+
+			if resultTable ~= nil and resultTable["data"] ~= nil and resultTable["data"]["data"] ~= nil then
+				storeCache[steam_id .. hero .. time .. leveling .. typescore] = resultTable["data"]["data"]
+			end
+			-- If we get a success response, successBool should be true
+			callback(storeCache[steam_id .. hero .. time .. leveling .. typescore], true)
+		end
+	)
+end
+
 function Storage:SetApiKey(key)
 	-- Set the api key
 	api_key = key
@@ -190,6 +237,11 @@ end
 function Storage:Invalidate(steam_id)
 	-- Set cache for steam_id to nil
 	storeCache[steam_id] = nil
+end
+
+function Storage:InvalidateLeaderboard(steam_id, hero, time, leveling, typescore)
+	-- Set cache for steam_id to nil
+	storeCache[steam_id .. hero .. time .. leveling .. typescore] = nil
 end
 
 --[[
@@ -211,6 +263,17 @@ end
 function Storage:SendHTTPRequest(method, values, callback)
 
 	local req = CreateHTTPRequest( method, STORAGEAPI_API_URL )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
+end
+
+function Storage:SendHTTPRequestURL(method, url, values, callback)
+
+	local req = CreateHTTPRequest( method, url )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
