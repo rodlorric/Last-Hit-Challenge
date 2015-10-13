@@ -63,6 +63,17 @@ function OnEndScreen(data) {
 
 	var bar_container = $("#graph_container");
 	var x_leyend = $("#x_leyend");
+
+	var graph_children = bar_container.Children();
+	for (var i in graph_children){
+		graph_children[i].DeleteAsync(0.0);
+	}
+
+	var x_leyend = x_leyend.Children();
+	for (var i in x_leyend){
+		x_leyend[i].DeleteAsync(0.0);
+	}
+
 	var max = 1;
 	var timeacum = 30;
 
@@ -82,27 +93,27 @@ function OnEndScreen(data) {
 	//2 mins
 	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
 
-	for (var i in stats_misc_history) {
-		if (i > 1){
-			var lh = stats_misc_history[i].lh;
-			var dn = stats_misc_history[i].dn;
-			if (lh > max){
-				max = lh;
-			}
-			if (dn > max){
-				max = dn;
-			}
-		}
-	};
 
+	for (var i in stats_misc_history) {
+		var lh = stats_misc_history[i].lh;
+		var dn = stats_misc_history[i].dn;
+		if (lh > max){
+			max = lh;
+		}
+		if (dn > max){
+			max = dn;
+		}
+	}
 	for (var j in stats_misc_history) {
-		if (j > 1){
+		//if (j > 1){
 			var lh = stats_misc_history[j].lh;
 			var dn = stats_misc_history[j].dn
 			var date = new Date(null);
-	    	date.setSeconds(timeacum); // specify value for SECONDS here
+	    	//date.setSeconds(timeacum); // specify value for SECONDS here
+	    	//var minutes = date.toISOString().substr(14, 5);
+			//timeacum += 30;
+			date.setSeconds(stats_misc_history[j].time); // specify value for SECONDS here
 	    	var minutes = date.toISOString().substr(14, 5);
-			timeacum += 30;
 	  		
 			var data_container = $.CreatePanel("Panel", bar_container, "data_container");		
 			var couple_container = $.CreatePanel("Panel", data_container, "cs_container");
@@ -165,18 +176,17 @@ function ClearGraph(){
 	//clearing the graph...
 	var graph_children = $("#graph_container").Children();
 	for (var i in graph_children){
-		graph_children[i].DeleteAsync(0.0);
+		graph_children[i].RemoveAndDeleteChildren();
 	}
 
 	var x_leyend = $("#x_leyend").Children();
 	for (var i in x_leyend){
-		x_leyend[i].DeleteAsync(0.0);
+		x_leyend[i].RemoveAndDeleteChildren();
 	}
 }
 
 function OnPickButton(){
 	$("#end_screen_panel").ToggleClass("Maximized");
-	ClearGraph();
 
 	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
 	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
