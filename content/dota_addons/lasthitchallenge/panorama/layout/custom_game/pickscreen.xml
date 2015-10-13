@@ -12,7 +12,7 @@
 			<Panel class="PickPanelSuperContainer">
 				<Panel class="PickPanelContainer">
 					<Panel class="PickPanel">
-						<Button id="npc_dota_hero_nevermore" class="PickButton" onactivate="OnPick('11');">
+						<Button class="PickButton" onactivate="OnPick('11');">
 							<Panel class="HeroPanel" id="npc_dota_hero_nevermore_bg"/>
 							<Label text="#npc_dota_hero_nevermore" hittest="false"/>
 					  	</Button>
