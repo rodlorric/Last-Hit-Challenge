@@ -24,13 +24,13 @@ function OnEndScreen(data) {
 
 	//Session Records
 	//var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "c" + data.hero + data.time + data.level);
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "c" + data.hero + data.maxtime + data.level);
 	//var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "l" + data.hero + data.time + data.level);
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "l" + data.hero + data.maxtime + data.level);
 	//var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "d" + data.hero + data.time + data.level);
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "d" + data.hero + data.maxtime + data.level);
 	//var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "a" + data.hero + data.time + data.level);
+	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "a" + data.hero + data.maxtime + data.level);
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
 	$("#stats_record_dn").text = stats_record_dn.value;
@@ -38,7 +38,7 @@ function OnEndScreen(data) {
 	$("#stats_record_accuracy").text = stats_record_accuracy.value + "%";
 
 	var date = new Date(null);
-    date.setSeconds(data.time); // specify value for SECONDS here
+    date.setSeconds(data.maxtime); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 	$("#acc_record").text = $.Localize("#endscreen_acc_record") +  minutes + ")";
 
@@ -131,9 +131,18 @@ function OnEndScreen(data) {
 	  		var x_hor_bar = $.CreatePanel("Panel", data_container, "HorBar");
 	  		var x_label = $.CreatePanel("Label", data_container, "XLeyendLabel");
 	  		x_label.text = minutes;
-  		}
+  		//}
 	};
 
+	if (data.time != data.maxtime){
+		$("#cancel_button").style.visibility = "visible;"
+		$("#cancel_button_top").style.visibility = "visible;"
+	} else {
+		$("#cancel_button").style.visibility = "collapse;"
+		$("#cancel_button_top").style.visibility = "collapse;"
+	}
+
+	stats_misc_history = 0
 	$("#end_screen_panel").ToggleClass("Maximized");
 	$("#end_screen_panel").hittest = true;
 }
