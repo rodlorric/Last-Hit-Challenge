@@ -134,12 +134,54 @@ function quit_game_func()
 	SendToServerConsole("disconnect")
 end
 
+function giffpower()
+	 CLastHitChallenge:GiveBlinkDagger(PlayerResource:GetPlayer(0):GetAssignedHero())
+end
+
 function pause()
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
 	else
 		PauseGame(true)
 	end
+end
+
+function getrecords()
+	Storage:Get("58169609", function( resultTable, successBool )
+	    if successBool then
+	    	DeepPrintTable(resultTable)
+	        --for k,v in pairs(resultTable) do
+	        --	CustomNetTables:SetTableValue("stats_records", v.k, { value = v.v} )
+	        --end
+	    end
+	end)
+end
+
+function setrecords()
+	local hero_list = {"11"}
+	local time_list = {"150"}
+	local type_list = {"c", "l", "d", "a"}
+	local level_list = {"l"}
+
+	local data = {}
+
+	for i, typescore in pairs(type_list) do
+		for j, time in pairs(time_list) do
+			for k, hero in pairs(hero_list) do
+				for l, level in pairs(level_list) do
+					local table_name = typescore ..  hero ..  time .. level
+					table.insert(data, {hero = hero, time = time, leveling = level, typescore = typescore, value = "score"})
+				end
+			end
+		end
+	end
+	DeepPrintTable(data)
+
+	Storage:Put("58169609", data, function( resultTable, successBool )
+	    if successBool then
+	        print("Successfully put data in storage")
+	    end
+	end)
 end
 
 -- Create the game mode when we activate
@@ -203,6 +245,12 @@ function CLastHitChallenge:InitGameMode()
 	Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
 	Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 	Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
+	Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)
+	Convars:RegisterCommand( "setrecords", setrecords, "Set Records", FCVAR_CHEAT)
+	Convars:RegisterCommand( "giffpower", giffpower, "Give Damage", FCVAR_CHEAT) --[[Returns:void
+	RegisterCommand(name, fn, helpString, flags) : register a console command.
+	]]
+
 
 
 	--ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
