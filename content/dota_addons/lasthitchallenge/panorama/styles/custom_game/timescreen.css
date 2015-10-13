@@ -60,7 +60,7 @@
   background-color: black;
   opacity: 0.5;
   
-  width: fill-parent-flow(1.0);
+  width: 100%;
   margin-top: 0px;
   margin-bottom: 60px;
 }
@@ -127,8 +127,9 @@
 
 .PickButton
 {
+  width: 100%;
   background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111), to( #11111166 ) );
-  height: fill-parent-flow(1.0);
+  height: 100%;
 
   transition-property: background-color;
   transition-duration: 0.15s;
@@ -143,7 +144,7 @@
 
 .PickButton:active
 {
-  background-color: #4A4A4A;
+  background-color: #4A4A4A99;
   pre-transform-scale2d: 1.02;
 }
 
