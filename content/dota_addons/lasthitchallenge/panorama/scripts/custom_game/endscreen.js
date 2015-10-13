@@ -262,7 +262,7 @@ function LoadData(stats_panel, type){
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_dn").value;
 		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_foe").value;
-		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((cs_melee * 100) / (missed_melee + cs_melee)) : 100)).toFixed(0)) + "% ";
+		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((missed_melee * 100) / (missed_melee + cs_melee)) : 0)).toFixed(0)) + "% ";
 		
 		stats_melee.text = accuracy_melee + "(" + missed_melee + " / " + (missed_melee + cs_melee) + ")";
 
@@ -271,7 +271,7 @@ function LoadData(stats_panel, type){
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn").value;
 		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_foe").value;
-		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((cs_ranged * 100) / (missed_ranged + cs_ranged)) : 100)).toFixed(0)) + "% ";
+		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((missed_ranged * 100) / (missed_ranged + cs_ranged)) : 0)).toFixed(0)) + "% ";
 		
 		stats_ranged.text = accuracy_ranged + "(" + missed_ranged + " / " + (missed_ranged + cs_ranged) + ")";
 
@@ -280,7 +280,7 @@ function LoadData(stats_panel, type){
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_dn").value;
 		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_friendly").value + 
 					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_foe").value;
-		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((cs_siege * 100) / (missed_siege + cs_siege)) : 100)).toFixed(0)) + "% ";
+		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((missed_siege * 100) / (missed_siege + cs_siege)) : 0)).toFixed(0)) + "% ";
 		
 		stats_siege.text = accuracy_siege + "(" + missed_siege + " / " + (missed_siege + cs_siege) + ")";
 
