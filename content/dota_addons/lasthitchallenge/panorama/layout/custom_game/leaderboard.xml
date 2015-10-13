@@ -1,0 +1,94 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/leaderboard.css"/>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/leaderboard.js" />
+	</scripts>
+	<Panel class="LeaderboardRoot" hittest="true">
+		<Panel id="DimBackground" hittest="false"/>
+		<Button id="BlurBackground"/>
+		<Panel id="leaderboard_panel" class="LeaderboardPanel" hittest="false">
+			<Panel class="LeaderboardPanelContainer">
+				<Panel class="Header">
+		  			<Label text="#leaderboard"/>
+		  			<Button class="CloseButton" onactivate="OnQuit()"/>
+			  	</Panel>
+				<Panel class="LeaderboardSelectorPanel">
+					<Panel class="SelectorPanel">
+						<Label text="#leaderboard_hero"/>
+						<DropDown id="dropdown_hero" oninputsubmit="OnDropDown()">
+							<Label text="#npc_dota_hero_brewmaster" id="78"/>
+							<Label text="#npc_dota_hero_death_prophet" id="43"/>
+							<Label text="#npc_dota_hero_dragon_knight" id="49"/>
+							<Label text="#npc_dota_hero_ember_spirit" id="106"/>
+							<Label text="#npc_dota_hero_huskar" id="59"/>
+							<Label text="#npc_dota_hero_invoker" id="74"/>
+							<Label text="#npc_dota_hero_jakiro" id="64"/>
+							<Label text="#npc_dota_hero_kunkka" id="23"/>
+							<Label text="#npc_dota_hero_leshrac" id="52"/>
+							<Label text="#npc_dota_hero_lina" id="25"/>
+							<Label text="#npc_dota_hero_magnataur" id="97"/>
+							<Label text="#npc_dota_hero_night_stalker" id="60"/>
+							<Label text="#npc_dota_hero_obsidian_destroyer" id="76"/>
+							<Label text="#npc_dota_hero_puck" id="13"/>
+							<Label text="#npc_dota_hero_queenofpain" id="39"/>
+							<Label text="#npc_dota_hero_nevermore" id="11"/>
+							<Label text="#npc_dota_hero_sniper" id="35"	/>
+							<Label text="#npc_dota_hero_storm_spirit" id="17"/>
+							<Label text="#npc_dota_hero_templar_assassin" id="46"/>
+							<Label text="#npc_dota_hero_tinker" id="34"/>
+							<Label text="#npc_dota_hero_tiny" id="19"/>
+							<Label text="#npc_dota_hero_viper" id="47"/>
+							<Label text="#npc_dota_hero_windrunner" id="21"/>
+							<Label text="#npc_dota_hero_zuus" id="22"/>
+						</DropDown>
+					</Panel>
+					<Panel class="SelectorPanel">
+						<Label id="SelectorPanelTitle" text="#leaderboard_time"/>
+						<DropDown id="dropdown_time" oninputsubmit="OnDropDown()">
+						  <Label text="02:30" id="150"/>
+						  <Label text="05:00" id="300"/>
+						  <Label text="07:30" id="450"/>
+						  <Label text="10:00" id="600"/>
+						</DropDown>
+					</Panel>
+					<Panel class="SelectorPanel">
+						<Label text="#leaderboard_leveling"/>
+						<DropDown id="dropdown_leveling" oninputsubmit="OnDropDown()">
+						  <Label text="#yes" id="l"/>
+						  <Label text="#no" id="n"/>
+						</DropDown>
+					</Panel>
+					<Panel class="SelectorPanel">
+						<Label text="#leaderboard_type"/>
+						<DropDown id="dropdown_type" oninputsubmit="OnDropDown()">
+						  <Label text="#endscreen_creep_score" id="c"/>
+						  <Label text="#endscreen_last_hits" id="l"/>
+						  <Label text="#endscreen_denies" id="d"/>
+						  <Label text="#endscreen_accuracy" id="a"/>
+						</DropDown>
+					</Panel>
+				</Panel>
+			  	<Panel class="Category">
+				 	<Panel class="RowHeader">
+				 		<Label text="#leaderboard_player"/>
+				 		<!--<Panel class="LabelContainer">-->
+				 		<!--</Panel>-->
+				 		<!--<Panel class="LabelContainer">				 			-->
+				 		<Label text="#leaderboard_score"/>
+				 		<!--</Panel>-->
+				 	</Panel>
+				 	<Panel id="leaderlist" class="LeaderList"/>
+				</Panel>
+				<Panel class="ButtonPanel">		  			
+			  		<Button class="OptionButton" onactivate="OnQuit()">
+			  			<Label text="#close"/>
+			  		</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+  	</Panel>
+</root>

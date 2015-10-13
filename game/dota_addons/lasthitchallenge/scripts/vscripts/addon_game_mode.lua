@@ -263,5 +263,8 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked'))
 	CustomGameEventManager:RegisterListener("time_picked", Dynamic_Wrap(CLastHitChallenge, 'OnTimePicked'))
 	CustomGameEventManager:RegisterListener("quit", Dynamic_Wrap(CLastHitChallenge, 'OnQuit'))
+	CustomGameEventManager:RegisterListener("quit_control_panel", Dynamic_Wrap(CLastHitChallenge, 'EndGame'))
+	CustomGameEventManager:RegisterListener("cancel", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
 	CustomGameEventManager:RegisterListener("repick", Dynamic_Wrap(CLastHitChallenge, 'OnRepick'))
+	CustomGameEventManager:RegisterListener("leaderboard", Dynamic_Wrap(CLastHitChallenge, 'OnLeaderboard'))
 end

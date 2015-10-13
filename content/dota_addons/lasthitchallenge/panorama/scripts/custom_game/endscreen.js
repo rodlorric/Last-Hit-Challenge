@@ -1,5 +1,34 @@
 "use strict";
 
+
+var hero_list = [{"hero" : $.Localize("#npc_dota_hero_brewmaster"), "id" : "78"},
+				{"hero" : $.Localize("#npc_dota_hero_death_prophet"), "id" : "43"},
+				{"hero" : $.Localize("#npc_dota_hero_dragon_knight"), "id" : "49"},
+				{"hero" : $.Localize("#npc_dota_hero_ember_spirit"), "id" : "106"},
+				{"hero" : $.Localize("#npc_dota_hero_huskar"), "id" : "59"},
+				{"hero" : $.Localize("#npc_dota_hero_invoker"), "id" : "74"},
+				{"hero" : $.Localize("#npc_dota_hero_jakiro"), "id" : "64"},
+				{"hero" : $.Localize("#npc_dota_hero_kunkka"), "id" : "23"},
+				{"hero" : $.Localize("#npc_dota_hero_leshrac"), "id" : "52"},
+				{"hero" : $.Localize("#npc_dota_hero_lina"), "id" : "25"},
+				{"hero" : $.Localize("#npc_dota_hero_magnataur"), "id" : "97"},
+				{"hero" : $.Localize("#npc_dota_hero_nevermore"), "id" : "11"},
+				{"hero" : $.Localize("#npc_dota_hero_night_stalker"), "id" : "60"},
+				{"hero" : $.Localize("#npc_dota_hero_obsidian_destroyer"), "id" : "76"},
+				{"hero" : $.Localize("#npc_dota_hero_puck"), "id" : "13"},
+				{"hero" : $.Localize("#npc_dota_hero_queenofpain"), "id" : "39"},
+				{"hero" : $.Localize("#npc_dota_hero_sniper"), "id" : "35"	},
+				{"hero" : $.Localize("#npc_dota_hero_storm_spirit"), "id" : "17"},
+				{"hero" : $.Localize("#npc_dota_hero_templar_assassin"), "id" : "46"},
+				{"hero" : $.Localize("#npc_dota_hero_tinker"), "id" : "34"},
+				{"hero" : $.Localize("#npc_dota_hero_tiny"), "id" : "19"},
+				{"hero" : $.Localize("#npc_dota_hero_viper"), "id" : "47"},
+				{"hero" : $.Localize("#npc_dota_hero_windrunner"), "id" : "21"},
+				{"hero" : $.Localize("#npc_dota_hero_zuus"), "id" : "22"}];
+hero_list.sort();
+
+var maxtime = 0;
+var time = -1;
 function OnEndScreen(data) {
 	//Totals
 	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", "stats_total_cs" );
@@ -225,6 +254,19 @@ function OnMagnifyMisses(){
 
 	var stats_panel = stats.FindChildInLayoutFile("stats_panel");
 	LoadData(stats_panel, "miss");
+}
+
+function OnLeaderBoardButton(){
+	var leaderboard = $.CreatePanel( "Panel", $.GetContextPanel(), "LeaderBoard" );
+	leaderboard.BLoadLayout( "file://{resources}/layout/custom_game/leaderboard.xml", false, false );
+	var playerInfo = Game.GetPlayerInfo( 0 );
+	var dropmenu = leaderboard.FindChildInLayoutFile("dropdown_hero");
+	for (var i in hero_list){
+		if (hero_list[i]['hero'] == $.Localize(playerInfo.player_selected_hero)){
+			dropmenu.SetSelected(hero_list[i]['id']);
+			break;
+		}
+	}
 }
 
 function LoadData(stats_panel, type){

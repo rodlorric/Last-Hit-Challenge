@@ -1,6 +1,9 @@
 require ( "util")
 require ( "timers" )
 
+
+--STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
+STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
 --detailed stats totals
 melee_lh = 0
 melee_dn = 0
@@ -198,7 +201,6 @@ function CLastHitChallenge:EndGame()
 	end
 
 	--PauseGame(true)
-	CLastHitChallenge:ClearUnits()
 	CLastHitChallenge:SetGameFrozen(true)
 	--Totals
 	local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", "stats_total_cs")
@@ -235,10 +237,6 @@ function CLastHitChallenge:EndGame()
 	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_friendly", { value = tower_miss_friendly } )
 	--CustomNetTables:SetTableValue("stats_totals_details", "stats_totals_details_tower_miss_foe", { value = tower_miss_foe } )
 
-
-	misses = 0
-
-
 	--Streaks
 	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_cs", { value = max_cs_streak })
 	CustomNetTables:SetTableValue("stats_streaks", "stats_streak_lh", { value = max_last_hit_streak })
@@ -253,11 +251,13 @@ function CLastHitChallenge:EndGame()
 	--Records
 	--local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
 	local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "a" .. hero_picked .. tostring(MAXTIME) .. leveling)
-	if accuracy > stats_record_accuracy.value then
-		stats_record_accuracy.value = accuracy
-		--CustomNetTables:SetTableValue("stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_accuracy)
-		CustomNetTables:SetTableValue("stats_records", "a" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_accuracy)
-		new_record = true
+	if seconds == MAXTIME then
+		if accuracy > stats_record_accuracy.value then
+			stats_record_accuracy.value = accuracy
+			--CustomNetTables:SetTableValue("stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_accuracy)
+			CustomNetTables:SetTableValue("stats_records", "a" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_accuracy)
+			new_record = true
+		end
 	end
 
 
@@ -706,74 +706,80 @@ function CLastHitChallenge:OnRestart()
 end
 
 function CLastHitChallenge:OnQuit()
-	CLastHitChallenge:GetRecords()
+	CLastHitChallenge:UploadRecords()
+	CLastHitChallenge:Resume()
+	-- Show the ending scoreboard immediately
+	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+end
 
+function CLastHitChallenge:OnLeaderboard(query)
+	local steamid = PlayerResource:GetSteamAccountID(0)
+	leader_list = {}
+	Storage:GetURL(steamid, query.hero, query.time, query.leveling, query.typescore, STORAGEAPI_API_URL_LEADERBOARD, function( resultTable, successBool )
+	    if successBool then
+	    	local table_name = query.typescore .. query.hero .. query.time .. query.leveling
+		    local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
+	    	if resultTable ~= nil then
+		        for k,v in pairs(resultTable) do	        	
+					if tostring(steamid) == v.steam_id then
+						if localrec.value >= v.value then
+			        		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
+						end
+		        	else
+		        		if localrec.value >= v.value then
+			        		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
+						end
+		        		table.insert(leader_list, {steam_id = v.steam_id, value = v.value})
+		        	end
 
+		        end
+	       	else
+	       		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
+	       	end
+	        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
+	    end
+	end)
+end
+
+function CLastHitChallenge:Resume()
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)
 	end
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
 	end
-	-- Show the ending scoreboard immediately
-	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
-	--SendToServerConsole("disconnect")
 end
 
 
-function CLastHitChallenge:GetRecords()
-	
-	--[[local hero_list = {"nevermore",
-						"storm_spirit",
-						"templar_assassin",
-						"tinker",
-						"invoker",
-						"obsidian_destroyer",
-						"queenofpain",
-						"puck",
-						"death_prophet",
-						"leshrac",
-						"ember_spirit",
-						"lina",
-						"viper",
-						"magnataur",
-						"sniper",
-						"dragon_knight",
-						"kunkka",
-						"brewmaster",
-						"night_stalker",
-						"huskar",
-						"tiny",
-						"windrunner",
-						"zuus",
-						"jakiro"
-					}]]
-	local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
-	local time_list = {"150", "300", "450", "600"}
-	local type_list = {"c", "l", "d", "a"}
-	local level_list = {"l", "n"}
+function CLastHitChallenge:UploadRecords()
+	if new_record then
+		local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
+		local time_list = {"150", "300", "450", "600"}
+		local type_list = {"c", "l", "d", "a"}
+		local level_list = {"l", "n"}
 
-	local data = {}
+		local data = {}
 
-	for i, typescore in pairs(type_list) do
-		for j, time in pairs(time_list) do
-			for k, hero in pairs(hero_list) do
-				for l, level in pairs(level_list) do
-					local table_name = typescore ..  hero ..  time .. level
-					local record = CustomNetTables:GetTableValue( "stats_records", table_name )
-					if record.value > 0 then
-						table.insert(data, {k = table_name, v = record.value})
+		for i, typescore in pairs(type_list) do
+			for j, time in pairs(time_list) do
+				for k, hero in pairs(hero_list) do
+					for l, level in pairs(level_list) do
+						local table_name = typescore ..  hero ..  time .. level
+						local record = CustomNetTables:GetTableValue( "stats_records", table_name )
+						if record.value > 0 then
+							--table.insert(data, {k = table_name, v = record.value})
+							table.insert(data, {hero = hero, time = time, leveling = level, typescore = typescore, value = record.value})
+						end
 					end
 				end
 			end
 		end
-	end
 
-	if new_record then
 		local steamid = PlayerResource:GetSteamAccountID(0)
 		Storage:Put( steamid, data, function( resultTable, successBool )
 	    	if successBool then
 	        	print("Successfully put data in storage")
+	        	new_record = false
 	    	end
 		end)
 	end
@@ -850,33 +856,7 @@ function CLastHitChallenge:InitializeData()
 		CustomNetTables:SetTableValue("stats_records", "stats_record_accuracy", { value = 0} )
 	end
 	]]
-	--[[
-	local hero_list = {"nevermore",
-						"storm_spirit",
-						"templar_assassin",
-						"tinker",
-						"invoker",
-						"obsidian_destroyer",
-						"queenofpain",
-						"puck",
-						"death_prophet",
-						"leshrac",
-						"ember_spirit",
-						"lina",
-						"viper",
-						"magnataur",
-						"sniper",
-						"dragon_knight",
-						"kunkka",
-						"brewmaster",
-						"night_stalker",
-						"huskar",
-						"tiny",
-						"windrunner",
-						"zuus",
-						"jakiro"
-					}
-	]]
+
 	local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 	local time_list = {"150", "300", "450", "600"}
 	local type_list = {"c", "l", "d","a"}
@@ -886,9 +866,13 @@ function CLastHitChallenge:InitializeData()
 	local result = nil
 	Storage:Get(steamid, function( resultTable, successBool )
 	    if successBool then
-	        for k,v in pairs(resultTable) do
-	        	CustomNetTables:SetTableValue("stats_records", v.k, { value = v.v} )
-	        end
+	    	if resultTable ~= nil then
+		        for k,v in pairs(resultTable) do
+		        	local table_name = v.typescore .. v.hero .. v.time .. v.leveling
+		        	--CustomNetTables:SetTableValue("stats_records", v.k, { value = v.v} )
+		        	CustomNetTables:SetTableValue("stats_records", table_name, { value = v.value} )
+		        end
+	       	end
 	    end
 
     	for i, typescore in pairs(type_list) do
