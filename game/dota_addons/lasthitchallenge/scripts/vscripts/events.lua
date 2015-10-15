@@ -714,10 +714,8 @@ function CLastHitChallenge:OnQuit()
 end
 
 function CLastHitChallenge:OnLeaderboard(query)
-	print("OnLeaderboard...")
 	local steamid = PlayerResource:GetSteamAccountID(0)
 	if (query.refresh ~= nil and query.refresh == 1) then
-		print("query.refresh = " .. tostring(query.refresh))
 		Storage:InvalidateLeaderboard(steamid, query.hero, query.time, query.leveling, query.typescore)
 		CLastHitChallenge:UploadRecords()
 	end
@@ -726,7 +724,6 @@ function CLastHitChallenge:OnLeaderboard(query)
     local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
     table.insert(leader_list, 1, {steam_id = tostring(steamid), value = localrec.value})
     local index = 1
-    print("1 insert value = " .. tostring(localrec.value))
 	
 	Storage:GetURL(steamid, query.hero, query.time, query.leveling, query.typescore, STORAGEAPI_API_URL_LEADERBOARD, function( resultTable, successBool )
 	    if successBool then
@@ -746,7 +743,6 @@ function CLastHitChallenge:OnLeaderboard(query)
 		        end
 	       	end
 	    end
-	    DeepPrintTable(leader_list)
         CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
 	end)
 end

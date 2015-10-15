@@ -249,7 +249,6 @@ function CLastHitChallenge:InitGameMode()
 	Convars:RegisterCommand( "setrecords", setrecords, "Set Records", FCVAR_CHEAT)
 	Convars:RegisterCommand( "giffpower", giffpower, "Give Damage", FCVAR_CHEAT)
 	Convars:RegisterCommand( "setrecord", function(cmnname, steamid, hero, time, leveling, typescore, value)
-										print("steamid = " .. tostring(steamid) .. " hero = " .. tostring(hero) .. " time = " .. tostring(time) .. " leveling = " .. leveling .. " typescore = " .. tostring(typescore) .. " value = " .. value)
 										local data = {}
 										table.insert(data, {hero = tostring(hero), time = tostring(time), leveling = leveling, typescore = tostring(typescore), value = tostring(value)})
 										Storage:Put( tostring(steamid), data, 
