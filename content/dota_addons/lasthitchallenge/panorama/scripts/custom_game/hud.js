@@ -39,6 +39,11 @@ function OnHeroPicked(data){
 	}
 }
 
+function OnQuit(){
+	var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
+	quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
+}
+
 
 (function () {
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);

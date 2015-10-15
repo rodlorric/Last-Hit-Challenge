@@ -1,0 +1,31 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/quit.css"/>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/quit.js" />
+	</scripts>
+	<Panel class="QuitRoot" hittest="true">
+		<Panel id="DimBackground" hittest="false"/>
+		<Panel id="Quit_panel" class="QuitPanel" hittest="false">
+			<Panel class="QuitPanelContainer">
+				<Panel class="Header">
+		  			<Label id="quit_title" text="#quit_title"/>
+			  	</Panel>
+			  	<Panel class="Category">
+			  		<Label id="quit_dialog" text="#quit_dialog"/>
+				</Panel>
+				<Panel class="ButtonPanel">		  			
+			  		<Button class="OptionButton" onactivate="OnYes()">
+			  			<Label text="#yes"/>
+			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnNo()">
+			  			<Label text="#no"/>
+			  		</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+  	</Panel>
+</root>

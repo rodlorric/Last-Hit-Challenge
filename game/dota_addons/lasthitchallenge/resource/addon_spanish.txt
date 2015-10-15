@@ -71,5 +71,7 @@
 		"close"								"Cerrar"
 		"refresh"							"Recargar"
 		"back"								"Volver"
+		"quit_title"						"Abandonar Juego"
+		"quit_dialog"						"¿Estás seguro que deseas abandonar?"
 	}
 }

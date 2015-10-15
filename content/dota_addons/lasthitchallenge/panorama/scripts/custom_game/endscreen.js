@@ -200,7 +200,8 @@ function OnCancel(){
 }
 
 function OnQuit(){
-	GameEvents.SendCustomGameEventToServer( "quit", {});
+	var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
+	quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
 }
 
 function ClearGraph(){

@@ -94,15 +94,19 @@
 
 .ClockPanel
 {
-	transform: translateX( 0% ) translateY( 0% );
-  horizontal-align: center;
-  flow-children: right;
+  width: 100%;
+  horizontal-align: right;
   visibility: collapse;
 }
 
-.ClockPanelContainer
+.ClockPanel .CloseButton{
+  horizontal-align: right;
+  margin-top: 10px;
+}
+
+.ClockPanel .ClockPanelContainer
 {
-	flow-children: right;
+  horizontal-align: center;
   height: 55px;
   width: 200px;
   background-color: #181818ee;

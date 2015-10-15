@@ -7,7 +7,8 @@
 		<include src="file://{resources}/scripts/custom_game/hud.js" />
 	</scripts>
 	<Panel class="HudPanel" hittest="false">
-		<Panel id="clock_panel" class="ClockPanel">.
+		<Panel id="clock_panel" class="ClockPanel" hittest="false">
+			<Button class="CloseButton" onactivate="OnQuit()"/>
 			<Panel class="ClockPanelContainer">
 				<Label id="clock" text="00:00"/>
 			</Panel>
