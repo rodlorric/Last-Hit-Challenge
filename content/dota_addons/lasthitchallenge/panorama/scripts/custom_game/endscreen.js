@@ -28,8 +28,11 @@ var hero_list = [{"hero" : $.Localize("#npc_dota_hero_brewmaster"), "id" : "78"}
 hero_list.sort();
 
 var maxtime = 0;
+var leveling = "l";
 var time = -1;
 function OnEndScreen(data) {
+	maxtime = data.maxtime;
+	leveling = data.level;
 	//Totals
 	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", "stats_total_cs" );
 	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", "stats_total_lh" );
@@ -121,7 +124,6 @@ function OnEndScreen(data) {
 
 	//2 mins
 	//stats_misc_history = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
-
 
 	for (var i in stats_misc_history) {
 		var lh = stats_misc_history[i].lh;
@@ -260,13 +262,19 @@ function OnLeaderBoardButton(){
 	var leaderboard = $.CreatePanel( "Panel", $.GetContextPanel(), "LeaderBoard" );
 	leaderboard.BLoadLayout( "file://{resources}/layout/custom_game/leaderboard.xml", false, false );
 	var playerInfo = Game.GetPlayerInfo( 0 );
-	var dropmenu = leaderboard.FindChildInLayoutFile("dropdown_hero");
+	var dropmenuhero = leaderboard.FindChildInLayoutFile("dropdown_hero");
 	for (var i in hero_list){
 		if (hero_list[i]['hero'] == $.Localize(playerInfo.player_selected_hero)){
-			dropmenu.SetSelected(hero_list[i]['id']);
+			dropmenuhero.SetSelected(hero_list[i]['id']);
 			break;
 		}
 	}
+	var dropmenutime = leaderboard.FindChildInLayoutFile("dropdown_time");
+	$.Msg("maxtime = " + maxtime);
+	dropmenutime.SetSelected(maxtime);
+	var dropmenuleveling = leaderboard.FindChildInLayoutFile("dropdown_leveling");
+	$.Msg("leveling = " + leveling);
+	dropmenuleveling.SetSelected(leveling);
 }
 
 function LoadData(stats_panel, type){
