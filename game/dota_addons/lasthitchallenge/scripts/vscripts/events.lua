@@ -4,6 +4,7 @@ require ( "timers" )
 
 --STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
 STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
+--STORAGEAPI_API_URL_LEADERBOARD = "http://localhost:5000/leaderboard"
 --detailed stats totals
 melee_lh = 0
 melee_dn = 0
@@ -713,31 +714,40 @@ function CLastHitChallenge:OnQuit()
 end
 
 function CLastHitChallenge:OnLeaderboard(query)
+	print("OnLeaderboard...")
 	local steamid = PlayerResource:GetSteamAccountID(0)
+	if (query.refresh ~= nil and query.refresh == 1) then
+		print("query.refresh = " .. tostring(query.refresh))
+		Storage:InvalidateLeaderboard(steamid, query.hero, query.time, query.leveling, query.typescore)
+		CLastHitChallenge:UploadRecords()
+	end
 	leader_list = {}
+	local table_name = query.typescore .. query.hero .. query.time .. query.leveling
+    local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
+    table.insert(leader_list, 1, {steam_id = tostring(steamid), value = localrec.value})
+    local index = 1
+    print("1 insert value = " .. tostring(localrec.value))
+	
 	Storage:GetURL(steamid, query.hero, query.time, query.leveling, query.typescore, STORAGEAPI_API_URL_LEADERBOARD, function( resultTable, successBool )
 	    if successBool then
-	    	local table_name = query.typescore .. query.hero .. query.time .. query.leveling
-		    local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
 	    	if resultTable ~= nil then
-		        for k,v in pairs(resultTable) do	        	
-					if tostring(steamid) == v.steam_id then
-						if localrec.value >= v.value then
-			        		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
-						end
+		        for k,v in pairs(resultTable) do
+		        	if localrec.value > v.value then
+		        		if tostring(steamid) ~= v.steam_id then
+		        			table.insert(leader_list, {steam_id = v.steam_id, value = v.value})
+		        		end
 		        	else
-		        		if localrec.value >= v.value then
-			        		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
-						end
-		        		table.insert(leader_list, {steam_id = v.steam_id, value = v.value})
+		        		if tostring(steamid) ~= v.steam_id then
+		        			table.insert(leader_list, index, {steam_id = v.steam_id, value = v.value})
+		        			index = index + 1
+		        		end
 		        	end
 
 		        end
-	       	else
-	       		table.insert(leader_list, {steam_id = tostring(steamid), value = localrec.value})
 	       	end
-	        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
 	    end
+	    DeepPrintTable(leader_list)
+        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
 	end)
 end
 
@@ -862,6 +872,21 @@ function CLastHitChallenge:InitializeData()
 	local type_list = {"c", "l", "d","a"}
 	local level_list = {"l", "n"}
 
+	for i, typescore in pairs(type_list) do
+		for j, time in pairs(time_list) do
+			for k, hero in pairs(hero_list) do
+				for l, level in pairs(level_list) do
+					--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
+					local val = CustomNetTables:GetTableValue("stats_records", typescore .. hero .. time .. level)
+					if val == nil then
+						--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
+						CustomNetTables:SetTableValue("stats_records", typescore .. hero .. time .. level, { value = 0} )
+					end
+				end
+			end
+		end
+	end
+	
 	local steamid = PlayerResource:GetSteamAccountID(0)
 	local result = nil
 	Storage:Get(steamid, function( resultTable, successBool )
@@ -875,20 +900,6 @@ function CLastHitChallenge:InitializeData()
 	       	end
 	    end
 
-    	for i, typescore in pairs(type_list) do
-			for j, time in pairs(time_list) do
-				for k, hero in pairs(hero_list) do
-					for l, level in pairs(level_list) do
-						--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
-						local val = CustomNetTables:GetTableValue("stats_records", typescore .. hero .. time .. level)
-						if val == nil then
-							--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
-							CustomNetTables:SetTableValue("stats_records", typescore .. hero .. time .. level, { value = 0} )
-						end
-					end
-				end
-			end
-		end
 	end)
 
 

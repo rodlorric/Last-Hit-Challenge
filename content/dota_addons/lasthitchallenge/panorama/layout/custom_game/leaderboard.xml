@@ -83,7 +83,11 @@
 				 	</Panel>
 				 	<Panel id="leaderlist" class="LeaderList"/>
 				</Panel>
-				<Panel class="ButtonPanel">		  			
+				<Panel class="ButtonPanel">
+					<Button class="OptionButton" onactivate="OnRefresh()">
+					 	<Panel class="RefreshButton"/>
+						<Label text="#refresh"/>
+					</Button>
 			  		<Button class="OptionButton" onactivate="OnQuit()">
 			  			<Label text="#close"/>
 			  		</Button>

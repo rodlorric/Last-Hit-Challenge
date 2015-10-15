@@ -118,6 +118,8 @@ DOTAUserName{
   border-bottom-color: #111111;
   border-right-color: #404040;
 
+  flow-children: right;
+
   transition-property: background-color;
   transition-duration: 0.15s;
   transition-timing-function: linear;
@@ -265,6 +267,20 @@ DOTAUserName{
 	transition-duration: 0.3s;
 	transition-timing-function: ease-in;
 	transition-delay: 0s;
+}
+
+.RefreshButton
+{
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  vertical-align: middle;
+  horizontal-align: left;
+  background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+  background-position: 0% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  wash-color: #666666;
 }
 
 #BlurBackground

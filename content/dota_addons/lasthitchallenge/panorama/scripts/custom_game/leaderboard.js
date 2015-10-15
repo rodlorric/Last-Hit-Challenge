@@ -6,6 +6,14 @@ function OnQuit(){
 	leaderboard.DeleteAsync(0);
 }
 
+function OnRefresh(){
+	var hero = $.FindChildInContext('#dropdown_hero').GetSelected().id;
+	var time = $.FindChildInContext('#dropdown_time').GetSelected().id;
+	var leveling = $.FindChildInContext('#dropdown_leveling').GetSelected().id;
+	var typescore = $.FindChildInContext('#dropdown_type').GetSelected().id;
+	GameEvents.SendCustomGameEventToServer( "leaderboard", { "hero" : hero, "time" : time, "leveling" : leveling, "typescore" : typescore, "refresh" : 1});
+}
+
 function OnLeaderboard(data){
 	ClearList();
 	for (var i in data) {
@@ -52,6 +60,4 @@ function OnDropDown(){
 
 (function () {
 	GameEvents.Subscribe("leaderboard", OnLeaderboard);
-	
-	OnDropDown();
 })();
