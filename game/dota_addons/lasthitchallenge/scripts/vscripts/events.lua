@@ -333,8 +333,7 @@ function CLastHitChallenge:OnHurt( event )
 			local max_health = hurtUnit:GetMaxHealth()
 			local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
 			if pct ~= 0 then
-				local origin = hurtUnit:GetOrigin()			
-				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = pct})
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "hurt_entity", {index = event.entindex_killed, msg = pct})
 			end
 		end
 
