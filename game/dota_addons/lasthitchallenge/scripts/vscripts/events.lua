@@ -737,6 +737,8 @@ function CLastHitChallenge:OnLeaderboard(query)
 		        		if tostring(steamid) ~= v.steam_id then
 		        			table.insert(leader_list, index, {steam_id = v.steam_id, value = v.value})
 		        			index = index + 1
+		        		else
+		        			CustomNetTables:SetTableValue("stats_records", table_name, {value = v.value})
 		        		end
 		        	end
 
