@@ -1,6 +1,6 @@
 --STORAGEAPI_API_URL = "http://127.0.0.1:5000/records"
-STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/records"
---STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/records"
+--STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/records"
+STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/records"
 
 
 --[[

@@ -2,8 +2,8 @@ require ( "util")
 require ( "timers" )
 
 
-STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
---STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
+--STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
+STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
 --STORAGEAPI_API_URL_LEADERBOARD = "http://localhost:5000/leaderboard"
 --detailed stats totals
 melee_lh = 0
