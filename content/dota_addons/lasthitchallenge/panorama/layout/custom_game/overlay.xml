@@ -1,10 +1,15 @@
 <root>
 	<styles>
+		<include src="file://{resources}/styles/custom_game/marker_styles.css" />
 		<include src="file://{resources}/styles/custom_game/overlay.css" />
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<scripts>
+		<include src="file://{resources}/scripts/custom_game/Vector.js" />
+		<include src="file://{resources}/scripts/custom_game/Markers.js" />
 		<include src="file://{resources}/scripts/custom_game/overlay.js" />
 	</scripts>
-	<Panel class="OverlayPanel" hittest="false"/>
+	<Panel class="OverlayRoot" hittest="false">
+		<Panel id="markerContainer" class="OverlayPanel" hittest="false"/>
+	</Panel>
 </root>

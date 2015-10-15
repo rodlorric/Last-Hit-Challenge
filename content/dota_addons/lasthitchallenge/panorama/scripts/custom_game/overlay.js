@@ -1,9 +1,11 @@
-"use strict";
-function Overlay(data) {	
+//kind of working thanks to https://github.com/Perryvw/PanoramaUtils/
+function Hurt2(data){
+    var scale = $('#overlay').actuallayoutwidth / 1920;
+    var msg = data.msg;
+    var unitPos = Entities.GetAbsOrigin(data.index);
+    var x = Game.WorldToScreenX( unitPos[0], unitPos[1], unitPos[2] );
+    var y = Game.WorldToScreenY( unitPos[0], unitPos[1], unitPos[2] );
 
-    var x = Math.floor(Game.WorldToScreenX( data["x"], data["y"], data["z"]));
-    var y = Math.floor(Game.WorldToScreenY( data["x"], data["y"], data["z"]));
-    var msg = data["msg"];
     var parentPanel = $.GetContextPanel(); // the root panel of the current XML context
     var txtHolderPanel = $.CreatePanel( "Panel", parentPanel, "txtHolder");
     txtHolderPanel.hittest = false;
@@ -39,12 +41,24 @@ function Overlay(data) {
 
     txtLabel.text = text;
 
-    txtHolderPanel.style.x = x + "px";
-    txtHolderPanel.style.y = y + "px";
-    txtHolderPanel.style.z = "0px";    
+    $.Msg(scale);
+    txtHolderPanel.style.transform = "translate3d(" + ( (x * (1/scale)) - 100 ) + "px, " + ( (y * (1/scale)) - 100) + "px, 0px)";
 
     txtLabel.DeleteAsync(0.7);
     txtHolderPanel.DeleteAsync(0.7);
+    $.Msg(unitPos);
+}
+
+var index = 0;
+var marker = null;
+function Hurt(data){
+    var msg = data.msg;
+    if (marker == null) {
+        var marker = new Marker(data.index, "markerContainer" + index, msg);
+    } else {
+        marker.AddNew(data.index);
+    }
+    index++;
 }
 
 function OnResetAnimation(data) {
@@ -55,5 +69,5 @@ function OnResetAnimation(data) {
 
 (function () {
 	//$.GetContextPanel().visible = false;
-	GameEvents.Subscribe("overlay", Overlay);
+    GameEvents.Subscribe("hurt_entity", Hurt);
 })();

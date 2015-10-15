@@ -2,6 +2,11 @@
 @define TimingFunc: linear;
 @define IterationCount: infinite;
 
+.OverlayRoot{
+    width: 100%;
+    height: 100%;
+}
+
 .OverlayPanel{
     width: 100%;
     height: 100%;
