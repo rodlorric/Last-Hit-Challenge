@@ -136,14 +136,13 @@
 }
 
 .HeroPanel{
-  transition-property: transform, desaturation;
+  transition-property: transform;
   transition-duration: 0.35s;
   transition-timing-function: ease-in-out;
-  saturation: 0.5;
+
 }
 
 .HeroPanel:hover{
-  saturation: 1;
   transform:  scaleX(1.15) scaleY(1.15);
 }
 

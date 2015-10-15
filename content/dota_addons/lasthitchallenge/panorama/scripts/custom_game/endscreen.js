@@ -270,10 +270,8 @@ function OnLeaderBoardButton(){
 		}
 	}
 	var dropmenutime = leaderboard.FindChildInLayoutFile("dropdown_time");
-	$.Msg("maxtime = " + maxtime);
 	dropmenutime.SetSelected(maxtime);
 	var dropmenuleveling = leaderboard.FindChildInLayoutFile("dropdown_leveling");
-	$.Msg("leveling = " + leveling);
 	dropmenuleveling.SetSelected(leveling);
 }
 
