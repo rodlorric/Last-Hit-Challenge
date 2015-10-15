@@ -80,8 +80,6 @@ Markers.IsOffScreen = function( screenPos ) {
  *		- name {String} - A (unique) name for the marker panel
  */
 var Marker = function( entIndex, name, percent ) {
-	$.Msg(entIndex);
-	$.Msg(name);
 	//Set fields
 	this.entIndex = entIndex;
 	this.exists = true;
@@ -136,7 +134,6 @@ var Marker = function( entIndex, name, percent ) {
 	//Get the position of the entity
 	this.entityPos = Vector.FromArray( Entities.GetAbsOrigin( entIndex ) );
 
-	$.Msg(this.entityPos);
 	//Schedule this panel's deletion
 	$.Schedule( MARKER_DURATION - 1, this.Remove.bind(this) );
 
@@ -183,7 +180,6 @@ Marker.prototype.Update = function() {
  *		- target {Vector} - The screen position to point at.
  */
 Marker.prototype.PointOnScreen = function( target ) {
-	$.Msg("Point on screen = " + target.x + " , " + target.y);
 	//Set the panel style
 	//this.panel.style.transform = "rotateZ(90deg) translate3d(" +
 	//	target.x + "px, " + target.y + "px, 0px)";
