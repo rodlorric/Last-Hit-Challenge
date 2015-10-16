@@ -88,6 +88,7 @@ var Marker = function( entIndex, name, percent ) {
 	this.panel = $.CreatePanel( 'Panel', $( '#markerContainer' ), name );
 	this.panel.style.width = '150px';
 	this.panel.style.height = '32px';
+	this.panel.hittest = false;
 	//this.panel.style.backgroundImage = 'url("file://{images}/custom_game/marker.tga")';
 
 	//Initialise icon
@@ -99,6 +100,7 @@ var Marker = function( entIndex, name, percent ) {
 
 	var parentPanel = $.GetContextPanel();
 	this.label = $.CreatePanel( 'Label', this.panel, "txt");
+	this.label.hittest = false;
     var text;
     parentPanel.SetHasClass( "close_anim", true );
     if (percent != "missed"){        
