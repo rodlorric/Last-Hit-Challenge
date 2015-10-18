@@ -16,15 +16,23 @@ function OnRefresh(){
 
 function OnLeaderboard(data){
 	ClearList();
+	if (data.cheater){
+		$("#title").text = $.Localize("#cheater");
+		data = data['leader_list'];
+	}
 	for (var i in data) {
-
 		var listpanel = $("#leaderlist");
 		var row = $.CreatePanel("Panel", listpanel, "");
 		row.AddClass("Row");
 		row.style.opacity = "1.0;";
 
+		var position = $.CreatePanel("Label", row, "");
+		position.AddClass("row_position");
+		position.text = i;
+
 		var player_panel = $.CreatePanel("Panel", row, "");
 		player_panel.AddClass("PlayerPanel");
+
 
 		var avatar = $.CreatePanel("DOTAAvatarImage", player_panel, "");
 		avatar.steamid = SteamID32to64(data[i]['steam_id']);

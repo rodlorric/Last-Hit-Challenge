@@ -95,7 +95,6 @@ DOTAUserName{
 }
 
 .PlayerPanel Label{
-	width: 50%;
 }
 
 .OptionButton
@@ -181,6 +180,14 @@ DOTAUserName{
   	text-transform: uppercase;
   	letter-spacing: 1px;
   	text-align: center;
+}
+
+#header_position{
+  width: 20%;
+}
+
+.Row .row_position{
+  width: 20%;
 }
 
 .LeaderList{

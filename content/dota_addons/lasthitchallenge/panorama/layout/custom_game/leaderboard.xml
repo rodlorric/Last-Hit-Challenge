@@ -13,7 +13,7 @@
 		<Panel id="leaderboard_panel" class="LeaderboardPanel" hittest="false">
 			<Panel class="LeaderboardPanelContainer">
 				<Panel class="Header">
-		  			<Label text="#leaderboard"/>
+		  			<Label id="title" text="#leaderboard"/>
 		  			<Button class="CloseButton" onactivate="OnQuit()"/>
 			  	</Panel>
 				<Panel class="LeaderboardSelectorPanel">
@@ -74,12 +74,9 @@
 				</Panel>
 			  	<Panel class="Category">
 				 	<Panel class="RowHeader">
+				 		<Label id="header_position" text="#leaderboard_position"/>
 				 		<Label text="#leaderboard_player"/>
-				 		<!--<Panel class="LabelContainer">-->
-				 		<!--</Panel>-->
-				 		<!--<Panel class="LabelContainer">				 			-->
 				 		<Label text="#leaderboard_score"/>
-				 		<!--</Panel>-->
 				 	</Panel>
 				 	<Panel id="leaderlist" class="LeaderList"/>
 				</Panel>

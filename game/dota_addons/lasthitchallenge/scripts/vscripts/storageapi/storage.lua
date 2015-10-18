@@ -1,6 +1,6 @@
+STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/records"
+--STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/records"
 --STORAGEAPI_API_URL = "http://127.0.0.1:5000/records"
---STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/records"
-STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/records"
 
 
 --[[
@@ -219,6 +219,92 @@ function Storage:GetURL(steam_id, hero, time, leveling, typescore, url, callback
 			end
 			-- If we get a success response, successBool should be true
 			callback(storeCache[steam_id .. hero .. time .. leveling .. typescore], true)
+		end
+	)
+end
+
+function Storage:GetCheater(url, callback)
+
+	-- Check if we have a valid cache and return it if we do
+	if storeCache["cheater"] ~= nil then
+		callback(storeCache["cheater"], true)
+		return
+	end
+
+	-- Send the request
+	self:SendHTTPRequestURL("GET", url,
+		{}, 
+
+		function(result)
+			-- Decode response into lua table
+			local resultTable = {}
+			if not pcall(function()
+				resultTable = JSON:decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				storeCache["cheater"] = resultTable["errors"]
+				callback(storeCache[steam_id .. "cheater"], false)
+				return
+			end
+
+			if resultTable ~= nil and resultTable["data"] ~= nil and resultTable["data"]["data"] ~= nil then
+				storeCache["cheater"] = resultTable["data"]["data"]
+			end
+			-- If we get a success response, successBool should be true
+			callback(storeCache["cheater"], true)
+		end
+	)
+end
+
+
+function Storage:PutCheater(steam_id, url, callback)
+
+	-- Invalidate cache since we're setting new data
+	self:Invalidate(steam_id .. url)
+
+
+	if not pcall(function()
+		data = JSON:encode(data)
+	end) then
+		Warning("[dota2.tools.Storage] data is not a valid lua table")
+		return
+	end
+
+
+	-- Send the request
+	self:SendHTTPRequestURL("POST", url,
+		{
+			steam_id = tostring(steam_id),
+		}, 
+
+		function(result)
+			-- Decode response into a lua table
+			local resultTable = {}
+			if not pcall(function()
+				resultTable = JSON:decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				callback(resultTable["errors"], false)
+				return
+			end
+
+			-- If we get a success response, successBool should be true
+			if resultTable ~= nil and resultTable["data"] ~= nil  then
+				callback(resultTable["data"], true)
+				return
+			end
+
+			callback(resultTable, false)
+
 		end
 	)
 end

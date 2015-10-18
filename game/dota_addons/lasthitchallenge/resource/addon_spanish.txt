@@ -73,5 +73,7 @@
 		"back"								"Volver"
 		"quit_title"						"Abandonar Juego"
 		"quit_dialog"						"¿Estás seguro que deseas abandonar?"
+		"cheater"							"TABLA DE TRAMPOSOS"
+		"leaderboard_position"				"Posición"
 	}
 }

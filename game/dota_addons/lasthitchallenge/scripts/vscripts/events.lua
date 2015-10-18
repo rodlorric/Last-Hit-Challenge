@@ -2,9 +2,14 @@ require ( "util")
 require ( "timers" )
 
 
---STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
-STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
+STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
+--STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
 --STORAGEAPI_API_URL_LEADERBOARD = "http://localhost:5000/leaderboard"
+
+STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/cheaters"
+--STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
+--STORAGEAPI_API_URL_CHEATERS = "http://localhost:5000/cheaters"
+
 --detailed stats totals
 melee_lh = 0
 melee_dn = 0
@@ -109,6 +114,17 @@ initialize = false
 function CLastHitChallenge:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP  and not initialize then
 		CLastHitChallenge:InitializeData()
+	end
+
+	if GameRules:State_Get() ==  DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		if Convars:GetInt("sv_cheats") == 1 and not cheater then
+			cheater = true
+			Storage:PutCheater( PlayerResource:GetSteamAccountID(0), STORAGEAPI_API_URL_CHEATERS, function( resultTable, successBool )			
+		    	if successBool then
+					print("Nice try!")
+		    	end
+			end)
+		end
 	end
 
 	if GameRules:IsGamePaused() == true then
@@ -714,38 +730,51 @@ end
 
 function CLastHitChallenge:OnLeaderboard(query)
 	local steamid = PlayerResource:GetSteamAccountID(0)
-	if (query.refresh ~= nil and query.refresh == 1) then
-		Storage:InvalidateLeaderboard(steamid, query.hero, query.time, query.leveling, query.typescore)
-		CLastHitChallenge:UploadRecords()
-	end
 	leader_list = {}
-	local table_name = query.typescore .. query.hero .. query.time .. query.leveling
-    local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
-    table.insert(leader_list, 1, {steam_id = tostring(steamid), value = localrec.value})
-    local index = 1
-	
-	Storage:GetURL(steamid, query.hero, query.time, query.leveling, query.typescore, STORAGEAPI_API_URL_LEADERBOARD, function( resultTable, successBool )
-	    if successBool then
-	    	if resultTable ~= nil then
-		        for k,v in pairs(resultTable) do
-		        	if localrec.value > v.value then
-		        		if tostring(steamid) ~= v.steam_id then
-		        			table.insert(leader_list, {steam_id = v.steam_id, value = v.value})
-		        		end
-		        	else
-		        		if tostring(steamid) ~= v.steam_id then
-		        			table.insert(leader_list, index, {steam_id = v.steam_id, value = v.value})
-		        			index = index + 1
-		        		else
-		        			CustomNetTables:SetTableValue("stats_records", table_name, {value = v.value})
-		        		end
-		        	end
+	if cheater then
+		Storage:GetCheater(STORAGEAPI_API_URL_CHEATERS, function( resultTable, successBool )
+		    if successBool then
+		    	if resultTable ~= nil then
+			        for k,v in pairs(resultTable) do
+						table.insert(leader_list, 1, {steam_id = v.steam_id, value = "sv_cheats 1 :)"})
+			        end
+		       	end
+		    end
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", {leader_list = leader_list, cheater = true})
+		end)
+	else
+		if (query.refresh ~= nil and query.refresh == 1) then
+			Storage:InvalidateLeaderboard(steamid, query.hero, query.time, query.leveling, query.typescore)
+			CLastHitChallenge:UploadRecords()
+		end
+		local table_name = query.typescore .. query.hero .. query.time .. query.leveling
+	    local localrec = CustomNetTables:GetTableValue("stats_records", table_name)
+	    table.insert(leader_list, 1, {steam_id = tostring(steamid), value = localrec.value})
+	    local index = 1
+		
+		Storage:GetURL(steamid, query.hero, query.time, query.leveling, query.typescore, STORAGEAPI_API_URL_LEADERBOARD, function( resultTable, successBool )
+		    if successBool then
+		    	if resultTable ~= nil then
+			        for k,v in pairs(resultTable) do
+			        	if localrec.value > v.value then
+			        		if tostring(steamid) ~= v.steam_id then
+			        			table.insert(leader_list, {steam_id = v.steam_id, value = v.value})
+			        		end
+			        	else
+			        		if tostring(steamid) ~= v.steam_id then
+			        			table.insert(leader_list, index, {steam_id = v.steam_id, value = v.value})
+			        			index = index + 1
+			        		else
+			        			CustomNetTables:SetTableValue("stats_records", table_name, {value = v.value})
+			        		end
+			        	end
 
-		        end
-	       	end
-	    end
-        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
-	end)
+			        end
+		       	end
+		    end
+	        CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "leaderboard", leader_list)
+		end)
+	end
 end
 
 function CLastHitChallenge:Resume()
@@ -759,7 +788,7 @@ end
 
 
 function CLastHitChallenge:UploadRecords()
-	if new_record then
+	if new_record and not cheater then
 		local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 		local time_list = {"150", "300", "450", "600"}
 		local type_list = {"c", "l", "d", "a"}

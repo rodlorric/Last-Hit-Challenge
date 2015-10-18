@@ -12,6 +12,7 @@ _G.restarts = 0
 _G.radiant_tower = nil
 _G.dire_tower = nil
 _G.timer = nil
+_G.cheater = false
 --_G.particle_aura = "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration_aura.vpcf"
 
 --good
