@@ -242,24 +242,22 @@ function CLastHitChallenge:InitGameMode()
 	GameRules:GetGameModeEntity():SetHUDVisible( DOTA_HUD_VISIBILITY_SHOP_SUGGESTEDITEMS, false )
 	]]
 
-	Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
-	Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 	Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
-	Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)
-	Convars:RegisterCommand( "setrecords", setrecords, "Set Records", FCVAR_CHEAT)
-	Convars:RegisterCommand( "giffpower", giffpower, "Give Damage", FCVAR_CHEAT)
-	Convars:RegisterCommand( "setrecord", function(cmnname, steamid, hero, time, leveling, typescore, value)
-										local data = {}
-										table.insert(data, {hero = tostring(hero), time = tostring(time), leveling = leveling, typescore = tostring(typescore), value = tostring(value)})
-										Storage:Put( tostring(steamid), data, 
-										function( resultTable, successBool )
-									    	if successBool then
-									        	print("Successfully put data in storage")
-									    	end
-										end)
-									end, "Set a particular record", 0)
-
-
+	--Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
+	--Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
+	--Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)
+	--Convars:RegisterCommand( "setrecords", setrecords, "Set Records", FCVAR_CHEAT)
+	--Convars:RegisterCommand( "giffpower", giffpower, "Give Damage", FCVAR_CHEAT)
+	--Convars:RegisterCommand( "setrecord", function(command, steamid, hero, time, leveling, typescore, value)
+	--									local data = {}
+	--									table.insert(data, {hero = tostring(hero), time = tostring(time), leveling = leveling, typescore = tostring(typescore), value = tostring(value)})
+	--									Storage:Put( tostring(steamid), data, 
+	--									function( resultTable, successBool )
+	--								    	if successBool then
+	--								        	print("Successfully put data in storage")
+	--								    	end
+	--									end)
+	--								end, "Set a particular record", FCVAR_CHEAT)
 
 	--ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked' ), self)
 	--ListenToGameEvent("last_hit", Dynamic_Wrap(CLastHitChallenge, 'OnLastHit'), self)
