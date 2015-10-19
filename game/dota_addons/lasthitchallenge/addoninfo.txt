@@ -1,6 +1,7 @@
 "AddonInfo"
 {
 	maps 			"lasthit"
+	"TeamCount"		"1"
 	"IsPlayable"	"1"
 	"template_map"
 	{

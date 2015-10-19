@@ -220,6 +220,9 @@ function CLastHitChallenge:InitGameMode()
 	GameRules:SetPostGameTime( 1.0 )
 	GameRules:SetCustomVictoryMessageDuration( 1.0 )
 
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 1 )
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
+
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 0 )
 	
 	GameRules:SetUseUniversalShopMode( false )
