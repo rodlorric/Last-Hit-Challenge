@@ -187,6 +187,8 @@ function OnEndScreen(data) {
 	stats_misc_history = 0
 	$("#end_screen_panel").ToggleClass("Maximized");
 	$("#end_screen_panel").hittest = true;
+
+	GameEvents.SendEventClientSide("endscreen", {visible : 1})
 }
 
 function OnRestart(){
@@ -197,11 +199,14 @@ function OnRestart(){
 function OnCancel(){
 	$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "cancel", {});
+	GameEvents.SendEventClientSide("endscreen", {visible : 0})
 }
 
 function OnQuit(){
-	var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
-	quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
+	if ($("#QuitPanelEndScreen") == null){
+		var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanelEndScreen" );
+		quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
+	}
 }
 
 function ClearGraph(){
@@ -376,4 +381,5 @@ function LoadData(stats_panel, type){
 
 (function () {
 	GameEvents.Subscribe("end_screen", OnEndScreen);
+	GameEvents.Subscribe("quit", OnQuit);
 })();

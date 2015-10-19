@@ -1,5 +1,6 @@
 "use strict";
 
+var end_screen = false;
 function OnLastHitOrDeny( table_name, key, data ){
 	var scorepanel = $.GetContextPanel();
 	if (key == "stats_total_lh") {
@@ -39,9 +40,23 @@ function OnHeroPicked(data){
 	}
 }
 
+var end_screen = false;
+function OnEndScreen(endscreen){
+	if (endscreen.visible == 1){
+		end_screen = true;
+	} else {
+		end_screen = false;
+	}
+}
+
 function OnQuit(){
-	var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
-	quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
+	if (end_screen){
+		GameEvents.SendEventClientSide("quit", {});
+	} else if ($("#QuitPanel") == null){
+		GameEvents.SendCustomGameEventToServer( "quit_dialog", {});
+		var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
+		quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
+	}
 }
 
 
@@ -49,5 +64,7 @@ function OnQuit(){
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
 	GameEvents.Subscribe("hero_picked", OnHeroPicked);
 	GameEvents.Subscribe("clock", OnClockTime);
+	GameEvents.Subscribe("endscreen", OnEndScreen);
+
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();

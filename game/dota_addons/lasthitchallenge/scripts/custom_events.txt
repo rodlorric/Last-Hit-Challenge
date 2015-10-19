@@ -5,6 +5,11 @@
 		"hero"		"string"
 	}
 
+	"endscreen"
+	{
+		"visible"		"int"
+	}
+
 	"time_picked"
 	{
 		"time"		"int"
