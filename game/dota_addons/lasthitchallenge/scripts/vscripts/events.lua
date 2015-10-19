@@ -786,6 +786,12 @@ function CLastHitChallenge:Resume()
 	end
 end
 
+function CLastHitChallenge:Pause()
+	if not Tutorial:GetTimeFrozen() then
+		CLastHitChallenge:SetGameFrozen(true)
+	end
+end
+
 
 function CLastHitChallenge:UploadRecords()
 	if new_record and not cheater then
