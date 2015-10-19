@@ -10,6 +10,8 @@
 		"visible"		"int"
 	}
 
+	"quit" {}
+
 	"time_picked"
 	{
 		"time"		"int"
