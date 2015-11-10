@@ -44,6 +44,7 @@
 		"controlpanel_accuracy"				"Efectividad"
 		"controlpanel_options"				"Opciones"
 		"controlpanel_hide_help"			"Ocultar Ayuda"
+		"controlpanel_invulnerability"		"Invulnerabilidad"
 		"overlay_very_low"					"¡Muy pronto!"
 		"overlay_low"						"¡Aún no!"
 		"overlay_medium"					"¡Falta la midad!"
@@ -59,6 +60,7 @@
 		"timescreen_five_minutes"			"05:00"
 		"timescreen_seven_n_half_minutes"	"07:30"
 		"timescreen_ten_minutes"			"10:00"
+		"timescreen_warm_up"				"Calentamiento"
 		"lvl"								"Niv.On"
 		"nolvl"								"Niv.Off"
 		"leaderboard"						"Tabla de Lideres"
@@ -75,5 +77,7 @@
 		"quit_dialog"						"¿Estás seguro que deseas abandonar?"
 		"cheater"							"TABLA DE TRAMPOSOS"
 		"leaderboard_position"				"Posición"
+		"heatmap_title"						"Mapa de Calor"
+		"heatmap"							"Mapa de Calor"
 	}
 }

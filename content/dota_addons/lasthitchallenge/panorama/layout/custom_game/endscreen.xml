@@ -149,6 +149,9 @@
 			  		</Button>
 			  		<Button class="OptionButton" onactivate="OnLeaderBoardButton()">
 			  			<Label text="#leaderboard"/>
+			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnHeatMapButton()">
+			  			<Label text="#heatmap"/>
 			  		</Button>	  			
 		 			<Button class="OptionButton" onactivate="OnPickButton()">
 			  			<Label text="#pick"/>

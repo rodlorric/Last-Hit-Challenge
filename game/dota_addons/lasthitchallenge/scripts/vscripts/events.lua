@@ -168,6 +168,9 @@ function CLastHitChallenge:ClearData()
 	misses = 0
 	
 	current_cs = { lh = PlayerResource:GetLastHits(0), dn = PlayerResource:GetDenies(0) }
+
+	--clearing heatmap
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "cleardata", {})
 end
 
 function CLastHitChallenge:SetGameFrozen( bFreeze )

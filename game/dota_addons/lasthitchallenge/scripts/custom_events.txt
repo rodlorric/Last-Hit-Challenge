@@ -16,4 +16,6 @@
 	{
 		"time"		"int"
 	}
+
+	"heatmapdata" {}
 }

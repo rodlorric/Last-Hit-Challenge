@@ -204,6 +204,7 @@ function CLastHitChallenge:InitGameMode()
 	ListenToGameEvent("entity_hurt", Dynamic_Wrap(CLastHitChallenge, 'OnHurt'), self) -- Listener for detecting tower damage.
 	CustomGameEventManager:RegisterListener("restart", Dynamic_Wrap(CLastHitChallenge, 'OnRestart'))
 	CustomGameEventManager:RegisterListener("hidehelp", Dynamic_Wrap(CLastHitChallenge, 'OnHideHelp'))
+	CustomGameEventManager:RegisterListener("invulnerability", Dynamic_Wrap(CLastHitChallenge, 'OnInvulnerability'))
 	CustomGameEventManager:RegisterListener("disable_leveling", Dynamic_Wrap(CLastHitChallenge, 'OnDisableLeveling'))
 	CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked'))
 	CustomGameEventManager:RegisterListener("time_picked", Dynamic_Wrap(CLastHitChallenge, 'OnTimePicked'))

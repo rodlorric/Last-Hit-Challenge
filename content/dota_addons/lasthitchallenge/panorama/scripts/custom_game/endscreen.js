@@ -273,6 +273,85 @@ function OnLeaderBoardButton(){
 	dropmenuleveling.SetSelected(leveling);
 }
 
+//HEATMAP
+
+var x_axis = [-2500,-2400,-2300,-2200,-2100,-2000,-1900,-1800,-1700,-1600,-1500,-1400,-1300,-1200,-1100,-1000,-900,
+		-800,-700,-600,-500,-400,-300,-200,-100,0,100,200,300,400,500,600,700,800,900,1000,1200,1300,1400,1500,
+		1600,1700,1800,1900,2000];
+var y_axis = [1500,1400,1300,1200,1100,1000,900,800,700,600,500,400,300,200,100,0,-100,-200,-300,-400,-500,-600,-700,-800,-900,-1000,-1100,-1200,-1300,-1400,-1500,-1600,-1700,-1800,-1900,-2000,-2100,-2200,-2300,-2400,-2500];
+//var x_axis = [-2500,-2450-2400,-2350,-2300,-2250,-2200,-2150,-2100,-2050,-2000,-1950,-1900,-1820,-1800,-1750,-1700,-1650,-1600,-1550,-1500,-1450,-1400,-1350,-1300,-1250,-1200,-1150,-1100,-1050,
+//	-1000,-950,-900,-850,-800,-750,-700,-650,-600,-550,-500,-450,-400,-350,-300,-250,-200,-150,-100,-50,0,50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,
+//	1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1650,1700,1750,1800,1850,1900,1950,2000];
+//var y_axis = [1500,1450,1400,1350,1300,1250,1200,1150,1100,1050,1000,950,900,850,800,750,700,650,600,550,500,450,400,350,300,250,200,150,100,50,0,-50,-100,-150,-200,-250,-300,-350,-400,-450,-500,-550,
+//	-600,-650,-700,-750,-800,-850,-900,-950,-1000,-1050,-1100,-1150,-1200,-1250,-1300,-1350,-1400,-1450,-1500,-1550,-1600,-1650,-1700,-1750,-1800,-1850,-1900,-1950,-2000,-2050,-2100,-2150,-2200,-2250,
+//	-2300,-2350,-2400,-2450,-2500];
+
+
+var matrix = [];
+for (var row in y_axis){
+	matrix[row] = [];
+	for (var col in x_axis){
+		matrix[row][col] = 0
+	}
+}
+
+var max = 0;
+
+function OnClearData(){
+	matrix = [];
+	for (var row in y_axis){
+		matrix[row] = [];
+		for (var col in x_axis){
+			matrix[row][col] = 0
+		}
+	}
+}
+
+function HeatMap(data){
+    var x = data.x;
+    var y = data.y;
+
+    var x_coord;
+    var less = false;
+    for (var i = x_axis.length - 1; i >= 0; i--) {
+    	if (x == x_axis[i]){
+    		x_coord = i;
+    	}  else if (x < x_axis[i]){
+    		less = true;
+    	} else {
+    		if (less){
+    			x_coord = i;
+    			break;
+    		}
+    	}
+    };
+
+    var y_coord;
+    for (var i = y_axis.length - 1; i >= 0; i--) {
+    	if (y == y_axis[i]){
+    		y_coord = i;
+    	}  else if (y < y_axis[i]){
+    		y_coord = i;
+    		break;
+    	}
+    };
+    matrix[y_coord][x_coord] += 1;
+
+	for (var row in matrix){
+		for (var col in matrix[row]){
+			if (matrix[row][col] > max){
+				max = matrix[row][col];
+			}
+		}
+	}
+}
+
+function OnHeatMapButton(){
+	var heatmap = $.CreatePanel( "Panel", $.GetContextPanel(), "HeatMapScreen" );
+	heatmap.BLoadLayout( "file://{resources}/layout/custom_game/heatmap.xml", false, false );
+	GameEvents.SendEventClientSide("heatmapdata", {max : max, data : matrix, x_axis : x_axis, y_axis : y_axis});
+}
+
 function LoadData(stats_panel, type){
 	var stats_melee = stats_panel.FindChildInLayoutFile("stats_melee");
 	var stats_ranged = stats_panel.FindChildInLayoutFile("stats_ranged");
@@ -373,5 +452,7 @@ function LoadData(stats_panel, type){
 
 (function () {
 	GameEvents.Subscribe("end_screen", OnEndScreen);
+	GameEvents.Subscribe("cleardata", OnClearData);
+	GameEvents.Subscribe("heatmap", HeatMap);
 	GameEvents.Subscribe("quit", OnQuit);
 })();

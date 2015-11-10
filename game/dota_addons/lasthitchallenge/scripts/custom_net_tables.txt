@@ -9,5 +9,6 @@
 		"stats_time",
 		"stats_misc",
 		"stats_totals_details",
+		"hero_selection"
 	]
 }

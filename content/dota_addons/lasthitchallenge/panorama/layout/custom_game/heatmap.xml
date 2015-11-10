@@ -1,0 +1,28 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/heatmap.css"/>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/heatmap.js" />
+	</scripts>
+	<Panel class="HeatmapRoot" hittest="true">
+		<Panel id="DimBackground" hittest="false"/>
+		<Button id="BlurBackground"/>
+		<Panel id="heatmap_panel" class="HeatmapPanel" hittest="false">
+			<Panel id="heatmap_panel_container" class="HeatmapPanelContainer">
+				<Panel class="Header">
+		  			<Label id="heatmap_title" text="#heatmap_title"/>
+		  			<Button class="CloseButton" onactivate="OnQuit()"/>
+			  	</Panel>
+			  	<Panel id="heatmap_panel_detail" class="HeatmapPanelDetail"/>
+				<Panel class="ButtonPanel">		  			
+			  		<Button class="OptionButton" onactivate="OnQuit()">
+			  			<Label text="#close"/>
+			  		</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+  	</Panel>
+</root>
