@@ -84,6 +84,10 @@ function OnToggle(){
 	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
 }
 
+function OnInvulnerability(){
+	GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : $("#invulnerability").checked });
+}
+
 
 var hero_picked = "nevermore";
 var leveling = true;
@@ -102,25 +106,32 @@ function OnHeroPicked(data){
 
 function OnTimePicked(time){
 	var panel = $.GetContextPanel();
-	//var suffix = hero_picked + "_" + time.value + "_" + leveling;
-	var suffix = hero_picked + time.value + (leveling ? "n":"l");
 
-	//$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + suffix ).value;
-	$("#cs").text = CustomNetTables.GetTableValue( "stats_records", "c" + suffix ).value;
+	var suffix = hero_picked + time.value + (leveling ? "n":"l");
+	$("#cs").text = time.value != -1 ? CustomNetTables.GetTableValue( "stats_records", "c" + suffix ).value : "--";
 	panel.SetHasClass( "cs_anim", true );	
-	//$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + suffix ).value;
-	$("#lh").text = CustomNetTables.GetTableValue( "stats_records", "l" + suffix ).value;
+	$("#lh").text = time.value != -1 ? CustomNetTables.GetTableValue( "stats_records", "l" + suffix ).value : "--";
 	panel.SetHasClass( "lh_anim", true );	
-	//$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + suffix ).value;
-	$("#dn").text = CustomNetTables.GetTableValue( "stats_records", "d" + suffix ).value;
+	$("#dn").text =  time.value != -1 ? CustomNetTables.GetTableValue( "stats_records", "d" + suffix ).value : "--";
 	panel.SetHasClass( "dn_anim", true );
 
 	var date = new Date(null);
     date.setSeconds(time.value); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 
+	$("#records_header").text = $.Localize( "#controlpanel_records" ) + " " + (time.value != -1 ? minutes : "--") + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
+
     $("#hero_header").text = $.Localize(HeroName(hero_picked));
-	$("#records_header").text =  $.Localize( "#controlpanel_records" ) + " " + minutes + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
+
+    if (time.value == -1){
+    	$("#invulnerability").style.visibility = "visible;";
+    	$("#controlpanelcontainer").style.height = "780px";
+    } else {
+    	$("#invulnerability").style.visibility = "collapse;";
+    	$("#controlpanelcontainer").style.height = "730px";
+    }
+    GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : false });
+    $("#invulnerability").checked = "false;";
 	$.Schedule( 1, OnResetAnimation );
 }
 

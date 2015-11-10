@@ -1,7 +1,6 @@
 "use strict";
 
 function OnYes(){
-	$.Msg("onyes!");
 	GameEvents.SendCustomGameEventToServer( "quit", {});
 }
 

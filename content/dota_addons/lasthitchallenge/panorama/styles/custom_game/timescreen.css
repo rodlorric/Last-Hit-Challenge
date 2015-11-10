@@ -56,13 +56,13 @@
   vertical-align: bottom;
   color: #a0a0a0;
   font-weight: thin;
-  font-size: 80;
+  font-size: 55;
   background-color: black;
   opacity: 0.5;
   
   width: 100%;
   margin-top: 0px;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 
 .TimePanel .PickButton{

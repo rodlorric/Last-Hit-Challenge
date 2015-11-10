@@ -47,6 +47,12 @@
 						</Label>					
 				  	</Button>
 				</Panel>
+				<Panel class="VertBar"/>
+				<Panel class="TimePanel">
+					<Button class="PickButton" onactivate="OnPick(-1);">						
+						<Label text="#timescreen_warm_up"/>
+				  	</Button>
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

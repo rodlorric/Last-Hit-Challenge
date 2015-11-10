@@ -29,6 +29,7 @@ siege_miss_foe = 0
 --tower_miss_foe = 0
 ----------------------
 hidehelp = 0
+invulnerable = 0
 ----------------------
 iter = 1
 ----------------------
@@ -248,7 +249,7 @@ function CLastHitChallenge:EndGame()
 	--local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling)
 	local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", "a" .. hero_picked .. tostring(MAXTIME) .. leveling)
 	if seconds == MAXTIME then
-		if accuracy > stats_record_accuracy.value then
+		if accuracy > stats_record_accuracy.value and MAXTIME ~= -1 then
 			stats_record_accuracy.value = accuracy
 			--CustomNetTables:SetTableValue("stats_records", "stats_record_ac_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_accuracy)
 			CustomNetTables:SetTableValue("stats_records", "a" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_accuracy)
@@ -323,6 +324,10 @@ function CLastHitChallenge:OnHurt( event )
 	local hurtUnit = EntIndexToHScript( event.entindex_killed )
 	if event.entindex_attacker ~= nil then
 		local attacker = EntIndexToHScript( event.entindex_attacker )
+		if hurtUnit:IsHero() and invulnerable == 1 then
+			hurtUnit:SetHealth(hurtUnit:GetMaxHealth())
+		end
+
 		if hurtUnit:IsCreep() and attacker:IsHero() then
 			local health = hurtUnit:GetHealth()
 			local max_health = hurtUnit:GetMaxHealth()
@@ -345,6 +350,16 @@ function CLastHitChallenge:OnHurt( event )
 
 end
 
+function CLastHitChallenge:OnInvulnerability( event )
+	local hero  = PlayerResource:GetPlayer(0):GetAssignedHero()
+	if event.invulnerability == 1 then
+		invulnerable = 1
+		hero:SetHealth(hero:GetMaxHealth())
+	else
+		invulnerable = 0
+	end
+
+end
 
 function CLastHitChallenge:OnHideHelp( event )
 	if event.hidehelp == 1 then		
@@ -429,10 +444,12 @@ max_cs_streak = 0
 max_deny_streak = 0
 max_last_hit_streak = 0
 function CLastHitChallenge:OnEntityKilled (event)
+
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	local killedUnitName = killedUnit:GetUnitName()
 	local killedTeam = killedUnit:GetTeam()
 	local attacker = EntIndexToHScript( event.entindex_attacker )
+
 	if attacker:entindex() ~= killedUnit:entindex() then --UTIL_removed units count as killed by self
 
 		--remove particles only from killed units
@@ -449,6 +466,9 @@ function CLastHitChallenge:OnEntityKilled (event)
 		local cs = lh + dn
 
 		if attacker:IsRealHero() and not killedUnit:IsRealHero() then
+			--heatmap
+			local xy = killedUnit:GetOrigin()
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "heatmap", {x = xy.x, y = xy.y})
 			
 			--Streaks
 			cs_streak = cs_streak + 1 
@@ -473,7 +493,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 				CustomNetTables:SetTableValue( "stats_totals", "stats_total_dn", { value = dn } )
 
 				if dn > stats_record_dn.value or  cs > stats_record_cs.value then
-					if dn > stats_record_dn.value then
+					if dn > stats_record_dn.value and MAXTIME ~= -1 then
 						stats_record_dn.value = dn
 						--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
 						CustomNetTables:SetTableValue("stats_records", "d" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_dn)
@@ -506,7 +526,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 				CustomNetTables:SetTableValue( "stats_totals", "stats_total_lh", { value = lh } );
 				if lh > stats_record_lh.value or cs > stats_record_cs.value then
-					if lh > stats_record_lh.value then
+					if lh > stats_record_lh.value and MAXTIME ~= -1 then
 						stats_record_lh.value = lh
 						--CustomNetTables:SetTableValue("stats_records", "stats_record_lh_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_lh)
 						CustomNetTables:SetTableValue("stats_records", "l" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_lh)
@@ -533,7 +553,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 			session_cs = session_cs + 1
 
 			--Records
-			if cs > stats_record_cs.value then
+			if cs > stats_record_cs.value and MAXTIME ~= -1 then
 				stats_record_cs.value = cs
 				--CustomNetTables:SetTableValue("stats_records", "stats_record_cs_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling , stats_record_cs)
 				CustomNetTables:SetTableValue("stats_records", "c" .. hero_picked .. tostring(MAXTIME) .. leveling , stats_record_cs)
@@ -772,7 +792,7 @@ end
 
 
 function CLastHitChallenge:UploadRecords()
-	if new_record and not cheater then
+	if new_record and not cheater and MAXTIME ~= -1 then
 		--local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 		local time_list = {"150", "300", "450", "600"}
 		local type_list = {"c", "l", "d", "a"}
@@ -881,17 +901,17 @@ function CLastHitChallenge:InitializeData()
 	]]
 
 	---local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
-	local time_list = {"150", "300", "450", "600"}
+	local time_list = {"150", "300", "450", "600", "-1"}
 	local type_list = {"c", "l", "d","a"}
 	local level_list = {"l", "n"}
 
 	for i, typescore in pairs(type_list) do
 		for j, time in pairs(time_list) do
 			for hero, enabled in pairs(HERO_SELECTION) do
-					if enabled == 1 then
-						local kvhero = KVHEROES[hero]
-						for l, level in pairs(level_list) do
-						--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
+				if enabled == 1 then
+					local kvhero = KVHEROES[hero]
+					for l, level in pairs(level_list) do
+					--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
 						local val = CustomNetTables:GetTableValue("stats_records", typescore .. tostring(kvhero.HeroID) .. time .. level)
 						if val == nil then
 							--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
