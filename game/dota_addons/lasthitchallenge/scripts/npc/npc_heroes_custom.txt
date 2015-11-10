@@ -46,19 +46,6 @@
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
-		
-		"Creature"
-		{
-			"AttachWearables"
-			{
-				"Wearable1"		{	"ItemDef"		"181"			} //Horse
-				"Wearable2"		{	"ItemDef"		"183"			} //Shoulders
-				"Wearable3" 	{	"ItemDef"		"184"		} //Helmet
-				"Wearable4"		{	"ItemDef"		"185"		} //Weapon
-				"Wearable5"		{	"ItemDef"		"186"		} //Shield
-
-			}
-		}
 	}
 
 	//=================================================================================================================
@@ -380,6 +367,1343 @@
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
 	}
 
+	//=================================================================================================================
+	// HERO: Antimage
+	//=================================================================================================================
+	"npc_dota_hero_antimage_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_antimage"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+
+	//=================================================================================================================
+	// HERO: Antimage
+	//=================================================================================================================
+	"npc_dota_hero_antimage_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_antimage"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Axe
+	//=================================================================================================================
+	"npc_dota_hero_axe_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_axe"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Bane
+	//=================================================================================================================
+	"npc_dota_hero_bane_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_bane"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Bloodseeker
+	//=================================================================================================================
+	"npc_dota_hero_bloodseeker_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_bloodseeker"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Cristal Maiden
+	//=================================================================================================================
+	"npc_dota_hero_crystal_maiden_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_crystal_maiden"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Drow Ranger
+	//=================================================================================================================
+	"npc_dota_hero_drow_ranger_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_drow_ranger"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Earthshaker
+	//=================================================================================================================
+	"npc_dota_hero_earthshaker_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_earthshaker"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Juggernaut
+	//=================================================================================================================
+	"npc_dota_hero_juggernaut_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_juggernaut"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Mirana
+	//=================================================================================================================
+	"npc_dota_hero_mirana_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_mirana"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Morphling
+	//=================================================================================================================
+	"npc_dota_hero_morphling_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_morphling"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Phantom Lancer
+	//=================================================================================================================
+	"npc_dota_hero_phantom_lancer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_phantom_lancer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Pudge
+	//=================================================================================================================
+	"npc_dota_hero_pudge_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_pudge"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Razor
+	//=================================================================================================================
+	"npc_dota_hero_razor_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_razor"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Sand King
+	//=================================================================================================================
+	"npc_dota_hero_sand_king_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_sand_king"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Sven
+	//=================================================================================================================
+	"npc_dota_hero_sven_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_sven"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Vengeful Spirit
+	//=================================================================================================================
+	"npc_dota_hero_vengefulspirit_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_vengefulspirit"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Lich
+	//=================================================================================================================
+	"npc_dota_hero_lich_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_lich"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Lion
+	//=================================================================================================================
+	"npc_dota_hero_lion_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_lion"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Shadow Shaman
+	//=================================================================================================================
+	"npc_dota_hero_shadow_shaman_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_shadow_shaman"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Slardar
+	//=================================================================================================================
+	"npc_dota_hero_slardar_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_slardar"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Tidehunter
+	//=================================================================================================================
+	"npc_dota_hero_tidehunter_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_tidehunter"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Witch Doctor
+	//=================================================================================================================
+	"npc_dota_hero_witch_doctor_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_witch_doctor"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Riki
+	//=================================================================================================================
+	"npc_dota_hero_riki_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_riki"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Enigma
+	//=================================================================================================================
+	"npc_dota_hero_enigma_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_enigma"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Necrophos
+	//=================================================================================================================
+	"npc_dota_hero_necrolyte_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_necrolyte"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Warlock
+	//=================================================================================================================
+	"npc_dota_hero_warlock_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_warlock"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Beastmaster
+	//=================================================================================================================
+	"npc_dota_hero_beastmaster_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_beastmaster"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Venomancer
+	//=================================================================================================================
+	"npc_dota_hero_venomancer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_venomancer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Faceless Void
+	//=================================================================================================================
+	"npc_dota_hero_faceless_void_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_faceless_void"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Wraith King
+	//=================================================================================================================
+	"npc_dota_hero_skeleton_king_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_skeleton_king"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Phantom Assassin
+	//=================================================================================================================
+	"npc_dota_hero_phantom_assassin_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_phantom_assassin"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Pugna
+	//=================================================================================================================
+	"npc_dota_hero_pugna_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_pugna"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Luna
+	//=================================================================================================================
+	"npc_dota_hero_luna_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_luna"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Dazzle
+	//=================================================================================================================
+	"npc_dota_hero_dazzle_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_dazzle"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Clockwerk
+	//=================================================================================================================
+	"npc_dota_hero_rattletrap_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_rattletrap"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Natures Prophet
+	//=================================================================================================================
+	"npc_dota_hero_furion_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_furion"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Lifestealer
+	//=================================================================================================================
+	"npc_dota_hero_life_stealer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_life_stealer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Dark Seer
+	//=================================================================================================================
+	"npc_dota_hero_dark_seer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_dark_seer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Clinkz
+	//=================================================================================================================
+	"npc_dota_hero_clinkz_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_clinkz"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Omniknight
+	//=================================================================================================================
+	"npc_dota_hero_omniknight_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_omniknight"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Enchantress
+	//=================================================================================================================
+	"npc_dota_hero_enchantress_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_enchantress"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Broodmother
+	//=================================================================================================================
+	"npc_dota_hero_broodmother_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_broodmother"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Bounty Hunter
+	//=================================================================================================================
+	"npc_dota_hero_bounty_hunter_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_bounty_hunter"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Weaver
+	//=================================================================================================================
+	"npc_dota_hero_weaver_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_weaver"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Batrider
+	//=================================================================================================================
+	"npc_dota_hero_batrider_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_batrider"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Chen
+	//=================================================================================================================
+	"npc_dota_hero_chen_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_chen"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Spectre
+	//=================================================================================================================
+	"npc_dota_hero_spectre_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_spectre"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Doom
+	//=================================================================================================================
+	"npc_dota_hero_doom_bringer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_doom_bringer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Ancient Apparition
+	//=================================================================================================================
+	"npc_dota_hero_ancient_apparition_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_ancient_apparition"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Ursa
+	//=================================================================================================================
+	"npc_dota_hero_ursa_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_ursa"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Spirit Breaker
+	//=================================================================================================================
+	"npc_dota_hero_spirit_breaker_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_spirit_breaker"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Gyrocopter
+	//=================================================================================================================
+	"npc_dota_hero_gyrocopter_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_gyrocopter"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Alchemist
+	//=================================================================================================================
+	"npc_dota_hero_alchemist_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_alchemist"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+	
+	//=================================================================================================================
+	// HERO: Silencer
+	//=================================================================================================================
+	"npc_dota_hero_silencer_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_silencer"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Lycan
+	//=================================================================================================================
+	"npc_dota_hero_lycan_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_lycan"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+	
+	//=================================================================================================================
+	// HERO: Shadow Demon
+	//=================================================================================================================
+	"npc_dota_hero_shadow_demon_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_shadow_demon"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Lone Druid
+	//=================================================================================================================
+	"npc_dota_hero_lone_druid_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_lone_druid"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Chaos Knight
+	//=================================================================================================================
+	"npc_dota_hero_chaos_knight_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_chaos_knight"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Meepo
+	//=================================================================================================================
+	"npc_dota_hero_meepo_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_meepo"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Treant Protector
+	//=================================================================================================================
+	"npc_dota_hero_treant_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_treant"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Ogre Magi
+	//=================================================================================================================
+	"npc_dota_hero_ogre_magi_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_ogre_magi"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Undiying
+	//=================================================================================================================
+	"npc_dota_hero_undying_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_undying"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Rubick
+	//=================================================================================================================
+	"npc_dota_hero_rubick_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_rubick"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Disruptor
+	//=================================================================================================================
+	"npc_dota_hero_disruptor_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_disruptor"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Nyx Assassin
+	//=================================================================================================================
+	"npc_dota_hero_nyx_assassin_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_nyx_assassin"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Naga Siren
+	//=================================================================================================================
+	"npc_dota_hero_naga_siren_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_naga_siren"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Keeper of the Light
+	//=================================================================================================================
+	"npc_dota_hero_keeper_of_the_light_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_keeper_of_the_light"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Io
+	//=================================================================================================================
+	"npc_dota_hero_wisp_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_wisp"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Visage
+	//=================================================================================================================
+	"npc_dota_hero_visage_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_visage"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Slark
+	//=================================================================================================================
+	"npc_dota_hero_slark_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_slark"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Medusa
+	//=================================================================================================================
+	"npc_dota_hero_medusa_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_medusa"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Troll Warlord
+	//=================================================================================================================
+	"npc_dota_hero_troll_warlord_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_troll_warlord"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Centaur Warrunner
+	//=================================================================================================================
+	"npc_dota_hero_centaur_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_centaur"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Timbersaw
+	//=================================================================================================================
+	"npc_dota_hero_shredder_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_shredder"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Bristleback
+	//=================================================================================================================
+	"npc_dota_hero_bristleback_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_bristleback"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Tusk
+	//=================================================================================================================
+	"npc_dota_hero_tusk_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_tusk"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Skywrath Mage
+	//=================================================================================================================
+	"npc_dota_hero_skywrath_mage_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_skywrath_mage"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Abaddon
+	//=================================================================================================================
+	"npc_dota_hero_abaddon_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_abaddon"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Elder Titan
+	//=================================================================================================================
+	"npc_dota_hero_elder_titan_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_elder_titan"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Legion Commander
+	//=================================================================================================================
+	"npc_dota_hero_legion_commander_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_legion_commander"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Legion Commander
+	//=================================================================================================================
+	"npc_dota_hero_earth_spirit_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_earth_spirit"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Abyssal Underlord
+	//=================================================================================================================
+	"npc_dota_hero_abyssal_underlord_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_abyssal_underlord"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Terrorblade
+	//=================================================================================================================
+	"npc_dota_hero_terrorblade_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_terrorblade"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Phoenix
+	//=================================================================================================================
+	"npc_dota_hero_phoenix_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_phoenix"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Oracle
+	//=================================================================================================================
+	"npc_dota_hero_oracle_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_oracle"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Techies
+	//=================================================================================================================
+	"npc_dota_hero_techies_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_techies"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Winter Wyvern
+	//=================================================================================================================
+	"npc_dota_hero_winter_wyvern_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_winter_wyvern"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+	//=================================================================================================================
+	// HERO: Arc Warden
+	//=================================================================================================================
+	"npc_dota_hero_arc_warden_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_arc_warden"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
+
 	//-------------------------------------------------------------------------------------------------------------
 	// HERO: Satyr Banisher
 	//-------------------------------------------------------------------------------------------------------------
@@ -404,12 +1728,12 @@
 
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
-		"Ability1"					"nevermore_no_abilities"					// Ability 1
-		"Ability2"					"nevermore_no_abilities"					// Ability 2
-		"Ability3"					"nevermore_no_abilities"					// Ability 3
-		"Ability4"					"nevermore_no_abilities"					// Ability 4
-		"Ability5"					"nevermore_no_abilities"					// Ability 5
-		"Ability6"					"nevermore_no_abilities"					// Ability 6
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
 
 		// Armor
@@ -432,19 +1756,13 @@
 
 		// Attributes
 		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLIGENCE"
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"			"0"
-		"AttributeStrengthGain"			"0"
+		"AttributeStrengthGain"			"0.1"
 		"AttributeBaseIntelligence"		"0"
-		"AttributeIntelligenceGain"		"0"
+		"AttributeIntelligenceGain"		"0.1"
 		"AttributeBaseAgility"			"0"
-		"AttributeAgilityGain"			"0"
-
-		// Bounty
-		//-------------------------------------------------------------------------------------------------------------
-		"BountyXP"					"41"		// Experience earn.
-		"BountyGoldMin"				"15"		// Gold earned min.
-		"BountyGoldMax"				"17"		// Gold earned max.
+		"AttributeAgilityGain"			"0.1"
 
 		// Bounds
 		//-------------------------------------------------------------------------------------------------------------
@@ -462,7 +1780,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"StatusHealth"		"300"
 		"StatusHealthRegen"		"0.250000"
-		"StatusMana"		"0"
+		"StatusMana"		"100"
 		"StatusManaRegen"		"0.010000"
 
 		// Team

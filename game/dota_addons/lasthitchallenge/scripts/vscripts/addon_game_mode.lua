@@ -29,6 +29,8 @@ _G.particle_aura = "particles/units/heroes/hero_silencer/silencer_last_word_stat
 --_G.particle_aura = "particles/units/heroes/hero_morphling/morphling_morph_str.vpcf"
 --_G.particle_aura = "particles/units/heroes/hero_morphling/morphling_morph_str_ring.vpcf"
 
+_G.HERO_SELECTION = LoadKeyValues("scripts/npc/herolist.txt");
+_G.KVHEROES = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
 if CLastHitChallenge == nil then
   _G.CLastHitChallenge = class({}) -- put CLastHitChallenge in the global scope
@@ -44,87 +46,20 @@ require('storageapi/storage')
 
 
 function Precache( context )
-	--[[
-		Precache things we know we'll use.  Possible file types include (but not limited to):
-			PrecacheResource( "model", "*.vmdl", context )
-			PrecacheResource( "soundfile", "*.vsndevts", context )
-			PrecacheResource( "particle", "*.vpcf", context )
-			PrecacheResource( "particle_folder", "particles/folder", context )
-	]]
-	PrecacheUnitByNameSync( "npc_dota_hero_nevermore", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_storm_spirit", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_templar_assassin", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_tinker", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_invoker", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_obsidian_destroyer", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_queenofpain", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_puck", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_death_prophet", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_leshrac", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_ember_spirit", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_lina", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_viper", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_magnataur", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_sniper", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_dragon_knight", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_kunkka", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_brewmaster", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_night_stalker", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_huskar", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_tiny", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_windrunner", context )
-	PrecacheUnitByNameSync( "npc_dota_hero_zuus", context )
+	for hero, enabled in pairs(HERO_SELECTION) do
+		if enabled == 1 then
+			local kvhero = KVHEROES[hero]
+			CustomNetTables:SetTableValue("hero_selection", tostring(kvhero.HeroID), { hero = hero } )
+			if hero ~= "npc_dota_hero_techies" then
+				PrecacheUnitByNameSync( hero, context )
+				PrecacheResource("model_folder", "models/items/" .. hero:sub(15), context)
+				PrecacheResource("particle_folder", "particles/econ/items/" .. hero:sub(15), context)
+			end
+		end
+	end
+	
 	PrecacheUnitByNameSync( "npc_dota_neutral_satyr_soulstealer", context)
 	PrecacheResource( "particle", particle_aura, context )
-
-	PrecacheResource("model_folder", "models/items/nevermore", context)
-	PrecacheResource("model_folder", "models/items/shadow_fiend", context)
-	PrecacheResource("model_folder", "models/items/storm_spirit", context)
-	PrecacheResource("model_folder", "models/items/lanaya", context)
-	PrecacheResource("model_folder", "models/items/tinker", context)
-	PrecacheResource("model_folder", "models/items/invoker", context)
-	PrecacheResource("model_folder", "models/items/obsidian_destroyer", context)
-	PrecacheResource("model_folder", "models/items/queenofpain", context)
-	PrecacheResource("model_folder", "models/items/puck", context)
-	PrecacheResource("model_folder", "models/items/death_prophet", context)
-	PrecacheResource("model_folder", "models/items/leshrac", context)
-	PrecacheResource("model_folder", "models/items/ember_spirit", context)
-	PrecacheResource("model_folder", "models/items/lina", context)
-	PrecacheResource("model_folder", "models/items/magnataur", context)
-	PrecacheResource("model_folder", "models/items/sniper", context)
-	PrecacheResource("model_folder", "models/items/dragon_knight", context)
-	PrecacheResource("model_folder", "models/items/kunkka", context)
-	PrecacheResource("model_folder", "models/items/brewmaster", context)
-	PrecacheResource("model_folder", "models/items/night_stalker", context)
-	PrecacheResource("model_folder", "models/items/huskar", context)
-	PrecacheResource("model_folder", "models/items/tiny", context)
-	PrecacheResource("model_folder", "models/items/windrunner", context)
-	PrecacheResource("model_folder", "models/items/zeus", context)
-
-	PrecacheResource("particle_folder", "particles/econ/items/nevermore", context)
-	PrecacheResource("particle_folder", "particles/econ/items/shadow_fiend", context)
-	PrecacheResource("particle_folder", "particles/econ/items/storm_spirit", context)
-	PrecacheResource("particle_folder", "particles/econ/items/templar_assassin", context)
-	PrecacheResource("particle_folder", "particles/econ/items/tinker", context)
-	PrecacheResource("particle_folder", "particles/econ/items/invoker", context)
-	PrecacheResource("particle_folder", "particles/econ/items/obsidian_destroyer", context)
-	PrecacheResource("particle_folder", "particles/econ/items/outworld_devourer", context)
-	PrecacheResource("particle_folder", "particles/econ/items/queenofpain", context)
-	PrecacheResource("particle_folder", "particles/econ/items/puck", context)
-	PrecacheResource("particle_folder", "particles/econ/items/death_prophet", context)
-	PrecacheResource("particle_folder", "particles/econ/items/leshrac", context)
-	PrecacheResource("particle_folder", "particles/econ/items/ember_spirit", context)
-	PrecacheResource("particle_folder", "particles/econ/items/lina", context)
-	PrecacheResource("particle_folder", "particles/econ/items/magnataur", context)
-	PrecacheResource("particle_folder", "particles/econ/items/sniper", context)
-	PrecacheResource("particle_folder", "particles/econ/items/dragon_knight", context)
-	PrecacheResource("particle_folder", "particles/econ/items/kunkka", context)
-	PrecacheResource("particle_folder", "particles/econ/items/brewmaster", context)
-	PrecacheResource("particle_folder", "particles/econ/items/night_stalker", context)
-	PrecacheResource("particle_folder", "particles/econ/items/huskar", context)
-	PrecacheResource("particle_folder", "particles/econ/items/tiny", context)
-	PrecacheResource("particle_folder", "particles/econ/items/windrunner", context)
-	PrecacheResource("particle_folder", "particles/econ/items/zeus", context)
 end
 
 function end_game_func()

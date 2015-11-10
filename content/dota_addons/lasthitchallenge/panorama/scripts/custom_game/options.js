@@ -132,32 +132,12 @@ function OnPickButton(){
 }
 
 function HeroName(hero_picked){
-	var hero_name = { 11 : "npc_dota_hero_nevermore",
-						17 : "npc_dota_hero_storm_spirit",
-						46 : "npc_dota_hero_templar_assassin",
-						34 : "npc_dota_hero_tinker",
-						74 : "npc_dota_hero_invoker",
-						76 : "npc_dota_hero_obsidian_destroyer",
-						39 : "npc_dota_hero_queenofpain",
-						13 : "npc_dota_hero_puck",
-						43 : "npc_dota_hero_death_prophet",
-						52 : "npc_dota_hero_leshrac",
-						106 : "npc_dota_hero_ember_spirit",
-						25 : "npc_dota_hero_lina",
-						47 : "npc_dota_hero_viper",
-						97 : "npc_dota_hero_magnataur",
-						35 : "npc_dota_hero_sniper",
-						49 : "npc_dota_hero_dragon_knight",
-						23 : "npc_dota_hero_kunkka",
-						78 : "npc_dota_hero_brewmaster",
-						60 : "npc_dota_hero_night_stalker",
-						59 : "npc_dota_hero_huskar",
-						19 : "npc_dota_hero_tiny",
-						21 : "npc_dota_hero_windrunner",
-						22 : "npc_dota_hero_zuus",
-						64 : "npc_dota_hero_jakiro"
-					}
-	return hero_name[hero_picked]
+	var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
+    for (var h in heroes) {
+        if (hero_picked == heroes[h].key) { 
+        	return heroes[h].value.hero;
+        }
+    }
 }
 
 (function () {

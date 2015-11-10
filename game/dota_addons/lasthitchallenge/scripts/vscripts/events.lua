@@ -53,7 +53,7 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
 
 	local phero = PlayerResource:GetPlayer(0):GetAssignedHero()
 	--local nhero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_" .. hero_picked, 0, 0)
-	local hero_picked_name = CLastHitChallenge:HeroName(tonumber(hero_picked))
+	local hero_picked_name = CLastHitChallenge:HeroName(hero_picked)
 	local nhero = PlayerResource:ReplaceHeroWith( 0, hero_picked_name, 0, 0)
 	UTIL_Remove(phero)
   	
@@ -62,32 +62,8 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
 end
 
 function CLastHitChallenge:HeroName(hero_picked)
-	local hero_name = { [11] = "npc_dota_hero_nevermore",
-						[17] = "npc_dota_hero_storm_spirit",
-						[46] = "npc_dota_hero_templar_assassin",
-						[34] = "npc_dota_hero_tinker",
-						[74] = "npc_dota_hero_invoker",
-						[76] = "npc_dota_hero_obsidian_destroyer",
-						[39] = "npc_dota_hero_queenofpain",
-						[13] = "npc_dota_hero_puck",
-						[43] = "npc_dota_hero_death_prophet",
-						[52] = "npc_dota_hero_leshrac",
-						[106] = "npc_dota_hero_ember_spirit",
-						[25] = "npc_dota_hero_lina",
-						[47] = "npc_dota_hero_viper",
-						[97] = "npc_dota_hero_magnataur",
-						[35] = "npc_dota_hero_sniper",
-						[49] = "npc_dota_hero_dragon_knight",
-						[23] = "npc_dota_hero_kunkka",
-						[78] = "npc_dota_hero_brewmaster",
-						[60] = "npc_dota_hero_night_stalker",
-						[59] = "npc_dota_hero_huskar",
-						[19] = "npc_dota_hero_tiny",
-						[21] = "npc_dota_hero_windrunner",
-						[22] = "npc_dota_hero_zuus",
-						[64] = "npc_dota_hero_jakiro"
-					}
-	return hero_name[hero_picked]
+	local hero_name = CustomNetTables:GetTableValue("hero_selection", tostring(hero_picked))
+	return hero_name.hero
 end
 
 function CLastHitChallenge:SafeSpawn(hero)
@@ -604,7 +580,6 @@ function CLastHitChallenge:OnEntityKilled (event)
 				end
 
 				local origin = killedUnit:GetOrigin()
-				local bounds = killedUnit:GetUpVector()
 				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
 			end
 		end
@@ -711,7 +686,7 @@ function CLastHitChallenge:OnRestart()
 	CLastHitChallenge:SafeSpawn(player_hero)
 
 	local phero = PlayerResource:GetPlayer(0):GetAssignedHero()
-	local hero_picked_name = CLastHitChallenge:HeroName(tonumber(hero_picked))
+	local hero_picked_name = CLastHitChallenge:HeroName(hero_picked)
 	local nhero = PlayerResource:ReplaceHeroWith( 0, hero_picked_name, 0, 0)
 	UTIL_Remove(phero)
 
@@ -795,7 +770,7 @@ end
 
 function CLastHitChallenge:UploadRecords()
 	if new_record and not cheater then
-		local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
+		--local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 		local time_list = {"150", "300", "450", "600"}
 		local type_list = {"c", "l", "d", "a"}
 		local level_list = {"l", "n"}
@@ -804,13 +779,16 @@ function CLastHitChallenge:UploadRecords()
 
 		for i, typescore in pairs(type_list) do
 			for j, time in pairs(time_list) do
-				for k, hero in pairs(hero_list) do
-					for l, level in pairs(level_list) do
-						local table_name = typescore ..  hero ..  time .. level
-						local record = CustomNetTables:GetTableValue( "stats_records", table_name )
-						if record.value > 0 then
-							--table.insert(data, {k = table_name, v = record.value})
-							table.insert(data, {hero = hero, time = time, leveling = level, typescore = typescore, value = record.value})
+				for hero, enabled in pairs(HERO_SELECTION) do
+					if enabled == 1 then
+						local kvhero = KVHEROES[hero]
+						for l, level in pairs(level_list) do
+							local table_name = typescore ..  tostring(kvhero.HeroID) ..  time .. level
+							local record = CustomNetTables:GetTableValue( "stats_records", table_name )
+							if record.value > 0 then
+								--table.insert(data, {k = table_name, v = record.value})
+								table.insert(data, {hero = tostring(kvhero.HeroID), time = time, leveling = level, typescore = typescore, value = record.value})
+							end
 						end
 					end
 				end
@@ -899,20 +877,23 @@ function CLastHitChallenge:InitializeData()
 	end
 	]]
 
-	local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
+	---local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 	local time_list = {"150", "300", "450", "600"}
 	local type_list = {"c", "l", "d","a"}
 	local level_list = {"l", "n"}
 
 	for i, typescore in pairs(type_list) do
 		for j, time in pairs(time_list) do
-			for k, hero in pairs(hero_list) do
-				for l, level in pairs(level_list) do
-					--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
-					local val = CustomNetTables:GetTableValue("stats_records", typescore .. hero .. time .. level)
-					if val == nil then
-						--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
-						CustomNetTables:SetTableValue("stats_records", typescore .. hero .. time .. level, { value = 0} )
+			for hero, enabled in pairs(HERO_SELECTION) do
+					if enabled == 1 then
+						local kvhero = KVHEROES[hero]
+						for l, level in pairs(level_list) do
+						--local val = CustomNetTables:GetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level)
+						local val = CustomNetTables:GetTableValue("stats_records", typescore .. tostring(kvhero.HeroID) .. time .. level)
+						if val == nil then
+							--CustomNetTables:SetTableValue("stats_records", "stats_record_" .. typescore .. "_" .. hero .. "_" .. time  .. "_" .. level, { value = 0} )
+							CustomNetTables:SetTableValue("stats_records", typescore .. tostring(kvhero.HeroID) .. time .. level, { value = 0} )
+						end
 					end
 				end
 			end

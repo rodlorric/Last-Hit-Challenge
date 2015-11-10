@@ -17,26 +17,26 @@
 		  			<Button class="CloseButton" onactivate="OnQuit()"/>
 			  	</Panel>
 				<Panel class="LeaderboardSelectorPanel">
-					<Panel class="SelectorPanel">
+					<Panel id="selectorpanel" class="SelectorPanel">
 						<Label text="#leaderboard_hero"/>
 						<DropDown id="dropdown_hero" oninputsubmit="OnDropDown()">
+							<Label text="#npc_dota_hero_alchemist" id="73"/>
+							<Label text="#npc_dota_hero_antimage" id="1"/>
 							<Label text="#npc_dota_hero_brewmaster" id="78"/>
-							<Label text="#npc_dota_hero_death_prophet" id="43"/>
 							<Label text="#npc_dota_hero_dragon_knight" id="49"/>
 							<Label text="#npc_dota_hero_ember_spirit" id="106"/>
 							<Label text="#npc_dota_hero_huskar" id="59"/>
 							<Label text="#npc_dota_hero_invoker" id="74"/>
-							<Label text="#npc_dota_hero_jakiro" id="64"/>
 							<Label text="#npc_dota_hero_kunkka" id="23"/>
-							<Label text="#npc_dota_hero_leshrac" id="52"/>
 							<Label text="#npc_dota_hero_lina" id="25"/>
-							<Label text="#npc_dota_hero_magnataur" id="97"/>
+							<Label text="#npc_dota_hero_mirana" id="9"/>
 							<Label text="#npc_dota_hero_night_stalker" id="60"/>
-							<Label text="#npc_dota_hero_obsidian_destroyer" id="76"/>
 							<Label text="#npc_dota_hero_puck" id="13"/>
+							<Label text="#npc_dota_hero_pudge" id="14"/>
 							<Label text="#npc_dota_hero_queenofpain" id="39"/>
+							<Label text="#npc_dota_hero_jakiro" id="64"/>
 							<Label text="#npc_dota_hero_nevermore" id="11"/>
-							<Label text="#npc_dota_hero_sniper" id="35"	/>
+							<Label text="#npc_dota_hero_sniper" id="35"/>
 							<Label text="#npc_dota_hero_storm_spirit" id="17"/>
 							<Label text="#npc_dota_hero_templar_assassin" id="46"/>
 							<Label text="#npc_dota_hero_tinker" id="34"/>

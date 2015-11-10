@@ -1,31 +1,17 @@
 "use strict";
 
 
-var hero_list = [{"hero" : $.Localize("#npc_dota_hero_brewmaster"), "id" : "78"},
-				{"hero" : $.Localize("#npc_dota_hero_death_prophet"), "id" : "43"},
-				{"hero" : $.Localize("#npc_dota_hero_dragon_knight"), "id" : "49"},
-				{"hero" : $.Localize("#npc_dota_hero_ember_spirit"), "id" : "106"},
-				{"hero" : $.Localize("#npc_dota_hero_huskar"), "id" : "59"},
-				{"hero" : $.Localize("#npc_dota_hero_invoker"), "id" : "74"},
-				{"hero" : $.Localize("#npc_dota_hero_jakiro"), "id" : "64"},
-				{"hero" : $.Localize("#npc_dota_hero_kunkka"), "id" : "23"},
-				{"hero" : $.Localize("#npc_dota_hero_leshrac"), "id" : "52"},
-				{"hero" : $.Localize("#npc_dota_hero_lina"), "id" : "25"},
-				{"hero" : $.Localize("#npc_dota_hero_magnataur"), "id" : "97"},
-				{"hero" : $.Localize("#npc_dota_hero_nevermore"), "id" : "11"},
-				{"hero" : $.Localize("#npc_dota_hero_night_stalker"), "id" : "60"},
-				{"hero" : $.Localize("#npc_dota_hero_obsidian_destroyer"), "id" : "76"},
-				{"hero" : $.Localize("#npc_dota_hero_puck"), "id" : "13"},
-				{"hero" : $.Localize("#npc_dota_hero_queenofpain"), "id" : "39"},
-				{"hero" : $.Localize("#npc_dota_hero_sniper"), "id" : "35"	},
-				{"hero" : $.Localize("#npc_dota_hero_storm_spirit"), "id" : "17"},
-				{"hero" : $.Localize("#npc_dota_hero_templar_assassin"), "id" : "46"},
-				{"hero" : $.Localize("#npc_dota_hero_tinker"), "id" : "34"},
-				{"hero" : $.Localize("#npc_dota_hero_tiny"), "id" : "19"},
-				{"hero" : $.Localize("#npc_dota_hero_viper"), "id" : "47"},
-				{"hero" : $.Localize("#npc_dota_hero_windrunner"), "id" : "21"},
-				{"hero" : $.Localize("#npc_dota_hero_zuus"), "id" : "22"}];
-hero_list.sort();
+var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
+heroes.sort(function (a, b) {
+    if ($.Localize(a.value.hero) > $.Localize(b.value.hero)) {
+       return 1;
+    }
+    if ($.Localize(a.value.hero) < $.Localize(b.value.hero)) {
+       return -1;
+    }
+    // a must be equal to b
+    return 0;
+});
 
 var maxtime = 0;
 var leveling = "l";
@@ -269,9 +255,15 @@ function OnLeaderBoardButton(){
 	leaderboard.BLoadLayout( "file://{resources}/layout/custom_game/leaderboard.xml", false, false );
 	var playerInfo = Game.GetPlayerInfo( 0 );
 	var dropmenuhero = leaderboard.FindChildInLayoutFile("dropdown_hero");
-	for (var i in hero_list){
-		if (hero_list[i]['hero'] == $.Localize(playerInfo.player_selected_hero)){
-			dropmenuhero.SetSelected(hero_list[i]['id']);
+	//<DropDown id="dropdown_hero" oninputsubmit="OnDropDown()"/>
+	//var selector = leaderboard.FindChildInLayoutFile("selectorpanel");
+	//var dropmenuhero = $.CreatePanel("DropDown", selector, "dropmenuhero");
+	dropmenuhero.oninputsubmit = "OnDropDown()";
+	for (var i in heroes){
+		//var item = $.CreatePanel("Label", dropmenuhero, heroes[i].key);
+		//item.text = $.Localize(heroes[i].value.hero);
+		if (heroes[i].value.hero == playerInfo.player_selected_hero){
+			dropmenuhero.SetSelected(heroes[i].key);
 			break;
 		}
 	}
