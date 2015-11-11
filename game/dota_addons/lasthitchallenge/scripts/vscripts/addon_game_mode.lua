@@ -50,11 +50,11 @@ function Precache( context )
 		if enabled == 1 then
 			local kvhero = KVHEROES[hero]
 			CustomNetTables:SetTableValue("hero_selection", tostring(kvhero.HeroID), { hero = hero } )
-			--if hero ~= "npc_dota_hero_techies" then
-			PrecacheUnitByNameSync( hero, context )
+			if hero ~= "npc_dota_hero_techies" then
+				PrecacheUnitByNameSync( hero, context )
 			--	PrecacheResource("model_folder", "models/items/" .. hero:sub(15), context)
 			--	PrecacheResource("particle_folder", "particles/econ/items/" .. hero:sub(15), context)
-			--end
+			end
 		end
 	end
 	
