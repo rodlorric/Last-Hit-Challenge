@@ -53,13 +53,41 @@ function CLastHitChallenge:OnHeroPicked(hero_param)
  	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(0))
 
 	local phero = PlayerResource:GetPlayer(0):GetAssignedHero()
+	UTIL_Remove(phero)
 	--local nhero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_" .. hero_picked, 0, 0)
 	local hero_picked_name = CLastHitChallenge:HeroName(hero_picked)
 	local nhero = PlayerResource:ReplaceHeroWith( 0, hero_picked_name, 0, 0)
-	UTIL_Remove(phero)
+
+	--This removes any cosmetic, to avoid to precache every other item
+	CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
   	
+  	if (hero_picked_name == "npc_dota_hero_techies") then
+  		local slots = CosmeticLib:GetAvailableSlotForHero(hero_picked_name)
+		for k,slot in pairs(slots) do
+			CosmeticLib:RemoveFromSlot(nhero, slot)
+		end
+  	end
 	--CLastHitChallenge:GiveZeroGold(PlayerResource:GetSelectedHeroEntity(0))
   	--CLastHitChallenge:GiveBlinkDagger(hero)
+end
+
+--https://github.com/kritth/DotaWardrobe
+-- Set up default cosmetic
+function CLastHitChallenge:FirstTimeSetup( entindex )
+	local hero = EntIndexToHScript( entindex )
+	
+	if hero.default_cosmetics == nil then
+		hero.default_cosmetics = {}
+		local wearable = hero:FirstMoveChild()
+		while wearable ~= nil do
+			if wearable:GetClassname() == "dota_item_wearable" then
+				hero.default_cosmetics[wearable:GetModelName()] = wearable
+			end
+			wearable = wearable:NextMovePeer()
+		end
+		
+		--FireGameEvent( 'enable_cosmetics_panel', { player_id = hero:GetPlayerID() } )
+	end
 end
 
 function CLastHitChallenge:HeroName(hero_picked)
@@ -723,7 +751,8 @@ function CLastHitChallenge:OnQuit()
 	CLastHitChallenge:UploadRecords()
 	CLastHitChallenge:Resume()
 	-- Show the ending scoreboard immediately
-	GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+	--GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
+	SendToServerConsole( "disconnect" )
 end
 
 function CLastHitChallenge:OnLeaderboard(query)

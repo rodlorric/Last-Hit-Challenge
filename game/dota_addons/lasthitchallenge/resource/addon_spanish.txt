@@ -4,7 +4,7 @@
 	"Tokens"
 	{		
 		"addon_game_name"					"LAST HIT CHALLENGE"
-		"npc_dota_hero_jakiro"				"Satyr Banisher"
+		"npc_dota_hero_techies"				"Satyr Banisher"
 		"pickscreen_choose_hero"			"Elige tu Héroe"
 		"disable_leveling"					"Deshabilitar niveles"
 		"disable_leveling_tooltip"			"Tu héroe no subirá de nivel"

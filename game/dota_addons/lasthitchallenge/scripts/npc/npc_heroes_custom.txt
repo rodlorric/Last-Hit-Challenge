@@ -1711,7 +1711,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"override_hero"				"npc_dota_hero_jakiro"					// Hero to override
+		"override_hero"				"npc_dota_hero_techies"					// Hero to override
 		"BaseClass"		"npc_dota_hero"
 		"Model"			"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
 		"ModelScale" 					".7"
@@ -1725,6 +1725,7 @@
 		"CMEnabled"		"0"
 		"CMTournamentIgnore"		"0"
 		"new_player_enable"		"0"
+		
 
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------

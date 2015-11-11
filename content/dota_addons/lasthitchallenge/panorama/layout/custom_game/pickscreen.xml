@@ -8,12 +8,14 @@
 	</scripts>
 	<Panel class="PickScreenRoot" hittest="false">
 		<Panel class="PickScreenPanel" hittest="false">
-			<Label text="#pickscreen_choose_hero"/>
+			<Panel class="BackPanel">
+				<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
+					onmouseover="LevelingShowTooltip()"
+					onmouseout="LevelingHideTooltip()"/>
+				<Label class="Title" text="#pickscreen_choose_hero"/>
+			</Panel>
 			<Panel id="pickscreenpanelsupercontainer" class="PickPanelSuperContainer">
 				<Panel class="PickOptionsPanel">
-					<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
-						onmouseover="LevelingShowTooltip()"
-						onmouseout="LevelingHideTooltip()"/>
 				</Panel>
 			</Panel>
 		</Panel>

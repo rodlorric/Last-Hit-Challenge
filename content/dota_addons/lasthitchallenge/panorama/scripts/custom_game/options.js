@@ -131,7 +131,7 @@ function OnTimePicked(time){
     	$("#controlpanelcontainer").style.height = "730px";
     }
     GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : false });
-    $("#invulnerability").checked = "false;";
+   	$("#invulnerability").checked = false;
 	$.Schedule( 1, OnResetAnimation );
 }
 

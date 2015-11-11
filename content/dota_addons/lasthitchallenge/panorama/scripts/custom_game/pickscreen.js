@@ -56,13 +56,13 @@ function LevelingHideTooltip(){
     for (var i = 0; i <= rows-1; i++) {
         var pickpanelcontainer = $.CreatePanel( "Panel", $("#pickscreenpanelsupercontainer"), "PickPanelContainer_" + i );
         pickpanelcontainer.AddClass("PickPanelContainer");
-        for (var j = 0; j < HEROES_PER_ROW; j++) {
+        for (var j = 0; j < HEROES_PER_ROW; j++) {    
+
             var index = (i * HEROES_PER_ROW) + j;
             var pickpanel = $.CreatePanel("Panel", pickpanelcontainer, "pickpanel_" + index);
             pickpanel.AddClass("PickPanel");
             var pickbutton = $.CreatePanel("Button", pickpanel, "pickbutton_" + index);
-            pickbutton.AddClass("PickButton");
-           
+            pickbutton.AddClass("PickButton");           
             var heroPick = (function(id) {
                 return function() {
                     OnPick(id);
@@ -71,17 +71,31 @@ function LevelingHideTooltip(){
             pickbutton.SetPanelEvent("onactivate", heroPick);
             var img = $.CreatePanel("Panel", pickbutton, heroes[index].value.hero + "_bg");
             img.AddClass("HeroPanel");
-
-            img.style.width = "100%;";
-            img.style.height = "100%;";
-            img.style.backgroundImage = 'url("file://{images}/pickscreen/' + heroes[index].value.hero.substr(14) + "_bg" + '.jpg");';
-            img.style.backgroundPosition = "50% 0%;";
-            img.style.backgroundSize = "cover;";
-            img.style.backgroundRepeat = "no-repeat;";
+            if (heroes[index].value.hero != "npc_dota_hero_techies"){
+                var heroimage = $.CreatePanel("DOTAHeroImage", img, heroes[index].value.hero);
+                heroimage.heroname = heroes[index].value.hero;
+            } else {
+                var heroimage = $.CreatePanel("Panel", img, heroes[index].value.hero + "_bg");
+                img.AddClass("Satyr");
+                img.style.width = "128px";
+                img.style.height = "72px";
+                img.style.backgroundImage = 'url("file://{images}/pickscreen/' + heroes[index].value.hero + '.png");';
+                img.style.backgroundPosition = "0% 0%;";
+                img.style.backgroundSize = "contain";
+                img.style.backgroundRepeat = "no-repeat;";
+            }
 
             var label = $.CreatePanel("Label", pickbutton, "label_" + index);
             label.text = heroes[i*HEROES_PER_ROW+j].value.hero;
             label.hittest = false;
+
+            //img.style.width = "100%;";
+            //img.style.height = "100%;";
+            //img.style.backgroundImage = 'url("file://{images}/pickscreen/' + heroes[index].value.hero.substr(14) + "_bg" + '.jpg");';
+            //img.style.backgroundPosition = "50% 0%;";
+            //img.style.backgroundSize = "cover;";
+            //img.style.backgroundRepeat = "no-repeat;";
+
         };
 
     };
