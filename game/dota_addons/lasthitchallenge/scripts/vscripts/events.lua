@@ -1,5 +1,6 @@
 require ( "util")
 require ( "timers" )
+require( "cosmeticlib" )
 
 
 STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
