@@ -1,6 +1,6 @@
 "use strict";
 
-var HEROES_PER_ROW = 12;
+var HEROES_PER_ROW = 11;
 var hero = { "hero" : "nevermore" };
 
 function OnPick(id) {
@@ -53,7 +53,7 @@ function LevelingHideTooltip(){
     GameEvents.Subscribe("hero_picked", OnHeroPicked);
     //var rows = hero_list.length / HEROES_PER_ROW;
     var rows = heroes.length / HEROES_PER_ROW;
-    for (var i = 0; i <= rows-1; i++) {
+    for (var i = 0; i < rows; i++) {
         var pickpanelcontainer = $.CreatePanel( "Panel", $("#pickscreenpanelsupercontainer"), "PickPanelContainer_" + i );
         pickpanelcontainer.AddClass("PickPanelContainer");
         for (var j = 0; j < HEROES_PER_ROW; j++) {    

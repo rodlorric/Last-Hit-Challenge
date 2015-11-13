@@ -71,8 +71,8 @@
 .PickPanelContainer{
     flow-children: right;
     height: fill-parent-flow(1.0);
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .PickPanelSuperContainer{

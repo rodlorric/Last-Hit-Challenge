@@ -129,6 +129,7 @@
 							<Label text="#npc_dota_hero_winter_wyvern" id="112"/>
 							<Label text="#npc_dota_hero_witch_doctor" id="30"/>
 							<Label text="#npc_dota_hero_skeleton_king" id="42"/>
+							<Label text="#npc_dota_hero_zuus" id="22"/>
 						</DropDown>
 					</Panel>
 					<Panel class="SelectorPanel">
