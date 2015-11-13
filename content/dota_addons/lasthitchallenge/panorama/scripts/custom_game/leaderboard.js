@@ -68,4 +68,5 @@ function OnDropDown(){
 
 (function () {
 	GameEvents.Subscribe("leaderboard", OnLeaderboard);
+	OnDropDown();
 })();
