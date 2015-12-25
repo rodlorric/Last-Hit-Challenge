@@ -24,6 +24,7 @@
 							<Label text="#npc_dota_hero_alchemist" id="73"/>
 							<Label text="#npc_dota_hero_ancient_apparition" id="68"/>
 							<Label text="#npc_dota_hero_antimage" id="1"/>
+							<Label text="#npc_dota_hero_arc_warden" id="113"/>
 							<Label text="#npc_dota_hero_axe" id="2"/>
 							<Label text="#npc_dota_hero_bane" id="3"/>
 							<Label text="#npc_dota_hero_batrider" id="65"/>
