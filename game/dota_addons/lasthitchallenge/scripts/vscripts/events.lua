@@ -490,7 +490,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 		if attacker:IsRealHero() and not killedUnit:IsRealHero() then
 			--heatmap
 			local xy = killedUnit:GetOrigin()
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "heatmap", {x = xy.x, y = xy.y})
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(attacker:GetPlayerID()), "heatmap", {x = xy.x, y = xy.y})
 			
 			--Streaks
 			cs_streak = cs_streak + 1 
