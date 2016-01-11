@@ -889,8 +889,12 @@ function CLastHitChallenge:Clock()
 	      	if MAXTIME-seconds <= 30 then
 	      		bTimeLeft = true
 	      	end
-	 	      	
-	      	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "clock", {min = min, sec = sec, bTimeLeft = bTimeLeft})
+	 	    
+	 	    for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+				if PlayerResource:IsValidPlayer( nPlayerID ) then
+	      			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "clock", {min = min, sec = sec, bTimeLeft = bTimeLeft})
+				end
+			end
 	      	return 1.0
 		end
 		})
