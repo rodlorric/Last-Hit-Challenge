@@ -625,7 +625,11 @@ function CLastHitChallenge:OnEntityKilled (event)
 				end
 
 				local origin = killedUnit:GetOrigin()
-				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "overlay", {x = origin.x-128, y = origin.y+64, z = origin.z+90, msg = "missed"})
+				for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+					if PlayerResource:IsValidPlayer( nPlayerID ) then
+						CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "hurt_entity", {index = event.entindex_killed, msg = "missed"})
+					end
+				end
 			end
 		end
 
