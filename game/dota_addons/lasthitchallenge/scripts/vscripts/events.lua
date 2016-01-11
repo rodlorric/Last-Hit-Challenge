@@ -351,7 +351,7 @@ function CLastHitChallenge:OnHurt( event )
 			local max_health = hurtUnit:GetMaxHealth()
 			local pct = hurtUnit:GetHealth() / hurtUnit:GetMaxHealth()
 			if pct ~= 0 then
-				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(0), "hurt_entity", {index = event.entindex_killed, msg = pct})
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(attacker:GetPlayerID()), "hurt_entity", {index = event.entindex_killed, msg = pct})
 			end
 		end
 
