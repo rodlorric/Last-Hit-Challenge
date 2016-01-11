@@ -369,10 +369,14 @@ function CLastHitChallenge:OnHurt( event )
 end
 
 function CLastHitChallenge:OnInvulnerability( event )
-	local hero  = PlayerResource:GetPlayer(0):GetAssignedHero()
+	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+		if ( PlayerResource:IsValidPlayer( nPlayerID ) and event.invulnerability == 1) then
+			local hero  = PlayerResource:GetPlayer( nPlayerID ):GetAssignedHero()
+			hero:SetHealth(hero:GetMaxHealth())
+		end
+	end
 	if event.invulnerability == 1 then
 		invulnerable = 1
-		hero:SetHealth(hero:GetMaxHealth())
 	else
 		invulnerable = 0
 	end
