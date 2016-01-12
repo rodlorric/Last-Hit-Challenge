@@ -1703,6 +1703,21 @@
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
 	}
 
+	//=================================================================================================================
+	// HERO: Jakiro
+	//=================================================================================================================
+	"npc_dota_hero_jakiro_last_hit_challenge"
+	{
+		"override_hero"				"npc_dota_hero_jakiro"						// Hero to override
+		"Ability1"					"no_abilities"								// Ability 1
+		"Ability2"					"no_abilities"								// Ability 2
+		"Ability3"					"no_abilities"								// Ability 3
+		"Ability4"					"no_abilities"								// Ability 4
+		"Ability5"					"no_abilities"								// Ability 5
+		"Ability6"					"no_abilities"								// Ability 6
+		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+	}
+
 
 	//-------------------------------------------------------------------------------------------------------------
 	// HERO: Satyr Banisher
