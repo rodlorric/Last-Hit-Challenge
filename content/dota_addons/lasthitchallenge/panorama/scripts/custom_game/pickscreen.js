@@ -1,26 +1,76 @@
 "use strict";
 
 var HEROES_PER_ROW = 11;
-var hero = { "hero" : "nevermore" };
+//var hero = { "hero" : "nevermore" };
+var heroId = null;
 
-function OnPick(id) {
-    hero = { "hero" : id }
-	var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
-	timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
-    var toggleButton = $("#disable_leveling");
-    GameEvents.SendEventClientSide("hero_picked", {hero : id, leveling : toggleButton.checked})
-    GameEvents.SendCustomGameEventToServer( "disable_leveling", { "disable_leveling" : toggleButton.checked });
-    //GameEvents.SendEventClientSide("hero_picked", {})
+//function OnPick(id) {
+//    hero = { "hero" : id, "playerId" : Game.GetLocalPlayerID() }
+//    var output = '';
+//    var playerId = Game.GetLocalPlayerID();
+//
+//    
+//    //if (localPlayer['player_has_host_privileges']){
+//    //	var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+//    //	timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+//    //} else {
+//    //    $.Msg("Wait for the host to pick the duration...");
+//    //}
+//    var toggleButton = $("#disable_leveling");
+//    GameEvents.SendCustomGameEventToServer( "disable_leveling", { "disable_leveling" : toggleButton.checked });
+//    GameEvents.SendCustomGameEventToServer( "hero_picked2", {"hero" : id, "playerId" : playerId} );
+//
+//}
+
+function OnPick(id){
+    heroId = id;
+    GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "heroId" : id, "leveling" : $("#disable_leveling").checked });
+}
+
+function OnTimePicked(data){
+    $.Msg('time picked!!!!, from server!' + data);
+    $.Msg('data.time = ' + data.time);
+    GameEvents.SendCustomGameEventToServer( "hero_picked2", hero);
     //$.GetContextPanel().DeleteAsync(0);
 }
 
-function OnHeroPicked(data){
-	if (data.hero == null){
-        if (!data.repick){
-            $.GetContextPanel().DeleteAsync(0);
-           GameEvents.SendCustomGameEventToServer( "hero_picked", hero);
-        }
+//function OnHeroPicked(data){
+//    $.Msg("hero picked! "  + data.hero);
+//    if (data.hero == null){
+//        if (!data.repick){
+//            $.GetContextPanel().DeleteAsync(0);
+//            $.Msg("Sending hero!!!!");
+//        }
+//    }
+//}
+
+//function OnStart(data){
+//    $.Msg("OnStart!");
+//    var output = '';
+//      for (var property in data) {
+//        output += property + ': ' + data[property]+'; ';
+//      }
+//      $.Msg(output);
+//    $.Msg("OnStart: " + data.time);
+//    GameEvents.SendEventClientSide("start_game", {hero : hero["hero"], leveling : $("#disable_leveling").checked, time : data.time})
+//    $.GetContextPanel().DeleteAsync(0);
+//}
+
+function OnStart(data){
+    $.Msg("OnStart pickscreen.js");
+    $.GetContextPanel().DeleteAsync(0);
+}
+
+function OnTimeScreen(){
+    var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    $.Msg(localPlayer);
+    if (localPlayer['player_has_host_privileges']){
+        var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+        timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+    } else {
+        $.Msg("Wait for the host to pick the duration...");
     }
+    GameEvents.SendEventClientSide("hero_picked", {heroId : heroId, leveling : $("#disable_leveling").checked});
 }
 
 var label = null;
@@ -35,6 +85,9 @@ function LevelingHideTooltip(){
 }
 
 (function () {
+    GameEvents.Subscribe("time_screen", OnTimeScreen);
+    GameEvents.Subscribe("start", OnStart);
+
     var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
     if (heroes.length < HEROES_PER_ROW){
         HEROES_PER_ROW = heroes.length;
@@ -50,7 +103,7 @@ function LevelingHideTooltip(){
         return 0;
     });
     LevelingHideTooltip();
-    GameEvents.Subscribe("hero_picked", OnHeroPicked);
+    //GameEvents.Subscribe("hero_picked", OnHeroPicked);
     //var rows = hero_list.length / HEROES_PER_ROW;
     var rows = heroes.length / HEROES_PER_ROW;
     for (var i = 0; i < rows; i++) {
@@ -62,10 +115,11 @@ function LevelingHideTooltip(){
             var pickpanel = $.CreatePanel("Panel", pickpanelcontainer, "pickpanel_" + index);
             pickpanel.AddClass("PickPanel");
             if (heroes[index] != null) {
-                var pickbutton = $.CreatePanel("Button", pickpanel, "pickbutton_" + index);
+                var pickbutton = $.CreatePanel("Button", pickpanel, "pickbutton_" + heroes[index].key);
                 pickbutton.AddClass("PickButton");           
                 var heroPick = (function(id) {
                     return function() {
+                        $("#pickbutton_" + id).ToggleClass("active");
                         OnPick(id);
                     }
                 } (heroes[index].key));

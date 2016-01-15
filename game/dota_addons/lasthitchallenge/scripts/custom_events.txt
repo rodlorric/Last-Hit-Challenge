@@ -18,4 +18,15 @@
 	}
 
 	"heatmapdata" {}
+
+	"start_game"
+	{
+		"time"		"int"
+		"hero"		"int"
+		"leveling"	"int"
+	}
+
+	"new_pick" {}
+
+	"sync" {}
 }

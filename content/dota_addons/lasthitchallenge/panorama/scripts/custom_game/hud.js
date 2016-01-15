@@ -3,10 +3,12 @@
 var end_screen = false;
 function OnLastHitOrDeny( table_name, key, data ){
 	var scorepanel = $.GetContextPanel();
-	if (key == "stats_total_lh") {
+	var playerId = Game.GetLocalPlayerID();
+
+	if (key == playerId + "stats_total_lh") {
 		$("#Lasthits").text = data["value"];	
 		scorepanel.SetHasClass( "lh_anim", true );
-	} else if (key == "stats_total_dn") {
+	} else if (key == playerId + "stats_total_dn") {
 		$("#Denies").text = data["value"];
 		scorepanel.SetHasClass( "dn_anim", true );	
 	}
@@ -28,16 +30,35 @@ function OnResetAnimation(data) {
 	scorepanel.SetHasClass( "dn_anim", false );
 }
 
-function OnHeroPicked(data){
-	if (data.hero == null){
-		if (!data.repick){
-			$("#score_panel").style.visibility = "visible";
-			$("#clock_panel").style.visibility = "visible";
-		} else {
-			$("#clock_panel").style.visibility = "collapse";
-			$("#score_panel").style.visibility = "collapse";
-		}
-	}
+//function OnHeroPicked(data){
+//	if (data.hero == null){
+//		if (!data.repick){
+//			$("#score_panel").style.visibility = "visible";
+//			$("#clock_panel").style.visibility = "visible";
+//		} else {
+//			$("#clock_panel").style.visibility = "collapse";
+//			$("#score_panel").style.visibility = "collapse";
+//		}
+//	}
+//}
+
+//function OnStart(data){
+//	$.Msg("OnStart hud.js");
+//	$("#score_panel").style.visibility = "visible";
+//	$("#clock_panel").style.visibility = "visible";
+//}
+
+
+function OnStart(data){
+    var heroId = data.heroId;
+    var leveling = data.leveling;
+    var time = data.time;
+    var playerId = data.playerId;
+    
+    $("#score_panel").style.visibility = "visible";
+	$("#clock_panel").style.visibility = "visible";
+    $.Msg("hud.js heroId = " + heroId + ", leveling = " + leveling + ", time = " + time + ", playerId = " + playerId);
+    GameEvents.SendCustomGameEventToServer("start", { "playerId" : playerId, "heroId" : heroId, "leveling" : leveling, "time" : time });
 }
 
 var end_screen = false;
@@ -62,9 +83,11 @@ function OnQuit(){
 
 (function () {
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
-	GameEvents.Subscribe("hero_picked", OnHeroPicked);
+	//GameEvents.Subscribe("hero_picked", OnHeroPicked);
 	GameEvents.Subscribe("clock", OnClockTime);
 	GameEvents.Subscribe("endscreen", OnEndScreen);
+	//GameEvents.Subscribe("start_game", OnStart);
+	GameEvents.Subscribe("start", OnStart);
 
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();

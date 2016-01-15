@@ -17,14 +17,15 @@ var maxtime = 0;
 var leveling = "l";
 var time = -1;
 function OnEndScreen(data) {
+	var playerId = Game.GetLocalPlayerID();
 	maxtime = data.maxtime;
 	leveling = data.level;
 	//Totals
-	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", "stats_total_cs" );
-	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", "stats_total_lh" );
-	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", "stats_total_dn" );
-	var stats_total_miss = CustomNetTables.GetTableValue( "stats_totals", "stats_total_miss");
-	var stats_total_accuracy = CustomNetTables.GetTableValue( "stats_totals", "stats_total_accuracy");
+	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_cs" );
+	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_lh" );
+	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_dn" );
+	var stats_total_miss = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_miss");
+	var stats_total_accuracy = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_accuracy");
 	$("#stats_total_cs").text = stats_total_cs.value;
 	$("#stats_total_lh").text = stats_total_lh.value;
 	$("#stats_total_dn").text = stats_total_dn.value;
@@ -33,22 +34,22 @@ function OnEndScreen(data) {
 	$("#stats_total_accuracy").text = stats_total_accuracy.value + "%";
 
 	//Streaks
-	var stats_streak_cs = CustomNetTables.GetTableValue( "stats_streaks", "stats_streak_cs" );
-	var stats_streak_lh = CustomNetTables.GetTableValue( "stats_streaks", "stats_streak_lh" );
-	var stats_streak_dn = CustomNetTables.GetTableValue( "stats_streaks", "stats_streak_dn" );
+	var stats_streak_cs = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_cs" );
+	var stats_streak_lh = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_lh" );
+	var stats_streak_dn = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_dn" );
 	$("#stats_streak_cs").text = stats_streak_cs.value;
 	$("#stats_streak_lh").text = stats_streak_lh.value;
 	$("#stats_streak_dn").text = stats_streak_dn.value;
 
 	//Session Records
 	//var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "c" + data.hero + data.maxtime + data.level);
+	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", playerId + "c" + data.hero + data.maxtime + data.level);
 	//var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "l" + data.hero + data.maxtime + data.level);
+	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", playerId + "l" + data.hero + data.maxtime + data.level);
 	//var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "d" + data.hero + data.maxtime + data.level);
+	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", playerId + "d" + data.hero + data.maxtime + data.level);
 	//var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy_" + data.hero + "_" + data.time + "_" + data.level);
-	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "a" + data.hero + data.maxtime + data.level);
+	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", playerId + "a" + data.hero + data.maxtime + data.level);
 	$("#stats_record_cs").text = stats_record_cs.value;
 	$("#stats_record_lh").text = stats_record_lh.value;
 	$("#stats_record_dn").text = stats_record_dn.value;
@@ -61,23 +62,25 @@ function OnEndScreen(data) {
 	$("#acc_record").text = $.Localize("#endscreen_acc_record") +  minutes + ")";
 
 	//Misc
-	var stats_misc_restart = CustomNetTables.GetTableValue( "stats_misc", "stats_misc_restart" );
-	var stats_misc_session_accuracy = CustomNetTables.GetTableValue( "stats_misc", "stats_misc_session_accuracy");
+	var stats_misc_restart = CustomNetTables.GetTableValue( "stats_misc", playerId + "stats_misc_restart" );
+	var stats_misc_session_accuracy = CustomNetTables.GetTableValue( "stats_misc", playerId + "stats_misc_session_accuracy");
 	$("#stats_misc_restart").text = stats_misc_restart.value;
 	//$("#stats_misc_session_accuracy").text = parseFloat(Math.round(stats_misc_session_accuracy.value).toFixed(2)) + "%";
 	$("#stats_misc_session_accuracy").text = stats_misc_session_accuracy.value + "%";
 
 	//Time
-	var stats_time_spent = CustomNetTables.GetTableValue( "stats_time", "stats_time_spent" );
-	var stats_time_longest = CustomNetTables.GetTableValue( "stats_time", "stats_time_longest" );
-	var stats_time_shortest = CustomNetTables.GetTableValue( "stats_time", "stats_time_shortest" );
+	var stats_time_spent = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_spent" );
+	var stats_time_longest = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_longest" );
+	var stats_time_shortest = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_shortest" );
 	$("#stats_time_spent").text = stats_time_spent.value;
 	$("#stats_time_longest").text = stats_time_longest.value;
 	$("#stats_time_shortest").text = stats_time_shortest.value;
 
 
 	//Graph
-	var stats_misc_history = CustomNetTables.GetTableValue("stats_misc", "stats_misc_history");
+	var stats_misc_history = CustomNetTables.GetTableValue("stats_misc", playerId + "stats_misc_history");
+
+	$.Msg(stats_misc_history);
 
 	var bar_container = $("#graph_container");
 	var x_leyend = $("#x_leyend");
@@ -174,18 +177,27 @@ function OnEndScreen(data) {
 	$("#end_screen_panel").ToggleClass("Maximized");
 	$("#end_screen_panel").hittest = true;
 
-	GameEvents.SendEventClientSide("endscreen", {visible : 1})
+	//GameEvents.SendEventClientSide("endscreen", {visible : 1})
 }
 
 function OnRestart(){
-	$("#end_screen_panel").ToggleClass("Maximized");
+	//$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "restart", {});
 }
 
 function OnCancel(){
-	$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "cancel", {});
-	GameEvents.SendEventClientSide("endscreen", {visible : 0})
+	//GameEvents.SendEventClientSide("endscreen", {visible : 0})
+}
+
+function OnCancelServer(){
+	$.Msg("Cancel from server!");
+	$.Msg("1 has class? = " + $("#end_screen_panel").BHasClass("Maximized"));
+	if ($("#end_screen_panel").BHasClass("Maximized")){
+		$.Msg("maximizado!");
+		$("#end_screen_panel").ToggleClass("Maximized");	
+	}
+	$.Msg("2 has class? = " + $("#end_screen_panel").BHasClass("Maximized"));
 }
 
 function OnQuit(){
@@ -208,13 +220,46 @@ function ClearGraph(){
 	}
 }
 
-function OnPickButton(){
-	$("#end_screen_panel").ToggleClass("Maximized");
+//function OnPickButton(){
+//	$("#end_screen_panel").ToggleClass("Maximized");
+//
+//	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
+//	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
+//	GameEvents.SendCustomGameEventToServer( "repick", {})
+//	GameEvents.SendEventClientSide("hero_picked", {repick : true})
+//}
+//
+//function OnChangeTime(){
+//	$("#end_screen_panel").ToggleClass("Maximized");
+//	
+//	var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+//	timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+//	GameEvents.SendEventClientSide("repick", {});
+//	GameEvents.SendCustomGameEventToServer( "repick", {})
+//}
 
-	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
-	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
-	GameEvents.SendCustomGameEventToServer( "repick", {})
-	GameEvents.SendEventClientSide("hero_picked", {repick : true})
+function OnPickButton(){	
+	//$("#end_screen_panel").ToggleClass("Maximized");
+	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "hero" })
+}
+
+function OnChangeTime(){
+	//$("#end_screen_panel").ToggleClass("Maximized");
+	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "time"})
+}
+
+function OnSync(params){
+	var option = params.value;
+	if (option == "hero") { 
+		var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
+		pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
+	} else if (option == "time") {
+		var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+		timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+	}
+	//} else {
+	//	GameEvents.SendCustomGameEventToServer( "quit_control_panel", {});
+	//}
 }
 
 function OnMagnifyLastHits(){
@@ -353,6 +398,8 @@ function OnHeatMapButton(){
 }
 
 function LoadData(stats_panel, type){
+	var playerId = Game.GetLocalPlayerID();
+
 	var stats_melee = stats_panel.FindChildInLayoutFile("stats_melee");
 	var stats_ranged = stats_panel.FindChildInLayoutFile("stats_ranged");
 	var stats_siege = stats_panel.FindChildInLayoutFile("stats_siege");
@@ -360,20 +407,20 @@ function LoadData(stats_panel, type){
 
 	if (type != "miss"){
 
-		var melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type ).value;
-		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		var melee = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_" + type ).value;
+		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
 		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((melee * 100) / (missed_melee + melee)) : 100)).toFixed(0)) + "% ";
 		
 		stats_melee.text = accuracy_melee + "(" + melee + " / " + (melee + missed_melee) + ")";
 
-		var ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type ).value;
-		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		var ranged = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_" + type ).value;
+		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
 		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((ranged * 100) / (missed_ranged + ranged)) : 100)).toFixed(0)) + "% ";
 		
 		stats_ranged.text = accuracy_ranged + "(" + ranged + " / " + (ranged + missed_ranged) + ")";
 
-		var siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type ).value;
-		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
+		var siege = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_" + type ).value;
+		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
 		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((siege * 100) / (missed_siege + siege)) : 100)).toFixed(0)) + "% ";
 		
 		stats_siege.text = accuracy_siege + "(" + siege + " / " + (siege + missed_siege) + ")";
@@ -383,28 +430,28 @@ function LoadData(stats_panel, type){
 		//stats_tower.text = tower + " / " + (tower + missed_tower);
 
 	} else { //misses
-		var cs_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_lh").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_dn").value;
-		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_friendly").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_melee_" + type + "_foe").value;
+		var cs_melee = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_dn").value;
+		var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_melee_" + type + "_foe").value;
 		var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((missed_melee * 100) / (missed_melee + cs_melee)) : 0)).toFixed(0)) + "% ";
 		
 		stats_melee.text = accuracy_melee + "(" + missed_melee + " / " + (missed_melee + cs_melee) + ")";
 
 
-		var cs_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_lh").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_dn").value;
-		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_friendly").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_ranged_" + type + "_foe").value;
+		var cs_ranged = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_dn").value;
+		var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_ranged_" + type + "_foe").value;
 		var accuracy_ranged = parseFloat(Math.round((missed_ranged != 0 ? ((missed_ranged * 100) / (missed_ranged + cs_ranged)) : 0)).toFixed(0)) + "% ";
 		
 		stats_ranged.text = accuracy_ranged + "(" + missed_ranged + " / " + (missed_ranged + cs_ranged) + ")";
 
 
-		var cs_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_lh").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_dn").value;
-		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_friendly").value + 
-					CustomNetTables.GetTableValue( "stats_totals_details", "stats_totals_details_siege_" + type + "_foe").value;
+		var cs_siege = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_lh").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_dn").value;
+		var missed_siege = CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_" + type + "_friendly").value + 
+					CustomNetTables.GetTableValue( "stats_totals_details", playerId + "stats_totals_details_siege_" + type + "_foe").value;
 		var accuracy_siege = parseFloat(Math.round((missed_siege != 0 ? ((missed_siege * 100) / (missed_siege + cs_siege)) : 0)).toFixed(0)) + "% ";
 		
 		stats_siege.text = accuracy_siege + "(" + missed_siege + " / " + (missed_siege + cs_siege) + ")";
@@ -452,6 +499,7 @@ function LoadData(stats_panel, type){
 
 (function () {
 	GameEvents.Subscribe("end_screen", OnEndScreen);
+	GameEvents.Subscribe("cancel", OnCancelServer);
 	GameEvents.Subscribe("cleardata", OnClearData);
 	GameEvents.Subscribe("heatmap", HeatMap);
 	GameEvents.Subscribe("quit", OnQuit);

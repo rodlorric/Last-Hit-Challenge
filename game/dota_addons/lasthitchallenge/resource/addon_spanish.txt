@@ -35,6 +35,7 @@
 		"yes"								"Sí"
 		"no"								"No"
 		"pick"								"Elegir Héroe"
+		"change_time"						"Cambiar Duración"
 		"hud_score_panel"					"UG / D"
 		"controlpanel_records"				"Récords"
 		"controlpanel_creep_score"			"Puntaje de Creeps:"

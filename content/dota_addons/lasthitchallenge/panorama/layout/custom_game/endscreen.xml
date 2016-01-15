@@ -155,6 +155,9 @@
 			  		</Button>	  			
 		 			<Button class="OptionButton" onactivate="OnPickButton()">
 			  			<Label text="#pick"/>
+			  		</Button>
+			  		<Button class="OptionButton" onactivate="OnChangeTime()">
+			  			<Label text="#change_time"/>
 			  		</Button>	  			
 			  		<Button class="OptionButton" onactivate="OnRestart()">
 			  			<Label text="#restart"/>

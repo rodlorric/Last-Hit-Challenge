@@ -1,7 +1,7 @@
 _G.seconds = 0 --600 = 10 minutes
-_G.MAXTIME = 600 -- seconds
+_G.MAXTIME = -2 -- seconds
 _G.total_time = 0
-_G.shortest_time = MAXTIME
+_G.shortest_time = 600
 _G.longest_time = 0
 _G.current_cs = { lh = 0, dn = 0 }
 _G.total_misses = 0
@@ -182,6 +182,14 @@ function CLastHitChallenge:InitGameMode()
 	]]
 
 	Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
+	Convars:RegisterCommand("settime",
+		function(name, time, heroId, leveling, playerId)
+			print("time: " .. time)
+
+
+			CLastHitChallenge:OnNewPick({heroId = heroId, leveling = leveling, time = time, playerId = playerId})
+		end,
+	"",0)
 	--Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)
@@ -207,11 +215,13 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("invulnerability", Dynamic_Wrap(CLastHitChallenge, 'OnInvulnerability'))
 	CustomGameEventManager:RegisterListener("disable_leveling", Dynamic_Wrap(CLastHitChallenge, 'OnDisableLeveling'))
 	CustomGameEventManager:RegisterListener("hero_picked", Dynamic_Wrap(CLastHitChallenge, 'OnHeroPicked'))
-	CustomGameEventManager:RegisterListener("time_picked", Dynamic_Wrap(CLastHitChallenge, 'OnTimePicked'))
 	CustomGameEventManager:RegisterListener("quit", Dynamic_Wrap(CLastHitChallenge, 'OnQuit'))
 	CustomGameEventManager:RegisterListener("quit_dialog", Dynamic_Wrap(CLastHitChallenge, 'Pause'))
 	CustomGameEventManager:RegisterListener("quit_control_panel", Dynamic_Wrap(CLastHitChallenge, 'EndGame'))
 	CustomGameEventManager:RegisterListener("cancel", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
-	CustomGameEventManager:RegisterListener("repick", Dynamic_Wrap(CLastHitChallenge, 'OnRepick'))
+	CustomGameEventManager:RegisterListener("sync", Dynamic_Wrap(CLastHitChallenge, 'OnSync'))
 	CustomGameEventManager:RegisterListener("leaderboard", Dynamic_Wrap(CLastHitChallenge, 'OnLeaderboard'))
+	CustomGameEventManager:RegisterListener("new_pick", Dynamic_Wrap(CLastHitChallenge, 'OnNewPick'))
+	CustomGameEventManager:RegisterListener("start", Dynamic_Wrap(CLastHitChallenge, 'OnStart'))
+	CustomGameEventManager:RegisterListener("resume", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
 end
