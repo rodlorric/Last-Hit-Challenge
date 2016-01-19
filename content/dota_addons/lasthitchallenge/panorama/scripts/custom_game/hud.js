@@ -58,7 +58,10 @@ function OnStart(data){
     $("#score_panel").style.visibility = "visible";
 	$("#clock_panel").style.visibility = "visible";
     $.Msg("hud.js heroId = " + heroId + ", leveling = " + leveling + ", time = " + time + ", playerId = " + playerId);
-    GameEvents.SendCustomGameEventToServer("start", { "playerId" : playerId, "heroId" : heroId, "leveling" : leveling, "time" : time });
+    var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    if (localPlayer['player_has_host_privileges']){
+    	GameEvents.SendCustomGameEventToServer("start", { "playerId" : playerId, "heroId" : heroId, "leveling" : leveling, "time" : time });
+    }
 }
 
 var end_screen = false;
