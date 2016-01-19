@@ -27,12 +27,12 @@ function OnPick(id){
     GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "heroId" : id, "leveling" : $("#disable_leveling").checked });
 }
 
-function OnTimePicked(data){
-    $.Msg('time picked!!!!, from server!' + data);
-    $.Msg('data.time = ' + data.time);
-    GameEvents.SendCustomGameEventToServer( "hero_picked2", hero);
-    //$.GetContextPanel().DeleteAsync(0);
-}
+//function OnTimePicked(data){
+//    $.Msg('time picked!!!!, from server!' + data);
+//    $.Msg('data.time = ' + data.time);
+//    GameEvents.SendCustomGameEventToServer( "hero_picked2", hero);
+//    //$.GetContextPanel().DeleteAsync(0);
+//}
 
 //function OnHeroPicked(data){
 //    $.Msg("hero picked! "  + data.hero);
