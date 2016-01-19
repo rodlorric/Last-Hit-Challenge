@@ -41,16 +41,16 @@
 				</Panel>
 				<Panel id="buttons_category" class="Category">
 				  	<ToggleButton id="hide_overlay" class="OptionButton" text="#controlpanel_hide_help" onactivate="OnToggle()"/>			  			
-			  		<Button class="OptionButton" onactivate="OnPickButton()">
+			  		<Button id="change_hero_button" class="OptionButton" onactivate="OnPickButton()">
 			  			<Label text="#pick"/>
 			  		</Button>
-			  		<Button class="OptionButton" onactivate="OnChangeTime()">
+			  		<Button id="change_time_button" class="OptionButton" onactivate="OnChangeTime()">
 			  			<Label text="#change_time"/>
 			  		</Button>
-			  		<Button class="OptionButton" onactivate="OnRestartButton()">
+			  		<Button id="restart_button" class="OptionButton" onactivate="OnRestartButton()">
 			  			<Label text="#restart"/>
 			  		</Button>
-			  		<Button class="OptionButton" onactivate="OnQuitButton()">
+			  		<Button id="show_stats_button" class="OptionButton" onactivate="OnQuitButton()">
 			  			<Label text="#show_stats"/>
 			  		</Button>
 			  		<ToggleButton id="invulnerability" class="OptionButton" text="#controlpanel_invulnerability" style="visibility: collapse;" onactivate="OnInvulnerability()"/>

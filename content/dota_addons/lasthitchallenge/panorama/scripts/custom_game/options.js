@@ -213,8 +213,12 @@ function OnSync(params){
 		var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
 		pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	} else if (option == "time") {
-		var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
-		timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    	$.Msg(localPlayer);
+    	if (localPlayer['player_has_host_privileges']){
+			var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+			timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+		}
 	}
 	//} else {
 	//	$.Msg("OnSync stats... " + params.value)
@@ -261,6 +265,15 @@ function HeroName(hero_picked){
 	//Setup for popup panel.
 	var overlay = $.CreatePanel( "Panel", $.GetContextPanel(), "OverlayPanel" );
 	overlay.BLoadLayout( "file://{resources}/layout/custom_game/overlay.xml", false, false );
+
+	var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    if (!localPlayer['player_has_host_privileges']){
+    	$("#change_hero_button").enabled = false;
+    	$("#change_time_button").enabled = false;
+		$("#restart_button").enabled = false;
+		$("#show_stats_button").enabled = false;
+		$("#invulnerability" ).enabled = false;
+    }
 
 	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
 	//GameEvents.Subscribe("hero_picked", OnHeroPicked);
