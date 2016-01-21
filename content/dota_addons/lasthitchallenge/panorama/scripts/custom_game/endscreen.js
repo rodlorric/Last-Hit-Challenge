@@ -501,10 +501,18 @@ function LoadData(stats_panel, type){
 	}
 }
 
+
 (function () {
 	GameEvents.Subscribe("end_screen", OnEndScreen);
 	GameEvents.Subscribe("cancel", OnCancelServer);
 	GameEvents.Subscribe("cleardata", OnClearData);
 	GameEvents.Subscribe("heatmap", HeatMap);
 	GameEvents.Subscribe("quit", OnQuit);
+
+	var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    if (!localPlayer['player_has_host_privileges']){
+    	$("#pick").enabled = false;
+    	$("#change_time").enabled = false;
+		$("#restart").enabled = false;
+    }
 })();
