@@ -123,6 +123,7 @@ function OnEndScreen(data) {
 		var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_lh" );
 		var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_dn" );
 		var stats_total_miss = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_miss");
+		$.Msg("pid = " + pid + ", stats_total_miss = " + stats_total_miss.value);
 		var stats_total_accuracy = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_accuracy");
 		
 		var stats_total_cs_container = $("#stats_total_cs");
@@ -208,16 +209,16 @@ function OnEndScreen(data) {
 
 	//var allplayersids = [0,1];
 	//var allplayerscolors = ["#3375ff", "#fe86c2"];
-	//var allplayersids = [0];
 	var stats_misc_history = [];
 	var allplayerscolors = [];
+	//var allplayersids = [0];
 
 	//var temp = [];
 	//1 min
-	//var stats_misc_history_p1 = [{lh : 1, dn : 1, time: 0}, {lh : 6, dn : 1, time: 30}];
+	//var stats_misc_history_p1 = [{lh : 0, dn : 0, time: 0}, {lh : 6, dn : 0, time: 30}];
 
 	//P2
-	//var stats_misc_history_p2 = [{lh : 1, dn : 1, time: 0}, {lh : 1, dn : 1, time: 30}];
+	//var stats_misc_history_p2 = [{lh : 0, dn : 1, time: 0}, {lh : 1, dn : 0, time: 30}];
 
 
 	//10 mins
@@ -229,9 +230,9 @@ function OnEndScreen(data) {
 	//var stats_misc_history_p2 = [{lh : 2, dn : 1, time: 0}, {lh : 4, dn : 1, time: 30}, {lh : 2, dn : 1, time: 60}, {lh : 3, dn : 2, time: 90}, {lh : 1, dn : 0, time: 120}, {lh : 4, dn : 0, time: 150}, {lh : 0, dn : 2, time: 180}, {lh : 2, dn : 0, time: 210}, {lh : 2, dn : 0, time: 240},
 	//{lh : 2, dn : 2, time: 270}, {lh : 5, dn : 3, time: 300}, {lh : 1, dn : 2, time: 330}, {lh : 3, dn : 1, time: 360}, {lh : 3, dn : 3, time: 390}, {lh : 3, dn : 0, time: 420}, {lh : 1, dn : 2, time: 450}, {lh : 1, dn : 2, time: 480}, {lh : 3, dn : 2, time: 510}, {lh : 2, dn : 2, time: 540},
 	//{lh : 2, dn : 4, time: 570}, {lh : 2, dn : 1, time: 600}];
+	//stats_misc_history.push(stats_misc_history_p1);
+	//stats_misc_history.push(stats_misc_history_p2);
 
-	//temp.push(stats_misc_history_p1);
-	//temp.push(stats_misc_history_p2);
 
 	var y_legend = $("#YLegendPanel");
 
@@ -244,50 +245,36 @@ function OnEndScreen(data) {
 
 	for (var player in allplayersids){
 		stats_misc_history.push(CustomNetTables.GetTableValue("stats_misc", player + "stats_misc_history"));
-		//stats_misc_history.push(temp[player]);
+		
 		var p_color = Players.GetPlayerColor(parseInt(player)).toString(16);
 		p_color = p_color.substring(6, 8) + p_color.substring(4, 6) + p_color.substring(2, 4) + p_color.substring(0, 2);
 		allplayerscolors.push("#" + p_color);
 
-		var PLegend = $.CreatePanel("Panel", y_legend, "");
+		var PLegend = $.CreatePanel("Panel", y_legend, "PanelP" + player);
 		PLegend.AddClass("LHLegend");
 		PLegend.style.backgroundColor = allplayerscolors[player] + ";";
 		var PLegendLabel = $.CreatePanel("Label", PLegend, "LegendLabel");
 		PLegendLabel.text = "P" + (parseInt(player) + 1);		
 
-		PLegend.SetPanelEvent("onmouseover", function showTooltip() { $.DispatchEvent("DOTAShowTextTooltip", PLegend, Players.GetPlayerName(parseInt(player)) ) });
-		PLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", PLegend)});
-
+		//PLegend.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", PLegend, Players.GetPlayerName(parseInt(player)) ) });
+		//PLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", PLegend)});
 
 
 		var LHLegend = $.CreatePanel("Panel", y_legend, "");
 		LHLegend.AddClass("LHLegend");
 		LHLegend.style.backgroundColor = allplayerscolors[player] + ";";
-		LHLegend.SetPanelEvent("onmouseover", function showTooltip() { $.DispatchEvent("DOTAShowTextTooltip", LHLegend, $.Localize("#endscreen_last_hits"))});
-		LHLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", LHLegend)});
+		//LHLegend.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", LHLegend, $.Localize("#endscreen_last_hits"))});
+		//LHLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", LHLegend)});
 		var LHLegendLabel = $.CreatePanel("Label", LHLegend, "LegendLabel");
 		LHLegendLabel.text = $.Localize("#endscreen_lh");
 		var DNLegend = $.CreatePanel("Panel", y_legend, "");
 		DNLegend.AddClass("DNLegend");
 		DNLegend.style.backgroundColor = ColorLuminance(allplayerscolors[player],-0.5) + ";"
-		DNLegend.SetPanelEvent("onmouseover", function showTooltip() { $.DispatchEvent("DOTAShowTextTooltip", DNLegend, $.Localize("#endscreen_denies"))});
-		DNLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", DNLegend)});
+		//DNLegend.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", DNLegend, $.Localize("#endscreen_denies"))});
+		//DNLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", DNLegend)});
 		var DNLegendLabel = $.CreatePanel("Label", DNLegend, "LegendLabel");
 		DNLegendLabel.text = $.Localize("#endscreen_dn");
 	}
-
-	//var history_p1 = stats_misc_history[0];
-    //var output = '';
-    // for (var property in history_p1) {
-    // 		$.Msg("property = " + property);
-    // 		var obj = history_p1[property];
-    // 		for (var prop in obj){
-    //   			output += prop + ': ' + obj[prop] + '; ';
-    //   		}
-    // }
-    // $.Msg(output);
-
-	//var stats_misc_history_p1 = CustomNetTables.GetTableValue("stats_misc", playerId + "stats_misc_history");
 
 	var bar_container = $("#graph_container");
 	var x_legend = $("#x_legend");
@@ -343,13 +330,8 @@ function OnEndScreen(data) {
 		if ((dn_p1 > max) || (dn_p2 > max)){
 			max = dn_p1 > dn_p2 ? dn_p1 : lh_p2;
 		}
-		//if (lh > max){
-		//	max = lh;
-		//}
-		//if (dn > max){
-		//	max = dn;
-		//}
-		//$.Msg("Max = " + max);
+
+		$.Msg("Max = " + max);
 	}
 	for (var j in stats_misc_history[0]) {
 		//if (j > 1){
@@ -395,21 +377,25 @@ function OnEndScreen(data) {
 			var ypct = Math.round((minval * 100)/max);
 			var min_y = Math.round((ypct * 160) / 100);
 
-			//bar_superholder.style.height = max_y + "px;";
-			bar_superholder.style.height = "160px;";
+			$.Msg("max_y = " + max_y + ", min_y = " + min_y);
+
+			if (max_y != 0){
+				bar_superholder.style.height = max_y + "px;";
+			} else {
+				bar_superholder.style.height = "30px;";
+			}
 			////$.Msg(">>> Greater = " + (lh < lh_p2 ? lh : lh_p2) + "<<<");
 
 			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 			bar_holder.style.opacity = "1.0";
 	  		var height = (lh_tie ? max_y : (max_y - min_y));
-	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
-	  		
-	  		if (height != 0){
-				bar_holder.style.height = height + "px;";
+	  		$.Msg("height = " + height);
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");	  		
+			
+			if (height != 0){
 	  			bar.style.height = height + "px;";
-	  			bar.style.backgroundColor = lh_tie ? "dimgray" : allplayerscolors[maxvalplayer] + ";";
+	  			bar.style.backgroundColor = lh_tie ? "grey" : allplayerscolors[maxvalplayer] + ";";	
 	  		} else {
-	  			bar_holder.style.height ="30px;";
 	  			bar.style.height = "30px;";
 	  		}
 
@@ -421,14 +407,13 @@ function OnEndScreen(data) {
 	  		if (allplayersids.length > 1){
 		  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 				bar_holder.style.opacity = "1.0";
+				//bar_holder.style.height = min_y + "px;";
 		  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
 		  		if (min_y != 0){
-					bar_holder.style.height = min_y + "px;";
-		  			bar.style.backgroundColor =  lh_tie ? "dimgray" : allplayerscolors[minvalplayer] + ";";
+		  			bar.style.backgroundColor =  lh_tie ? "grey" : allplayerscolors[minvalplayer] + ";";
 		  			bar.style.height = min_y + "px;";
 		  		} else {
-		  			bar_holder.height = "30px;";
-		  			bar.style.height = "30px;";
+	  				bar.style.height = "30px;";
 		  		}
 
 		  		var label = $.CreatePanel("Label", bar, "");
@@ -460,22 +445,27 @@ function OnEndScreen(data) {
 			var min_y = Math.round((ypct * 160) / 100);
 			//$.Msg("max_y = " + max_y + ", min_y = " + min_y);
 
-			//bar_superholder.style.height = max_y + "px;";
-			bar_superholder.style.height = "160px;";
+			if (max_y != 0){
+				bar_superholder.style.height = max_y + "px;";
+			} else {
+				bar_superholder.style.height = "30px;";
+			}
+			//bar_superholder.style.height = "160px;";
 			////$.Msg(">>> Greater = " + (dn < dn_p2 ? dn : dn_p2) + "<<<");
 
 			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 			bar_holder.style.opacity = "1.0";
 	  		var height = (dn_tie ? max_y : (max_y - min_y));
 	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+
+			//bar_holder.style.height = height + "px;";
+	  		
 	  		if (height != 0){
-				bar_holder.style.height = height + "px;";
-	  			bar.style.backgroundColor = dn_tie ? "grey" : ColorLuminance(allplayerscolors[maxvalplayer],-0.5) + ";";	  			
 	  			bar.style.height = height + "px;";
+	  			bar.style.backgroundColor = dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[maxvalplayer],-0.5) + ";";	  			
 	  		} else {
-		  			bar_holder.height = "30px;";
-		  			bar.style.height = "30px;";
-		  	}
+	  			bar.style.height = "30px";
+	  		}
 
 	  		var label = $.CreatePanel("Label", bar, "");
 	  		label.text = maxval;
@@ -486,14 +476,14 @@ function OnEndScreen(data) {
 		  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 				bar_holder.style.opacity = "1.0";
 		  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
-		  		if ( min_y != 0){
-					bar_holder.style.height = min_y + "px;";
-			  		bar.style.backgroundColor =  dn_tie ? "grey" : ColorLuminance(allplayerscolors[minvalplayer],-0.5) + ";";
-			  		bar.style.height = min_y + "px;";
+
+				if (min_y != 0){
+		  			bar.style.height = min_y + "px;";
+		  			bar.style.backgroundColor =  dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[minvalplayer],-0.5) + ";";
 		  		} else {
-		  			bar_holder.style.height = "30px;";
-		  			bar.style.height = "30px;";
+		  			bar.style.height = "30px";
 		  		}
+		  		//bar.style.height = min_y + "px;";
 		  		//$.Msg("2 height = " + min_y);
 
 		  		var label = $.CreatePanel("Label", bar, "");

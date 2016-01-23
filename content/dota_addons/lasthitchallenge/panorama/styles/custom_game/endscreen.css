@@ -105,7 +105,6 @@
   flow-children: down;
   //opacity: 0;
   vertical-align: bottom;
-  height: 100%;
   
   transition-property: opacity;
   transition-duration: 1.0s;
