@@ -16,15 +16,9 @@
 		  			<Label id="stats_title" text=""/>
 		  			<Button class="CloseButton" onactivate="OnQuit()"/>
 			  	</Panel>
-			  	<Panel class="Category">
-			  		<Label id="stats_melee" text="0"/>
-				</Panel>
-				<Panel class="Category">
-					<Label id="stats_ranged" text="0"/>					 	
-				</Panel>
-				<Panel class="Category">
-					<Label id="stats_siege" text="0"/>				
-				</Panel>
+			  	<Panel id="stats_melee" class="Category"/>
+				<Panel id="stats_ranged" class="Category"/>
+				<Panel id="stats_siege" class="Category"/>
 				<!--
 				<Panel class="Category">
 					<Label id="stats_tower" text="0"/>

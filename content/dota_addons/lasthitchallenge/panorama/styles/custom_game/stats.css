@@ -17,8 +17,8 @@
 .StatsPanelContainer
 {
     flow-children: down;
-    width: 800px;
-    height: 600px;
+    width: 1000px;
+    height: 800px;
     font-size: 16;
     background-color: #181818;
     border: 2px solid #222222;
@@ -56,6 +56,17 @@
   horizontal-align: right;
 }
 
+.Category .PlayerContainer{
+	flow-children: right;
+	width: 100%;
+}
+
+.Category .PlayerContainer .PlayerName{
+	width: 50%;
+	text-align: right;
+	font-size: 20;
+}
+
 .Category
 {
   flow-children: down;
@@ -70,15 +81,30 @@
   background-color: #333333;
 }
 
-.StatsPanelContainer .Category Label
+.Category DOTAUserName{
+	border-top: 1px solid #666666;
+	horizontal-align : center;
+  	width: 100%;
+}
+
+.Category DOTAUserName Label{  	
+  	vertical-align: top;
+  	horizontal-align: center;
+  	text-transform: none;
+  	margin: 0px 0px 0px 0px;
+  	font-size: 20;
+}
+
+.Category Label
 {
-  width: 100%;
+  horizontal-align: center;
   vertical-align: middle;
   font-size: 50;
   color: #888888;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
+  margin: 0px 0px 0px 0px;
 }
 
 .OptionButton
@@ -155,7 +181,7 @@
 
 #DireMeleeImg
 {	
-	transform: translateX( 0px ) translateY( 20px );
+	transform: translateX( 0px ) translateY( 50px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -168,7 +194,7 @@
 
 #DireRangedImg
 {	
-	transform: translateX( 10px ) translateY( 190px );
+	transform: translateX( 10px ) translateY( 280px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -181,7 +207,7 @@
 
 #DireSiegeImg
 {	
-	transform: translateX( 00px ) translateY( 370px );
+	transform: translateX( 00px ) translateY( 520px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -209,7 +235,7 @@
 
 #RadiantMeleeImg
 {	
-	transform: translateX( 20px ) translateY( 40px );
+	transform: translateX( 20px ) translateY( 80px );
 	width: 180px;
 	height: 180px;
 	margin-bottom: 3px;
@@ -222,7 +248,7 @@
 
 #RadiantRangedImg
 {	
-	transform: translateX( 5px ) translateY( 200px );
+	transform: translateX( 5px ) translateY( 300px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -235,7 +261,7 @@
 
 #RadiantSiegeImg
 {	
-	transform: translateX( 30px ) translateY( 360px );
+	transform: translateX( 30px ) translateY( 530px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -263,7 +289,7 @@
 
 #DireRadiantMeleeImg
 {	
-	transform: translateX( 10px ) translateY( 15px );
+	transform: translateX( 10px ) translateY( 60px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -276,7 +302,7 @@
 
 #DireRadiantRangedImg
 {	
-	transform: translateX( 5px ) translateY( 180px );
+	transform: translateX( 5px ) translateY( 300px );
 	width: 200px;
 	height: 200px;
 	margin-bottom: 3px;
@@ -289,7 +315,7 @@
 
 #DireRadiantSiegeImg
 {	
-	transform: translateX( 10px ) translateY( 350px );
+	transform: translateX( 10px ) translateY( 510px );
 	width: 250px;
 	height: 250px;
 	margin-bottom: 3px;

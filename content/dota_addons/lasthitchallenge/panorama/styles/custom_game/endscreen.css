@@ -26,8 +26,8 @@
     vertical-align: center;
     horizontal-align: middle;
     flow-children: down;
-    width: 1440px;
-    height: 900px;
+    width: 1600px;
+    height: 1200px;
     font-size: 16;
     background-color: #181818;
     border: 2px solid #222222;
@@ -100,19 +100,26 @@
   height: 180px;
 }
 
-#BarHolder{
+#BarSuperHolder{
   width: fill-parent-flow(1.0);
-  opacity: 0;
+  flow-children: down;
+  //opacity: 0;
   vertical-align: bottom;
+  height: 100%;
   
   transition-property: opacity;
   transition-duration: 1.0s;
   transition-timing-function: linear;
+}
 
+#BarHolder{
+  vertical-align: bottom;
+  width: 100%;
 }
 
 #BarHolder Label{
   width: 100%;
+  text-shadow: 2px 2px 2px 2.0 #333333b0;
 }
 
 .VertBar
@@ -123,7 +130,7 @@
   opacity: 0.04;
 }
 
-.YLeyendPanel{
+.YLegendPanel{
   flow-children: down;
   vertical-align: bottom;
   margin-left: 100px;
@@ -143,13 +150,13 @@
   vertical-align: bottom;
 }
 
-.XLeyendPanel{
+.XLegendPanel{
   flow-children: right;
   margin-left: 145px;
   margin-right: 10px;
 }
 
-#XLeyendLabel{
+#XLegendLabel{
   width: 100%;
   height: 15px;
   text-align: center;
@@ -157,7 +164,14 @@
   font-size: 16;
 }
 
-.LHLeyend{
+.StatContainer{
+  flow-children: down;
+  width : fill-parent-flow(1.0);
+}
+
+.LHLegend{
+  border-style: solid;
+  border-width: 1px;
   width: 24px;
   height: 24px;
   background-color: #009933;
@@ -166,15 +180,20 @@
   margin: 0px;
 }
 
-#LeyendLabel{
+.Legend{
+    flow-children: right;
+}
+
+#LegendLabel{
   width: 100%;
   font-size: 15;
   text-align: center;
   vertical-align: middle;
   margin: 0px;
+  text-shadow: 2px 2px 2px 2.0 #333333b0;
 }
 
-.DNLeyend{
+.DNLegend{
   width: 24px;
   height: 24px;
   background-color: #800000;
@@ -182,14 +201,11 @@
   margin: 0px;
 }
 
-
 #BarLH
 {
   width: 100%;
   height: 0px;
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #003300 ), to( #009933 ) );
-  //margin-left: 1px;
-  //margin-right: 0px;
+  //background-color: gradient( linear, 0% 0%, 0% 100%, from( #003300 ), to( #009933 ) );
   vertical-align: bottom;
   horizontal-align: left;
 
@@ -202,7 +218,7 @@
 {
   width: 100%;
   height: 0px;
-  background-color: gradient( linear, 0% 0%, 0% 100%, from( #CC3300 ), to( #800000 ) );
+  //background-color: gradient( linear, 0% 0%, 0% 100%, from( #CC3300 ), to( #800000 ) );
   //margin-left: 0px;
   //margin-right: 1px;
   vertical-align: bottom;
@@ -212,7 +228,6 @@
   transition-duration: 1.0s;
   transition-timing-function: linear;
 }
-
 
 .HorBar
 {
@@ -327,11 +342,6 @@
   flow-children: right;
   width:100%;
 
-}
-
-.Row Label
-{
-  width: fill-parent-flow(1.0);
 }
 
 .Category .Row Label

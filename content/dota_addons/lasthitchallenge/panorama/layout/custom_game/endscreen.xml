@@ -40,15 +40,15 @@
 					 		<Label text="#endscreen_accuracy"/>
 					 	</Panel>
 					 	<Panel class="Row">
-					 		<Label id="stats_total_cs" text="0"/>
+					 		<Panel id="stats_total_cs" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_total_lh" text="0"/>
+					 		<Panel id="stats_total_lh" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_total_dn" text="0"/>
+					 		<Panel id="stats_total_dn" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_total_miss" text="0"/>
+					 		<Panel id="stats_total_miss" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_total_accuracy" text="0%"/>
+					 		<Panel id="stats_total_accuracy" class="StatContainer"/>
 					 	</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
@@ -62,11 +62,11 @@
 					 		<Label text="#endscreen_denies"/>
 					 	</Panel>
 					 	<Panel class="Row">
-					 		<Label id="stats_streak_cs" text="0"/>
+					 		<Panel id="stats_streak_cs" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_streak_lh" text="0"/>
+					 		<Panel id="stats_streak_lh" class="StatContainer"/>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_streak_dn" text="0"/>
+					 		<Panel id="stats_streak_dn" class="StatContainer"/>
 					 	</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
@@ -82,13 +82,21 @@
 					 		<Label id="acc_record" text="#endscreen_acc_record"/>
 					 	</Panel>
 					 	<Panel class="Row">
-					 		<Label id="stats_record_cs" text="0"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_record_cs" text="0"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_record_lh" text="0"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_record_lh" text="0"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_record_dn" text="0"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_record_dn" text="0"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_record_accuracy" text="0%"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_record_accuracy" text="0%"/>
+					 		</Panel>
 					 	</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
@@ -102,11 +110,17 @@
 					 		<Label text="#endscreen_longest_try"/>
 					 	</Panel>
 					 	<Panel class="Row">
-					 		<Label id="stats_time_spent" text="00:00"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_time_spent" text="00:00"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_time_shortest" text="00:00"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_time_shortest" text="00:00"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_time_longest" text="00:00"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_time_longest" text="00:00"/>
+					 		</Panel>
 					 	</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
@@ -118,28 +132,26 @@
 					 		<Label text="#endscreen_session_accuracy"/>
 					 	</Panel>
 					 	<Panel class="Row">
-					 		<Label id="stats_misc_restart" text="0"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_misc_restart" text="0"/>
+					 		</Panel>
 					 		<Panel class="VertBar"/>
-					 		<Label id="stats_misc_session_accuracy" text="0%"/>
+					 		<Panel class="StatContainer">
+					 			<Label id="stats_misc_session_accuracy" text="0%"/>
+					 		</Panel>
 					 	</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
 				<Panel class="Category">
 				 	<Label text="#endscreen_graph"/>
 				 	<Panel class="Row">
-				 		<Panel class="YLeyendPanel">
-					 		<Panel class="LHLeyend">
-					 			<Label id="LeyendLabel" text="#endscreen_lh"/>
-					 		</Panel>				 						 		
-					 		<Panel class="DNLeyend">
-					 			<Label id="LeyendLabel" text="#endscreen_dn"/>
-					 		</Panel>
-				 		</Panel>
+				 		<Panel id="Legend" class="Legend"/>
+				 		<Panel id="YLegendPanel" class="YLegendPanel"/>
 				 		<Panel class="VertBar" style="margin-bottom: 15px;"/>
 				 		<Panel id="graph_container" class="GraphContainer"/>
 				 	</Panel>
 			 		<Panel class="Row">
-			 			<Panel id="x_leyend" class="XLeyendPanel"/>
+			 			<Panel id="x_legend" class="XLegendPanel"/>
 			 		</Panel>
 				</Panel>
 				<Panel class="HorBar"/>
