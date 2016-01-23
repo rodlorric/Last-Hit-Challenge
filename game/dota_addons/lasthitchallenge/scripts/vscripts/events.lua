@@ -1189,7 +1189,8 @@ function CLastHitChallenge:InitializeData()
 				end
 			end
 			
-			local steamid = PlayerResource:GetSteamAccountID(0)
+			local steamid = PlayerResource:GetSteamAccountID(nPlayerID)
+
 			local result = nil
 			Storage:Get(steamid, function( resultTable, successBool )
 			    if successBool then
