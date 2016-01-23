@@ -60,8 +60,9 @@ function OnStart(data){
     $.Msg("hud.js heroId = " + heroId + ", leveling = " + leveling + ", time = " + time + ", playerId = " + playerId);
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (localPlayer['player_has_host_privileges']){
-    	GameEvents.SendCustomGameEventToServer("start", { "playerId" : playerId, "heroId" : heroId, "leveling" : leveling, "time" : time });
+    	GameEvents.SendCustomGameEventToServer("start", {});
     }
+    GameEvents.SendCustomGameEventToServer("spawn_heroes", { "playerId" : playerId, "heroId" : heroId, "leveling" : leveling, "time" : time });
 }
 
 var end_screen = false;

@@ -223,5 +223,6 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("leaderboard", Dynamic_Wrap(CLastHitChallenge, 'OnLeaderboard'))
 	CustomGameEventManager:RegisterListener("new_pick", Dynamic_Wrap(CLastHitChallenge, 'OnNewPick'))
 	CustomGameEventManager:RegisterListener("start", Dynamic_Wrap(CLastHitChallenge, 'OnStart'))
+	CustomGameEventManager:RegisterListener("spawn_heroes", Dynamic_Wrap(CLastHitChallenge, 'OnSpawnHeroes'))
 	CustomGameEventManager:RegisterListener("resume", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
 end

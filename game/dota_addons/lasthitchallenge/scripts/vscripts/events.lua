@@ -109,6 +109,7 @@ function CLastHitChallenge:OnNewPick(params)
 	if heroId ~= nil then
 		print("hero ~= nil")
 		player_stats[playerId].hero_picked = heroId
+		print("playerid = ".. tostring(playerId) .. ", hero_picked = " .. player_stats[playerId].hero_picked)
 		player_stats[playerId].leveling = leveling
 		local all_picked = true
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
@@ -171,22 +172,13 @@ function CLastHitChallenge:OnNewPick(params)
 	end
 end
 
-function CLastHitChallenge:OnStart(params)
+function CLastHitChallenge:OnSpawnHeroes(params)
 	local heroId = params.heroId
 	local leveling = params.leveling
 	local playerId = params.playerId
 	local time = params.time
 
-	print("Start")
-	iter = 1
-	print("pre spawncreeps 48")
-	CLastHitChallenge:SpawnCreeps()
-	print("post spawncreeps 50")
-	CLastHitChallenge:Clock()
-
-	print("test")
-
- 	--Spawn the hero in an empty spot
+	--Spawn the hero in an empty spot
  	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(playerId))
 
 	local phero = PlayerResource:GetPlayer(playerId):GetAssignedHero()
@@ -200,6 +192,17 @@ function CLastHitChallenge:OnStart(params)
 	if hero_picked_name ~= "npc_dota_hero_techies" then
 		CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
 	end
+end
+
+function CLastHitChallenge:OnStart()
+	print("Start")
+	iter = 1
+	print("pre spawncreeps 48")
+	CLastHitChallenge:SpawnCreeps()
+	print("post spawncreeps 50")
+	CLastHitChallenge:Clock()
+
+	print("test")
 
 	--leveling
 	print("OnStart leveling = " .. tostring(leveling))
