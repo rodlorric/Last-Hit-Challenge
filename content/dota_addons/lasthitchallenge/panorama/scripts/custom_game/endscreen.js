@@ -887,9 +887,12 @@ function LoadData(stats_panel, type){
 	GameEvents.Subscribe("quit", OnQuit);
 
 	var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-    if (!localPlayer['player_has_host_privileges']){
-    	$("#pick").enabled = false;
-    	$("#change_time").enabled = false;
-		$("#restart").enabled = false;
+     if (!localPlayer['player_has_host_privileges']){
+    	$("#change_hero_button").enabled = false;
+    	$("#change_hero_button").checked = true;
+    	$("#change_time_button").enabled = false;
+    	$("#change_time_button").checked = true;
+		$("#restart_button").enabled = false;
+		$("#restart_button").checked = true;
     }
 })();

@@ -165,13 +165,13 @@
 			  		<Button class="OptionButton" onactivate="OnHeatMapButton()">
 			  			<Label text="#heatmap"/>
 			  		</Button>	  			
-		 			<Button class="OptionButton" onactivate="OnPickButton()">
+		 			<Button id="change_hero_button" class="OptionButton" onactivate="OnPickButton()">
 			  			<Label text="#pick"/>
 			  		</Button>
-			  		<Button class="OptionButton" onactivate="OnChangeTime()">
+			  		<Button id="change_time_button" class="OptionButton" onactivate="OnChangeTime()">
 			  			<Label text="#change_time"/>
 			  		</Button>	  			
-			  		<Button class="OptionButton" onactivate="OnRestart()">
+			  		<Button id="restart_button" class="OptionButton" onactivate="OnRestart()">
 			  			<Label text="#restart"/>
 			  		</Button>
 			  		<Button class="OptionButton" onactivate="OnQuit()">
