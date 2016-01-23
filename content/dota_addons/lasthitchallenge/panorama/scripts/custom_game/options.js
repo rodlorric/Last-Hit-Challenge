@@ -269,10 +269,15 @@ function HeroName(hero_picked){
 	var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (!localPlayer['player_has_host_privileges']){
     	$("#change_hero_button").enabled = false;
+    	$("#change_hero_button").checked = true;
     	$("#change_time_button").enabled = false;
+    	$("#change_time_button").checked = true;
 		$("#restart_button").enabled = false;
+		$("#restart_button").checked = true;
 		$("#show_stats_button").enabled = false;
+		$("#show_stats_button").checked = true;
 		$("#invulnerability" ).enabled = false;
+		$("#invulnerability" ).visible = false;
     }
 
 	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
