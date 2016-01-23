@@ -28,6 +28,7 @@
 		"endscreen_graph"					"Gráfica histórico"
 		"endscreen_lh"						"UG"
 		"endscreen_dn"						"D"
+		"endscreen_tie"						"Tie"
 		"restart"							"Reiniciar"
 		"quit"								"Abandonar"
 		"show_stats"						"Mostrar Estadísticas"
