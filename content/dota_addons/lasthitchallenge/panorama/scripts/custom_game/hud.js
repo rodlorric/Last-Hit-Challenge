@@ -64,6 +64,10 @@ function OnQuit(){
 	}
 }
 
+function HideClock(){
+	$("#clock_panel").style.visibility = "collapse";
+}
+
 
 (function () {
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
@@ -72,6 +76,7 @@ function OnQuit(){
 	GameEvents.Subscribe("endscreen", OnEndScreen);
 	//GameEvents.Subscribe("start_game", OnStart);
 	GameEvents.Subscribe("start", OnStart);
+	GameEvents.Subscribe("new_pick", HideClock);
 
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();
