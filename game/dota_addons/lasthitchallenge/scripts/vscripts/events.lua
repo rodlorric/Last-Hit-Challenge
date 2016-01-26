@@ -11,83 +11,14 @@ STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/chea
 --STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
 --STORAGEAPI_API_URL_CHEATERS = "http://localhost:5000/cheaters"
 
---detailed stats totals
---melee_lh = 0
---melee_dn = 0
---melee_miss_friendly = 0
---melee_miss_foe = 0
---ranged_lh = 0
---ranged_dn = 0
---ranged_miss_friendly = 0
---ranged_miss_foe = 0
---siege_lh = 0
---siege_dn = 0
---siege_miss_friendly = 0
---siege_miss_foe = 0
-
-
 player_stats = {}
 
 ----------------------
 hidehelp = 0
 invulnerable = 0
 ----------------------
---iter = 1
-------------------------
---hero_picked = nil
---new_record = false
-------------------------
---function CLastHitChallenge:OnHeroPicked(hero_param)
---	if Tutorial:GetTimeFrozen() then
---		CLastHitChallenge:SetGameFrozen(false)
---	end
---	if GameRules:IsGamePaused() == true then
---  		PauseGame(false)
---	end
---	iter = 1
---	print("pre spawncreeps 48")
---	CLastHitChallenge:SpawnCreeps()
---	print("post spawncreeps 50")
---	CLastHitChallenge:Clock()
---
---	hero_picked = hero_param.hero
---	playerId = hero_param.playerId
---
--- 	--Spawn the hero in an empty spot
--- 	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(playerId))
---
---	local phero = PlayerResource:GetPlayer(playerId):GetAssignedHero()
---	UTIL_Remove(phero)
---	--local nhero = PlayerResource:ReplaceHeroWith( 0, "npc_dota_hero_" .. hero_picked, 0, 0)
---	local hero_picked_name = CLastHitChallenge:HeroName(hero_picked)
---	local nhero = PlayerResource:ReplaceHeroWith( playerId, hero_picked_name, 0, 0)
---
---	--This removes any cosmetic, to avoid to precache every other item
---	CosmeticLib:RemoveAll(nhero)
---	if hero_picked_name ~= "npc_dota_hero_techies" then
---		CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
---	end
---	--local slots = CosmeticLib:GetAvailableSlotForHero(hero_picked_name)
---	--if slots ~= nil then
---	--	for k,slot in pairs(slots) do
---	--		CosmeticLib:RemoveFromSlot(nhero, slot)
---	--	end
---	--	if hero_picked_name ~= "npc_dota_hero_techies" then
---	--		CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
---	--	end
---	--end
---  	
---  	--if (hero_picked_name == "npc_dota_hero_techies") then
---  	--end
---	--CLastHitChallenge:GiveZeroGold(PlayerResource:GetSelectedHeroEntity(0))
---  	--CLastHitChallenge:GiveBlinkDagger(hero)
---end
 
 function CLastHitChallenge:OnNewPick(params)
-	print("OnNewPick...")
-	DeepPrintTable(params)
-
-
 	local playerId = nil
 	local heroId = nil
 	local leveling = nil
@@ -107,22 +38,12 @@ function CLastHitChallenge:OnNewPick(params)
 	end
 
 	if heroId ~= nil then
-		print("hero ~= nil")
 		player_stats[playerId].hero_picked = heroId
-		print("playerid = ".. tostring(playerId) .. ", hero_picked = " .. player_stats[playerId].hero_picked)
 		player_stats[playerId].leveling = leveling
 		local all_picked = true
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
-			--if nPlayerID == 1 then
-			--	if player_stats[nPlayerID] == nil or player_stats[nPlayerID] == nil then
-			--		print("all picked false! ABORT!")
-			--		all_picked = false
-			--		break
-			--	end
-			--end
 			if PlayerResource:IsValidPlayer( nPlayerID ) then
 				if player_stats[nPlayerID].hero_picked == nil then
-					print("all picked false! ABORT!")
 					all_picked = false
 					break
 				end
@@ -141,28 +62,11 @@ function CLastHitChallenge:OnNewPick(params)
 					end
 				end
 			end
-			--if MAXTIME == -2 then
-			--	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
-			--		if PlayerResource:IsValidPlayer( nPlayerID ) and GameRules:PlayerHasCustomGameHostPrivileges(PlayerResource:GetPlayer(nPlayerID)) then
-			--			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "time_screen", {})
-			--		end
-			--	end
-			--else
-			--	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
-			--		if PlayerResource:IsValidPlayer( nPlayerID ) then
-			--			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID})
-			--			--CustomGameEventManager:Send_ServerToAllClients("start", { time = MAXTIME, heroId = heroId, leveling = leveling, playerId = playerId})
-			--		end
-			--	end
-			--end
 		end
 	end
 
 	if time ~= nil then
-		--CLastHitChallenge:OnSync({ value = "time"})
 		MAXTIME = time
-		print("MAXTIME = " .. tostring(time))
-		print("heroId = " .. tostring(heroId) .. ", leveling = " .. tostring(leveling))
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 			if PlayerResource:IsValidPlayer( nPlayerID ) then
 				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID})
@@ -195,17 +99,11 @@ function CLastHitChallenge:OnSpawnHeroes(params)
 end
 
 function CLastHitChallenge:OnStart()
-	print("Start")
 	iter = 1
-	print("pre spawncreeps 48")
 	CLastHitChallenge:SpawnCreeps()
-	print("post spawncreeps 50")
 	CLastHitChallenge:Clock()
 
-	print("test")
-
 	--leveling
-	print("OnStart leveling = " .. tostring(leveling))
 	if leveling == 1 then	
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
@@ -223,7 +121,6 @@ function CLastHitChallenge:OnStart()
 end
 
 function CLastHitChallenge:HeroName(hero_picked)
-	print("HeroNameId = " .. tostring(hero_picked))
 	local hero_name = CustomNetTables:GetTableValue("hero_selection", tostring(hero_picked))
 	return hero_name.hero
 end
@@ -280,17 +177,6 @@ function CLastHitChallenge:OnThink()
 	return 1
 end
 
---function CLastHitChallenge:OnTimePicked(time_data)
---	print("OnTimePicked")
---	MAXTIME = time_data.time
---	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
---		if PlayerResource:IsValidPlayer( nPlayerID ) then
---			print("Sending time to clients...");
---			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "time_picked_server", {time = MAXTIME})
---		end
---	end
---end
-
 function CLastHitChallenge:ClearData()
 	restarts = restarts + 1
 
@@ -321,7 +207,6 @@ function CLastHitChallenge:ClearData()
 
 			--Totals Details
 			--detailed stats totals
-			--melee_lh = 0
 			player_stats[nPlayerID].melee_lh = 0
 			player_stats[nPlayerID].melee_dn = 0
 			player_stats[nPlayerID].melee_miss_friendly = 0
@@ -335,16 +220,10 @@ function CLastHitChallenge:ClearData()
 			player_stats[nPlayerID].siege_miss_friendly = 0
 			player_stats[nPlayerID].siege_miss_foe = 0
 			----------------------
-
-			--clearing hero_picked, leveling
-			--player_stats[nPlayerID].hero_picked = nil
-			--player_stats[nPlayerID].leveling = nil
 			
 			--clearing misses
-			player_stats[nPlayerID].misses = 0
-			
+			player_stats[nPlayerID].misses = 0			
 			player_stats[nPlayerID].current_cs = { lh = PlayerResource:GetLastHits(nPlayerID), dn = PlayerResource:GetDenies(nPlayerID) }
-
 		end
 		--clearing heatmap
 		--CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "cleardata", {})
@@ -372,20 +251,14 @@ function CLastHitChallenge:SetGameFrozen( bFreeze )
 end
 
 function CLastHitChallenge:EndGame()
-
-	print("End game!")
-
 	if seconds < shortest_time or shortest_time == MAXTIME then
 		shortest_time = seconds
 	end
 
 	CLastHitChallenge:SetGameFrozen(true)
-
-	print("Game frozen")
 	
 	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 		if PlayerResource:IsValidPlayer( nPlayerID ) then
-			print("calculating stats for player " .. tostring(nPlayerID))
 			local hero_picked = player_stats[nPlayerID].hero_picked
 			--Totals
 			local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_cs")
@@ -459,7 +332,6 @@ function CLastHitChallenge:EndGame()
 			end
 
 			CustomNetTables:SetTableValue("stats_misc", tostring(nPlayerID) .. "stats_misc_session_accuracy", { value = session_accuracy })
-
 
 			--Time
 			total_time = total_time + seconds
@@ -657,7 +529,6 @@ function CLastHitChallenge:OnEntityKilled (event)
 				if attacker:IsRealHero() and not killedUnit:IsRealHero() then
 					local playerId = attacker:GetPlayerID()
 					if playerId == nPlayerID then
-						print("playerId = " .. tostring(playerId))
 						local hero_picked = player_stats[nPlayerID].hero_picked
 						--heatmap
 						local xy = killedUnit:GetOrigin()
@@ -707,7 +578,6 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 						else --LastHit
 							local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. leveling)
-							print("stats_record_lh = " .. tostring(stats_record_lh))
 							--streak
 							player_stats[nPlayerID].last_hit_streak = player_stats[nPlayerID].last_hit_streak + 1
 							if player_stats[nPlayerID].last_hit_streak > player_stats[nPlayerID].max_last_hit_streak then
@@ -718,7 +588,6 @@ function CLastHitChallenge:OnEntityKilled (event)
 							if lh > stats_record_lh.value or cs > stats_record_cs.value then
 								if lh > stats_record_lh.value and MAXTIME ~= -1 then
 									stats_record_lh.value = lh
-									print("New record!")
 									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_lh)
 									player_stats[nPlayerID].new_record = true
 								end
@@ -759,9 +628,8 @@ function CLastHitChallenge:OnEntityKilled (event)
 						else
 							player_stats[nPlayerID].last_hit_streak = 0
 						end
-						total_misses = total_misses + 1
+						player_stats[nPlayerID].total_misses = player_stats[nPlayerID].total_misses + 1
 						player_stats[nPlayerID].misses = player_stats[nPlayerID].misses + 1
-
 
 						--Totals Details
 						if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
@@ -878,10 +746,7 @@ function CLastHitChallenge:Spawner()
 end
 
 function CLastHitChallenge:OnSync(params)
-	print("Sync...")
-	DeepPrintTable(params)
 	if params.value ~= "stats" then
-		print("removing units...")
 		Timers:RemoveTimer("spawner")
 		Timers:RemoveTimer("clock")
 		CLastHitChallenge:ClearUnits()
@@ -927,7 +792,6 @@ function CLastHitChallenge:OnRestart(playerId)
 			local player_hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
 			CLastHitChallenge:SafeSpawn(player_hero)
 
-			print("nPlayerID = " .. tostring(nPlayerID))
 			local hero_picked = player_stats[nPlayerID].hero_picked
 
 			local phero = PlayerResource:GetPlayer(nPlayerID):GetAssignedHero()
@@ -944,9 +808,7 @@ function CLastHitChallenge:OnRestart(playerId)
 	end
 	--CLastHitChallenge:GiveZeroGold(player_hero)
 	iter = 1
-	print("pre spawncreeps 769")
 	CLastHitChallenge:SpawnCreeps()
-	print("post spawncreeps 771")
 	CLastHitChallenge:Clock()
 	CustomGameEventManager:Send_ServerToAllClients("cancel", {})
 
@@ -961,8 +823,6 @@ function CLastHitChallenge:OnQuit()
 end
 
 function CLastHitChallenge:OnLeaderboard(query)
-	print("query = ")
-	DeepPrintTable(query)
 	local playerId = query.PlayerID
 	local steamid = PlayerResource:GetSteamAccountID(playerId)
 	leader_list = {}

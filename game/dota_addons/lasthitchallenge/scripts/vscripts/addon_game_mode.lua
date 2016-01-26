@@ -182,6 +182,7 @@ function CLastHitChallenge:InitGameMode()
 	]]
 
 	Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
+	--[[
 	Convars:RegisterCommand("settime",
 		function(name, time, heroId, leveling, playerId)
 			print("time: " .. time)
@@ -190,6 +191,7 @@ function CLastHitChallenge:InitGameMode()
 			CLastHitChallenge:OnNewPick({heroId = heroId, leveling = leveling, time = time, playerId = playerId})
 		end,
 	"",0)
+	--]]
 	--Convars:RegisterCommand( "endgame", end_game_func, "Ends the game", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)

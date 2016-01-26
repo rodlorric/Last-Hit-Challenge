@@ -40,13 +40,9 @@ function Hurt2(data){
     }
 
     txtLabel.text = text;
-
-    $.Msg(scale);
     txtHolderPanel.style.transform = "translate3d(" + ( (x * (1/scale)) - 100 ) + "px, " + ( (y * (1/scale)) - 100) + "px, 0px)";
-
     txtLabel.DeleteAsync(0.7);
     txtHolderPanel.DeleteAsync(0.7);
-    $.Msg(unitPos);
 }
 
 var index = 0;

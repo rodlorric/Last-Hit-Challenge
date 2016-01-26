@@ -8,25 +8,6 @@ function OnRestartButton(){
 	GameEvents.SendCustomGameEventToServer( "restart", { "playerId" : Game.GetLocalPlayerID()})
 }
 
-
-/*
-function OnCreepScoreRecordChanged( table_name, key, data ){
-	var panel = $.GetContextPanel();
-	$("#cs").text = data["cs"]
-	$("#lh").text = data["lh"]
-	$("#dn").text = data["dn"]
-	if (data["anim"]["lh"] == true) {
-		panel.SetHasClass( "cs_anim", true );
-	} 
-	if (data["anim"]["dn"] == true) {
-		panel.SetHasClass( "lh_anim", true );
-	}
-	if (data["anim"]["cs"] == true) {
-		panel.SetHasClass( "dn_anim", true );
-	}
-	$.Schedule( 1, OnResetAnimation );
-} 
-*/
 function OnCreepScoreRecordChanged( table_name, key, data ){
 
 	var panel = $.GetContextPanel();
@@ -35,8 +16,6 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 	var cs = playerId + "c";
 	var lh = playerId + "l";
 	var dn = playerId + "d";
-
-	$.Msg("key = " + key);
 	
 	if (key.substring(0, cs.length) === cs){
 		$("#cs").text = data.value;
@@ -48,15 +27,12 @@ function OnCreepScoreRecordChanged( table_name, key, data ){
 		$("#dn").text = data.value;
 		panel.SetHasClass( "dn_anim", true );
 	} else if (key == playerId + "stats_accuracy_cs"){
-		//$("#cs_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
 		$("#cs_accuracy").text = data.value + "%";
 		panel.SetHasClass( "cs_accuracy_anim", true );
 	} else if (key == playerId + "stats_accuracy_lh"){
-		//$("#lh_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
 		$("#lh_accuracy").text = data.value + "%";
 		panel.SetHasClass( "lh_accuracy_anim", true );
 	} else if (key == playerId + "stats_accuracy_dn"){
-		//$("#dn_accuracy").text = parseFloat(Math.round(data.value).toFixed(2)) + "%";
 		$("#dn_accuracy").text = data.value + "%";
 		panel.SetHasClass( "dn_accuracy_anim", true );
 	}
@@ -88,32 +64,13 @@ function OnInvulnerability(){
 	GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : $("#invulnerability").checked });
 }
 
-
-//var hero_picked = "nevermore";
-//var leveling = true;
-//function OnHeroPicked(data){
-//	if (data.hero == null){
-//		if (!data.repick){
-//			$("#control_panel").style.visibility = "visible";
-//		} else {
-//			$("#control_panel").style.visibility = "collapse";
-//		}
-//	} else {
-//		hero_picked = data.hero;
-//		leveling = data.leveling;
-//	}
-//}
-
 function OnStart(data){
-	$.Msg("OnStart options.js");
 	$("#control_panel").style.visibility = "visible";
 	var output = '';
 	for (var property in data) {
       output += property + ': ' + data[property]+'; ';
     }
-    $.Msg("Time = " + output);
 
-    $.Msg("time.value = " + data.time);
     var time = data.time;
     var heroId = data.heroId;
     var leveling = data.leveling;
@@ -123,7 +80,6 @@ function OnStart(data){
 	var panel = $.GetContextPanel();
 
 	var suffix = heroId + time + (leveling ? "n":"l");
-	$.Msg("suffix = " + suffix);
 	$("#cs").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "c" + suffix ).value : "--";
 	panel.SetHasClass( "cs_anim", true );	
 	$("#lh").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "l" + suffix ).value : "--";
@@ -156,16 +112,12 @@ function OnTimePicked(time){
 	for (var property in time) {
       output += property + ': ' + time[property]+'; ';
     }
-    $.Msg("Time = " + output);
-
-    $.Msg("time.value = " + time.value);
 
     var playerId = Game.GetLocalPlayerID();
 
 	var panel = $.GetContextPanel();
 
 	var suffix = hero_picked + time.value + (leveling ? "n":"l");
-	$.Msg("suffix = " + suffix);
 	$("#cs").text = time.value != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "c" + suffix ).value : "--";
 	panel.SetHasClass( "cs_anim", true );	
 	$("#lh").text = time.value != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "l" + suffix ).value : "--";
@@ -194,7 +146,6 @@ function OnTimePicked(time){
 }
 
 function OnQuitButton(){
-	$.Msg("Showing stats!");
 	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "stats" })
 	GameEvents.SendCustomGameEventToServer( "quit_control_panel", {});
 }
@@ -214,31 +165,12 @@ function OnSync(params){
 		pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	} else if (option == "time") {
 		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-    	$.Msg(localPlayer);
     	if (localPlayer['player_has_host_privileges']){
 			var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
 			timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
 		}
 	}
-	//} else {
-	//	$.Msg("OnSync stats... " + params.value)
-	//	GameEvents.SendCustomGameEventToServer( "quit_control_panel", {});
-	//}
 }
-
-
-//function PickHero(){
-//	for (var playerId of Game.GetAllPlayerIDs()) {
-//		SendEventClientSide("pick_hero", {})
-//	     var playerInfo = Game.GetPlayerInfo(playerId);      
-//	     var output = '';
-//	     for (var property in playerInfo) {
-//	       output += property + ': ' + playerInfo[property]+'; ';
-//	     }
-//	     $.Msg(output);
-//	}
-//}
-
 
 function HeroName(hero_picked){
 	var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
@@ -249,17 +181,7 @@ function HeroName(hero_picked){
     }
 }
 
-//function OnStart(data){
-//    var heroId = data.heroId;
-//    var leveling = data.leveling;
-//    var time = data.time;
-//    var playerId = data.playerId;
-//    $.Msg("option.js heroId = " + heroId + ", leveling = " + leveling + ", time = " + time + ", playerId = " + playerId);
-//}
-
-
 (function () {
-	//GameEvents.Subscribe("start_game", OnStart);
 	GameEvents.Subscribe("start", OnStart);
 	GameEvents.Subscribe("sync", OnSync);
 	//Setup for popup panel.
@@ -281,6 +203,4 @@ function HeroName(hero_picked){
     }
 
 	CustomNetTables.SubscribeNetTableListener( "stats_records", OnCreepScoreRecordChanged );
-	//GameEvents.Subscribe("hero_picked", OnHeroPicked);
-	//GameEvents.Subscribe("time_picked", OnTimePicked);
 })();

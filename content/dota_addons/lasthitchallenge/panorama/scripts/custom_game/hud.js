@@ -30,25 +30,6 @@ function OnResetAnimation(data) {
 	scorepanel.SetHasClass( "dn_anim", false );
 }
 
-//function OnHeroPicked(data){
-//	if (data.hero == null){
-//		if (!data.repick){
-//			$("#score_panel").style.visibility = "visible";
-//			$("#clock_panel").style.visibility = "visible";
-//		} else {
-//			$("#clock_panel").style.visibility = "collapse";
-//			$("#score_panel").style.visibility = "collapse";
-//		}
-//	}
-//}
-
-//function OnStart(data){
-//	$.Msg("OnStart hud.js");
-//	$("#score_panel").style.visibility = "visible";
-//	$("#clock_panel").style.visibility = "visible";
-//}
-
-
 function OnStart(data){
     var heroId = data.heroId;
     var leveling = data.leveling;
@@ -57,7 +38,6 @@ function OnStart(data){
     
     $("#score_panel").style.visibility = "visible";
 	$("#clock_panel").style.visibility = "visible";
-    $.Msg("hud.js heroId = " + heroId + ", leveling = " + leveling + ", time = " + time + ", playerId = " + playerId);
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (localPlayer['player_has_host_privileges']){
     	GameEvents.SendCustomGameEventToServer("start", {});

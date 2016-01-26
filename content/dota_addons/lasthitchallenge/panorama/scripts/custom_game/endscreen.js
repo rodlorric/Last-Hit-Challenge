@@ -13,63 +13,6 @@ heroes.sort(function (a, b) {
     return 0;
 });
 
-
-//	//Totals
-//	var stats_total_cs = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_cs" );
-//	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_lh" );
-//	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_dn" );
-//	var stats_total_miss = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_miss");
-//	var stats_total_accuracy = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_accuracy");
-//	$("#stats_total_cs").text = stats_total_cs.value;
-//	$("#stats_total_lh").text = stats_total_lh.value;
-//	$("#stats_total_dn").text = stats_total_dn.value;
-//	$("#stats_total_miss").text = stats_total_miss.value;
-//	//$("#stats_total_accuracy").text = parseFloat(Math.round(stats_total_accuracy.value).toFixed(2)) + "%";
-//	$("#stats_total_accuracy").text = stats_total_accuracy.value + "%";
-//
-//	//Streaks
-//	var stats_streak_cs = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_cs" );
-//	var stats_streak_lh = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_lh" );
-//	var stats_streak_dn = CustomNetTables.GetTableValue( "stats_streaks", playerId + "stats_streak_dn" );
-//	$("#stats_streak_cs").text = stats_streak_cs.value;
-//	$("#stats_streak_lh").text = stats_streak_lh.value;
-//	$("#stats_streak_dn").text = stats_streak_dn.value;
-//
-//	//Session Records
-//	//var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
-//	var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", playerId + "c" + data.hero + data.maxtime + data.level);
-//	//var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
-//	var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", playerId + "l" + data.hero + data.maxtime + data.level);
-//	//var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
-//	var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", playerId + "d" + data.hero + data.maxtime + data.level);
-//	//var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy_" + data.hero + "_" + data.time + "_" + data.level);
-//	var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", playerId + "a" + data.hero + data.maxtime + data.level);
-//	$("#stats_record_cs").text = stats_record_cs.value;
-//	$("#stats_record_lh").text = stats_record_lh.value;
-//	$("#stats_record_dn").text = stats_record_dn.value;
-//	//$("#stats_record_accuracy").text = parseFloat(Math.round(stats_record_accuracy.value).toFixed(2)) + "%";
-//	$("#stats_record_accuracy").text = stats_record_accuracy.value + "%";
-//
-//	var date = new Date(null);
-//    date.setSeconds(data.maxtime); // specify value for SECONDS here
-//    var minutes = date.toISOString().substr(14, 5);
-//	$("#acc_record").text = $.Localize("#endscreen_acc_record") +  minutes + ")";
-//
-//	//Misc
-//	var stats_misc_restart = CustomNetTables.GetTableValue( "stats_misc", playerId + "stats_misc_restart" );
-//	var stats_misc_session_accuracy = CustomNetTables.GetTableValue( "stats_misc", playerId + "stats_misc_session_accuracy");
-//	$("#stats_misc_restart").text = stats_misc_restart.value;
-//	//$("#stats_misc_session_accuracy").text = parseFloat(Math.round(stats_misc_session_accuracy.value).toFixed(2)) + "%";
-//	$("#stats_misc_session_accuracy").text = stats_misc_session_accuracy.value + "%";
-//
-//	//Time
-//	var stats_time_spent = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_spent" );
-//	var stats_time_longest = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_longest" );
-//	var stats_time_shortest = CustomNetTables.GetTableValue( "stats_time", playerId + "stats_time_shortest" );
-//	$("#stats_time_spent").text = stats_time_spent.value;
-//	$("#stats_time_longest").text = stats_time_longest.value;
-//	$("#stats_time_shortest").text = stats_time_shortest.value;
-
 var maxtime = 0;
 var leveling = "l";
 var time = -1;
@@ -123,26 +66,20 @@ function OnEndScreen(data) {
 		var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_lh" );
 		var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_dn" );
 		var stats_total_miss = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_miss");
-		$.Msg("pid = " + pid + ", stats_total_miss = " + stats_total_miss.value);
 		var stats_total_accuracy = CustomNetTables.GetTableValue( "stats_totals", pid + "stats_total_accuracy");
 		
 		var stats_total_cs_container = $("#stats_total_cs");
 		var stat_cs = $.CreatePanel("Label", stats_total_cs_container, "");
 		stat_cs.text = allplayersids < 2 ? stats_total_cs.value : (Players.GetPlayerName(parseInt(pid)) + ": " + stats_total_cs.value);
-		//$("#stats_total_lh").text = stats_total_lh.value;
 		var stats_total_lh_container = $("#stats_total_lh");
 		var stat_lh = $.CreatePanel("Label", stats_total_lh_container, "");
 		stat_lh.text = stats_total_lh.value;
-		//$("#stats_total_dn").text = stats_total_dn.value;
 		var stats_total_dn_container = $("#stats_total_dn");
 		var stat_dn = $.CreatePanel("Label", stats_total_dn_container, "");
 		stat_dn.text = stats_total_dn.value;
-		//$("#stats_total_miss").text = stats_total_miss.value;
 		var stats_total_miss_container = $("#stats_total_miss");
 		var stat_miss = $.CreatePanel("Label", stats_total_miss_container, "");
 		stat_miss.text = stats_total_miss.value;
-		//$("#stats_total_accuracy").text = parseFloat(Math.round(stats_total_accuracy.value).toFixed(2)) + "%";
-		//$("#stats_total_accuracy").text = stats_total_accuracy.value + "%";
 		var stats_total_accuracy_container = $("#stats_total_accuracy");
 		var stat_accuracy = $.CreatePanel("Label", stats_total_accuracy_container, "");
 		stat_accuracy.text = stats_total_accuracy.value + "%";
@@ -155,28 +92,21 @@ function OnEndScreen(data) {
 		var stats_streak_cs_container = $("#stats_streak_cs");
 		var stat_streak_cs = $.CreatePanel("Label", stats_streak_cs_container, "");
 		stat_streak_cs.text = allplayersids < 2 ? stats_streak_cs.value : (Players.GetPlayerName(parseInt(pid)) + ": " + stats_streak_cs.value);
-		//$("#stats_streak_cs").text = stats_streak_cs.value;
 
 		var stats_streak_lh_container = $("#stats_streak_lh");
 		var stat_streak_lh = $.CreatePanel("Label", stats_streak_lh_container, "");
 		stat_streak_lh.text = stats_streak_lh.value;
-		//$("#stats_streak_lh").text = stats_streak_lh.value;
 
 		var stats_streak_dn_container = $("#stats_streak_dn");
 		var stat_streak_dn = $.CreatePanel("Label", stats_streak_dn_container, "");
 		stat_streak_dn.text = stats_streak_dn.value;
-		//$("#stats_streak_dn").text = stats_streak_dn.value;
 
 
 	}
 		//Session Records
-		//var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", "stats_record_cs_" + data.hero + "_" + data.time + "_" + data.level);
 		var stats_record_cs = CustomNetTables.GetTableValue( "stats_records", playerId + "c" + data.hero + data.maxtime + data.level);
-		//var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", "stats_record_lh_" + data.hero + "_" + data.time + "_" + data.level);
 		var stats_record_lh = CustomNetTables.GetTableValue( "stats_records", playerId + "l" + data.hero + data.maxtime + data.level);
-		//var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", "stats_record_dn_" + data.hero + "_" + data.time + "_" + data.level);
 		var stats_record_dn = CustomNetTables.GetTableValue( "stats_records", playerId + "d" + data.hero + data.maxtime + data.level);
-		//var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", "stats_record_accuracy_" + data.hero + "_" + data.time + "_" + data.level);
 		var stats_record_accuracy = CustomNetTables.GetTableValue( "stats_records", playerId + "a" + data.hero + data.maxtime + data.level);
 		$("#stats_record_cs").text = stats_record_cs.value;
 		$("#stats_record_lh").text = stats_record_lh.value;
@@ -241,8 +171,6 @@ function OnEndScreen(data) {
 		y_legend_children[i].DeleteAsync(0.0);
 	}
 
-	$.Msg("y_legend = " + y_legend);
-
 	for (var player in allplayersids){
 		stats_misc_history.push(CustomNetTables.GetTableValue("stats_misc", player + "stats_misc_history"));
 		
@@ -292,24 +220,6 @@ function OnEndScreen(data) {
 	var max = 1;
 	var timeacum = 30;
 
-
-	//var stats_misc_history_p2 = [];
-
-	//stats_misc_history_p1 = [{lh : 0, dn : 1, time: 0}, {lh : 6, dn : 1, time: 30}];
-	//var stats_misc_history_p2 = [{lh : 6, dn : 1, time: 0}, {lh : 1, dn : 1, time: 30}];
-
-	//7:30 mins
-	//stats_misc_history_p1 = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 9, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
-	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 2}, {lh : 1, dn : 2}, {lh : 1, dn : 2}];
-
-	//5 mins
-	//stats_misc_history_p1 = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 3, dn : 1}, {lh : 2, dn : 0},
-	//{lh : 2, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
-
-	//2 mins
-	//stats_misc_history_p1 = [{lh : 0, dn : 0}, {lh : 1, dn : 1}, {lh : 3, dn : 1}, {lh : 2, dn : 2}, {lh : 8, dn : 2}, {lh : 2, dn : 2}, {lh : 2, dn : 2}];
-
-	$.Msg(stats_misc_history.length);
 	for (var i in stats_misc_history[0]) {
 		var lh_p1 = stats_misc_history[0][i].lh;
 		var dn_p1 = stats_misc_history[0][i].dn;
@@ -317,7 +227,6 @@ function OnEndScreen(data) {
 		var lh_p2 = 0;
 		var dh_p2 = 0;
 
-		//$.Msg("stats_history length = " + stats_misc_history.length);
 		if (stats_misc_history.length > 1){
 			lh_p2 = stats_misc_history[1][i].lh;
 			dn_p2 = stats_misc_history[1][i].dn;
@@ -330,173 +239,149 @@ function OnEndScreen(data) {
 		if ((dn_p1 > max) || (dn_p2 > max)){
 			max = dn_p1 > dn_p2 ? dn_p1 : lh_p2;
 		}
-
-		$.Msg("Max = " + max);
 	}
+
 	for (var j in stats_misc_history[0]) {
-		//if (j > 1){
-			var lh_p1 = stats_misc_history[0][j].lh;
-			var dn_p1 = stats_misc_history[0][j].dn
-			var date = new Date(null);
+		var lh_p1 = stats_misc_history[0][j].lh;
+		var dn_p1 = stats_misc_history[0][j].dn
+		var date = new Date(null);
 
-			var lh_p2 = -1;
-			var dn_p2 = -1;
+		var lh_p2 = -1;
+		var dn_p2 = -1;
 
-			if (stats_misc_history.length > 1){
-				lh_p2 = stats_misc_history[1][j].lh;
-				dn_p2 = stats_misc_history[1][j].dn;
-			}
+		if (stats_misc_history.length > 1){
+			lh_p2 = stats_misc_history[1][j].lh;
+			dn_p2 = stats_misc_history[1][j].dn;
+		}
 
-			var lh_tie = (lh_p1 == lh_p2);
-			var dn_tie = (dn_p1 == dn_p2);
+		var lh_tie = (lh_p1 == lh_p2);
+		var dn_tie = (dn_p1 == dn_p2);
 
-			if (lh_p2 == -1 && dn_p2 == -1){
-				lh_p2 = 0;
-				dn_p2 = 0;	
-			}
-	    	//date.setSeconds(timeacum); // specify value for SECONDS here
-	    	//var minutes = date.toISOString().substr(14, 5);
-			//timeacum += 30;
-			date.setSeconds(stats_misc_history[0][j].time); // specify value for SECONDS here
-	    	var minutes = date.toISOString().substr(14, 5);
-	  		
-			var data_container = $.CreatePanel("Panel", bar_container, "data_container");		
-			var couple_container = $.CreatePanel("Panel", data_container, "cs_container");
+		if (lh_p2 == -1 && dn_p2 == -1){
+			lh_p2 = 0;
+			dn_p2 = 0;	
+		}
 
-			//LAST HITS
-			var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
+		date.setSeconds(stats_misc_history[0][j].time); // specify value for SECONDS here
+    	var minutes = date.toISOString().substr(14, 5);
+  		
+		var data_container = $.CreatePanel("Panel", bar_container, "data_container");		
+		var couple_container = $.CreatePanel("Panel", data_container, "cs_container");
 
-			var maxval = (lh_p1 > lh_p2 ? lh_p1 : lh_p2);
-			var minval = (lh_p1 < lh_p2 ? lh_p1 : lh_p2);
-			var maxvalplayer = (maxval == lh_p1 ? 0 : 1);
-			var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
+		//LAST HITS
+		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
+
+		var maxval = (lh_p1 > lh_p2 ? lh_p1 : lh_p2);
+		var minval = (lh_p1 < lh_p2 ? lh_p1 : lh_p2);
+		var maxvalplayer = (maxval == lh_p1 ? 0 : 1);
+		var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
 
 
-			var ypct = Math.round((maxval * 100)/max);
-			var max_y = Math.round((ypct * 160) / 100);
-			var ypct = Math.round((minval * 100)/max);
-			var min_y = Math.round((ypct * 160) / 100);
+		var ypct = Math.round((maxval * 100)/max);
+		var max_y = Math.round((ypct * 160) / 100);
+		var ypct = Math.round((minval * 100)/max);
+		var min_y = Math.round((ypct * 160) / 100);
 
-			$.Msg("max_y = " + max_y + ", min_y = " + min_y);
+		if (max_y != 0){
+			bar_superholder.style.height = max_y + "px;";
+		} else {
+			bar_superholder.style.height = "30px;";
+		}
 
-			if (max_y != 0){
-				bar_superholder.style.height = max_y + "px;";
-			} else {
-				bar_superholder.style.height = "30px;";
-			}
-			////$.Msg(">>> Greater = " + (lh < lh_p2 ? lh : lh_p2) + "<<<");
+		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+		bar_holder.style.opacity = "1.0";
+  		var height = (lh_tie ? max_y : (max_y - min_y));
+  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");	  		
+		
+		if (height != 0){
+  			bar.style.height = height + "px;";
+  			bar.style.backgroundColor = lh_tie ? "grey" : allplayerscolors[maxvalplayer] + ";";	
+  		} else {
+  			bar.style.height = "30px;";
+  		}
 
-			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+  		var label = $.CreatePanel("Label", bar, "");
+  		label.text = maxval;
+  		label.style.verticalAlign = "top;";
+  		label.style.textAlign = "center;";
+  		
+  		if (allplayersids.length > 1){
+	  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 			bar_holder.style.opacity = "1.0";
-	  		var height = (lh_tie ? max_y : (max_y - min_y));
-	  		$.Msg("height = " + height);
-	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");	  		
-			
-			if (height != 0){
-	  			bar.style.height = height + "px;";
-	  			bar.style.backgroundColor = lh_tie ? "grey" : allplayerscolors[maxvalplayer] + ";";	
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
+	  		if (min_y != 0){
+	  			bar.style.backgroundColor =  lh_tie ? "grey" : allplayerscolors[minvalplayer] + ";";
+	  			bar.style.height = min_y + "px;";
 	  		} else {
-	  			bar.style.height = "30px;";
+  				bar.style.height = "30px;";
 	  		}
 
 	  		var label = $.CreatePanel("Label", bar, "");
-	  		label.text = maxval;
+	  		label.text = minval;
 	  		label.style.verticalAlign = "top;";
 	  		label.style.textAlign = "center;";
-	  		
-	  		if (allplayersids.length > 1){
-		  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
-				bar_holder.style.opacity = "1.0";
-				//bar_holder.style.height = min_y + "px;";
-		  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
-		  		if (min_y != 0){
-		  			bar.style.backgroundColor =  lh_tie ? "grey" : allplayerscolors[minvalplayer] + ";";
-		  			bar.style.height = min_y + "px;";
-		  		} else {
-	  				bar.style.height = "30px;";
-		  		}
-
-		  		var label = $.CreatePanel("Label", bar, "");
-		  		label.text = minval;
-		  		label.style.verticalAlign = "top;";
-		  		label.style.textAlign = "center;";
-	  		}
+  		}
 
 
-	  		//DENIES
-	  		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
+  		//DENIES
+  		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
 
-			var maxval = (dn_p1 > dn_p2 ? dn_p1 : dn_p2);
-			var minval = (dn_p1 < dn_p2 ? dn_p1 : dn_p2);
-			//$.Msg("maxval = " + maxval + ", minval = " + minval);
-			//var maxvalplayer = (maxval == dn_p1 ? "P1" : "P2");
-			//var minvalplayer = (maxvalplayer == "P1" ? "P2" : "P1");
-			var maxvalplayer = (maxval == dn_p1 ? 0 : 1);
-			var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
+		var maxval = (dn_p1 > dn_p2 ? dn_p1 : dn_p2);
+		var minval = (dn_p1 < dn_p2 ? dn_p1 : dn_p2);
+		var maxvalplayer = (maxval == dn_p1 ? 0 : 1);
+		var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
 
-			var dn_tie = (dn_p1 == dn_p2);
-			//$.Msg("dn_tie? = " + dn_tie);
-			//$.Msg("maxval = " + maxval + ", minval = " + minval);
+		var dn_tie = (dn_p1 == dn_p2);
 
+		var ypct = Math.round((maxval * 100)/max);
+		var max_y = Math.round((ypct * 160) / 100);
+		var ypct = Math.round((minval * 100)/max);
+		var min_y = Math.round((ypct * 160) / 100);
 
-			var ypct = Math.round((maxval * 100)/max);
-			var max_y = Math.round((ypct * 160) / 100);
-			var ypct = Math.round((minval * 100)/max);
-			var min_y = Math.round((ypct * 160) / 100);
-			//$.Msg("max_y = " + max_y + ", min_y = " + min_y);
+		if (max_y != 0){
+			bar_superholder.style.height = max_y + "px;";
+		} else {
+			bar_superholder.style.height = "30px;";
+		}
 
-			if (max_y != 0){
-				bar_superholder.style.height = max_y + "px;";
-			} else {
-				bar_superholder.style.height = "30px;";
-			}
-			//bar_superholder.style.height = "160px;";
-			////$.Msg(">>> Greater = " + (dn < dn_p2 ? dn : dn_p2) + "<<<");
+		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+		bar_holder.style.opacity = "1.0";
+  		var height = (dn_tie ? max_y : (max_y - min_y));
+  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+  		
+  		if (height != 0){
+  			bar.style.height = height + "px;";
+  			bar.style.backgroundColor = dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[maxvalplayer],-0.5) + ";";	  			
+  		} else {
+  			bar.style.height = "30px";
+  		}
 
-			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+  		var label = $.CreatePanel("Label", bar, "");
+  		label.text = maxval;
+  		label.style.verticalAlign = "top;";
+  		label.style.textAlign = "center;";
+  		
+  		if (allplayersids.length > 1){
+	  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 			bar_holder.style.opacity = "1.0";
-	  		var height = (dn_tie ? max_y : (max_y - min_y));
 	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
 
-			//bar_holder.style.height = height + "px;";
-	  		
-	  		if (height != 0){
-	  			bar.style.height = height + "px;";
-	  			bar.style.backgroundColor = dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[maxvalplayer],-0.5) + ";";	  			
+			if (min_y != 0){
+	  			bar.style.height = min_y + "px;";
+	  			bar.style.backgroundColor =  dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[minvalplayer],-0.5) + ";";
 	  		} else {
 	  			bar.style.height = "30px";
 	  		}
 
 	  		var label = $.CreatePanel("Label", bar, "");
-	  		label.text = maxval;
+	  		label.text = minval;
 	  		label.style.verticalAlign = "top;";
 	  		label.style.textAlign = "center;";
-	  		
-	  		if (allplayersids.length > 1){
-		  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
-				bar_holder.style.opacity = "1.0";
-		  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+  		}
 
-				if (min_y != 0){
-		  			bar.style.height = min_y + "px;";
-		  			bar.style.backgroundColor =  dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[minvalplayer],-0.5) + ";";
-		  		} else {
-		  			bar.style.height = "30px";
-		  		}
-		  		//bar.style.height = min_y + "px;";
-		  		//$.Msg("2 height = " + min_y);
-
-		  		var label = $.CreatePanel("Label", bar, "");
-		  		label.text = minval;
-		  		label.style.verticalAlign = "top;";
-		  		label.style.textAlign = "center;";
-	  		}
-
-
-	  		var x_hor_bar = $.CreatePanel("Panel", data_container, "HorBar");
-	  		var x_label = $.CreatePanel("Label", data_container, "XLegendLabel");
-	  		x_label.text = minutes;
-  		//}
+  		var x_hor_bar = $.CreatePanel("Panel", data_container, "HorBar");
+  		var x_label = $.CreatePanel("Label", data_container, "XLegendLabel");
+  		x_label.text = minutes;
 	};
 
 	if (data.time != data.maxtime){
@@ -524,13 +409,9 @@ function OnCancel(){
 }
 
 function OnCancelServer(){
-	$.Msg("Cancel from server!");
-	$.Msg("1 has class? = " + $("#end_screen_panel").BHasClass("Maximized"));
 	if ($("#end_screen_panel").BHasClass("Maximized")){
-		$.Msg("maximizado!");
 		$("#end_screen_panel").ToggleClass("Maximized");	
 	}
-	$.Msg("2 has class? = " + $("#end_screen_panel").BHasClass("Maximized"));
 }
 
 function OnQuit(){
@@ -553,31 +434,11 @@ function ClearGraph(){
 	}
 }
 
-//function OnPickButton(){
-//	$("#end_screen_panel").ToggleClass("Maximized");
-//
-//	var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
-//	pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
-//	GameEvents.SendCustomGameEventToServer( "repick", {})
-//	GameEvents.SendEventClientSide("hero_picked", {repick : true})
-//}
-//
-//function OnChangeTime(){
-//	$("#end_screen_panel").ToggleClass("Maximized");
-//	
-//	var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
-//	timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
-//	GameEvents.SendEventClientSide("repick", {});
-//	GameEvents.SendCustomGameEventToServer( "repick", {})
-//}
-
 function OnPickButton(){	
-	//$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "hero" })
 }
 
 function OnChangeTime(){
-	//$("#end_screen_panel").ToggleClass("Maximized");
 	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "time"})
 }
 
@@ -588,15 +449,11 @@ function OnSync(params){
 		pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
 	} else if (option == "time") {
 		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-    	$.Msg(localPlayer);
     	if (localPlayer['player_has_host_privileges']){
 			var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
 			timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
 		}
 	}
-	//} else {
-	//	GameEvents.SendCustomGameEventToServer( "quit_control_panel", {});
-	//}
 }
 
 function OnMagnifyLastHits(){
@@ -637,13 +494,8 @@ function OnLeaderBoardButton(){
 	leaderboard.BLoadLayout( "file://{resources}/layout/custom_game/leaderboard.xml", false, false );
 	var playerInfo = Game.GetPlayerInfo( 0 );
 	var dropmenuhero = leaderboard.FindChildInLayoutFile("dropdown_hero");
-	//<DropDown id="dropdown_hero" oninputsubmit="OnDropDown()"/>
-	//var selector = leaderboard.FindChildInLayoutFile("selectorpanel");
-	//var dropmenuhero = $.CreatePanel("DropDown", selector, "dropmenuhero");
 	dropmenuhero.oninputsubmit = "OnDropDown()";
 	for (var i in heroes){
-		//var item = $.CreatePanel("Label", dropmenuhero, heroes[i].key);
-		//item.text = $.Localize(heroes[i].value.hero);
 		if (heroes[i].value.hero == playerInfo.player_selected_hero){
 			dropmenuhero.SetSelected(heroes[i].key);
 			break;
