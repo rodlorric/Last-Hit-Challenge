@@ -102,6 +102,13 @@ function LevelingHideTooltip(){
         // a must be equal to b
         return 0;
     });
+
+    //prevents non host players to disable leveling.
+    var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    if (!localPlayer['player_has_host_privileges']){
+        $("#disable_leveling").enabled = false;
+    }
+
     LevelingHideTooltip();
     //GameEvents.Subscribe("hero_picked", OnHeroPicked);
     //var rows = hero_list.length / HEROES_PER_ROW;
