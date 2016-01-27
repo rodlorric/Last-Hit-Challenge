@@ -6,18 +6,18 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
 	</scripts>
-	<Panel class="PickScreenRoot" hittest="false">
-		<Panel class="PickScreenPanel" hittest="false">
+	<Panel class="PickScreenRoot" hittest="false">		
+		<Panel class="PickScreenPanel" hittest="false" onactivate="HideChat()">
 			<Panel class="BackPanel">
 				<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
 					onmouseover="LevelingShowTooltip()"
 					onmouseout="LevelingHideTooltip()"/>
 				<Label class="Title" text="#pickscreen_choose_hero"/>
 			</Panel>
-			<Panel id="pickscreenpanelsupercontainer" class="PickPanelSuperContainer">
-				<Panel class="PickOptionsPanel">
-				</Panel>
-			</Panel>
+			<Panel id="pickscreenpanelsupercontainer" class="PickPanelSuperContainer" hittest="false"/>
+		</Panel>
+		<Panel class="ChatPanel" hittest="false">
+			<DOTAChat id="Chat" chatstyle="hud"/>
 		</Panel>
 	</Panel>
 </root>

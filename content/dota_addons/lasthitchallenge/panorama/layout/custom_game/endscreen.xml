@@ -7,7 +7,7 @@
     <include src="file://{resources}/scripts/custom_game/endscreen.js" />
   </scripts>
   <Panel class="EndScreenRoot" hittest="false">
-  	<Panel id="end_screen_panel" class="EndScreenPanel" hittest="false">
+  	<Panel id="end_screen_panel" class="EndScreenPanel" hittest="false" onactivate="HideChat()">
 	 	<Panel class="EndScreenPanelContainer">
 		  		<Panel class="Header">
 			  		<Label text="#endcreen_title"/>
@@ -178,6 +178,9 @@
 			  			<Label text="#quit"/>
 			  		</Button>
 		  		</Panel>	
+			</Panel>
+			<Panel class="ChatPanel" hittest="false">
+				<DOTAChat id="Chat" chatstyle="hud"/>
 			</Panel>
 		</Panel>		
   </Panel>

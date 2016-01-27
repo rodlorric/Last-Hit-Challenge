@@ -421,6 +421,14 @@ function OnQuit(){
 	}
 }
 
+function HideChat(){
+    var chat = $("#Chat");
+    if (chat.BHasClass("ChatExpanded")){
+        $("#Chat").ToggleClass("ChatExpanded");
+    }
+}
+
+
 function ClearGraph(){
 	//clearing the graph...
 	var graph_children = $("#graph_container").Children();

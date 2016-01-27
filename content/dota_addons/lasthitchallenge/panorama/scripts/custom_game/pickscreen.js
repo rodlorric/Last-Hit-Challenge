@@ -35,6 +35,13 @@ function LevelingHideTooltip(){
     togglebutton.text = $.Localize( "#disable_leveling" );
 }
 
+function HideChat(){
+    var chat = $("#Chat");
+    if (chat.BHasClass("ChatExpanded")){
+        $("#Chat").ToggleClass("ChatExpanded");
+    }
+}
+
 (function () {
     GameEvents.Subscribe("time_screen", OnTimeScreen);
     GameEvents.Subscribe("start", OnStart);

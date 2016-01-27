@@ -24,6 +24,13 @@ function OnSync(){
     time = 1;
 }
 
+function HideChat(){
+    var chat = $("#Chat");
+    if (chat.BHasClass("ChatExpanded")){
+        $("#Chat").ToggleClass("ChatExpanded");
+    }
+}
+
 
 function OnBack(){
     if (time == 1){

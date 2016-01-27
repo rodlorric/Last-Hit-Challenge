@@ -185,3 +185,10 @@
 {
   pre-transform-scale2d: 1.02;
 }
+
+.ChatPanel{
+  vertical-align: bottom;
+  horizontal-align: center;
+  width: 35%;
+  opacity: 0.6;
+}

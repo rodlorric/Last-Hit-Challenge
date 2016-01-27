@@ -154,6 +154,13 @@
   animation-name: bounce;
 }
 
+.ChatPanel{
+  vertical-align: bottom;
+  horizontal-align: center;
+  width: 35%;
+  opacity: 0.6;
+}
+
 
 @keyframes 'bounce' {
   0% {animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); transform: translateY(0);}
