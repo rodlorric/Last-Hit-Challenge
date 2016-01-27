@@ -226,7 +226,7 @@ function OnEndScreen(data) {
 		var dn_p1 = stats_misc_history[0][i].dn;
 
 		var lh_p2 = 0;
-		var dh_p2 = 0;
+		var dn_p2 = 0;
 
 		if (stats_misc_history.length > 1){
 			lh_p2 = stats_misc_history[1][i].lh;
@@ -238,7 +238,7 @@ function OnEndScreen(data) {
 		}
 
 		if ((dn_p1 > max) || (dn_p2 > max)){
-			max = dn_p1 > dn_p2 ? dn_p1 : lh_p2;
+			max = dn_p1 > dn_p2 ? dn_p1 : dn_p2;
 		}
 	}
 
@@ -276,7 +276,6 @@ function OnEndScreen(data) {
 		var minval = (lh_p1 < lh_p2 ? lh_p1 : lh_p2);
 		var maxvalplayer = (maxval == lh_p1 ? 0 : 1);
 		var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
-
 
 		var ypct = Math.round((maxval * 100)/max);
 		var max_y = Math.round((ypct * 160) / 100);
