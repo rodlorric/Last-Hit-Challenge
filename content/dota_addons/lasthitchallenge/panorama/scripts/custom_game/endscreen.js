@@ -116,8 +116,9 @@ function OnEndScreen(data) {
 
 		var date = new Date(null);
 	    date.setSeconds(data.maxtime); // specify value for SECONDS here
-	    var minutes = date.toISOString().substr(14, 5);
-		$("#acc_record").text = $.Localize("#endscreen_acc_record") +  minutes + ")";
+	    var minutes = data.maxtime != -1 ? date.toISOString().substr(14, 5) : "--:--";
+
+	    $("#acc_record").SetDialogVariable( "time", minutes );
 
 		//Misc
 		var stats_misc_restart = CustomNetTables.GetTableValue( "stats_misc", playerId + "stats_misc_restart" );

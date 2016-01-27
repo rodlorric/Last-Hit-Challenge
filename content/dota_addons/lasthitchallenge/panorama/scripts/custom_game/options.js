@@ -91,16 +91,17 @@ function OnStart(data){
     date.setSeconds(time); // specify value for SECONDS here
     var minutes = date.toISOString().substr(14, 5);
 
-	$("#records_header").text = $.Localize( "#controlpanel_records" ) + " " + (time != -1 ? minutes : "--") + " " + $.Localize(leveling ? "#nolvl" : "#lvl");
+	$("#records_header").SetDialogVariable("time" , (time != -1 ? minutes : "--"));
+	$("#records_header").SetDialogVariable("lvl" , $.Localize(leveling ? "#nolvl" : "#lvl"));
 
     $("#hero_header").text = $.Localize(HeroName(heroId));
 
     if (time == -1){
     	$("#invulnerability").style.visibility = "visible;";
-    	$("#controlpanelcontainer").style.height = "800px";
+    	$("#controlpanelcontainer").style.height = "750px";
     } else {
     	$("#invulnerability").style.visibility = "collapse;";
-    	$("#controlpanelcontainer").style.height = "780px";
+    	$("#controlpanelcontainer").style.height = "730px";
     }
     GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : false });
    	$("#invulnerability").checked = false;
