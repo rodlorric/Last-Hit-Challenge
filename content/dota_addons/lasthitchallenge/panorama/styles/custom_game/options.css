@@ -93,20 +93,13 @@
 .ControlPanelContainer Label
 {
 	flow-children: down;
-
 	horizontal-align: left;
 	color: #444444;
-	margin-top: 3px;
-	margin-bottom: 3px;
-	margin-left: 3px;
-	margin-right: 3px;
 }
 
 .ControlPanelContainer .Category Label
 {
 	horizontal-align: left;
-	margin-left: 0%;
-	margin-top: 2px;
 	font-size: 20;
 	color: #888888;
 	text-transform: uppercase;
@@ -169,17 +162,12 @@
 .Row
 {
 	flow-children: right;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	margin-right: 0%;
 	width: 100%;
 }
 
 .Category .Row Label
 {
 	horizontal-align: right;
-	margin-left: 5px;
-	margin-right: 5px;
 	font-size: 18;
 	color: #888888;
 }
@@ -187,16 +175,9 @@
 .Category #cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy
 {
 	text-align: center;
-	margin-left: 5px;
-	margin-right: 5px;
 	font-size: 20;
 	font-weight: bold;
 	color: #888888;
-}
-
-.Row #OptionButton
-{
-	
 }
 
 .OptionButton

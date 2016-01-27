@@ -66,10 +66,6 @@ function OnInvulnerability(){
 
 function OnStart(data){
 	$("#control_panel").style.visibility = "visible";
-	var output = '';
-	for (var property in data) {
-      output += property + ': ' + data[property]+'; ';
-    }
 
     var time = data.time;
     var heroId = data.heroId;
