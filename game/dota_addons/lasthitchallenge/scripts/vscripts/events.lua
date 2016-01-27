@@ -901,7 +901,7 @@ function CLastHitChallenge:UploadRecords()
 			num_players = num_players + 1
 		end
 	end
-	if new_record and not cheater and MAXTIME ~= -1 and num_players == 1 then
+	if player_stats[playerId].new_record and not cheater and MAXTIME ~= -1 and num_players == 1 then
 		--local hero_list = {"11","17","46","34","74","76","39","13","43","52","106","25","47","97","35","49","23","78","60","59","19","21","22","64"}
 		local time_list = {"150", "300", "450", "600"}
 		local type_list = {"c", "l", "d", "a"}
@@ -928,11 +928,11 @@ function CLastHitChallenge:UploadRecords()
 			end
 		end
 
-		local steamid = PlayerResource:GetSteamAccountID(0)
+		local steamid = PlayerResource:GetSteamAccountID(playerId)
 		Storage:Put( steamid, data, function( resultTable, successBool )
 	    	if successBool then
 	        	print("Successfully put data in storage")
-	        	new_record = false
+	        	player_stats[playerId].new_record = false
 	    	end
 		end)
 	end
