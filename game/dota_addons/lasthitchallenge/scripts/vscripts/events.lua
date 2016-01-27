@@ -815,11 +815,14 @@ function CLastHitChallenge:OnRestart(playerId)
 end
 
 function CLastHitChallenge:OnQuit()
-	CLastHitChallenge:UploadRecords()
-	--CLastHitChallenge:Resume()
-	-- Show the ending scoreboard immediately
-	--GameRules:SetGameWinner( PlayerResource:GetTeam(0) )
-	SendToServerConsole( "disconnect" )
+	local uploaded = CLastHitChallenge:UploadRecords()
+	Timers:CreateTimer({
+    	useGameTime = false,
+    	endTime = 1, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+    	callback = function()
+			SendToServerConsole( "disconnect" )
+    	end
+  })
 end
 
 function CLastHitChallenge:OnLeaderboard(query)
