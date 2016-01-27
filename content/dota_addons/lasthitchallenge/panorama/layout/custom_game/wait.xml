@@ -1,0 +1,20 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/wait.css"/>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard.vcss_c" />
+	</styles>
+	<Panel class="WaitRoot" hittest="true">
+		<Panel id="DimBackground" hittest="false"/>
+		<Panel id="Wait_panel" class="WaitPanel" hittest="false">
+			<Panel class="WaitPanelContainer">
+				<Panel class="Header">
+		  			<Label id="wait_title" text="#wait_title"/>
+			  	</Panel>
+			  	<Panel class="Category">
+			  		<Label id="wait_dialog" text="#wait_dialog"/>
+				</Panel>
+			</Panel>
+		</Panel>
+  	</Panel>
+</root>

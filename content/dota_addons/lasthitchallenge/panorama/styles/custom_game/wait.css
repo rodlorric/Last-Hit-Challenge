@@ -1,0 +1,121 @@
+.WaitRoot
+{
+    width: 100%;
+    height: 96%;
+    vertical-align: bottom;
+}
+
+.WaitPanel
+{
+  visibility: visible;
+  vertical-align: middle;
+  horizontal-align: center;
+  padding: 4px;
+  padding-left: 0px;
+}
+
+.WaitPanelContainer
+{
+    flow-children: down;
+    width: 600px;
+    height: 400px;
+    font-size: 16;
+    background-color: #181818;
+    border: 2px solid #222222;
+    box-shadow: #000000aa -4px -4px 8px 8px;
+}
+
+.WaitPanelContainer Label
+{
+  text-align: left;
+  font-size: 24;  
+  color: #444444;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.Header
+{
+  width: 100%;
+  background-color: #000000;
+  border-bottom: 1px solid #666666;
+}
+
+.Header Label
+{
+  horizontal-align: center;
+  text-transform: uppercase;
+  font-size: 30;
+  color: #666666;
+}
+
+.Header .CloseButton{
+  vertical-align: center;
+  horizontal-align: right;
+}
+
+.Category
+{
+  flow-children: down;
+  width: 100%;
+  height: fill-parent-flow(1.0);
+  border-style: solid;
+  border-color: #00000022;
+  border-width: 0%;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #333333;
+}
+
+.WaitPanelContainer .Category Label
+{
+  width: 100%;
+  vertical-align: middle;
+  font-size: 20;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+#DimBackgound.Hidden
+{
+	opacity: 0.0;
+}
+
+#DimBackground
+{
+	vertical-align: center;
+	horizontal-align: middle;
+	width: 100%;
+	height: 100%;
+	background-color: #060606;
+	opacity: 0.94;
+
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in;
+	transition-delay: 0s;
+}
+
+#BlurBackground
+{
+	vertical-align: center;
+	horizontal-align: middle;
+	width: 100%;
+	height: 100%;
+	background-color: #00000055;
+	opacity: 1.0;
+
+	transition-property: background-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+#BlurBackground.Hidden
+{
+	opacity: 0.0;
+}
