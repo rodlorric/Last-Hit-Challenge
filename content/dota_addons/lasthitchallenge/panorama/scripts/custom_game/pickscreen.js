@@ -79,6 +79,12 @@ function HideChat(){
         $("#disable_leveling").enabled = false;
     }
 
+    //disable chat if single player
+    var allplayersids = Game.GetAllPlayerIDs();
+    if (allplayersids.length == 1){
+        $("#Chat").enabled = false;
+    }
+
     LevelingHideTooltip();
     //GameEvents.Subscribe("hero_picked", OnHeroPicked);
     //var rows = hero_list.length / HEROES_PER_ROW;

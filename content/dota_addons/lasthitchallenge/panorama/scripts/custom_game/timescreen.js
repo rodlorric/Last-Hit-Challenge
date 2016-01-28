@@ -44,4 +44,10 @@ function OnBack(){
     GameEvents.Subscribe("hero_picked", OnHeroPicked);
     GameEvents.Subscribe("start", OnStart);
     GameEvents.Subscribe("sync", OnSync);
+
+    //disable chat if single player
+    var allplayersids = Game.GetAllPlayerIDs();
+    if (allplayersids.length == 1){
+        $("#Chat").enabled = false;
+    }
 })();

@@ -745,4 +745,10 @@ function LoadData(stats_panel, type){
 		$("#restart_button").enabled = false;
 		$("#restart_button").checked = true;
     }
+
+    //disable chat if single player
+    var allplayersids = Game.GetAllPlayerIDs();
+    if (allplayersids.length == 1){
+        $("#Chat").enabled = false;
+    }
 })();
