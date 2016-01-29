@@ -66,6 +66,7 @@ function OnQuit(){
 
 function HideClock(){
 	$("#clock_panel").style.visibility = "collapse";
+	$("#score_panel").style.visibility = "collapse";
 }
 
 

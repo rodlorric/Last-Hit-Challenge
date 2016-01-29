@@ -158,15 +158,17 @@ function OnChangeTime(){
 function OnSync(params){
 	var option = params.value;
 	if (option == "hero") { 
-		var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
-		pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
-		GameEvents.SendEventClientSide("new_pick", {});
+		//var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
+		//pickcreen.BLoadLayout( "file://{resources}/layout/custom_game/pickscreen.xml", false, false );
+		GameEvents.SendEventClientSide("new_pick", { "value" : "hero" });
+		$("#control_panel").style.visibility = "collapse";
 	} else if (option == "time") {
 		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     	if (localPlayer['player_has_host_privileges']){
-			var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
-			timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
-			GameEvents.SendEventClientSide("new_pick", {});
+			//var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+			//timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+			GameEvents.SendEventClientSide("new_pick", { "value" : "time" });
+			$("#control_panel").style.visibility = "collapse";
 		}
 	}
 }

@@ -7,7 +7,7 @@
 		<include src="file://{resources}/scripts/custom_game/pickscreen.js" />
 	</scripts>
 	<Panel class="PickScreenRoot" hittest="false">		
-		<Panel class="PickScreenPanel" hittest="false" onactivate="HideChat()">
+		<Panel id="PickScreenPanel" class="PickScreenPanel" hittest="false" onactivate="HideChat()">
 			<Panel class="BackPanel">
 				<ToggleButton id="disable_leveling" class="OptionButton" text="#pickscreen_disable_leveling" 
 					onmouseover="LevelingShowTooltip()"

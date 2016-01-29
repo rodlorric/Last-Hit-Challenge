@@ -17,8 +17,17 @@ function OnHeroPicked(data){
 }
 
 function OnStart(data){
-    $.GetContextPanel().DeleteAsync(0);
+    if (!$("#TimeScreenPanel").BHasClass("Minimized")){
+        $("#TimeScreenPanel").ToggleClass("Minimized");
+    }
 }
+
+function OnNewPick(data){
+    if (data.value == "time"){
+        $("#TimeScreenPanel").ToggleClass("Minimized");
+    }
+}
+
 
 function OnSync(){
     time = 1;
@@ -44,10 +53,11 @@ function OnBack(){
     GameEvents.Subscribe("hero_picked", OnHeroPicked);
     GameEvents.Subscribe("start", OnStart);
     GameEvents.Subscribe("sync", OnSync);
+    GameEvents.Subscribe("new_pick", OnNewPick);
 
     //disable chat if single player
     var allplayersids = Game.GetAllPlayerIDs();
     if (allplayersids.length == 1){
-        $("#Chat").enabled = false;
+        $("#Chat").style.visibility = "collapse;";
     }
 })();

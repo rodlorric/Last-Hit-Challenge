@@ -32,9 +32,16 @@ function OnTimeScreen(){
 }
 
 function OnStart(data){
-    $.GetContextPanel().DeleteAsync(0);
+    if (!$("#PickScreenPanel").BHasClass("Minimized")){
+        $("#PickScreenPanel").ToggleClass("Minimized");
+    }
 }
 
+function OnNewPick(data){
+    if (data.value == "hero"){
+        $("#PickScreenPanel").ToggleClass("Minimized");
+    }
+}
 
 var label = null;
 function LevelingShowTooltip(){
@@ -57,6 +64,7 @@ function HideChat(){
 (function () {
     GameEvents.Subscribe("time_screen", OnTimeScreen);
     GameEvents.Subscribe("start", OnStart);
+    GameEvents.Subscribe("new_pick", OnNewPick);
 
     var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
     if (heroes.length < HEROES_PER_ROW){
