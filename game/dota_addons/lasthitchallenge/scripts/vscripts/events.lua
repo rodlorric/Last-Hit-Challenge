@@ -3,12 +3,12 @@ require ( "timers" )
 require( "cosmeticlib" )
 
 
-STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
---STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
+--STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
+STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
 --STORAGEAPI_API_URL_LEADERBOARD = "http://localhost:5000/leaderboard"
 
-STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/cheaters"
---STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
+--STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/cheaters"
+STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
 --STORAGEAPI_API_URL_CHEATERS = "http://localhost:5000/cheaters"
 
 player_stats = {}
@@ -165,6 +165,7 @@ function CLastHitChallenge:OnThink()
 			end
 		end
 	end
+	
 
 	if GameRules:IsGamePaused() == true then
   		return 1
