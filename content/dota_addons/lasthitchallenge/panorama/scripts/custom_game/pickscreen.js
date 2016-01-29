@@ -7,25 +7,29 @@ var heroId = null;
 function OnPick(id){
     heroId = id;
     GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "heroId" : id, "leveling" : $("#disable_leveling").checked });
+    
+    var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
+    wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
+    var dialog =  wait.FindChildInLayoutFile("wait_dialog");
+    
+    var allplayersids = Game.GetAllPlayerIDs();
+    for (var pid in allplayersids){
+        if (Game.GetPlayerInfo(parseInt(pid))["player_has_host_privileges"]){
+            var playername = Players.GetPlayerName(parseInt(pid));
+            dialog.SetDialogVariable( "player", playername );
+            break;
+        }
+    }
 }
 
 function OnTimeScreen(){
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (localPlayer['player_has_host_privileges']){
-        var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
-        timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
-    } else {
-        var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
-        wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
-        var dialog =  wait.FindChildInLayoutFile("wait_dialog");
-        
-        var allplayersids = Game.GetAllPlayerIDs();
-        for (var pid in allplayersids){
-            if (Game.GetPlayerInfo(parseInt(pid))["player_has_host_privileges"]){
-                var playername = Players.GetPlayerName(parseInt(pid));
-                dialog.SetDialogVariable( "player", playername );
-                break;
-            }
+        if ($("#TimeScreen") == null){
+            var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
+            timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
+        } else {
+            GameEvents.SendEventClientSide("new_pick", { "value" : "time" });
         }
     }
     GameEvents.SendEventClientSide("hero_picked", {heroId : heroId, leveling : $("#disable_leveling").checked});
@@ -34,7 +38,9 @@ function OnTimeScreen(){
 function OnStart(data){
     if (!$("#PickScreenPanel").BHasClass("Minimized")){
         $("#PickScreenPanel").ToggleClass("Minimized");
-    }
+        $("#WaitPanel").DeleteAsync(0);
+    }    
+    $("#Chat").style.visibility = "collapse;";
 }
 
 function OnNewPick(data){

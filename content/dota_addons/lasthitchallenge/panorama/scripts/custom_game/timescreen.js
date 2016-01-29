@@ -5,6 +5,19 @@ var leveling = null;
 
 function OnPick(time){
     GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "time" : time});
+
+    var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
+    wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
+    var dialog =  wait.FindChildInLayoutFile("wait_dialog");
+    
+    var allplayersids = Game.GetAllPlayerIDs();
+    for (var pid in allplayersids){
+        if (Game.GetPlayerInfo(parseInt(pid))["player_has_host_privileges"]){
+            var playername = Players.GetPlayerName(parseInt(pid));
+            dialog.SetDialogVariable( "player", playername );
+            break;
+        }
+    }
 }
 
 function OnTimePicked(data){
@@ -16,13 +29,19 @@ function OnHeroPicked(data){
     leveling = data.leveling;
 }
 
-function OnStart(data){
-    if (!$("#TimeScreenPanel").BHasClass("Minimized")){
-        $("#TimeScreenPanel").ToggleClass("Minimized");
+function OnStart(data){    
+    var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    if (localPlayer['player_has_host_privileges']){
+        if (!$("#TimeScreenPanel").BHasClass("Minimized")){
+            $("#TimeScreenPanel").ToggleClass("Minimized");
+            $("#WaitPanel").DeleteAsync(0);
+        }
     }
+    $("#Chat").style.visibility = "collapse;";
 }
 
 function OnNewPick(data){
+    $.Msg("Newpick! " + data.value);
     if (data.value == "time"){
         $("#TimeScreenPanel").ToggleClass("Minimized");
     }
@@ -45,7 +64,7 @@ function OnBack(){
     if (time == 1){
         GameEvents.SendCustomGameEventToServer("restart", {});
     }
-    $.GetContextPanel().DeleteAsync(0);
+    OnNewPick({ "value" : "time"});
 }
 
 (function () {
