@@ -27,7 +27,7 @@ function OnSync(){
 function HideChat(){
     var chat = $("#Chat");
     if (chat.BHasClass("ChatExpanded")){
-        $("#Chat").ToggleClass("ChatExpanded");
+        $("#Chat").style.visibility = "collapse;";
     }
 }
 

@@ -82,7 +82,7 @@ function HideChat(){
     //disable chat if single player
     var allplayersids = Game.GetAllPlayerIDs();
     if (allplayersids.length == 1){
-        $("#Chat").enabled = false;
+        $("#Chat").style.visibility = "collapse;";
     }
 
     LevelingHideTooltip();
