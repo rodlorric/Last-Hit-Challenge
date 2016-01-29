@@ -170,13 +170,6 @@
 
 }
 
-.PickButton.active
-{
-  border-style: solid;
-  border-width: 10px;
-  border-color: red;
-}
-
 .HeroPanel:hover{
   transform:  scaleX(1.15) scaleY(1.15);
 }
