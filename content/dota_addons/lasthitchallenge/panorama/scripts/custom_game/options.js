@@ -104,6 +104,7 @@ function OnStart(data){
 	$.Schedule( 1, OnResetAnimation );
 }
 
+/*
 function OnTimePicked(time){
 	var output = '';
 	for (var property in time) {
@@ -141,6 +142,7 @@ function OnTimePicked(time){
    	$("#invulnerability").checked = false;
 	$.Schedule( 1, OnResetAnimation );
 }
+*/
 
 function OnQuitButton(){
 	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "stats" })
