@@ -8,12 +8,7 @@
 	</scripts>
 	<Panel class="TimeScreenRoot" hittest="false">
 		<Panel id="TimeScreenPanel" class="TimeScreenPanel" hittest="false" onactivate="HideChat()">
-			<Panel class="BackPanel">				
-				<!--
-				<Button class="PickButton" onactivate="OnBack();">						
-					<Panel class="BackIcon"/>
-				</Button>
-			-->
+			<Panel class="BackPanel">
 				<Label text="#timescreen_choose_time"/>
 			</Panel>			
 			<Panel class="TimePanelContainer">
