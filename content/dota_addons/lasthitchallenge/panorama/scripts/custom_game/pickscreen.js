@@ -14,7 +14,7 @@ function OnPick(id){
     
     var allplayersids = Game.GetAllPlayerIDs();
     for (var pid in allplayersids){
-        if (Game.GetPlayerInfo(parseInt(pid))["player_has_host_privileges"]){
+        if (pid != Game.GetLocalPlayerID()){
             var playername = Players.GetPlayerName(parseInt(pid));
             dialog.SetDialogVariable( "player", playername );
             break;

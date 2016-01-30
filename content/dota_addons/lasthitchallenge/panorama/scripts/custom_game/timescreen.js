@@ -9,10 +9,10 @@ function OnPick(time){
     var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
     wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
     var dialog =  wait.FindChildInLayoutFile("wait_dialog");
-    
+
     var allplayersids = Game.GetAllPlayerIDs();
     for (var pid in allplayersids){
-        if (Game.GetPlayerInfo(parseInt(pid))["player_has_host_privileges"]){
+        if (pid != Game.GetLocalPlayerID()){
             var playername = Players.GetPlayerName(parseInt(pid));
             dialog.SetDialogVariable( "player", playername );
             break;
