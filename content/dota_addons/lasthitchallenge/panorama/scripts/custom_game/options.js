@@ -169,9 +169,9 @@ function OnSync(params){
     	if (localPlayer['player_has_host_privileges']){
 			//var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
 			//timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
-			GameEvents.SendEventClientSide("new_pick", { "value" : "time" });
 			$("#control_panel").style.visibility = "collapse";
 		}
+		GameEvents.SendEventClientSide("new_pick", { "value" : "time" });
 	}
 }
 
