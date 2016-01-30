@@ -81,7 +81,7 @@
 		"leaderboard_position"				"Posición"
 		"heatmap_title"						"Mapa de Calor"
 		"heatmap"							"Mapa de Calor"
-		"wait_dialog"						"Por favor espera mientras {s:player} escoge su héroe y la duración."
+		"wait_dialog"						"Por favor espera mientras {s:player} hace su escogencia."
 		"wait_title"						"¡Espera!"
 	}
 }
