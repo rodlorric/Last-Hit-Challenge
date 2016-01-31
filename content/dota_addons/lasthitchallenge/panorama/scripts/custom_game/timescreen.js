@@ -75,7 +75,7 @@ function OnSync(){
     time = 1;
 }
 
-function HideChat()
+function HideChat(){
     var chat = $("#TimeChat");
     if (chat.BHasClass("ChatExpanded")){
         chat.ToggleClass("ChatExpanded");
