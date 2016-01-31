@@ -6,8 +6,8 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/timescreen.js" />
 	</scripts>
-	<Panel class="TimeScreenRoot" hittest="false">
-		<Panel id="TimeScreenPanel" class="TimeScreenPanel" hittest="false" onactivate="HideChat()">
+	<Panel class="TimeScreenRoot" hittest="true" onactivate="HideChat()">
+		<Panel id="TimeScreenPanel" class="TimeScreenPanel">
 			<Panel class="BackPanel">
 				<Label text="#timescreen_choose_time"/>
 			</Panel>			
@@ -52,8 +52,8 @@
 				</Panel>
 			</Panel>
 		</Panel>
-		<Panel class="ChatPanel" hittest="false">
-			<DOTAChat id="Chat" chatstyle="hud"/>
+		<Panel class="ChatPanel">
+			<DOTAChat id="TimeChat" chatstyle="hud"/>
 		</Panel>
 	</Panel>
 </root>

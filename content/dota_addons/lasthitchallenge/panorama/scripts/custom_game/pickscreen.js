@@ -40,12 +40,20 @@ function OnStart(data){
         $("#PickScreenPanel").ToggleClass("Minimized");
         $("#WaitPanel").DeleteAsync(0);
     }    
-    $("#Chat").style.visibility = "collapse;";
+    $("#HeroChat").style.visibility = "collapse;";
+    $.GetContextPanel().hittest = false;
 }
 
 function OnNewPick(data){
     if (data.value == "hero"){
+        $.GetContextPanel().hittest = true;
         $("#PickScreenPanel").ToggleClass("Minimized");
+        
+        //reenables chat only if 1v1
+        var allplayersids = Game.GetAllPlayerIDs();
+        if (allplayersids.length > 1){
+            $("#HeroChat").style.visibility = "visible;";
+        }
     }
 }
 
@@ -61,9 +69,9 @@ function LevelingHideTooltip(){
 }
 
 function HideChat(){
-    var chat = $("#Chat");
+    var chat = $("#HeroChat");
     if (chat.BHasClass("ChatExpanded")){
-        $("#Chat").ToggleClass("ChatExpanded");
+        chat.ToggleClass("ChatExpanded");
     }
 }
 
@@ -95,8 +103,9 @@ function HideChat(){
 
     //disable chat if single player
     var allplayersids = Game.GetAllPlayerIDs();
+    var chat = $("#HeroChat");
     if (allplayersids.length == 1){
-        $("#Chat").style.visibility = "collapse;";
+        chat.style.visibility = "collapse;";
     }
 
     LevelingHideTooltip();

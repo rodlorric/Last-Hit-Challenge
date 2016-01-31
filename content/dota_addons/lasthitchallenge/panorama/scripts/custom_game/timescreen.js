@@ -37,12 +37,14 @@ function OnStart(data){
             $("#WaitPanel").DeleteAsync(0);
         }
     }
-    $("#Chat").style.visibility = "collapse;";
+    $("#TimeChat").style.visibility = "collapse;";
+    $("#TimeScreen").hittest = false;
 }
 
 function OnNewPick(data){
-    $.Msg("Newpick! " + data.value);
     if (data.value == "time"){
+        $("#TimeScreen").hittest = true;
+
         var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
         if (localPlayer['player_has_host_privileges']){
             $("#TimeScreenPanel").ToggleClass("Minimized");
@@ -51,7 +53,6 @@ function OnNewPick(data){
             wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
             var dialog =  wait.FindChildInLayoutFile("wait_dialog");
             
-            var allplayersids = Game.GetAllPlayerIDs();
             for (var pid in allplayersids){
                 if (pid != Game.GetLocalPlayerID()){
                     var playername = Players.GetPlayerName(parseInt(pid));
@@ -59,6 +60,12 @@ function OnNewPick(data){
                     break;
                 }
             } 
+        }
+
+        //reenables chat only if 1v1
+        var allplayersids = Game.GetAllPlayerIDs();
+        if (allplayersids.length > 1){
+            $("#TimeChat").style.visibility = "visible;";
         }
     }
 }
@@ -68,10 +75,10 @@ function OnSync(){
     time = 1;
 }
 
-function HideChat(){
-    var chat = $("#Chat");
+function HideChat()
+    var chat = $("#TimeChat");
     if (chat.BHasClass("ChatExpanded")){
-        $("#Chat").style.visibility = "collapse;";
+        chat.ToggleClass("ChatExpanded");
     }
 }
 
@@ -93,6 +100,6 @@ function OnBack(){
     //disable chat if single player
     var allplayersids = Game.GetAllPlayerIDs();
     if (allplayersids.length == 1){
-        $("#Chat").style.visibility = "collapse;";
+        $("#TimeChat").style.visibility = "collapse;";
     }
 })();
