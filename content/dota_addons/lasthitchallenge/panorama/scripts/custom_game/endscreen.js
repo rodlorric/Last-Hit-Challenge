@@ -636,7 +636,7 @@ function LoadData(stats_panel, type){
 			var melee = CustomNetTables.GetTableValue( "stats_totals_details", p + "stats_totals_details_melee_" + type ).value;
 			var missed_melee = CustomNetTables.GetTableValue( "stats_totals_details", p + "stats_totals_details_melee_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
 			var accuracy_melee = parseFloat(Math.round((missed_melee != 0 ? ((melee * 100) / (missed_melee + melee)) : 100)).toFixed(0)) + "% ";			
-			melee_text = accuracy_melee + "(" + missed_melee + " / " + (melee + missed_melee) + ")";
+			melee_text = accuracy_melee + "(" + melee + " / " + (melee + missed_melee) + ")";
 
 			var ranged = CustomNetTables.GetTableValue( "stats_totals_details", p + "stats_totals_details_ranged_" + type ).value;
 			var missed_ranged = CustomNetTables.GetTableValue( "stats_totals_details", p + "stats_totals_details_ranged_miss_" + ((type == "lh") ? "foe" : "friendly")).value;
