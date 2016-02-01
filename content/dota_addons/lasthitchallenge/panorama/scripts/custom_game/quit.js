@@ -5,9 +5,9 @@ function OnYes(){
 }
 
 function OnNo(){
-	if ($("#QuitPanelEndScreen") == null){
-		GameEvents.SendCustomGameEventToServer( "cancel", {});
-	}
+	//if ($("#QuitPanelEndScreen") == null){
+	//	GameEvents.SendCustomGameEventToServer( "cancel", {});
+	//}
 	var quit = $.GetContextPanel();
 	quit.DeleteAsync(0);
 }

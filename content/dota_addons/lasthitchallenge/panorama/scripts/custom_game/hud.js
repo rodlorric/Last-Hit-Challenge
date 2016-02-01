@@ -58,7 +58,7 @@ function OnQuit(){
 	if (end_screen){
 		GameEvents.SendEventClientSide("quit", {});
 	} else if ($("#QuitPanel") == null){
-		GameEvents.SendCustomGameEventToServer( "quit_dialog", {});
+		//GameEvents.SendCustomGameEventToServer( "quit_dialog", {});
 		var quit = $.CreatePanel( "Panel", $.GetContextPanel(), "QuitPanel" );
 		quit.BLoadLayout( "file://{resources}/layout/custom_game/quit.xml", false, false );
 	}
