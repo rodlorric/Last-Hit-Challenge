@@ -104,7 +104,7 @@ function CLastHitChallenge:OnStart()
 	CLastHitChallenge:Clock()
 
 	--leveling, it is playerid = 0 because it is enough with the host
-	if player_stats[0].leveling == 1 then	
+	if player_stats[0].leveling == 1 then
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
 	else
