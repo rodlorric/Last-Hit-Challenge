@@ -385,8 +385,11 @@ function OnEndScreen(data) {
 	};
 
 	if (data.time != data.maxtime){
-		$("#cancel_button").style.visibility = "visible;"
-		$("#cancel_button_top").style.visibility = "visible;"
+		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+    	if (localPlayer['player_has_host_privileges']){
+			$("#cancel_button").style.visibility = "visible;"
+			$("#cancel_button_top").style.visibility = "visible;"
+		}
 	} else {
 		$("#cancel_button").style.visibility = "collapse;"
 		$("#cancel_button_top").style.visibility = "collapse;"
@@ -737,7 +740,11 @@ function LoadData(stats_panel, type){
 	GameEvents.Subscribe("quit", OnQuit);
 
 	var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-     if (!localPlayer['player_has_host_privileges']){
+    if (!localPlayer['player_has_host_privileges']){
+    	$("#cancel_button_top").enabled = false;
+    	$("#cancel_button_top").style.visibility = "collapse;";
+    	$("#cancel_button").enabled = false;
+    	$("#cancel_button").checked = true;
     	$("#change_hero_button").enabled = false;
     	$("#change_hero_button").checked = true;
     	$("#change_time_button").enabled = false;

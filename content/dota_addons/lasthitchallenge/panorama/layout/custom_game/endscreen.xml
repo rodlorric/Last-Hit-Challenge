@@ -11,7 +11,7 @@
 	 	<Panel class="EndScreenPanelContainer">
 		  		<Panel class="Header">
 			  		<Label text="#endcreen_title"/>
-		  			<Button class="CloseButton" onactivate="OnQuit()"/>
+		  			<Button id="close_button_top" class="CloseButton" onactivate="OnQuit()"/>
 		  			<Button id="cancel_button_top" class="CloseButton" onactivate="OnCancel()"/>			  					  			
 			  	</Panel>
 			  	<Panel class="Category">
