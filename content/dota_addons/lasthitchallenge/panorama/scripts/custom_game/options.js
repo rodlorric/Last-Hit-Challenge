@@ -65,6 +65,10 @@ function OnInvulnerability(){
 }
 
 function OnStart(data){
+	if ($("#WaitPanel") != null) {
+        $("#WaitPanel").DeleteAsync(0);
+    }
+
 	$("#control_panel").style.visibility = "visible";
 
     var time = data.time;
@@ -170,7 +174,20 @@ function OnSync(params){
 			//var timescreen = $.CreatePanel( "Panel", $.GetContextPanel(), "TimeScreen" );
 			//timescreen.BLoadLayout( "file://{resources}/layout/custom_game/timescreen.xml", false, false );
 			$("#control_panel").style.visibility = "collapse";
-		}
+		} else {
+       		var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
+       		wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
+       		var dialog =  wait.FindChildInLayoutFile("wait_dialog");
+       		
+       		var allplayersids = Game.GetAllPlayerIDs();
+       		for (var pid in allplayersids){
+       		    if (pid != Game.GetLocalPlayerID()){
+       		        var playername = Players.GetPlayerName(parseInt(pid));
+       		        dialog.SetDialogVariable( "player", playername );
+       		        break;
+       		    }
+       		}
+       	}
 		GameEvents.SendEventClientSide("new_pick", { "value" : "time" });
 	}
 }

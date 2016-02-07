@@ -5,19 +5,6 @@ var leveling = null;
 
 function OnPick(time){
     GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "time" : time});
-
-    var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
-    wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
-    var dialog =  wait.FindChildInLayoutFile("wait_dialog");
-
-    var allplayersids = Game.GetAllPlayerIDs();
-    for (var pid in allplayersids){
-        if (pid != Game.GetLocalPlayerID()){
-            var playername = Players.GetPlayerName(parseInt(pid));
-            dialog.SetDialogVariable( "player", playername );
-            break;
-        }
-    }
 }
 
 function OnTimePicked(data){
@@ -48,18 +35,6 @@ function OnNewPick(data){
         var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
         if (localPlayer['player_has_host_privileges']){
             $("#TimeScreenPanel").ToggleClass("Minimized");
-        } else {
-           var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
-            wait.BLoadLayout( "file://{resources}/layout/custom_game/wait.xml", false, false );
-            var dialog =  wait.FindChildInLayoutFile("wait_dialog");
-            
-            for (var pid in allplayersids){
-                if (pid != Game.GetLocalPlayerID()){
-                    var playername = Players.GetPlayerName(parseInt(pid));
-                    dialog.SetDialogVariable( "player", playername );
-                    break;
-                }
-            } 
         }
 
         //reenables chat only if 1v1
