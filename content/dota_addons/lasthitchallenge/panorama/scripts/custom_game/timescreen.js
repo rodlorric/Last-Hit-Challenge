@@ -21,7 +21,9 @@ function OnStart(data){
     if (localPlayer['player_has_host_privileges']){
         if (!$("#TimeScreenPanel").BHasClass("Minimized")){
             $("#TimeScreenPanel").ToggleClass("Minimized");
-            $("#WaitPanel").DeleteAsync(0);
+            if ($("#WaitPanel") != null) {
+                $("#WaitPanel").DeleteAsync(0);
+            }
         }
     }
     $("#TimeChat").style.visibility = "collapse;";
