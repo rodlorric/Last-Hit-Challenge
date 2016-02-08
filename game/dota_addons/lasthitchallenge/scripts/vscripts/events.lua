@@ -419,7 +419,7 @@ function CLastHitChallenge:OnInvulnerability( event )
 	else
 		invulnerable = 0
 	end
-
+	CustomGameEventManager:Send_ServerToAllClients("invulnerable", {})
 end
 
 function CLastHitChallenge:OnHideHelp( event )

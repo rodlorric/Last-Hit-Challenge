@@ -29,4 +29,6 @@
 	"new_pick" {}
 
 	"sync" {}
+
+	"invulnerable" {}
 }

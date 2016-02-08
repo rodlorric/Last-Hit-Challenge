@@ -64,6 +64,10 @@ function OnInvulnerability(){
 	GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : $("#invulnerability").checked });
 }
 
+function OnInvulnerable(){
+	$("#invulnerability").ToggleClass("checked");
+}
+
 function OnStart(data){
 	if ($("#WaitPanel") != null) {
         $("#WaitPanel").DeleteAsync(0);
@@ -204,6 +208,7 @@ function HeroName(hero_picked){
 (function () {
 	GameEvents.Subscribe("start", OnStart);
 	GameEvents.Subscribe("sync", OnSync);
+	GameEvents.Subscribe("invulnerable", OnInvulnerable);
 	//Setup for popup panel.
 	var overlay = $.CreatePanel( "Panel", $.GetContextPanel(), "OverlayPanel" );
 	overlay.BLoadLayout( "file://{resources}/layout/custom_game/overlay.xml", false, false );
