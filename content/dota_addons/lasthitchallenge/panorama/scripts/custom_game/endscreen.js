@@ -173,6 +173,8 @@ function OnEndScreen(data) {
 	}
 
 	for (var player in allplayersids){
+		var playerinfo = Game.GetPlayerInfo(parseInt(player));
+	
 		stats_misc_history.push(CustomNetTables.GetTableValue("stats_misc", player + "stats_misc_history"));
 		
 		var p_color = Players.GetPlayerColor(parseInt(player)).toString(16);
@@ -181,9 +183,8 @@ function OnEndScreen(data) {
 
 		var PLegend = $.CreatePanel("Panel", y_legend, "PanelP" + player);
 		PLegend.AddClass("LHLegend");
-		PLegend.style.backgroundColor = allplayerscolors[player] + ";";
-		var PLegendLabel = $.CreatePanel("Label", PLegend, "LegendLabel");
-		PLegendLabel.text = "P" + (parseInt(player) + 1);		
+		var avatar = $.CreatePanel("DOTAAvatarImage", PLegend, "");
+		avatar.steamid = playerinfo['player_steamid'];	
 
 		//PLegend.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", PLegend, Players.GetPlayerName(parseInt(player)) ) });
 		//PLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", PLegend)});
@@ -196,6 +197,7 @@ function OnEndScreen(data) {
 		//LHLegend.SetPanelEvent("onmouseout", function() {$.DispatchEvent("DOTAHideTextTooltip", LHLegend)});
 		var LHLegendLabel = $.CreatePanel("Label", LHLegend, "LegendLabel");
 		LHLegendLabel.text = $.Localize("#endscreen_lh");
+		
 		var DNLegend = $.CreatePanel("Panel", y_legend, "");
 		DNLegend.AddClass("DNLegend");
 		DNLegend.style.backgroundColor = ColorLuminance(allplayerscolors[player],-0.5) + ";"
@@ -271,110 +273,89 @@ function OnEndScreen(data) {
 
 		//LAST HITS
 		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
-
-		var maxval = (lh_p1 > lh_p2 ? lh_p1 : lh_p2);
-		var minval = (lh_p1 < lh_p2 ? lh_p1 : lh_p2);
-		var maxvalplayer = (maxval == lh_p1 ? 0 : 1);
-		var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
-
-		var ypct = Math.round((maxval * 100)/max);
-		var max_y = Math.round((ypct * 160) / 100);
-		var ypct = Math.round((minval * 100)/max);
-		var min_y = Math.round((ypct * 160) / 100);
-
-		if (max_y != 0){
-			bar_superholder.style.height = max_y + "px;";
-		} else {
-			bar_superholder.style.height = "30px;";
-		}
+		var ypct = Math.round((lh_p1 * 100)/max);
+		var y = Math.round((ypct * 160) / 100);
 
 		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 		bar_holder.style.opacity = "1.0";
-  		var height = (lh_tie ? max_y : (max_y - min_y));
+  		var height = y;
   		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");	  		
 		
 		if (height != 0){
   			bar.style.height = height + "px;";
-  			bar.style.backgroundColor = lh_tie ? "grey" : allplayerscolors[maxvalplayer] + ";";	
+  			bar.style.backgroundColor = allplayerscolors[0] + ";";
   		} else {
-  			bar.style.height = "30px;";
+  			bar.style.height = "20px;";
   		}
 
   		var label = $.CreatePanel("Label", bar, "");
-  		label.text = maxval;
+  		label.text = lh_p1;
   		label.style.verticalAlign = "top;";
   		label.style.textAlign = "center;";
   		
   		if (allplayersids.length > 1){
-	  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+	  		ypct = Math.round((lh_p2 * 100)/max);
+			y = Math.round((ypct * 160) / 100);
+
+			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 			bar_holder.style.opacity = "1.0";
-	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");
-	  		if (min_y != 0){
-	  			bar.style.backgroundColor =  lh_tie ? "grey" : allplayerscolors[minvalplayer] + ";";
-	  			bar.style.height = min_y + "px;";
+	  		var height = y;
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarLH");	  		
+			
+			if (height != 0){
+	  			bar.style.height = height + "px;";
+	  			bar.style.backgroundColor = allplayerscolors[1] + ";";
 	  		} else {
-  				bar.style.height = "30px;";
+	  			bar.style.height = "20px;";
 	  		}
 
 	  		var label = $.CreatePanel("Label", bar, "");
-	  		label.text = minval;
+	  		label.text = lh_p2;
 	  		label.style.verticalAlign = "top;";
 	  		label.style.textAlign = "center;";
   		}
 
 
   		//DENIES
-  		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
-
-		var maxval = (dn_p1 > dn_p2 ? dn_p1 : dn_p2);
-		var minval = (dn_p1 < dn_p2 ? dn_p1 : dn_p2);
-		var maxvalplayer = (maxval == dn_p1 ? 0 : 1);
-		var minvalplayer = (maxvalplayer == 0 ? 1 : 0);
-
-		var dn_tie = (dn_p1 == dn_p2);
-
-		var ypct = Math.round((maxval * 100)/max);
-		var max_y = Math.round((ypct * 160) / 100);
-		var ypct = Math.round((minval * 100)/max);
-		var min_y = Math.round((ypct * 160) / 100);
-
-		if (max_y != 0){
-			bar_superholder.style.height = max_y + "px;";
-		} else {
-			bar_superholder.style.height = "30px;";
-		}
+		var bar_superholder = $.CreatePanel("Panel", couple_container, "BarSuperHolder");
+		var ypct = Math.round((dn_p1 * 100)/max);
+		var y = Math.round((ypct * 160) / 100);
 
 		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
 		bar_holder.style.opacity = "1.0";
-  		var height = (dn_tie ? max_y : (max_y - min_y));
-  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
-  		
-  		if (height != 0){
+  		var height = y;
+  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");	  		
+		
+		if (height != 0){
   			bar.style.height = height + "px;";
-  			bar.style.backgroundColor = dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[maxvalplayer],-0.5) + ";";	  			
+  			bar.style.backgroundColor = ColorLuminance(allplayerscolors[0],-0.5) + ";";
   		} else {
-  			bar.style.height = "30px";
+  			bar.style.height = "20px;";
   		}
 
-  		var label = $.CreatePanel("Label", bar, "");
-  		label.text = maxval;
+  		var label = $.CreatePanel("Label", bar, "BarLabel");
+  		label.text = dn_p1;
   		label.style.verticalAlign = "top;";
   		label.style.textAlign = "center;";
   		
   		if (allplayersids.length > 1){
-	  		var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
-			bar_holder.style.opacity = "1.0";
-	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");
+	  		ypct = Math.round((dn_p2 * 100)/max);
+			y = Math.round((ypct * 160) / 100);
 
-			if (min_y != 0){
-	  			bar.style.height = min_y + "px;";
-	  			bar.style.backgroundColor =  dn_tie ? "dimgrey" : ColorLuminance(allplayerscolors[minvalplayer],-0.5) + ";";
+			var bar_holder = $.CreatePanel("Panel", bar_superholder, "BarHolder");
+			bar_holder.style.opacity = "1.0";
+	  		var height = y;
+	  		var bar = $.CreatePanel( "Panel", bar_holder, "BarDN");	  		
+			
+			if (height != 0){
+	  			bar.style.height = height + "px;";
+	  			bar.style.backgroundColor = ColorLuminance(allplayerscolors[1],-0.5) + ";";
 	  		} else {
-	  			bar.style.height = "30px";
+	  			bar.style.height = "20px;";
 	  		}
 
-	  		var label = $.CreatePanel("Label", bar, "");
-	  		label.text = minval;
+	  		var label = $.CreatePanel("Label", bar, "BarLabel");
+	  		label.text = dn_p2;
 	  		label.style.verticalAlign = "top;";
 	  		label.style.textAlign = "center;";
   		}

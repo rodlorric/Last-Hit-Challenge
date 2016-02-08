@@ -102,7 +102,7 @@
 
 #BarSuperHolder{
   width: fill-parent-flow(1.0);
-  flow-children: down;
+  flow-children: right;
   //opacity: 0;
   vertical-align: bottom;
   
@@ -113,12 +113,14 @@
 
 #BarHolder{
   vertical-align: bottom;
-  width: 100%;
+  width: fill-parent-flow(1.0);
 }
 
 #BarHolder Label{
   width: 100%;
   text-shadow: 2px 2px 2px 2.0 #333333b0;
+  font-size: 16;
+  margin: 0px 0px 0px 0px;
 }
 
 .VertBar
@@ -132,9 +134,9 @@
 .YLegendPanel{
   flow-children: down;
   vertical-align: bottom;
-  margin-left: 100px;
-  margin-right: 20px;
-  margin-bottom: 15px; 
+  //margin-left: 100px;
+  //margin-right: 20px;
+  //margin-bottom: 15px; 
 }
 
 #data_container{
@@ -170,13 +172,18 @@
 
 .LHLegend{
   border-style: solid;
-  border-width: 1px;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   background-color: #009933;
   vertical-align: top;
   horizontal-align: right;
-  margin: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.LHLegend DOTAAvatarImage{
+  height: 32px;
+  width: 32px;
 }
 
 .Legend{
@@ -193,11 +200,12 @@
 }
 
 .DNLegend{
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   background-color: #800000;
   vertical-align: bottom;
-  margin: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #BarLH

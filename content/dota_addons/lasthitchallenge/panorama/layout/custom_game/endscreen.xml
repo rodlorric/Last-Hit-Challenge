@@ -145,7 +145,6 @@
 				<Panel class="Category">
 				 	<Label text="#endscreen_graph"/>
 				 	<Panel class="Row">
-				 		<Panel id="Legend" class="Legend"/>
 				 		<Panel id="YLegendPanel" class="YLegendPanel"/>
 				 		<Panel class="VertBar" style="margin-bottom: 15px;"/>
 				 		<Panel id="graph_container" class="GraphContainer"/>
