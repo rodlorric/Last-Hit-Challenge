@@ -164,6 +164,12 @@ function CLastHitChallenge:OnThink()
 				end
 			end
 		end
+
+		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+			if PlayerResource:IsValidPlayer( nPlayerID ) and PlayerResource:GetConnectionState( nPlayerID ) == DOTA_CONNECTION_STATE_DISCONNECTED then
+				player_stats[nPlayerID].disconnected = true;
+			end
+		end
 	end
 	
 
@@ -225,6 +231,9 @@ function CLastHitChallenge:ClearData()
 			--clearing misses
 			player_stats[nPlayerID].misses = 0			
 			player_stats[nPlayerID].current_cs = { lh = PlayerResource:GetLastHits(nPlayerID), dn = PlayerResource:GetDenies(nPlayerID) }
+
+			--player_status
+			player_stats[nPlayerID].disconnected = false
 		end
 		--clearing heatmap
 		--CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "cleardata", {})
@@ -249,6 +258,17 @@ function CLastHitChallenge:SetGameFrozen( bFreeze )
 		end
 		entity = Entities:Next( entity )
 	end
+end
+
+
+function CLastHitChallenge:IsReconnecting(data)
+	local pid = data.playerId
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(pid), "reconnect", { value = player_stats[pid].disconnected } )
+	if player_stats[pid].disconnected then
+		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(pid), "start", { time = MAXTIME, heroId = player_stats[pid].hero_picked, leveling = player_stats[pid].leveling, 
+			playerId = pid})
+	end
+	player_stats[pid].disconnected = false
 end
 
 function CLastHitChallenge:EndGame()
@@ -1021,7 +1041,8 @@ function CLastHitChallenge:InitializeData()
 										max_deny_streak = 0,
 										max_last_hit_streak = 0,
 										session_cs = 0,
-										total_misses = 0
+										total_misses = 0,
+										disconnected = false
 									}
 
 			--Totals

@@ -75,6 +75,13 @@ function HideChat(){
     }
 }
 
+function OnReconnect(data){
+    if (data.value == true){
+        $("#PickScreenPanel").ToggleClass("Minimized");
+        //GameEvents.SendEventClientSide("start", {});
+    }
+}
+
 (function () {
     GameEvents.Subscribe("time_screen", OnTimeScreen);
     GameEvents.Subscribe("start", OnStart);
@@ -115,7 +122,7 @@ function HideChat(){
     for (var i = 0; i < rows; i++) {
         var pickpanelcontainer = $.CreatePanel( "Panel", $("#pickscreenpanelsupercontainer"), "PickPanelContainer_" + i );
         pickpanelcontainer.AddClass("PickPanelContainer");
-        for (var j = 0; j < HEROES_PER_ROW; j++) {    
+        for (var j = 0; j < HEROES_PER_ROW; j++) {
 
             var index = (i * HEROES_PER_ROW) + j;
             var pickpanel = $.CreatePanel("Panel", pickpanelcontainer, "pickpanel_" + index);
@@ -151,6 +158,7 @@ function HideChat(){
                 label.hittest = false;
             }
         };
-
     };
+    GameEvents.SendCustomGameEventToServer( "reconnecting", { "playerId" : Game.GetLocalPlayerID()});
+    GameEvents.Subscribe("reconnect", OnReconnect);
 })();

@@ -227,4 +227,5 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("start", Dynamic_Wrap(CLastHitChallenge, 'OnStart'))
 	CustomGameEventManager:RegisterListener("spawn_heroes", Dynamic_Wrap(CLastHitChallenge, 'OnSpawnHeroes'))
 	CustomGameEventManager:RegisterListener("resume", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
+	CustomGameEventManager:RegisterListener("reconnecting", Dynamic_Wrap(CLastHitChallenge, 'IsReconnecting'))
 end

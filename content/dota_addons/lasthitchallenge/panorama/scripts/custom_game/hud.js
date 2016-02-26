@@ -38,6 +38,15 @@ function OnStart(data){
     
     $("#score_panel").style.visibility = "visible";
 	$("#clock_panel").style.visibility = "visible";
+
+	//In case of reconnection, this shuould show current LH/D scores instead of 0/0
+	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_lh" );
+	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_dn" );
+	$("#Lasthits").text = data["value"];	
+	$.GetContextPanel().SetHasClass( "lh_anim", true );
+	$("#Denies").text = data["value"];
+	$.GetContextPanel().SetHasClass( "dn_anim", true );	
+
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (localPlayer['player_has_host_privileges']){
     	GameEvents.SendCustomGameEventToServer("start", {});

@@ -31,4 +31,7 @@
 	"sync" {}
 
 	"invulnerable" {}
+
+	"reconnecting" {}
+	"reconnect" {}
 }
