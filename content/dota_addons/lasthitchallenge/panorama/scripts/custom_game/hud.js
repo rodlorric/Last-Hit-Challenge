@@ -40,12 +40,13 @@ function OnStart(data){
 	$("#clock_panel").style.visibility = "visible";
 
 	//In case of reconnection, this shuould show current LH/D scores instead of 0/0
-	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_lh" );
-	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_dn" );
-	$("#Lasthits").text = data["value"];	
+	var stats_total_lh = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_lh" ).value;
+	var stats_total_dn = CustomNetTables.GetTableValue( "stats_totals", playerId + "stats_total_dn" ).value;
+	$("#Lasthits").text = stats_total_lh;
 	$.GetContextPanel().SetHasClass( "lh_anim", true );
-	$("#Denies").text = data["value"];
-	$.GetContextPanel().SetHasClass( "dn_anim", true );	
+	$("#Denies").text = stats_total_dn;
+	$.GetContextPanel().SetHasClass( "dn_anim", true );
+	$.Schedule( 1, OnResetAnimation );	
 
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     if (localPlayer['player_has_host_privileges']){
