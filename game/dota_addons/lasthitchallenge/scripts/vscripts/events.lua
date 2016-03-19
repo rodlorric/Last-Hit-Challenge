@@ -152,7 +152,7 @@ function CLastHitChallenge:OnThink()
 	end
 
 	if GameRules:State_Get() ==  DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		if Convars:GetInt("sv_cheats") == 1 and not cheater then
+		if GameRules:IsCheatMode() and not cheater then
 			cheater = true
 			for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 				if PlayerResource:IsValidPlayer( nPlayerID ) then
@@ -855,7 +855,7 @@ function CLastHitChallenge:OnLeaderboard(query)
 		    if successBool then
 		    	if resultTable ~= nil then
 			        for k,v in pairs(resultTable) do
-						table.insert(leader_list, 1, {steam_id = v.steam_id, value = "sv_cheats 1 :)"})
+						table.insert(leader_list, 1, {steam_id = v.steam_id, value = "Busted!"})
 			        end
 		       	end
 		    end
