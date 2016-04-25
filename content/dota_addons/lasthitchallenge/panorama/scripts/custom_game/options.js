@@ -83,7 +83,7 @@ function OnStart(data){
 
 	var panel = $.GetContextPanel();
 
-	var suffix = heroId + time + (leveling ? "n":"l");
+	var suffix = "" + heroId + time + (leveling ? "n":"l");
 	$("#cs").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "c" + suffix ).value : "--";
 	panel.SetHasClass( "cs_anim", true );	
 	$("#lh").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "l" + suffix ).value : "--";

@@ -2,10 +2,16 @@
 
 var HEROES_PER_ROW = 11;
 var heroId = null;
+var heroes = null;
 
 
 function OnPick(id){
     heroId = id;
+
+    if (id == -1){
+        id = Math.floor(Math.random() * (heroes.length - 0));
+    }
+
     GameEvents.SendCustomGameEventToServer( "new_pick", { "playerId" : Game.GetLocalPlayerID(), "heroId" : id, "leveling" : $("#disable_leveling").checked });
     
     var wait = $.CreatePanel( "Panel", $.GetContextPanel(), "WaitPanel" );
@@ -87,7 +93,7 @@ function OnReconnect(data){
     GameEvents.Subscribe("start", OnStart);
     GameEvents.Subscribe("new_pick", OnNewPick);
 
-    var heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
+    heroes = CustomNetTables.GetAllTableValues( "hero_selection" );
     if (heroes.length < HEROES_PER_ROW){
         HEROES_PER_ROW = heroes.length;
     }
@@ -101,6 +107,12 @@ function OnReconnect(data){
         // a must be equal to b
         return 0;
     });
+
+    var random_hero = new Object();
+    random_hero.key = -1;
+    random_hero.value = new Object();
+    random_hero.value.hero = $.Localize("#random_hero");
+    heroes.push(random_hero);
 
     //prevents non host players to disable leveling.
     var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
@@ -119,15 +131,18 @@ function OnReconnect(data){
     //GameEvents.Subscribe("hero_picked", OnHeroPicked);
     //var rows = hero_list.length / HEROES_PER_ROW;
     var rows = heroes.length / HEROES_PER_ROW;
+    var row = 0;
+    var col = 0;
     for (var i = 0; i < rows; i++) {
+        row = i;
         var pickpanelcontainer = $.CreatePanel( "Panel", $("#pickscreenpanelsupercontainer"), "PickPanelContainer_" + i );
         pickpanelcontainer.AddClass("PickPanelContainer");
         for (var j = 0; j < HEROES_PER_ROW; j++) {
-
             var index = (i * HEROES_PER_ROW) + j;
             var pickpanel = $.CreatePanel("Panel", pickpanelcontainer, "pickpanel_" + index);
             pickpanel.AddClass("PickPanel");
             if (heroes[index] != null) {
+                col = j;
                 var pickbutton = $.CreatePanel("Button", pickpanel, "pickbutton_" + heroes[index].key);
                 pickbutton.AddClass("PickButton");           
                 var heroPick = (function(id) {
@@ -159,6 +174,7 @@ function OnReconnect(data){
             }
         };
     };
+
     GameEvents.SendCustomGameEventToServer( "reconnecting", { "playerId" : Game.GetLocalPlayerID()});
     GameEvents.Subscribe("reconnect", OnReconnect);
 })();
