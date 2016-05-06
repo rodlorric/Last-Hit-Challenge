@@ -154,18 +154,29 @@ function OnReconnect(data){
                 pickbutton.SetPanelEvent("onactivate", heroPick);
                 var img = $.CreatePanel("Panel", pickbutton, heroes[index].value.hero + "_bg");
                 img.AddClass("HeroPanel");
-                if (heroes[index].value.hero != "npc_dota_hero_techies"){
-                    var heroimage = $.CreatePanel("DOTAHeroImage", img, heroes[index].value.hero);
-                    heroimage.heroname = heroes[index].value.hero;
+                if (heroes[index].key != -1){
+                    if (heroes[index].value.hero != "npc_dota_hero_techies"){
+                        var heroimage = $.CreatePanel("DOTAHeroImage", img, heroes[index].value.hero);
+                        heroimage.heroname = heroes[index].value.hero;
+                    } else {
+                        var heroimage = $.CreatePanel("Panel", img, heroes[index].value.hero + "_bg");
+                        img.AddClass("Satyr");
+                        img.style.width = "128px";
+                        img.style.height = "72px";
+                        img.style.backgroundImage = 'url("file://{images}/pickscreen/' + heroes[index].value.hero + '.png");';
+                        img.style.backgroundPosition = "0% 0%;";
+                        img.style.backgroundSize = "contain";
+                        img.style.backgroundRepeat = "no-repeat;";
+                    }
                 } else {
                     var heroimage = $.CreatePanel("Panel", img, heroes[index].value.hero + "_bg");
-                    img.AddClass("Satyr");
-                    img.style.width = "128px";
-                    img.style.height = "72px";
-                    img.style.backgroundImage = 'url("file://{images}/pickscreen/' + heroes[index].value.hero + '.png");';
-                    img.style.backgroundPosition = "0% 0%;";
-                    img.style.backgroundSize = "contain";
-                    img.style.backgroundRepeat = "no-repeat;";
+                        img.AddClass("Satyr");
+                        img.style.width = "128px";
+                        img.style.height = "72px";
+                        img.style.backgroundImage = 'url("file://{images}/pickscreen/npc_dota_hero_random.png");';
+                        img.style.backgroundPosition = "0% 0%;";
+                        img.style.backgroundSize = "contain";
+                        img.style.backgroundRepeat = "no-repeat;";
                 }
 
                 var label = $.CreatePanel("Label", pickbutton, "label_" + index);
