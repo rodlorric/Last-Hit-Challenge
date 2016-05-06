@@ -13,6 +13,8 @@ STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/c
 
 player_stats = {}
 
+XP_TABLE = {0}
+
 ----------------------
 hidehelp = 0
 invulnerable = 0
@@ -106,7 +108,7 @@ function CLastHitChallenge:OnStart()
 	--leveling, it is playerid = 0 because it is enough with the host
 	if player_stats[0].leveling == 1 then
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
-		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
+		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_TABLE)
 	else
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(false)
 	end
@@ -509,7 +511,7 @@ leveling = "l"
 function CLastHitChallenge:OnDisableLeveling( event )
 	if event.disable_leveling == 1 then	
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
-		GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(1)
+		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_TABLE)
 		leveling = "n"
 	else
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(false)
