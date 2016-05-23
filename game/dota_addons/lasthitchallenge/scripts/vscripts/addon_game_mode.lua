@@ -74,14 +74,6 @@ function giffpower()
 	 CLastHitChallenge:GiveBlinkDagger(PlayerResource:GetPlayer(0):GetAssignedHero())
 end
 
-function pause()
-	if GameRules:IsGamePaused() == true then
-  		PauseGame(false)
-	else
-		PauseGame(true)
-	end
-end
-
 function getrecords()
 	Storage:Get("58169609", function( resultTable, successBool )
 	    if successBool then
@@ -181,7 +173,7 @@ function CLastHitChallenge:InitGameMode()
 	GameRules:GetGameModeEntity():SetHUDVisible( DOTA_HUD_VISIBILITY_SHOP_SUGGESTEDITEMS, false )
 	]]
 
-	Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
+	--Convars:RegisterCommand( "CustomGamePause", pause, "Pause", 0)
 	--[[
 	Convars:RegisterCommand("settime",
 		function(name, time, heroId, leveling, playerId)
@@ -228,4 +220,5 @@ function CLastHitChallenge:InitGameMode()
 	CustomGameEventManager:RegisterListener("spawn_heroes", Dynamic_Wrap(CLastHitChallenge, 'OnSpawnHeroes'))
 	CustomGameEventManager:RegisterListener("resume", Dynamic_Wrap(CLastHitChallenge, 'Resume'))
 	CustomGameEventManager:RegisterListener("reconnecting", Dynamic_Wrap(CLastHitChallenge, 'IsReconnecting'))
+	CustomGameEventManager:RegisterListener("pause", Dynamic_Wrap(CLastHitChallenge, 'OnPause'))
 end

@@ -79,6 +79,12 @@ function HideClock(){
 	$("#score_panel").style.visibility = "collapse";
 }
 
+function Pause(){
+	var playerName = Players.GetPlayerName(parseInt(Game.GetLocalPlayerID()));
+	var p_color = Players.GetPlayerColor(parseInt(Game.GetLocalPlayerID())).toString(16);
+	p_color = "#" + p_color.substring(6, 8) + p_color.substring(4, 6) + p_color.substring(2, 4) + p_color.substring(0, 2);
+	GameEvents.SendCustomGameEventToServer("pause", { "playerName" : playerName, "playerColor" : p_color });
+}
 
 (function () {
 	//GameEvents.Subscribe("last_hit", OnLastHitOrDeny);
@@ -88,6 +94,8 @@ function HideClock(){
 	//GameEvents.Subscribe("start_game", OnStart);
 	GameEvents.Subscribe("start", OnStart);
 	GameEvents.Subscribe("new_pick", HideClock);
+
+	Game.AddCommand("+CustomGamePause", Pause, "", 0 );
 
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();

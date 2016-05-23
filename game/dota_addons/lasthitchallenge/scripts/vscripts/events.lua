@@ -119,7 +119,15 @@ function CLastHitChallenge:OnStart()
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
 	end
+end
 
+function CLastHitChallenge:OnPause(data)
+	GameRules:SendCustomMessage("<font color='" .. tostring(data.playerColor) .. "'>" .. tostring(data.playerName) .. "</font>", 0, 0)
+	if GameRules:IsGamePaused() == true then
+  		PauseGame(false)
+	else
+		PauseGame(true)
+	end
 end
 
 function CLastHitChallenge:HeroName(hero_picked)
