@@ -95,7 +95,7 @@ function Pause(){
 	GameEvents.Subscribe("start", OnStart);
 	GameEvents.Subscribe("new_pick", HideClock);
 
-	Game.AddCommand("+CustomGamePause", Pause, "", 0 );
+	Game.AddCommand("CustomGamePause", Pause, "", 0 );
 
 	CustomNetTables.SubscribeNetTableListener( "stats_totals", OnLastHitOrDeny );
 })();
