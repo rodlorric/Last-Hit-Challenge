@@ -178,7 +178,7 @@ function OnEndScreen(data) {
 		stats_misc_history.push(CustomNetTables.GetTableValue("stats_misc", player + "stats_misc_history"));
 		
 		var p_color = Players.GetPlayerColor(parseInt(player)).toString(16);
-		p_color = p_color.substring(6, 8) + p_color.substring(4, 6) + p_color.substring(2, 4) + p_color.substring(0, 2);
+		p_color = p_color.substring(6, 8) + p_color.substring(4, 6) + p_color.substring(2, 4);
 		allplayerscolors.push("#" + p_color);
 
 		var PLegend = $.CreatePanel("Panel", y_legend, "PanelP" + player);
