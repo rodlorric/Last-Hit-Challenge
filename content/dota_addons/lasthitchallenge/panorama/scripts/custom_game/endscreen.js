@@ -484,7 +484,7 @@ function OnMagnifyMisses(){
 function OnLeaderBoardButton(){
 	var leaderboard = $.CreatePanel( "Panel", $.GetContextPanel(), "LeaderBoard" );
 	leaderboard.BLoadLayout( "file://{resources}/layout/custom_game/leaderboard.xml", false, false );
-	var playerInfo = Game.GetPlayerInfo( 0 );
+	var playerInfo = Game.GetPlayerInfo( Game.GetLocalPlayerID() );
 	var dropmenuhero = leaderboard.FindChildInLayoutFile("dropdown_hero");
 	dropmenuhero.oninputsubmit = "OnDropDown()";
 	for (var i in heroes){
