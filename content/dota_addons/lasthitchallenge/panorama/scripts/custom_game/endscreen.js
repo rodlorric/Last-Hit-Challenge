@@ -602,8 +602,6 @@ function ColorLuminance(hex, lum) {
 }
 
 function LoadData(stats_panel, type){
-	var playerId = Game.GetLocalPlayerID();
-	var playerIdP2 = null;
 	var allplayersids = Game.GetAllPlayerIDs();
 
 	var stats_melee = stats_panel.FindChildInLayoutFile("stats_melee");
@@ -664,7 +662,7 @@ function LoadData(stats_panel, type){
 
 		var playercontainer = $.CreatePanel("Panel", stats_melee, "");
 		playercontainer.AddClass("PlayerContainer");
-		if (allplayersids > 1){
+		if (allplayersids.length > 1){
 			var player = $.CreatePanel("Label", playercontainer, "");
 			player.AddClass("PlayerName");
 			player.text = playername;
@@ -674,7 +672,7 @@ function LoadData(stats_panel, type){
 
 		playercontainer = $.CreatePanel("Panel", stats_ranged, "");
 		playercontainer.AddClass("PlayerContainer");
-		if (allplayersids > 1){
+		if (allplayersids.length > 1){
 			var player = $.CreatePanel("Label", playercontainer, "");
 			player.AddClass("PlayerName");
 			player.text = playername;
@@ -684,7 +682,7 @@ function LoadData(stats_panel, type){
 
 		playercontainer = $.CreatePanel("Panel", stats_siege, "");
 		playercontainer.AddClass("PlayerContainer");
-		if (allplayersids > 1){
+		if (allplayersids.length > 1){
 			player = $.CreatePanel("Label", playercontainer, "");
 			player.AddClass("PlayerName");
 			player.text = playername;
