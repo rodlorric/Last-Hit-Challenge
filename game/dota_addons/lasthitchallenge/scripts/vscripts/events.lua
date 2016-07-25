@@ -3,12 +3,12 @@ require ( "timers" )
 require( "cosmeticlib" )
 
 
---STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
-STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
+STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallenge-sphexing.rhcloud.com/leaderboard"
+--STORAGEAPI_API_URL_LEADERBOARD = "http://lasthitchallengedev-sphexing.rhcloud.com/leaderboard"
 --STORAGEAPI_API_URL_LEADERBOARD = "http://localhost:5000/leaderboard"
 
---STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/cheaters"
-STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
+STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallenge-sphexing.rhcloud.com/cheaters"
+--STORAGEAPI_API_URL_CHEATERS = "http://lasthitchallengedev-sphexing.rhcloud.com/cheaters"
 --STORAGEAPI_API_URL_CHEATERS = "http://localhost:5000/cheaters"
 
 player_stats = {}
@@ -297,7 +297,7 @@ function CLastHitChallenge:EndGame()
 			local stats_total_dn = CustomNetTables:GetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_dn")
 
 			CustomNetTables:SetTableValue("stats_totals", tostring(nPlayerID) .. "stats_total_miss", { value = player_stats[nPlayerID].misses })
-			
+
 			local stats_total_cs = CustomNetTables:GetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_cs")
 			local accuracy = 0
 			if stats_total_cs.value == 0 and player_stats[nPlayerID].misses == 0 then
