@@ -33,7 +33,7 @@ function CLastHitChallenge:OnNewPick(params)
 		heroId = params.heroId
 	end
 	if params.leveling ~= nil then
-		leveling = params.leveling
+		leveling = (params.leveling == 0 and "l" or "n")
 	end
 	if params.time ~= nil then
 		time = params.time
@@ -80,9 +80,9 @@ end
 
 function CLastHitChallenge:OnSpawnHeroes(params)
 	local heroId = params.heroId
-	local leveling = params.leveling
+	--local leveling = params.leveling
 	local playerId = params.playerId
-	local time = params.time
+	--local time = params.time
 
 	--Spawn the hero in an empty spot
  	CLastHitChallenge:SafeSpawn(PlayerResource:GetSelectedHeroEntity(playerId))
@@ -106,7 +106,7 @@ function CLastHitChallenge:OnStart()
 	CLastHitChallenge:Clock()
 
 	--leveling, it is playerid = 0 because it is enough with the host
-	if player_stats[0].leveling == 1 then
+	if player_stats[0].leveling == "n" then
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_TABLE)
 	else
@@ -334,11 +334,11 @@ function CLastHitChallenge:EndGame()
 			player_stats[nPlayerID].max_last_hit_streak = 0
 
 			--Records
-			local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. leveling)
+			local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
 			if seconds == MAXTIME then
 				if accuracy > stats_record_accuracy.value and MAXTIME ~= -1 then
 					stats_record_accuracy.value = accuracy
-					CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. leveling, stats_record_accuracy)
+					CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_accuracy)
 					player_stats[nPlayerID].new_record = true
 				end
 			end
@@ -378,7 +378,8 @@ function CLastHitChallenge:EndGame()
 			sec = string.format("%.2d", shortest_time%60)
 			CustomNetTables:SetTableValue( "stats_time", tostring(nPlayerID) .. "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
 
-			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "end_screen", {time = seconds, hero = player_stats[nPlayerID].hero_picked, level = leveling, maxtime = MAXTIME})
+
+			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "end_screen", {time = seconds, hero = player_stats[nPlayerID].hero_picked, level = player_stats[nPlayerID].leveling, maxtime = MAXTIME})
 			
 			if seconds == MAXTIME then
 				seconds = 0	
@@ -515,8 +516,10 @@ function CLastHitChallenge:OnHideHelp( event )
 	end
 end
 
+--[[
 leveling = "l"
 function CLastHitChallenge:OnDisableLeveling( event )
+	print("1 OnDisableLeveling leveling = " .. leveling)
 	if event.disable_leveling == 1 then	
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 		GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XP_TABLE)
@@ -525,7 +528,9 @@ function CLastHitChallenge:OnDisableLeveling( event )
 		GameRules:GetGameModeEntity():SetUseCustomHeroLevels(false)
 		leveling = "l"
 	end
+	print("2 OnDisableLeveling leveling = " .. leveling)
 end
+]]
 
 last_hit_streak = 0
 deny_streak = 0
@@ -571,11 +576,11 @@ function CLastHitChallenge:OnEntityKilled (event)
 							player_stats[nPlayerID].max_cs_streak = player_stats[nPlayerID].cs_streak
 						end
 
-						local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. leveling )
+						local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling )
 						
 						--Deny
 						if friendly then
-							local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. leveling)
+							local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
 							--streaks
 							player_stats[nPlayerID].deny_streak = player_stats[nPlayerID].deny_streak + 1
 							if player_stats[nPlayerID].deny_streak > player_stats[nPlayerID].max_deny_streak then
@@ -588,7 +593,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 								if dn > stats_record_dn.value and MAXTIME ~= -1 then
 									stats_record_dn.value = dn
 									--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
-									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_dn)
+									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_dn)
 									player_stats[nPlayerID].new_record = true
 								end
 							end
@@ -608,7 +613,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 							end
 
 						else --LastHit
-							local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. leveling)
+							local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
 							--streak
 							player_stats[nPlayerID].last_hit_streak = player_stats[nPlayerID].last_hit_streak + 1
 							if player_stats[nPlayerID].last_hit_streak > player_stats[nPlayerID].max_last_hit_streak then
@@ -619,7 +624,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 							if lh > stats_record_lh.value or cs > stats_record_cs.value then
 								if lh > stats_record_lh.value and MAXTIME ~= -1 then
 									stats_record_lh.value = lh
-									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. leveling, stats_record_lh)
+									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_lh)
 									player_stats[nPlayerID].new_record = true
 								end
 							end
@@ -645,7 +650,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 						--Records
 						if cs > stats_record_cs.value and MAXTIME ~= -1 then
 							stats_record_cs.value = cs
-							CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. leveling , stats_record_cs)
+							CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling , stats_record_cs)
 							player_stats[nPlayerID].new_record = true
 						end
 					end

@@ -83,7 +83,7 @@ function OnStart(data){
 
 	var panel = $.GetContextPanel();
 
-	var suffix = "" + heroId + time + (leveling ? "n":"l");
+	var suffix = "" + heroId + time + leveling;
 	$("#cs").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "c" + suffix ).value : "--";
 	panel.SetHasClass( "cs_anim", true );	
 	$("#lh").text = time != -1 ? CustomNetTables.GetTableValue( "stats_records", playerId + "l" + suffix ).value : "--";
@@ -96,7 +96,7 @@ function OnStart(data){
     var minutes = date.toISOString().substr(14, 5);
 
 	$("#records_header").SetDialogVariable("time" , (time != -1 ? minutes : "--"));
-	$("#records_header").SetDialogVariable("lvl" , $.Localize(leveling ? "#nolvl" : "#lvl"));
+	$("#records_header").SetDialogVariable("lvl" , $.Localize(leveling == "n" ? "#nolvl" : "#lvl"));
 
     $("#hero_header").text = $.Localize(HeroName(heroId));
 
