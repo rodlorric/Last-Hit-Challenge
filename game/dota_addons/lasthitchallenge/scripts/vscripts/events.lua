@@ -96,9 +96,9 @@ function CLastHitChallenge:OnSpawnHeroes(params)
 	local nhero = PlayerResource:ReplaceHeroWith( playerId, hero_picked_name, 0, 0)
 
 	--This removes any cosmetic, to avoid to precache every other item
-	CosmeticLib:RemoveAll(nhero)
-	if hero_picked_name ~= "npc_dota_hero_techies" then
-		CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
+	if hero_picked_name == "npc_dota_hero_techies" then
+		CosmeticLib:RemoveAll(nhero)
+		--CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
 	end
 end
 
@@ -860,15 +860,17 @@ function CLastHitChallenge:OnRestart(playerId)
 			if hero_picked_name ~= "npc_dota_hero_techies" then
 				CosmeticLib:ReplaceDefault(nhero, hero_picked_name)
 			end
+
 		end
 	end
+	]]
 	--CLastHitChallenge:GiveZeroGold(player_hero)
 	iter = 1
 	CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()
 	CustomGameEventManager:Send_ServerToAllClients("cancel", {})
-
 end
+
 
 function CLastHitChallenge:OnQuit()
 	local uploaded = CLastHitChallenge:UploadRecords()
