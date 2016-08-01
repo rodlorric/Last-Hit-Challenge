@@ -18,6 +18,8 @@ XP_TABLE = {0}
 ----------------------
 hidehelp = 0
 invulnerable = 0
+radiant_creeps_spawned = 0
+dire_creeps_spawned = 0
 ----------------------
 
 function CLastHitChallenge:OnNewPick(params)
@@ -282,6 +284,7 @@ function CLastHitChallenge:IsReconnecting(data)
 end
 
 function CLastHitChallenge:EndGame()
+	print("Total creeps spawned = " .. tostring(radiant_creeps_spawned + dire_creeps_spawned))
 	if seconds < shortest_time or shortest_time == MAXTIME then
 		shortest_time = seconds
 	end
@@ -589,7 +592,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 
 							CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_dn", { value = dn } )
 
-							if dn > stats_record_dn.value or  cs > stats_record_cs.value then
+							if (dn > stats_record_dn.value or cs > stats_record_cs.value) and (dn <= (PlayerResource:GetTeam(nPlayerID) == 0 and dire_creeps_spawned or radiant_creeps_spawned)) then
 								if dn > stats_record_dn.value and MAXTIME ~= -1 then
 									stats_record_dn.value = dn
 									--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
@@ -621,7 +624,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 							end
 
 							CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_lh", { value = lh } );
-							if lh > stats_record_lh.value or cs > stats_record_cs.value then
+							if (lh > stats_record_lh.value or cs > stats_record_cs.value) and (lh <= (PlayerResource:GetTeam(nPlayerID) == 0 and radiant_creeps_spawned or dire_creeps_spawned)) then
 								if lh > stats_record_lh.value and MAXTIME ~= -1 then
 									stats_record_lh.value = lh
 									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_lh)
@@ -648,7 +651,7 @@ function CLastHitChallenge:OnEntityKilled (event)
 						session_cs = session_cs + 1
 
 						--Records
-						if cs > stats_record_cs.value and MAXTIME ~= -1 then
+						if cs > stats_record_cs.value and MAXTIME ~= -1 and cs <= (dire_creeps_spawned + radiant_creeps_spawned) then
 							stats_record_cs.value = cs
 							CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling , stats_record_cs)
 							player_stats[nPlayerID].new_record = true
@@ -770,15 +773,26 @@ function CLastHitChallenge:Spawner()
 					unit:SetHealth(unit:GetMaxHealth())
 				end
 				unit:SetInitialGoalEntity(waypoint)
+				if i == 1 then
+					radiant_creeps_spawned = radiant_creeps_spawned + 1
+				else
+					dire_creeps_spawned = dire_creeps_spawned + 1
+				end
 			end
 			-- spawn siege creep every 7th wave
 			if iter % 7 == 0 then
 				unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
 				unit:SetInitialGoalEntity(waypoint)
+				if i == 1 then
+					radiant_creeps_spawned = radiant_creeps_spawned + 1
+				else
+					dire_creeps_spawned = dire_creeps_spawned + 1
+				end
 			end
 		end
 	end
 	iter = iter + 1
+	print("radiant_creeps_spawned = " .. radiant_creeps_spawned .. " dire_creeps_spawned = " .. dire_creeps_spawned)
 end
 
 function CLastHitChallenge:OnSync(params)
@@ -821,8 +835,14 @@ function CLastHitChallenge:OnRestart(playerId)
 	Timers:RemoveTimer("spawner")
 	Timers:RemoveTimer("clock")
 
-	--respawn the unit in an empty spot
+	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+		if PlayerResource:IsValidPlayer( nPlayerID ) then
+			CLastHitChallenge:OnSpawnHeroes({heroId = player_stats[nPlayerID].hero_picked, playerId = nPlayerID})
+		end
+	end
 
+	--respawn the unit in an empty spot
+	--[[
 	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 		if PlayerResource:IsValidPlayer( nPlayerID ) then
 			local player_hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
@@ -1025,6 +1045,8 @@ function CLastHitChallenge:ClearUnits()
 			UTIL_Remove( unit )
 		end
 	end
+	radiant_creeps_spawned = 0
+	dire_creeps_spawned = 0
 end
 
 function CLastHitChallenge:InitializeData()
