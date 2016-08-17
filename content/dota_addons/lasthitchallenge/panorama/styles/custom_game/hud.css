@@ -9,7 +9,6 @@
 	transform: translateX( 160px ) translateY( 0% );
   vertical-align: bottom;
   horizontal-align: center;
-  flow-children: right;
   visibility: collapse;
 }
 
@@ -33,15 +32,13 @@
 
 .ScoreHolder
 {
-	horizontal-align : left;
-	height: 128px;
-    width: 90px;
+  vertical-align: middle;
+  width: 90px;
 }
 
 .ScoreHolder Label, #Lasthits, #Denies
 {
 	vertical-align: middle;
-	horizontal-align : center;
 	color: #a0a0a0;
 }
 
@@ -61,7 +58,6 @@
 {
 	horizontal-align : left;
 }
-
 
 .lh_anim #Lasthits
 {

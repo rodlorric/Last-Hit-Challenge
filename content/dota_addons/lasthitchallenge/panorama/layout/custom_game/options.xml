@@ -37,6 +37,15 @@
 				 	<Label id="cs_accuracy" text="100%"/>
 				</Panel>
 				<Panel class="MinimizeButton">
+					<Label text="#controlpanel_possible"/>
+				</Panel>
+				<Panel class="Category">
+				 	<Label text="#controlpanel_possible_radiant"/>
+				 	<Label id="max_radiant" text="--"/>
+				 	<Label text="#controlpanel_possible_dire"/>
+				 	<Label id="max_dire" text="--"/>
+				</Panel>
+				<Panel class="MinimizeButton">
 					<Label text="#controlpanel_options"/>
 				</Panel>
 				<Panel id="buttons_category" class="Category">

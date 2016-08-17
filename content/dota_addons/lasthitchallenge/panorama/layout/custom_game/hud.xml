@@ -16,7 +16,6 @@
 		<Panel id="score_panel" class="ScorePanel">
 			<Panel class="ScorePanelContainer">
 				<Label text="#hud_score_panel"/>
-				<Panel class="ScoreHolder"/>
 				<Panel class="ScoreHolder">
 					<Label id="Lasthits" text="0"/>
 				</Panel>

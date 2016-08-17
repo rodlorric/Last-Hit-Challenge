@@ -61,7 +61,7 @@ function CLastHitChallenge:OnNewPick(params)
 							CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "time_screen", {})
 						end
 					else
-						CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID})
+						CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID, radiant_creeps_spawned = radiant_creeps_spawned, dire_creeps_spawned = dire_creeps_spawned})
 						--CustomGameEventManager:Send_ServerToAllClients("start", { time = MAXTIME, heroId = heroId, leveling = leveling, playerId = playerId})
 					end
 				end
@@ -73,7 +73,7 @@ function CLastHitChallenge:OnNewPick(params)
 		MAXTIME = time
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 			if PlayerResource:IsValidPlayer( nPlayerID ) then
-				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID})
+				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID, radiant_creeps_spawned = radiant_creeps_spawned, dire_creeps_spawned = dire_creeps_spawned})
 				--CustomGameEventManager:Send_ServerToAllClients("start", { time = MAXTIME, heroId = heroId, leveling = leveling, playerId = playerId})
 			end
 		end
@@ -102,9 +102,14 @@ function CLastHitChallenge:OnSpawnHeroes(params)
 	end
 end
 
+radiant_maxspawns = 0
+dire_maxspawns = 0
 function CLastHitChallenge:OnStart()
 	iter = 1
-	CLastHitChallenge:SpawnCreeps()
+
+	CLastHitChallenge:ClearData()
+
+    CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()
 
 	--leveling, it is playerid = 0 because it is enough with the host
@@ -199,6 +204,23 @@ end
 function CLastHitChallenge:ClearData()
 	restarts = restarts + 1
 
+	if (MAXTIME == 150) then 
+    	radiant_maxspawns = 20;
+    	dire_maxspawns = 20;
+    elseif (MAXTIME == 300) then
+    	radiant_maxspawns = 41;
+    	dire_maxspawns = 41;
+    elseif (MAXTIME == 450) then
+    	radiant_maxspawns = 62;
+    	dire_maxspawns = 62;
+    elseif (MAXTIME == 600) then
+    	radiant_maxspawns = 82;
+    	dire_maxspawns = 82;
+    else 
+    	radiant_maxspawns = ">>"
+    	dire_maxspawns = ">>"
+    end
+
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
 	end
@@ -278,13 +300,12 @@ function CLastHitChallenge:IsReconnecting(data)
 	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(pid), "reconnect", { value = player_stats[pid].disconnected } )
 	if player_stats[pid].disconnected then
 		CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(pid), "start", { time = MAXTIME, heroId = player_stats[pid].hero_picked, leveling = player_stats[pid].leveling, 
-			playerId = pid})
+			playerId = pid, radiant_creeps_spawned = radiant_creeps_spawned, dire_creeps_spawned = dire_creeps_spawned})
 	end
 	player_stats[pid].disconnected = false
 end
 
 function CLastHitChallenge:EndGame()
-	print("Total creeps spawned = " .. tostring(radiant_creeps_spawned + dire_creeps_spawned))
 	if seconds < shortest_time or shortest_time == MAXTIME then
 		shortest_time = seconds
 	end
@@ -565,100 +586,101 @@ function CLastHitChallenge:OnEntityKilled (event)
 				local dn = PlayerResource:GetDenies(nPlayerID) - player_stats[nPlayerID].current_cs["dn"]
 				local cs = lh + dn
 
-				if attacker:IsRealHero() and not killedUnit:IsRealHero() then
-					local playerId = attacker:GetPlayerID()
-					if playerId == nPlayerID then
-						local hero_picked = player_stats[nPlayerID].hero_picked
-						--heatmap
-						local xy = killedUnit:GetOrigin()
-						CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "heatmap", {x = xy.x, y = xy.y})
-						
-						--Streaks
-						player_stats[nPlayerID].cs_streak = player_stats[nPlayerID].cs_streak + 1 
-						if player_stats[nPlayerID].cs_streak > player_stats[nPlayerID].max_cs_streak then
-							player_stats[nPlayerID].max_cs_streak = player_stats[nPlayerID].cs_streak
-						end
-
-						local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling )
-						
-						--Deny
-						if friendly then
-							local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
-							--streaks
-							player_stats[nPlayerID].deny_streak = player_stats[nPlayerID].deny_streak + 1
-							if player_stats[nPlayerID].deny_streak > player_stats[nPlayerID].max_deny_streak then
-								player_stats[nPlayerID].max_deny_streak = player_stats[nPlayerID].deny_streak
+				if not killedUnit:IsHero() then					
+					if attacker:IsRealHero() then
+						local playerId = attacker:GetPlayerID()
+						if playerId == nPlayerID then
+							local hero_picked = player_stats[nPlayerID].hero_picked
+							--heatmap
+							local xy = killedUnit:GetOrigin()
+							CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "heatmap", {x = xy.x, y = xy.y})
+							
+							--Streaks
+							player_stats[nPlayerID].cs_streak = player_stats[nPlayerID].cs_streak + 1 
+							if player_stats[nPlayerID].cs_streak > player_stats[nPlayerID].max_cs_streak then
+								player_stats[nPlayerID].max_cs_streak = player_stats[nPlayerID].cs_streak
 							end
 
-							CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_dn", { value = dn } )
-
-							if (dn > stats_record_dn.value or cs > stats_record_cs.value) and (dn <= (PlayerResource:GetTeam(nPlayerID) == 0 and dire_creeps_spawned or radiant_creeps_spawned)) then
-								if dn > stats_record_dn.value and MAXTIME ~= -1 then
-									stats_record_dn.value = dn
-									--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
-									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_dn)
-									player_stats[nPlayerID].new_record = true
+							local stats_record_cs = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling )
+							
+							--Deny
+							if friendly then
+								local stats_record_dn = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
+								--streaks
+								player_stats[nPlayerID].deny_streak = player_stats[nPlayerID].deny_streak + 1
+								if player_stats[nPlayerID].deny_streak > player_stats[nPlayerID].max_deny_streak then
+									player_stats[nPlayerID].max_deny_streak = player_stats[nPlayerID].deny_streak
 								end
-							end
+
+								CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_dn", { value = dn } )
+
+								if (dn > stats_record_dn.value or cs > stats_record_cs.value) and (dn <= (PlayerResource:GetTeam(nPlayerID) == 0 and dire_creeps_spawned or radiant_creeps_spawned)) then
+									if dn > stats_record_dn.value and MAXTIME ~= -1 then
+										stats_record_dn.value = dn
+										--CustomNetTables:SetTableValue("stats_records", "stats_record_dn_" .. hero_picked .. "_" .. tostring(MAXTIME) .. "_" .. leveling, stats_record_dn)
+										CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "d" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_dn)
+										player_stats[nPlayerID].new_record = true
+									end
+								end
 
 
-							--Totals Details
-							if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
-								if killedUnit:IsRangedAttacker() then
-									player_stats[nPlayerID].ranged_dn = player_stats[nPlayerID].ranged_dn + 1
+								--Totals Details
+								if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
+									if killedUnit:IsRangedAttacker() then
+										player_stats[nPlayerID].ranged_dn = player_stats[nPlayerID].ranged_dn + 1
+									else
+										player_stats[nPlayerID].melee_dn = player_stats[nPlayerID].melee_dn + 1
+									end
+								--elseif killedUnit:IsTower() then
+								--	tower_dn = tower_dn + 1
 								else
-									player_stats[nPlayerID].melee_dn = player_stats[nPlayerID].melee_dn + 1
+									player_stats[nPlayerID].siege_dn = player_stats[nPlayerID].siege_dn + 1
 								end
-							--elseif killedUnit:IsTower() then
-							--	tower_dn = tower_dn + 1
-							else
-								player_stats[nPlayerID].siege_dn = player_stats[nPlayerID].siege_dn + 1
-							end
 
-						else --LastHit
-							local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
-							--streak
-							player_stats[nPlayerID].last_hit_streak = player_stats[nPlayerID].last_hit_streak + 1
-							if player_stats[nPlayerID].last_hit_streak > player_stats[nPlayerID].max_last_hit_streak then
-								player_stats[nPlayerID].max_last_hit_streak = player_stats[nPlayerID].last_hit_streak
-							end
-
-							CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_lh", { value = lh } );
-							if (lh > stats_record_lh.value or cs > stats_record_cs.value) and (lh <= (PlayerResource:GetTeam(nPlayerID) == 0 and radiant_creeps_spawned or dire_creeps_spawned)) then
-								if lh > stats_record_lh.value and MAXTIME ~= -1 then
-									stats_record_lh.value = lh
-									CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_lh)
-									player_stats[nPlayerID].new_record = true
+							else --LastHit
+								local stats_record_lh = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
+								--streak
+								player_stats[nPlayerID].last_hit_streak = player_stats[nPlayerID].last_hit_streak + 1
+								if player_stats[nPlayerID].last_hit_streak > player_stats[nPlayerID].max_last_hit_streak then
+									player_stats[nPlayerID].max_last_hit_streak = player_stats[nPlayerID].last_hit_streak
 								end
-							end
 
-							--Totals Details
-							if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
-								if killedUnit:IsRangedAttacker() then
-									player_stats[nPlayerID].ranged_lh = player_stats[nPlayerID].ranged_lh + 1
+								CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_lh", { value = lh } );
+								if (lh > stats_record_lh.value or cs > stats_record_cs.value) and (lh <= (PlayerResource:GetTeam(nPlayerID) == 0 and radiant_creeps_spawned or dire_creeps_spawned)) then
+									if lh > stats_record_lh.value and MAXTIME ~= -1 then
+										stats_record_lh.value = lh
+										CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "l" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_lh)
+										player_stats[nPlayerID].new_record = true
+									end
+								end
+
+								--Totals Details
+								if killedUnit:IsCreep() and killedUnitName ~= "npc_dota_badguys_siege" and killedUnitName ~= "npc_dota_goodguys_siege" then
+									if killedUnit:IsRangedAttacker() then
+										player_stats[nPlayerID].ranged_lh = player_stats[nPlayerID].ranged_lh + 1
+									else
+										player_stats[nPlayerID].melee_lh = player_stats[nPlayerID].melee_lh + 1
+									end
+								--elseif killedUnit:IsTower() then
+								--	tower_lh = tower_lh + 1
 								else
-									player_stats[nPlayerID].melee_lh = player_stats[nPlayerID].melee_lh + 1
+									player_stats[nPlayerID].siege_lh = player_stats[nPlayerID].siege_lh + 1
 								end
-							--elseif killedUnit:IsTower() then
-							--	tower_lh = tower_lh + 1
-							else
-								player_stats[nPlayerID].siege_lh = player_stats[nPlayerID].siege_lh + 1
+							end
+							CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_cs", { value = lh + dn } );
+							
+							--To track all time cs
+							session_cs = session_cs + 1
+
+							--Records
+							if cs > stats_record_cs.value and MAXTIME ~= -1 and cs <= (dire_creeps_spawned + radiant_creeps_spawned) then
+								stats_record_cs.value = cs
+								CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling , stats_record_cs)
+								player_stats[nPlayerID].new_record = true
 							end
 						end
-						CustomNetTables:SetTableValue( "stats_totals", tostring(nPlayerID) .. "stats_total_cs", { value = lh + dn } );
-						
-						--To track all time cs
-						session_cs = session_cs + 1
-
-						--Records
-						if cs > stats_record_cs.value and MAXTIME ~= -1 and cs <= (dire_creeps_spawned + radiant_creeps_spawned) then
-							stats_record_cs.value = cs
-							CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "c" .. hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling , stats_record_cs)
-							player_stats[nPlayerID].new_record = true
-						end
-					end
-				else -- misses
-					if not killedUnit:IsHero() then
+					else -- misses
+						--if not killedUnit:IsHero() then
 						--streaks
 						player_stats[nPlayerID].cs_streak = 0
 
@@ -705,6 +727,14 @@ function CLastHitChallenge:OnEntityKilled (event)
 								CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "hurt_entity", {index = event.entindex_killed, msg = "missed"})
 							end
 						end
+						end
+					if MAXTIME ~= -1 then
+						if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+							radiant_maxspawns = radiant_maxspawns - 1
+						else 
+							dire_maxspawns = dire_maxspawns - 1
+						end
+						CustomGameEventManager:Send_ServerToAllClients("creepdeath", { friendly = friendly, radiant_maxspawns = radiant_maxspawns, dire_maxspawns = dire_maxspawns })
 					end
 				end
 
@@ -792,7 +822,6 @@ function CLastHitChallenge:Spawner()
 		end
 	end
 	iter = iter + 1
-	print("radiant_creeps_spawned = " .. radiant_creeps_spawned .. " dire_creeps_spawned = " .. dire_creeps_spawned)
 end
 
 function CLastHitChallenge:OnSync(params)
@@ -865,6 +894,8 @@ function CLastHitChallenge:OnRestart(playerId)
 	end
 	]]
 	--CLastHitChallenge:GiveZeroGold(player_hero)
+	CustomGameEventManager:Send_ServerToAllClients("creepdeath", { friendly = friendly, radiant_maxspawns = radiant_maxspawns, dire_maxspawns = dire_maxspawns })
+
 	iter = 1
 	CLastHitChallenge:SpawnCreeps()
 	CLastHitChallenge:Clock()

@@ -6,8 +6,8 @@
 
 .ControlPanel
 {
-    transform: translateX( 5px ) translateY( -100px );
-    vertical-align: middle;
+    transform: translateX( 5px ) translateY( 40px );
+    vertical-align: top;
     horizontal-align: right;
     padding: 4px;
     padding-left: 0px;
@@ -87,7 +87,7 @@
 
 .ControlPanel.Minimized
 {
-    transform: translateX( 195px ) translateY(-100px);
+    transform: translateX( 195px ) translateY(40px);
 }
 
 .ControlPanelContainer Label
@@ -172,7 +172,7 @@
 	color: #888888;
 }
 
-.Category #cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy
+.Category #cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy, #max_radiant, #max_dire
 {
 	text-align: center;
 	font-size: 20;
@@ -248,7 +248,7 @@
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #777777 ), to( #999999 ) );
 }
 
-#cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy
+#cs, #lh, #dn, #cs_accuracy, #lh_accuracy, #dn_accuracy, #max_radiant, #max_dire
 {
 	animation-duration: 0.3s;
   	animation-timing-function: linear;
@@ -286,6 +286,18 @@
 }
 
 .dn_accuracy_anim #dn_accuracy
+{
+    visibility: visible;
+    animation-name: record;
+}
+
+.max_radiant_anim #max_radiant
+{
+    visibility: visible;
+    animation-name: record;
+}
+
+.max_dire_anim #max_dire
 {
     visibility: visible;
     animation-name: record;

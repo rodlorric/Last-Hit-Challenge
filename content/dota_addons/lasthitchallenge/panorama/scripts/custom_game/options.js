@@ -47,6 +47,8 @@ function OnResetAnimation() {
 	panel.SetHasClass( "cs_accuracy_anim", false );
 	panel.SetHasClass( "lh_accuracy_anim", false );
 	panel.SetHasClass( "dn_accuracy_anim", false );
+	panel.SetHasClass( "max_radiant_anim", false );
+	panel.SetHasClass( "max_dire_anim", false );
 }
 
 function OnToggle(){
@@ -58,6 +60,15 @@ function OnToggle(){
 		overlay.style.visibility = "visible";
 	}
 	GameEvents.SendCustomGameEventToServer( "hidehelp", { "hidehelp" : toggleButton.checked });
+}
+
+function OnCreepDeath(data){
+	var panel = $.GetContextPanel();
+	$("#max_radiant").text = data.radiant_maxspawns;
+	panel.SetHasClass( "max_radiant_anim", true );
+	$("#max_dire").text = data.dire_maxspawns;
+	panel.SetHasClass( "max_dire_anim", true );
+	$.Schedule( 1, OnResetAnimation );
 }
 
 function OnInvulnerability(){
@@ -102,13 +113,28 @@ function OnStart(data){
 
     if (time == -1){
     	$("#invulnerability").style.visibility = "visible;";
-    	$("#controlpanelcontainer").style.height = "750px";
+    	$("#controlpanelcontainer").style.height = "830px";
     } else {
     	$("#invulnerability").style.visibility = "collapse;";
-    	$("#controlpanelcontainer").style.height = "730px";
+    	$("#controlpanelcontainer").style.height = "860px";
     }
     GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : false });
    	$("#invulnerability").checked = false;
+
+   	var max = "--";
+   	if (time == 150){
+   		max = 20;
+   	} else if (time == 300){
+   		max = 41;
+   	} else if (time == 450){
+   		max = 62;
+   	} else if (time == 600){
+   		max = 82;
+   	} else {
+   		max = "--";
+   	}
+   	$("#max_radiant").text = max;
+   	$("#max_dire").text = max;
 	$.Schedule( 1, OnResetAnimation );
 }
 
@@ -165,7 +191,7 @@ function OnChangeTime(){
 	GameEvents.SendCustomGameEventToServer( "sync", { "value" : "time"})
 }
 
-function OnSync(params){
+function OnSync(params){	
 	var option = params.value;
 	if (option == "hero") { 
 		//var pickcreen = $.CreatePanel( "Panel", $.GetContextPanel(), "PickScreen" );
@@ -209,6 +235,7 @@ function HeroName(hero_picked){
 	GameEvents.Subscribe("start", OnStart);
 	GameEvents.Subscribe("sync", OnSync);
 	GameEvents.Subscribe("invulnerable", OnInvulnerable);
+	GameEvents.Subscribe("creepdeath", OnCreepDeath);
 	//Setup for popup panel.
 	var overlay = $.CreatePanel( "Panel", $.GetContextPanel(), "OverlayPanel" );
 	overlay.BLoadLayout( "file://{resources}/layout/custom_game/overlay.xml", false, false );

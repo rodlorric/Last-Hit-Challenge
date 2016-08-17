@@ -48,6 +48,8 @@
 		"controlpanel_options"				"Opciones"
 		"controlpanel_hide_help"			"Ocultar Ayuda"
 		"controlpanel_invulnerability"		"Invulnerabilidad"
+		"controlpanel_possible_radiant"		"Radiant"
+		"controlpanel_possible_dire"		"Dire"
 		"overlay_very_low"					"¡Muy pronto!"
 		"overlay_low"						"¡Aún no!"
 		"overlay_medium"					"¡Falta la midad!"
