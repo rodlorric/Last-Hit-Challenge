@@ -119,6 +119,7 @@
 							<Label text="#npc_dota_hero_troll_warlord" id="95"/>
 							<Label text="#npc_dota_hero_tusk" id="100"/>
 							<Label text="#npc_dota_hero_undying" id="85"/>
+							<Label text="#npc_dota_hero_abyssal_underlord" id="108"/>
 							<Label text="#npc_dota_hero_ursa" id="70"/>
 							<Label text="#npc_dota_hero_vengefulspirit" id="20"/>
 							<Label text="#npc_dota_hero_venomancer" id="40"/>
