@@ -28,9 +28,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -44,8 +42,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 7
 	}
 
 	//=================================================================================================================
@@ -58,11 +55,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Invoker
@@ -76,9 +70,18 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"no_abilities"								// Ability 8
+		"Ability9"					"no_abilities"								// Ability 9
+		"Ability10"					"no_abilities"								// Ability 10
+		"Ability11"					"no_abilities"								// Ability 11
+		"Ability12"					"no_abilities"								// Ability 12
+		"Ability13"					"no_abilities"								// Ability 13
+		"Ability14"					"no_abilities"								// Ability 14
+		"Ability15"					"no_abilities"								// Ability 15
+		"Ability16"					"no_abilities"								// Ability 16
+		"Ability17"					"attribute_bonus_last_hit_challenge"		// Ability 17
 	}
-
 
 	//=================================================================================================================
 	// HERO: Outworld Devourer
@@ -90,11 +93,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Queen of Pain
@@ -106,11 +106,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Puck
@@ -123,10 +120,8 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6		
 	}
-
 
 	//=================================================================================================================
 	// HERO: Death Prophet
@@ -138,11 +133,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Leshrac
@@ -154,11 +146,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Ember Spirit
@@ -171,10 +160,8 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
-
 
 	//=================================================================================================================
 	// HERO: Lina
@@ -186,11 +173,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Viper
@@ -202,11 +186,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Magnus
@@ -218,11 +199,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Sniper
@@ -234,11 +212,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Dragon Knight
@@ -250,11 +225,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Kunkka
@@ -271,7 +243,6 @@
 		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
 	}
 
-
 	//=================================================================================================================
 	// HERO: Brewmaster
 	//=================================================================================================================
@@ -282,11 +253,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Night Stalker
@@ -298,11 +266,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Huskar
@@ -314,11 +279,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Tiny
@@ -330,11 +292,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Windranger
@@ -346,11 +305,8 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
-
 
 	//=================================================================================================================
 	// HERO: Zues
@@ -362,9 +318,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -377,25 +331,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
-	}
-
-
-	//=================================================================================================================
-	// HERO: Antimage
-	//=================================================================================================================
-	"npc_dota_hero_antimage_last_hit_challenge"
-	{
-		"override_hero"				"npc_dota_hero_antimage"						// Hero to override
-		"Ability1"					"no_abilities"								// Ability 1
-		"Ability2"					"no_abilities"								// Ability 2
-		"Ability3"					"no_abilities"								// Ability 3
-		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -408,9 +344,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -438,9 +372,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -453,9 +385,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -468,9 +398,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -483,9 +411,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -498,9 +424,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -513,9 +437,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -530,7 +452,9 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"no_abilities"								// Ability 8
+		"Ability9"					"attribute_bonus_last_hit_challenge"		// Ability 9
 	}
 
 	//=================================================================================================================
@@ -543,9 +467,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -558,9 +480,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -573,9 +493,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -588,9 +506,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -603,9 +519,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -618,9 +532,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -633,9 +545,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -648,9 +558,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -663,9 +571,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -678,9 +584,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -693,9 +597,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -708,9 +610,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -723,9 +623,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -738,9 +636,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -753,9 +649,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -768,9 +662,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -784,8 +676,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -798,9 +689,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -813,9 +702,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -828,9 +715,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -843,9 +728,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -858,9 +741,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -873,9 +754,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -888,9 +767,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -903,9 +780,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -918,9 +793,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -935,7 +808,9 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"no_abilities"								// Ability 8
+		"Ability9"					"attribute_bonus_last_hit_challenge"		// Ability 9
 	}
 
 	//=================================================================================================================
@@ -948,9 +823,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -963,9 +836,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -978,9 +849,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -993,9 +862,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1008,9 +875,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1023,9 +888,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1038,9 +901,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1053,9 +914,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1069,8 +928,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1084,8 +942,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1114,8 +971,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1127,10 +983,8 @@
 		"Ability1"					"no_abilities"								// Ability 1
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
-		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1143,9 +997,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1157,10 +1009,8 @@
 		"Ability1"					"no_abilities"								// Ability 1
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
-		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1173,9 +1023,9 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
 	}
 	
 	//=================================================================================================================
@@ -1188,9 +1038,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1203,9 +1051,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 	
 	//=================================================================================================================
@@ -1219,8 +1065,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1248,9 +1093,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1263,9 +1106,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1279,8 +1120,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1294,12 +1134,11 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
-	// HERO: Undiying
+	// HERO: Undying
 	//=================================================================================================================
 	"npc_dota_hero_undying_last_hit_challenge"
 	{
@@ -1308,9 +1147,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1325,7 +1162,11 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"attribute_bonus_last_hit_challenge"		// Ability 8
+		"Ability9"					"no_abilities"								// Ability 9
+		"Ability10"					"no_abilities"								// Ability 10
+		"Ability11"					"no_abilities"								// Ability 11
 	}
 
 	//=================================================================================================================
@@ -1338,9 +1179,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1369,8 +1208,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1385,7 +1223,10 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"no_abilities"								// Ability 8
+		"Ability9"					"no_abilities"								// Ability 9
+		"Ability10"					"attribute_bonus_last_hit_challenge"		// Ability 10
 	}
 
 	//=================================================================================================================
@@ -1400,7 +1241,10 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"attribute_bonus_last_hit_challenge"		// Ability 8
+		"Ability9"					"no_abilities"								// Ability 9
+		"Ability10"					"no_abilities"								// Ability 10
 	}
 
 	//=================================================================================================================
@@ -1413,9 +1257,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1428,9 +1270,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1443,9 +1283,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1459,8 +1297,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1473,9 +1310,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1490,7 +1325,8 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"attribute_bonus_last_hit_challenge"		// Ability 8
 	}
 
 	//=================================================================================================================
@@ -1503,9 +1339,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1533,9 +1367,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1548,9 +1380,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1564,8 +1394,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1578,13 +1407,11 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
-	// HERO: Legion Commander
+	// HERO: Earth Spirit
 	//=================================================================================================================
 	"npc_dota_hero_earth_spirit_last_hit_challenge"
 	{
@@ -1609,8 +1436,7 @@
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability6"					"attribute_bonus_last_hit_challenge"		// Ability 6
 	}
 
 	//=================================================================================================================
@@ -1623,9 +1449,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1640,7 +1464,10 @@
 		"Ability4"					"no_abilities"								// Ability 4
 		"Ability5"					"no_abilities"								// Ability 5
 		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability7"					"no_abilities"								// Ability 7
+		"Ability8"					"no_abilities"								// Ability 8
+		"Ability9"					"no_abilities"								// Ability 9
+		"Ability10"					"attribute_bonus_last_hit_challenge"		// Ability 10
 	}
 
 	//=================================================================================================================
@@ -1653,9 +1480,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1683,9 +1508,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1698,9 +1521,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 	//=================================================================================================================
@@ -1713,9 +1534,7 @@
 		"Ability2"					"no_abilities"								// Ability 2
 		"Ability3"					"no_abilities"								// Ability 3
 		"Ability4"					"no_abilities"								// Ability 4
-		"Ability5"					"no_abilities"								// Ability 5
-		"Ability6"					"no_abilities"								// Ability 6
-		"Ability7"					"attribute_bonus_last_hit_challenge"		// Ability 7
+		"Ability5"					"attribute_bonus_last_hit_challenge"		// Ability 5
 	}
 
 
