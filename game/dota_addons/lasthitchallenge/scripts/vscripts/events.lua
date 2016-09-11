@@ -71,6 +71,7 @@ function CLastHitChallenge:OnNewPick(params)
 
 	if time ~= nil then
 		MAXTIME = time
+		TIMEUP = MAXTIME + 5
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 			if PlayerResource:IsValidPlayer( nPlayerID ) then
 				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID, radiant_creeps_spawned = radiant_creeps_spawned, dire_creeps_spawned = dire_creeps_spawned})
@@ -194,7 +195,7 @@ function CLastHitChallenge:OnThink()
   		return 1
 	end
 
-	if seconds == MAXTIME then
+	if seconds == TIMEUP then
 		CLastHitChallenge:EndGame()
 	end
 
@@ -306,7 +307,7 @@ function CLastHitChallenge:IsReconnecting(data)
 end
 
 function CLastHitChallenge:EndGame()
-	if seconds < shortest_time or shortest_time == MAXTIME then
+	if seconds < shortest_time or shortest_time == TIMEUP then
 		shortest_time = seconds
 	end
 
@@ -359,7 +360,7 @@ function CLastHitChallenge:EndGame()
 
 			--Records
 			local stats_record_accuracy = CustomNetTables:GetTableValue( "stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling)
-			if seconds == MAXTIME then
+			if seconds == TIMEUP then
 				if accuracy > stats_record_accuracy.value and MAXTIME ~= -1 then
 					stats_record_accuracy.value = accuracy
 					CustomNetTables:SetTableValue("stats_records", tostring(nPlayerID) .. "a" .. player_stats[nPlayerID].hero_picked .. tostring(MAXTIME) .. player_stats[nPlayerID].leveling, stats_record_accuracy)
@@ -402,10 +403,9 @@ function CLastHitChallenge:EndGame()
 			sec = string.format("%.2d", shortest_time%60)
 			CustomNetTables:SetTableValue( "stats_time", tostring(nPlayerID) .. "stats_time_shortest", { value = tostring(min) .. ":" .. tostring(sec) } );
 
-
 			CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "end_screen", {time = seconds, hero = player_stats[nPlayerID].hero_picked, level = player_stats[nPlayerID].leveling, maxtime = MAXTIME})
 			
-			if seconds == MAXTIME then
+			if seconds == TIMEUP then
 				seconds = 0	
 			end
 		end
@@ -785,43 +785,45 @@ end
 function CLastHitChallenge:Spawner()
 	local point = nil
 	local waypoint = nil
-	for i=1,2 do
-	    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
-	    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
-		if waypoint then
-			for j=1,4 do		
-				unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
-				if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
-					if unit:IsCreep() and unit:IsRangedAttacker() then
-						unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
-						unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 2)
-					else
-						unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 1)
-						unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 1)
+	if seconds < MAXTIME then
+		for i=1,2 do
+		    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
+		    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
+			if waypoint then
+				for j=1,4 do		
+					unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+					if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
+						if unit:IsCreep() and unit:IsRangedAttacker() then
+							unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
+							unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 2)
+						else
+							unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 1)
+							unit:SetBaseDamageMax(unit:GetBaseDamageMin() + 1)
+						end
+						unit:SetMaxHealth(unit:GetMaxHealth() + 10)
+						unit:SetHealth(unit:GetMaxHealth())
 					end
-					unit:SetMaxHealth(unit:GetMaxHealth() + 10)
-					unit:SetHealth(unit:GetMaxHealth())
+					unit:SetInitialGoalEntity(waypoint)
+					if i == 1 then
+						radiant_creeps_spawned = radiant_creeps_spawned + 1
+					else
+						dire_creeps_spawned = dire_creeps_spawned + 1
+					end
 				end
-				unit:SetInitialGoalEntity(waypoint)
-				if i == 1 then
-					radiant_creeps_spawned = radiant_creeps_spawned + 1
-				else
-					dire_creeps_spawned = dire_creeps_spawned + 1
-				end
-			end
-			-- spawn siege creep every 7th wave
-			if iter % 7 == 0 then
-				unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
-				unit:SetInitialGoalEntity(waypoint)
-				if i == 1 then
-					radiant_creeps_spawned = radiant_creeps_spawned + 1
-				else
-					dire_creeps_spawned = dire_creeps_spawned + 1
+				-- spawn siege creep every 7th wave
+				if iter % 7 == 0 then
+					unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+					unit:SetInitialGoalEntity(waypoint)
+					if i == 1 then
+						radiant_creeps_spawned = radiant_creeps_spawned + 1
+					else
+						dire_creeps_spawned = dire_creeps_spawned + 1
+					end
 				end
 			end
 		end
+		iter = iter + 1
 	end
-	iter = iter + 1
 end
 
 function CLastHitChallenge:OnSync(params)
