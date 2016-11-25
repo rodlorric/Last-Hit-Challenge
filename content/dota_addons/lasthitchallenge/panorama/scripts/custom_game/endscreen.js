@@ -365,7 +365,7 @@ function OnEndScreen(data) {
   		x_label.text = minutes;
 	};
 
-	if (data.time != data.maxtime){
+	if ((data.time - 5) != data.maxtime){
 		var localPlayer = Game.GetPlayerInfo(Game.GetLocalPlayerID());
     	if (localPlayer['player_has_host_privileges']){
 			$("#cancel_button").style.visibility = "visible;"

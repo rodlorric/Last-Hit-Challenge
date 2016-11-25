@@ -12,7 +12,7 @@
 		  		<Panel class="Header">
 			  		<Label text="#endcreen_title"/>
 		  			<Button id="close_button_top" class="CloseButton" onactivate="OnQuit()"/>
-		  			<Button id="cancel_button_top" class="CloseButton" onactivate="OnCancel()"/>			  					  			
+		  			<Button id="cancel_button_top" style="visibility: collapse;" class="CloseButton" onactivate="OnCancel()"/>				  			
 			  	</Panel>
 			  	<Panel class="Category">
 			  			<Label text="#endscreen_totals"/>
