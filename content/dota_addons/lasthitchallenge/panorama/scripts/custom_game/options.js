@@ -113,10 +113,10 @@ function OnStart(data){
 
     if (time == -1){
     	$("#invulnerability").style.visibility = "visible;";
-    	$("#controlpanelcontainer").style.height = "830px";
+    	$("#controlpanelcontainer").style.height = "860px";
     } else {
     	$("#invulnerability").style.visibility = "collapse;";
-    	$("#controlpanelcontainer").style.height = "860px";
+    	$("#controlpanelcontainer").style.height = "890px";
     }
     GameEvents.SendCustomGameEventToServer( "invulnerability", { "invulnerability" : false });
    	$("#invulnerability").checked = false;
