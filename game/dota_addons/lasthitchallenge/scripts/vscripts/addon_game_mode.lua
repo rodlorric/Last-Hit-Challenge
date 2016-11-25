@@ -19,6 +19,21 @@ _G.cheater = false
 --good
 _G.particle_aura = "particles/units/heroes/hero_silencer/silencer_last_word_status.vpcf"
 
+--local dev backend
+--_G.STORAGEAPI_API_URL = "http://localhost:5000/"
+
+--remote dev backend
+--_G.STORAGEAPI_API_URL = "http://lasthitchallengedev-sphexing.rhcloud.com/"
+
+--remote release backend
+_G.STORAGEAPI_API_URL = "http://lasthitchallenge-sphexing.rhcloud.com/"
+
+_G.STORAGEAPI_API_URL_LEADERBOARD = STORAGEAPI_API_URL .. "leaderboard"
+_G.STORAGEAPI_API_URL_CHEATERS = STORAGEAPI_API_URL .. "cheaters"
+_G.STORAGEAPI_API_URL_RECORDS = STORAGEAPI_API_URL .. "records"
+
+
+
 --_G.particle_aura = "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff_glow.vpcf"
 --_G.particle_aura = "particles/units/heroes/hero_phoenix/phoenix_sunray_debuff.vpcf"
 --_G.particle_aura = "particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_debuff_jewel.vpcf"
