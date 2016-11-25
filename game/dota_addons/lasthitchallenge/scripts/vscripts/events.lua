@@ -71,7 +71,12 @@ function CLastHitChallenge:OnNewPick(params)
 
 	if time ~= nil then
 		MAXTIME = time
-		TIMEUP = MAXTIME + 5
+		if MAXTIME > 0 then
+			TIMEUP = MAXTIME + 5
+		else 
+			TIMEUP = MAXTIME
+		end
+
 		for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
 			if PlayerResource:IsValidPlayer( nPlayerID ) then
 				CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(nPlayerID), "start", { time = MAXTIME, heroId = player_stats[nPlayerID].hero_picked, leveling = player_stats[nPlayerID].leveling, playerId = nPlayerID, radiant_creeps_spawned = radiant_creeps_spawned, dire_creeps_spawned = dire_creeps_spawned})
@@ -785,7 +790,7 @@ end
 function CLastHitChallenge:Spawner()
 	local point = nil
 	local waypoint = nil
-	if seconds < MAXTIME then
+	if seconds < MAXTIME or MAXTIME < 0 then
 		for i=1,2 do
 		    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
 		    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
@@ -851,7 +856,7 @@ function CLastHitChallenge:OnRestart(playerId)
   		PauseGame(false)
 	end
 
-	if seconds < shortest_time or shortest_time == MAXTIME then
+	if seconds < shortest_time or shortest_time == TIMEUP then
 		shortest_time = seconds
 	end
 
