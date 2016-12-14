@@ -75,6 +75,7 @@
 							<Label text="#npc_dota_hero_medusa" id="94"/>
 							<Label text="#npc_dota_hero_meepo" id="82"/>
 							<Label text="#npc_dota_hero_mirana" id="9"/>
+							<Label text="#npc_dota_hero_monkey_king" id="114"/>
 							<Label text="#npc_dota_hero_morphling" id="10"/>
 							<Label text="#npc_dota_hero_naga_siren" id="89"/>
 							<Label text="#npc_dota_hero_furion" id="53"/>
