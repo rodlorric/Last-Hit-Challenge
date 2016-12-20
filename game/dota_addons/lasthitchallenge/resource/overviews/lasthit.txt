@@ -1,8 +1,8 @@
 lasthit
 {
 	material materials/overviews/lasthit.vmat
-	pos_x -3072
-	pos_y 2176
-	scale 5.000
+	pos_x 0
+	pos_y -2147483648
+	scale -332306979139188339659867366684098560.000
 }
 
