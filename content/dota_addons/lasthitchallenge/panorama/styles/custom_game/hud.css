@@ -6,10 +6,11 @@
 
 .ScorePanel
 {
-	transform: translateX( 160px ) translateY( 0% );
+	transform: translateX( 40px ) translateY( -2.5% );
   vertical-align: bottom;
   horizontal-align: center;
   visibility: collapse;
+  text-shadow: -1px 0 black, 0 5px black, 5px 0 black, 0 -5px black;
 }
 
 
@@ -22,11 +23,13 @@
 
 .ScorePanelContainer Label
 {	
+  font-family: RadianceM;
 	vertical-align: middle;
 	horizontal-align : right;
-	margin-left: 5px;
-	color: #444444;
-  font-size: 50;
+	margin-left: 10px;
+  text-shadow: 3px 3px 3px 3 #00000099;
+	color: #A3B5D0cc;
+  font-size: 40;
   font-weight: bold;  
 }
 
@@ -36,14 +39,9 @@
   width: 90px;
 }
 
-.ScoreHolder Label, #Lasthits, #Denies
-{
-	vertical-align: middle;
-	color: #a0a0a0;
-}
-
 #Lasthits, #Denies
 {
+  color: white;
 	animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;

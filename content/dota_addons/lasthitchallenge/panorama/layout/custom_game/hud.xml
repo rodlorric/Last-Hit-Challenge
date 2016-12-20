@@ -19,7 +19,7 @@
 				<Panel class="ScoreHolder">
 					<Label id="Lasthits" text="0"/>
 				</Panel>
-				<Label text=" / " style="color: #a0a0a0;" />
+				<Label text=" / " style="color: #A3B5D0cc;" />
 				<Panel class="ScoreHolder">
 					<Label id="Denies" text="0"/>
 				</Panel>
