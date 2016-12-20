@@ -173,8 +173,9 @@ function OnReconnect(data){
                         img.AddClass("Satyr");
                         img.style.width = "128px";
                         img.style.height = "72px";
-                        img.style.backgroundImage = 'url("file://{images}/pickscreen/npc_dota_hero_random.png");';
-                        img.style.backgroundPosition = "0% 0%;";
+                        //img.style.backgroundImage = 'url("file://{images}/pickscreen/npc_dota_hero_random.png");';
+                        img.style.backgroundImage = 'url("s2r://panorama/images/control_icons/random_dice_psd.vtex")';                        
+                        img.style.backgroundPosition = "50% 0%;";
                         img.style.backgroundSize = "contain";
                         img.style.backgroundRepeat = "no-repeat;";
                 }
