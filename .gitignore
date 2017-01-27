@@ -14,6 +14,7 @@ content/dota_addons/rpg_example/*
 content/dota_addons/rpg_example_test/*
 content/dota_addons/ui_example/*
 content/dota_addons/ui_example_test/*
+content/dota_addons/lasthittingsandbox/*
 
 game/_toolsettings/*
 game/bin/*
@@ -28,6 +29,7 @@ game/dota_lv_imported/*
 game/dota_schinese/*
 game/dota_schinese_imported/*
 game/dota_russian/*
+game/dota_addons/new_bloom_2017/*
 
 game/dota_addons/addon_template/*
 game/dota_addons/adventure_example/*
@@ -41,6 +43,7 @@ game/dota_addons/rpg_example_test/*
 game/dota_addons/ui_example/*
 game/dota_addons/ui_example_test/*
 game/dota_addons/hero_demo/*
+game/dota_addons/lasthittingsandbox/*
 game/dota_addons/tutorial_assist_game/*
 game/dota_addons/tutorial_basics/*
 game/dota_addons/dota2cfg.cfg
@@ -50,6 +53,7 @@ game/dota_addons/lasthitchallenge/panorama/*
 game/dota_addons/lasthitchallenge/panorama_debugger.cfg
 game/dota_addons/lasthitchallenge/particles/*
 game/dota_addons/lasthitchallenge/materials/*
+
 
 bin/*
 _CommonRedist/*
