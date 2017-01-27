@@ -6,7 +6,7 @@
 
 .ScorePanel
 {
-	transform: translateX( 40px ) translateY( -2.5% );
+	transform: translateX( 90px ) translateY( -4.0% );
   vertical-align: bottom;
   horizontal-align: center;
   visibility: collapse;
