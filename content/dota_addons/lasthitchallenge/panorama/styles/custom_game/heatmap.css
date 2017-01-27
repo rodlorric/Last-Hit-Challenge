@@ -22,7 +22,7 @@
   horizontal-align: center;
   margin-top: 10px;
   background-image: url("file://{images}/lasthit.jpg");
-  background-position: 0px 0px, center;
+  background-position: 20px -50px, center;
   background-size: cover;
   background-repeat: no-repeat;
  }
