@@ -101,9 +101,9 @@ function getrecords()
 	end)
 end
 
-function setrecords()
-	local hero_list = {"11"}
-	local time_list = {"150"}
+function setrecords(steamid, heroid, s_time, n_value)
+	local hero_list = {heroid}
+	local time_list = {s_time}
 	local type_list = {"c", "l", "d", "a"}
 	local level_list = {"l"}
 
@@ -114,14 +114,15 @@ function setrecords()
 			for k, hero in pairs(hero_list) do
 				for l, level in pairs(level_list) do
 					local table_name = typescore ..  hero ..  time .. level
-					table.insert(data, {hero = hero, time = time, leveling = level, typescore = typescore, value = "score"})
+					table.insert(data, {hero = hero, time = time, leveling = level, typescore = typescore, value = tonumber(n_value)})
 				end
 			end
 		end
 	end
 	DeepPrintTable(data)
 
-	Storage:Put("58169609", data, function( resultTable, successBool )
+	print("steamid = " .. steamid)
+	Storage:Put(steamid, data, function( resultTable, successBool )
 	    if successBool then
 	        print("Successfully put data in storage")
 	    end
@@ -204,6 +205,7 @@ function CLastHitChallenge:InitGameMode()
 	--Convars:RegisterCommand( "quitgame", quit_game_func, "Quit the game", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "getrecords", getrecords, "Get Records", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "setrecords", setrecords, "Set Records", FCVAR_CHEAT)
+	--Convars:RegisterCommand("setrecords", function( cmd, steamid, heroid, s_time, n_value) setrecords(steamid, heroid, s_time, n_value) end, "Set a record.", FCVAR_CHEAT )
 	--Convars:RegisterCommand( "giffpower", giffpower, "Give Damage", FCVAR_CHEAT)
 	--Convars:RegisterCommand( "setrecord", function(command, steamid, hero, time, leveling, typescore, value)
 	--									local data = {}
