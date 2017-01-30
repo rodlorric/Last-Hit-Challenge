@@ -137,7 +137,7 @@ end
 
 function CLastHitChallenge:InitGameMode()
 
-	Storage:SetApiKey("25f356916a73fe41e366e800f5f5c558c5eb7dd4")
+	Storage:SetApiKey("mykey")
 
 	local data = { key = "value"}
 
