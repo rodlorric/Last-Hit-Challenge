@@ -6,7 +6,7 @@
 		var talentsUI = talentsAndAbilitiesUI.FindChild("StatBranch");
 		talentsUI.style.visibility = "collapse";
 
-		--workaround for the talents trees and leveling up
+		//workaround for the talents trees and leveling up
 		(function () {
 			GameEvents.Subscribe("hidetalenttree", HideTalentTree);
 		})();
