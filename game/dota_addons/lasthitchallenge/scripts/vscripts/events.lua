@@ -962,6 +962,15 @@ function CLastHitChallenge:OnLeaderboard(query)
 	end
 end
 
+function CLastHitChallenge:OnHeroLevelUp(event)
+
+  local player = PlayerInstanceFromIndex( event.player )
+  local hero = player:GetAssignedHero()
+  local level = hero:GetLevel()
+  CustomGameEventManager:Send_ServerToPlayer(player,"hidetalenttree", {})
+end
+
+
 function CLastHitChallenge:Resume()
 	if Tutorial:GetTimeFrozen() then
 		CLastHitChallenge:SetGameFrozen(false)

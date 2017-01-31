@@ -1,6 +1,21 @@
 <root>
 	<script>
 		$.Msg("Compiled Panorama")
+		var talentsAndAbilitiesUI = $.GetContextPanel().GetParent().GetParent().FindChild("HUDElements").FindChild("lower_hud").FindChild("center_with_stats").FindChild("center_block").FindChild("AbilitiesAndStatBranch");
+
+		var talentsUI = talentsAndAbilitiesUI.FindChild("StatBranch");
+		talentsUI.style.visibility = "collapse";
+
+		--workaround for the talents trees and leveling up
+		(function () {
+			GameEvents.Subscribe("hidetalenttree", HideTalentTree);
+		})();
+
+		function HideTalentTree(){
+			var talentsAndAbilitiesUI = $.GetContextPanel().GetParent().GetParent().FindChild("HUDElements").FindChild("lower_hud").FindChild("center_with_stats").FindChild("center_block");
+			var levelupUI = talentsAndAbilitiesUI.FindChild("level_stats_frame");
+			levelupUI.style.visibility = "collapse";
+		}
 	</script>
  
 	<Panel>
