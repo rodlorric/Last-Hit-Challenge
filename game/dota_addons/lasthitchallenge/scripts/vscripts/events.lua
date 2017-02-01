@@ -970,6 +970,9 @@ function CLastHitChallenge:OnHeroLevelUp(event)
   CustomGameEventManager:Send_ServerToPlayer(player,"hidetalenttree", {})
 end
 
+function CLastHitChallenge:OnPlayerChat(event)
+	CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(event.playerid), "chat", {})
+end
 
 function CLastHitChallenge:Resume()
 	if Tutorial:GetTimeFrozen() then

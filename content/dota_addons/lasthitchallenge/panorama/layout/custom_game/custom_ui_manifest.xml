@@ -9,12 +9,19 @@
 		//workaround for the talents trees and leveling up
 		(function () {
 			GameEvents.Subscribe("hidetalenttree", HideTalentTree);
+			GameEvents.Subscribe("chat", HideChat);
 		})();
 
 		function HideTalentTree(){
 			var talentsAndAbilitiesUI = $.GetContextPanel().GetParent().GetParent().FindChild("HUDElements").FindChild("lower_hud").FindChild("center_with_stats").FindChild("center_block");
 			var levelupUI = talentsAndAbilitiesUI.FindChild("level_stats_frame");
 			levelupUI.style.visibility = "collapse";
+		}
+
+		function HideChat(){
+			var chatUI = $.GetContextPanel().GetParent().GetParent().FindChild("HUDElements").FindChild("HudChat");
+			chatUI.ToggleClass("Active");
+			chatUI.GetParent().SetFocus();
 		}
 	</script>
  
