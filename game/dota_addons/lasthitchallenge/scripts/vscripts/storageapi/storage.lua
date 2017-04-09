@@ -345,7 +345,7 @@ end
 ]]
 function Storage:SendHTTPRequest(method, values, callback)
 
-	local req = CreateHTTPRequest( method, STORAGEAPI_API_URL )
+	local req = CreateHTTPRequestScriptVM( method, STORAGEAPI_API_URL )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
@@ -356,7 +356,7 @@ end
 
 function Storage:SendHTTPRequestURL(method, url, values, callback)
 
-	local req = CreateHTTPRequest( method, url )
+	local req = CreateHTTPRequestScriptVM( method, url )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
