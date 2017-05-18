@@ -50,11 +50,13 @@ game/dota_addons/dota2cfg.cfg
 game/dota_addons/vpks/*
 game/dota_addons/lasthitchallenge/*.bin
 game/dota_addons/lasthitchallenge/panorama/*
+game/dota_addons/lasthitchallenge/particles/*
+game/dota_addons/lasthitchallenge/materials/*
 game/dota_addons/lasthitchallenge/panorama_debugger.cfg
 game/dota_addons/lasthitchallenge/demoheader.tmp
 game/dota_addons/lasthitchallenge/server_log.txt
-game/dota_addons/lasthitchallenge/particles/*
-game/dota_addons/lasthitchallenge/materials/*
+game/dota_addons/lasthitchallenge/cache_58169609.soc
+game/dota_addons/lasthitchallenge/rich_presence_persistent_data.txt
 
 
 bin/*
