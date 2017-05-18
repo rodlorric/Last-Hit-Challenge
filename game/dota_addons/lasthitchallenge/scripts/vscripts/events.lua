@@ -201,6 +201,14 @@ end
 function CLastHitChallenge:ClearData()
 	restarts = restarts + 1
 
+	if MAXTIME > 0 then
+		radiant_maxspawns = ((MAXTIME / 30) * CREEPS_PER_WAVE) + math.floor(MAXTIME / SIEGE_CREEP_INTERVAL)
+		dire_maxspawns = radiant_maxspawns
+	else 
+    	radiant_maxspawns = ">>"
+    	dire_maxspawns = ">>"
+    end
+    --[[
 	if (MAXTIME == 150) then 
     	radiant_maxspawns = 20;
     	dire_maxspawns = 20;
@@ -217,6 +225,7 @@ function CLastHitChallenge:ClearData()
     	radiant_maxspawns = ">>"
     	dire_maxspawns = ">>"
     end
+    ]]
 
 	if GameRules:IsGamePaused() == true then
   		PauseGame(false)
@@ -786,8 +795,8 @@ function CLastHitChallenge:Spawner()
 		    point = Entities:FindByName( nil, "npc_dota_spawner_" .. (i == 1 and "good" or "bad") .. "_mid_staging"):GetAbsOrigin()			
 		    waypoint = Entities:FindByName(nil, "lane_mid_pathcorner_" .. (i == 1 and "good" or "bad") .. "guys_1")
 			if waypoint then
-				for j=1,4 do		
-					unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < 4 and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
+				for j=1,CREEPS_PER_WAVE do		
+					unit = CreateUnitByName("npc_dota_creep_" .. (i == 1 and "good" or "bad") .. "guys_" .. (j < CREEPS_PER_WAVE and "melee" or "ranged"), point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
 					if seconds >= 450 then -- after 7:30 min creeps gain 10 health and 2/1 Dmg ranged/melee
 						if unit:IsCreep() and unit:IsRangedAttacker() then
 							unit:SetBaseDamageMin(unit:GetBaseDamageMin() + 2)
@@ -806,8 +815,8 @@ function CLastHitChallenge:Spawner()
 						dire_creeps_spawned = dire_creeps_spawned + 1
 					end
 				end
-				-- spawn siege creep every 7th wave
-				if iter % 7 == 0 then
+				-- spawn siege creep every 10th wave
+				if iter % 10 == 0 then
 					unit = CreateUnitByName("npc_dota_" .. (i == 1 and "good" or "bad") .. "guys_siege", point, true, nil, nil, (i == 1 and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS))
 					unit:SetInitialGoalEntity(waypoint)
 					if i == 1 then

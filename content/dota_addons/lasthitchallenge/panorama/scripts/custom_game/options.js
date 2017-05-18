@@ -122,6 +122,12 @@ function OnStart(data){
    	$("#invulnerability").checked = false;
 
    	var max = "--";
+   	if (time > 0){
+   		max = (time / 30) * 5 + (Math.floor(time / 300));
+   	} else {
+   		max = "--";
+   	}
+   	/*
    	if (time == 150){
    		max = 20;
    	} else if (time == 300){
@@ -133,6 +139,7 @@ function OnStart(data){
    	} else {
    		max = "--";
    	}
+   	*/
    	$("#max_radiant").text = max;
    	$("#max_dire").text = max;
 	$.Schedule( 1, OnResetAnimation );
