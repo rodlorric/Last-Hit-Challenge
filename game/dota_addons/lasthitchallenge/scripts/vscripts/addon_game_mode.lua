@@ -1,7 +1,7 @@
 _G.seconds = 0 --600 = 10 minutes
 _G.MAXTIME = -2 -- seconds
 _G.TIMEUP = MAXTIME + 5
-_G.CREEPS_PER_WAVE = 5
+_G.CREEPS_PER_WAVE = 4
 _G.SIEGE_CREEP_INTERVAL = 300 -- seconds = 5 minutes, every 10th wave.
 _G.total_time = 0
 _G.shortest_time = 600
